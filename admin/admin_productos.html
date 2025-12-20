@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Administrar productos – Splendor Herbs</title>
+
+  <!-- Enlace al CSS externo -->
+  <link rel="stylesheet" href="css/admin_productos.css">
+</head>
+<body>
+  <a id="btnVolver" href="dashboard.html">
+    <span class="flecha">←</span>
+  </a>
+
+
+  <div class="admin-wrapper">
+    <div class="admin-title">
+      <h1>Panel de productos</h1>
+      <p>
+        Agrega, elimina y configura la ficha técnica de cada producto para que se refleje en
+        <strong>Hortalizas frescas</strong> y <strong>Hierbas aromáticas</strong>.
+      </p>
+      <p class="hint">
+        Las páginas <em>hortalizas.html</em> y <em>hierbas.html</em> leen estos datos desde <code>localStorage.fichasProductos</code>.
+      </p>
+    </div>
+
+    <!-- Formulario agregar / editar ficha -->
+    <form id="formAgregar">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombreProducto">Nombre del producto</label>
+          <input type="text" id="nombreProducto" class="form-input" placeholder="Ej: Lechuga Romana" required />
+        </div>
+        <div class="form-group" style="max-width: 240px;">
+          <label for="categoriaProducto">Categoría</label>
+          <select id="categoriaProducto" class="form-select" required>
+            <option value="Hortalizas frescas">Hortalizas frescas</option>
+            <option value="Hierbas aromáticas">Hierbas aromáticas</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="descripcionProducto">Descripción</label>
+          <textarea id="descripcionProducto" class="form-textarea form-input" placeholder="Breve descripción..." required></textarea>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="variedadProducto">Variedad</label>
+          <input type="text" id="variedadProducto" class="form-input" placeholder="Ej: Romana, Crespa..." required />
+        </div>
+        <div class="form-group">
+          <label for="origenProducto">Origen</label>
+          <input type="text" id="origenProducto" class="form-input" placeholder="Ej: Cundinamarca, Colombia" required />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="empaqueProducto">Empaque</label>
+          <input type="text" id="empaqueProducto" class="form-input" placeholder="Ej: 12 / 16 / 20 unidades por caja" required />
+        </div>
+        <div class="form-group">
+          <label for="temperaturaProducto">Temperatura de almacenamiento</label>
+          <input type="text" id="temperaturaProducto" class="form-input" placeholder="Ej: 32°F - 36°F (0°C – 2°C)" required />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group" style="max-width: 280px;">
+          <label for="imagenProducto">Imagen del producto</label>
+          <input type="file" id="imagenProducto" class="form-input" accept="image/*" />
+          <p class="hint">Se subirá a la carpeta <strong>productos/</strong> en Firebase Storage.</p>
+        </div>
+
+        <div class="form-group" style="max-width: 220px; align-items: flex-end;">
+          <button type="submit" id="btnGuardar" class="btn-primary-green">Guardar producto</button>
+          <span id="estadoSubida" class="hint"></span>
+        </div>
+      </div>
+
+      <input type="hidden" id="productoId" value="">
+    </form>
+
+    <!-- Listas por categoría -->
+    <div class="tablas-productos">
+      <article class="card-categoria">
+        <h2>Hortalizas frescas <span class="badge-categoria">Huerta</span></h2>
+        <p>Estos productos aparecerán en <strong>hortalizas.html</strong>.</p>
+        <ul id="lista-hortalizas" class="lista-productos"></ul>
+      </article>
+
+      <article class="card-categoria">
+        <h2>Hierbas aromáticas <span class="badge-categoria">Aromáticas</span></h2>
+        <p>Estos productos aparecerán en <strong>hierbas.html</strong>.</p>
+        <ul id="lista-aromaticas" class="lista-productos"></ul>
+      </article>
+    </div>
+  </div>
+
+  <!-- Firebase v8 -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+
+  <!-- Enlace al archivo JS externo -->
+  <script src="js/admin_productos.js"></script>
+
+</body>
+</html>
