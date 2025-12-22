@@ -256,6 +256,94 @@ html, body {
     font-size: 1rem;
     margin-bottom: 40px;
 }
+
+/* --- SECCIÓN VALORES --- */
+.valores {
+    padding: 80px 20px;
+    position: relative;
+    overflow: hidden;
+    margin-top: var(--header-height); 
+}
+
+.contenedor-valores {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* Estilos texto */
+.valores .hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px; /* Reducido un poco */
+    width: 100%;
+}
+
+.valores .hero-text h2 {
+    color: var(--primary-green);
+    font-family: var(--font-titles);
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    font-weight: 100;
+}
+
+.valores .hero-text h2 span {
+    display: inline-block;
+}
+
+.valores .hero-text p {
+    max-width: 900px;
+    font-family: var(--font-main);
+    color: #555;
+    line-height: 1.6;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+/* --- REJILLA DE ICONOS --- */
+.iconos-valores {
+    display: flex;
+    flex-wrap: wrap;       /* Permite que bajen si no caben */
+    justify-content: center; /* Centra los iconos en la fila */
+    gap: 40px;             /* Espacio entre ellos */
+    margin: 20px 0 40px 0; /* Margen vertical */
+    width: 100%;           /* IMPORTANTE: Ocupar todo el ancho disponible */
+}
+
+.valor {
+    width: 140px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.valor:hover {
+    transform: translateY(-5px);
+}
+
+.valor img {
+    width: 80px; 
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.valor p {
+    font-family: var(--font-titles);
+    font-weight: 100;
+    color: #000;
+    font-size: 0.95rem;
+    line-height: 1.2;
+}
+
+
 /* --- ESTILOS DE GALERÍA (BUCLE PERFECTO) --- */
 .gallery-section {
     width: 100%;
@@ -406,35 +494,6 @@ html, body {
   flex-direction: column;
   text-align: center;
 }
-
-/*Página valores*/
-.valores {
-  background-color: #ffffff;
-  padding: 60px 20px;
-  text-align: center;
-  font-family: "Poppins", sans-serif;
-}
-
-.iconos-valores {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 30px;
-  justify-items: center;
-  margin-bottom: 40px;
-}
-
-.valor {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.valor img {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 10px;
-}
-
 
 /* --- FOOTER --- */
 footer {
@@ -605,6 +664,16 @@ footer {
 
     .split-video, .split-text {
         width: 100%;
+    }
+
+    .valores {
+        background: #fff; /* Quitar rayas en móvil para que se lea mejor */
+    }
+    .iconos-valores {
+        gap: 20px;
+    }
+    .valor {
+        width: 45%; /* En móviles, 2 por fila */
     }
   .gallery-wrapper {
         flex-direction: column;
