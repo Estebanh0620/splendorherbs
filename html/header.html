@@ -1,43 +1,60 @@
-<header class="main-header">
-  <div class="container">
-    <a href="/Splendorumng/index.html" class="logo">
-      <img src="/Splendorumng/img/Logo Splendor Herbs.png" alt="Splendor Herbs logo">
-    </a>
+<!-- HEADER FIXED -->
+    <header class="header">
+        <div class="navbar-container">
+            <nav class="navbar">
+                
+                <!-- Logo Mobile (Izquierda) -->
+                <div class="logo-mobile">
+                    <a href="#"><img src="/img/logo.png" alt="Logo"></a>
+                </div>
+                
+                <!-- Botón Hamburguesa (Derecha en móvil) -->
+                <div class="menu-toggle" id="mobile-menu-btn">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+
+                <!-- Menú Desktop -->
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="/index.html" class="nav-link">INICIO</a>
+                    </li>
+                    
+                    <!-- Submenú Nosotros -->
+                    <li class="nav-item dropdown">
+                        <a href="javascript:void(0);" class="nav-link">NOSOTROS <i class="fas fa-chevron-down arrow-icon"></i></a>
+                        <div class="dropdown-content">
+                            <a href="/html/valores.html" >NUESTROS VALORES</a>
+                            <a href="/html/porquestn.html" >¿POR QUE ELEGIRNOS?</a>
+                            <a href="/html/galeria.html" >GALERIA</a>
+                        </div>
+                    </li>
+
+                    <!-- Logo Central (Escritorio) -->
+                    <li class="nav-item logo-desktop">
+                        <a href="#"><img src="/img/logo.png" alt="Logo Central"></a>
+                    </li>
+
+                    <!-- Submenú Productos -->
+                    <li class="nav-item dropdown">
+                        <a href="javascript:void(0);" class="nav-link">PRODUCTOS <i class="fas fa-chevron-down arrow-icon"></i></a>
+                        <div class="dropdown-content">
+                            <a href="/html/hortalizas.html">HORTALIZAS FRESCAS</a>
+                            <a href="/html/hierbas.html">HIERBAS AROMATICAS</a>
+                            <a href="/html/procesos.html">PROCESOS</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="/html/contacto.html" class="nav-link">CONTACTANOS</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- OVERLAY MÓVIL -->
+    <div class="menu-overlay" id="menu-overlay"></div>
+
     
-     <div class="menu-toggle" id="mobile-menu">
-      &#9776;
-    </div>
-
-     <nav class="navbar">
-      <ul class="nav-menu">
-
-        <li class="overlay">
-          <a href="#" class="menu-toggle">INICIO</a>
-          <ul class="overlay-menu">
-            <li><a href="/Splendorumng/html/galeria.html">Galería</a></li>
-            <li><a href="/Splendorumng/html/procesos.html">Procesos</a></li>
-          </ul>
-        </li>
-
-        <li class="overlay">
-          <a href="#" class="menu-toggle">PRODUCTOS</a>
-          <ul class="overlay-menu">
-            <li><a href="/Splendorumng/html/hortalizas.html">Hortalizas Frescas</a></li>
-            <li><a href="/Splendorumng/html/hierbas .html">Hierbas Aromáticas</a></li>
-          </ul>
-        </li>
-
-        <li class="overlay">
-          <a href="#" class="menu-toggle">NOSOTROS</a>
-          <ul class="overlay-menu">
-            <li><a href="/Splendorumng/html/valores.html">Nuestros Valores</a></li>
-            <li><a href="/Splendorumng/html/porquestn.html">¿Por qué Splendor Herbs?</a></li>
-          </ul>
-        </li>
-
-        <li><a href="/Splendorumng/html/contacto.html">CONTÁCTANOS</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-

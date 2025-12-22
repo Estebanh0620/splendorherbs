@@ -2,35 +2,72 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Splendor Herbs</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
   <div id="header"></div>
 
-  <main class = "main-content">
-    <section class="hero">
-      <img src="/splendorherbs/img/Pagina index.png" alt="Imagen principal index">
-    </section> 
+ <main class="main-content">
+    
+    
+    <!-- Asegúrate de cambiar la imagen del hero en el style inline si es necesario -->
+    <section class="hero" style="background-image: url('/img/hero-invernadero.jpg');">
+      <div class="hero-overlay">
+        <div class="hero-inner-content">
+          <!-- Columna Izquierda Hero: Logo -->
+          <div class="hero-col-logo">
+            <!-- Pon aquí la ruta a tu logo en BLANCO si lo tienes, o el normal -->
+            <img src="/img/logo2.png" alt="Splendor Herbs Logo"> 
+          </div>
+          <!-- Columna Derecha Hero: Texto -->
+          <div class="hero-col-text">
+            <h2>AROMÁTICAS FRESCAS CON<br>CALIDAD Y SOSTENIBILIDAD<br>DESDE COLOMBIA</h2>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="hero-text">
-    <b>“Aromáticas frescas con calidad y sostenibilidad desde Colombia”</b>
-    <h1>QUIENES SOMOS</h1>
-    <p>Hace 7 años nació en Madrid, Cundinamarca, Splendor Herbs SAS, una compañía dedicada al cultivo, 
-      selección y empaque de aromáticas frescas. Desde el inicio nos hemos enfocado en llevar al mundo productos 
-      de la más alta calidad, cultivados con responsabilidad y respeto por el medio ambiente.</p>
-    <p>Nuestro camino ha estado marcado por el compromiso con la sostenibilidad, trabajando constantemente
-       en reducir nuestra huella de carbono y en fortalecer las buenas prácticas agrícolas. De la mano de nuestros 
-       colaboradores, hemos creado una cultura basada en el aprendizaje continuo, la innovación en los procesos 
-       y la entrega de un producto fresco y saludable, que cumple con los más altos estándares internacionales.</p>
-    <h3>Certificaciones:</h3>
+    <!-- Sección CONTENIDO: Estructura de columnas -->
+    <div class="content-container">
+      
+      <h1 class="section-title">QUIENES SOMOS</h1>
 
-    <div class="certificados">
-    <img src="/splendorherbs/img/primus.png" alt="certificado primus">
-    <img src="/splendorherbs/img/ICA.webp" alt="certificado ICA">
-  </div>
-  </div>
+      <!-- Fila dividida: Imagen a la izquierda, Texto a la derecha -->
+      <div class="split-section">
+        
+        <!-- Contenedor del Video -->
+        <div class="split-video">
+          <!-- 'poster' es la imagen que se ve antes de darle play -->
+          <!-- 'controls' activa los botones de play/pausa/volumen -->
+          <video controls poster="/img/portada-video.jpg">
+            <source src="/video/video-institucional.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de videos.
+          </video>
+        </div>
+        
+        <div class="split-text">
+          <p>Desde 2017 nació en Madrid, Cundinamarca, Splendor Herbs SAS, una compañía dedicada al cultivo, selección y empaque de aromáticas frescas. Desde el inicio nos hemos enfocado en llevar al mundo productos de la más alta calidad, cultivados con responsabilidad y respeto por el medio ambiente.</p>
+        </div>
+      </div>
+
+      <!-- Texto completo inferior -->
+      <div class="full-width-text">
+        <p>Nuestro camino ha estado marcado por el compromiso con la sostenibilidad, trabajando constantemente en reducir nuestra huella de carbono y en fortalecer las buenas prácticas agrícolas. De la mano de nuestros colaboradores, hemos creado una cultura basada en el aprendizaje continuo, la innovación en los procesos y la entrega de un producto fresco y saludable, que cumple con los más altos estándares internacionales.</p>
+      </div>
+      
+      <h1 class="section-title">CERTIFICACIONES</h1>
+
+      <div class="certificados">
+        <img src="/img/primus.png" alt="certificado primus">
+        <img src="/img/ICA.webp" alt="certificado ICA">
+      </div>
+
+    </div>
+
   </main>
 
   <div id="footer"></div>
@@ -51,7 +88,7 @@
   // Cargar el header y luego inicializar el menú
   loadHTML('header', 'html/header.html', () => {
     const script = document.createElement('script');
-    script.src = '/splendorherbs/js/menus.js';
+    script.src = '/js/menus.js';
     document.body.appendChild(script);
 
     setTimeout(() => {
