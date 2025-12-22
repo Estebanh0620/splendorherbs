@@ -7,6 +7,11 @@
     --font-main: 'Montserrat', sans-serif;
     --font-titles: 'Belanosima', sans-serif; 
     --header-height: 80px;
+
+    --verde-oscuro: var(--dark-green); /* Mapeamos a tu color existente */
+    --verde-medio: #4f8f3f;            /* Un verde intermedio para badges y botones */
+    --texto-secundario: #666666;       /* Gris para textos descriptivos */
+    --borde-suave: #dbece2;            /* Borde sutil para las cards */
 }
 
 /* --- APLICAR FUENTE A TODOS LOS TÍTULOS --- */
@@ -148,6 +153,15 @@ html, body {
     background-position: center;
     position: relative;
 }
+.hero-gal {
+    margin-top: var(--header-height);
+    width: 100%;
+    height: 50vh; /* Puedes aumentar a 50vh o 60vh si quieres que se vea más grande */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
 
 /* Oscurece la imagen y centra el contenido interno */
 .hero-overlay {
@@ -190,7 +204,16 @@ html, body {
     text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
 }
 
-
+.hero-col-text-gal h2 {
+    font-family: var(--font-titles); /* Aseguramos que el Hero la use */
+    color: var(--white);
+    font-size: 3rem; /* Ajusté un poco el tamaño para esta fuente */
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 100;
+    line-height: 1.3;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+}
 .content-container {
     width: 100%;
     max-width: 1100px;
@@ -344,9 +367,9 @@ html, body {
 }
 
 
-/* --- ESTILOS DE GALERÍA (BUCLE PERFECTO) --- */
+/* --- ESTILOS DE GALERÍA GLOBAL (Base PC) --- */
 .gallery-section {
-    width: 100%;
+     width: 100%;
     background-color: #fff4f4;
     padding: 50px 20px;
     display: flex;
@@ -376,7 +399,7 @@ html, body {
     padding: 8px 25px;
     border-radius: 50px;
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 200;
     text-transform: uppercase;
     margin-bottom: 15px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.15);
@@ -384,7 +407,7 @@ html, body {
     z-index: 5;
 }
 
-/* --- VENTANA DE VISUALIZACIÓN --- */
+/* VENTANA (PC: Vertical) */
 .column-window {
     width: 100%;
     height: 550px;
@@ -396,7 +419,6 @@ html, body {
     position: relative;
     touch-action: pan-y; 
     cursor: grab;
-    
 }
 
 /* INTERACCIÓN */
@@ -408,8 +430,8 @@ html, body {
 }
 .column-window::-webkit-scrollbar { display: none;  }
 .column-window { -ms-overflow-style: none; scrollbar-width: none; }
+/* TRACK (PC: Vertical) */
 
-/* --- PISTA DE IMÁGENES (CORRECCIÓN BUCLE) --- */
 .column-track {
     display: flex;
     flex-direction: column; 
@@ -449,6 +471,7 @@ html, body {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); } 
 }
+
 .certificados {
   display: flex;
   justify-content: center;  /* centra horizontalmente */
@@ -462,39 +485,243 @@ html, body {
   height: auto;             
   object-fit: contain;
 }
+/* =========================================
+   NUEVA SECCIÓN: ¿POR QUÉ ELEGIRNOS?
+   ========================================= */
 
-/*Página por qué nosotros*/
-.pq{
-  flex: 1;
-  max-width: 550px;
-  text-align: justify;
-  font-size: 1rem;
-  line-height: 1.6;
-  margin: 0;
-  padding-left: 90px !important;
-}
-.contenedorpq{
-  display: flex;
-  justify-content: center;  /* centra horizontalmente */
-  align-items: center;      /* centra verticalmente */
-  gap: 20px;                /* espacio entre las imágenes */
-  margin: 30px auto;        /* margen arriba y abajo */
-  max-width: 1000px;
-}
-.contenedorpq img{
-  width: 180px;             
-  height: auto;             
-  object-fit: contain;
-  margin-right: 10px;
+.seccion-elegirnos {
+    background-color: #ffffff; /* Fondo BLANCO limpio */
+    padding: 80px 20px;
+    margin-top: var(--header-height);
+    
 }
 
-.iconoytexto{
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
+.seccion-elegirnos h2 {
+    color: var(--primary-green);
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 100;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    font-family: var(--font-titles);
 }
 
+/* Contenedor central que limita el ancho */
+.contenedor-principal {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 50px; /* Espacio vertical entre filas */
+}
+
+/* Cada fila (Imagen + Texto) */
+.bloque-item {
+    display: flex;
+    align-items: center; /* Centra verticalmente icono y texto */
+    justify-content: center;
+    gap: 60px; /* Espacio horizontal entre icono y texto */
+    width: 100%;
+}
+
+/* Estilos del Icono y su Título (Negrita) */
+.iconoytexto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 220px; /* Ancho fijo para que todos los iconos se alineen igual */
+    flex-shrink: 0; 
+    font-weight: 100;
+}
+
+.iconoytexto img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.iconoytexto img:hover {
+    transform: scale(1.1);
+}
+
+.iconoytexto b {
+    font-family: var(--font-titles);
+    font-size: 1.1rem;
+    color: #000;
+}
+
+
+.texto-descripcion {
+    flex: 1; /* Ocupa el resto del espacio */
+    font-family: var(--font-main);
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: justify;
+    margin: 0;
+    padding: 0; /* Aseguramos que no tenga padding extraño */
+}
+
+/* ----HORTALIZAS--- */
+
+.catalogo{
+      width:min(1200px,94%);
+     margin: 40px auto;
+    }
+    .catalogo__intro{
+      margin-bottom: 30px;
+    text-align: center; /* Centrar el texto introductorio */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    }
+    .catalogo__intro h2{
+      color: var(--primary-green); /* Usar la variable principal */
+    font-size: 2rem;
+    margin-bottom: 10px;
+    font-weight: 200;
+    }
+
+    .tiles{
+      display: grid;
+    /* Ajuste para que las tarjetas no sean muy pequeñas en móviles */
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
+    gap: 20px;
+    }
+    .tile{
+      position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    border: 1px solid var(--borde-suave);
+    transition: all 0.3s ease;
+    }
+    .tile:hover{
+      transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    border-color: var(--primary-green);
+    }
+    .tile img{
+      width: 100%;
+    height: 150px; /* Altura fija para uniformidad */
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+    }
+
+    .tile:hover img {
+    transform: scale(1.1); /* Efecto zoom suave */
+}
+    .tile__label{
+      padding: 12px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--dark-green);
+    background: var(--white);
+    border-top: 1px solid #f0f0f0;
+    }
+
+    .results{
+       width: min(1000px, 94%);
+    margin: 40px auto 80px;
+    scroll-margin-top: 100px; /* Para que al hacer scroll no quede tapado por el header */
+    }
+    .empty{
+      text-align:center;
+      font-size:.9rem;
+      color:#777;
+      padding:14px 12px;
+      border-radius:12px;
+      background:rgba(255,255,255,.85);
+      border:1px dashed #d0e3c4;
+    }
+
+    .card{
+      position:relative;
+      display:grid;
+      grid-template-columns:260px minmax(0,1fr);
+      gap:0;
+      border-radius:20px;
+      overflow:hidden;
+      background:linear-gradient(145deg,#ffffff,#f5f9f1);
+      border:1px solid var(--borde-suave);
+      box-shadow:0 14px 30px rgba(0,0,0,.08);
+      animation:pop .18s ease-out;
+      background: #fff;
+    border: 1px solid var(--borde-suave);
+    }
+    .card__img{
+      width:100%;
+      height:100%;
+      max-height:260px;
+      object-fit:cover;
+      display:block;
+      background-color: #f9f9f9;
+    }
+    .card__body{
+      padding:16px 18px 18px;
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+    .card__title{
+      color:var(--verde-oscuro);
+      font-weight:100;
+      margin:0 0 6px;
+      font-size:1.2rem;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .badge{
+      height:10px;
+      width:10px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#4f8f3f,#8fd86f);
+      display:inline-block;
+      background: var(--primary-green);
+    }
+    .meta{
+      margin-top:6px;
+      font-size:.94rem;
+      color:var(--texto-secundario);
+      line-height:1.6;
+    }
+    .meta b{
+      color:var(--verde-medio);
+    }
+    .card__close{
+      position:absolute;
+      top:10px;
+      right:10px;
+      width:32px;
+      height:32px;
+      line-height:30px;
+      text-align:center;
+      border-radius:999px;
+      border:1px solid var(--verde-medio);
+      background:#fff;
+      color:var(--verde-medio);
+      font-weight:800;
+      cursor:pointer;
+      user-select:none;
+      box-shadow:0 4px 10px rgba(0,0,0,.08);
+    }
+    .card__close:hover{
+      background:var(--verde-medio);
+      color:#fff;
+    }
+
+    @keyframes pop{
+      from{ transform:scale(.98); opacity:.8; }
+      to{ transform:scale(1); opacity:1; }
+    }
 /* --- FOOTER --- */
 footer {
     background-color: var(--primary-green);
@@ -573,6 +800,17 @@ footer {
 }
 /* ======== Vista responsive ======== */
 @media (max-width: 900px) {
+  .catalogo__intro h2 {
+        font-size: 1.5rem;
+    }
+    
+    .card {
+        grid-template-columns: 1fr; /* Una sola columna */
+    }
+    
+    .card__img {
+        height: 200px; /* Imagen más pequeña en ficha técnica */
+    }
   .navbar { justify-content: space-between; }
     .logo-desktop { display: none; }
     .logo-mobile { display: block; }
@@ -676,53 +914,93 @@ footer {
         width: 45%; /* En móviles, 2 por fila */
     }
   .gallery-wrapper {
+        display: flex;
         flex-direction: column;
-        gap: 50px;
+        gap: 30px;
+        width: 100%;
         max-width: 100vw;
+        /* Ocultamos lo que se sale de la pantalla para evitar scroll horizontal de toda la web */
+        overflow: hidden; 
     }
 
     .gallery-column {
         width: 100%;
-        align-items: center; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .column-header {
         margin-left: 0;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
         text-align: center; 
     }
 
+    /* VENTANA */
     .column-window {
         width: 100%;
-        height: 260px; 
-        border-radius: 0;
+        height: 270px;
         background: transparent;
         box-shadow: none;
-        overflow: hidden; 
-        overflow-x: hidden;
-        touch-action: pan-x;
+        border-radius: 0;
+        
+        /* Por defecto ocultamos el scroll para que se vea la animación limpia */
+        overflow-x: hidden; 
+        overflow-y: hidden;
+        
+        position: relative;
+        pointer-events: auto;
+        
+        /* IMPORTANTE: Permitir explícitamente el desplazamiento horizontal del dedo */
+        touch-action: pan-x; 
     }
 
+    /* --- ACTIVAR SCROLL AL TOCAR --- */
+    /* Al hacer foco, hover o tocar (active), permitimos el scroll */
     .column-window:active,
-    .column-window:focus {
-        overflow-x: auto;
+    .column-window:focus-within,
+    .column-window:hover {
+        overflow-x: auto; /* Habilita el desplazamiento manual */
+        -webkit-overflow-scrolling: touch; /* Efecto inercial suave en iPhone/iOS */
     }
 
+    /* Ocultar la barra de desplazamiento visualmente (pero manteniendo la función) */
+    .column-window::-webkit-scrollbar { display: none; }
+    .column-window { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* PISTA (El tren de imágenes) */
     .column-track {
-        flex-direction: row; /* Cambia a Horizontal */
-        width: max-content;
+        display: flex !important;
+        flex-direction: row !important;
+        width: max-content !important; 
         height: 100%;
-        padding-left: 0; 
-        gap: 0; /* Sin gap */
-        animation-name: scrollHorizontal;
+        padding: 0;
+        gap: 0;
+        animation: scrollHorizontal 2000s linear infinite !important; /* Ajusté a 60s para fluidez */
+        will-change: transform;
     }
 
+    /* --- LA MAGIA: PAUSAR AL TOCAR --- */
+    /* Detiene el tren para que el usuario tome el control con el scroll */
+    .column-window:active .column-track,
+    .column-window:focus-within .column-track,
+    .column-window:hover .column-track {
+        animation-play-state: paused !important;
+    }
+
+    /* IMÁGENES */
     .column-track img {
-        width: 280px; 
+        width: 280px;
         height: 250px;
+        object-fit: cover;
+        margin-bottom: 0 !important;
+        margin-right: 20px !important; 
+        border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        margin-bottom: 0;   
-        margin-right: 20px; /* Margen a la derecha para scroll horizontal */
+        
+        /* Evitamos que el navegador intente "arrastrar" la imagen como archivo */
+        user-select: none;
+        pointer-events: none;
     }
   .certificados {
     flex-direction: column;
@@ -735,7 +1013,38 @@ footer {
     width: 150px;  /* un poco más pequeñas en móvil */
     height: auto;
   }
+  .seccion-elegirnos {
+        padding-top: 50px;
+    }
 
+    .seccion-elegirnos h2 {
+        font-size: 1.8rem;
+        margin-bottom: 40px;
+    }
+
+    .bloque-item {
+        flex-direction: column; /* Uno debajo del otro */
+        text-align: center;
+        gap: 20px;
+        margin-bottom: 40px;
+        border-bottom: 1px solid #f0f0f0; /* Separador sutil en móvil */
+        padding-bottom: 30px;
+    }
+
+    .bloque-item:last-child {
+        border-bottom: none;
+    }
+
+    /* Truco: Forzar que el icono siempre vaya PRIMERO en móvil */
+    .iconoytexto {
+        order: -1; 
+        width: 100%;
+    }
+
+    .texto-descripcion {
+        text-align: center; /* En móvil se ve mejor centrado */
+        width: 100%;
+    }
    .footer-container {
         flex-direction: column; /* Cambia a vertical en móviles */
     }
@@ -749,6 +1058,15 @@ footer {
         border-bottom: none; /* Quitar línea al último elemento */
         margin-bottom: 0;
     } 
+    .card{
+        grid-template-columns:1fr;
+      }
+      .card__img{
+        max-height:220px;
+      }
+      .hero__overlay.centered h1{
+        font-size:2.3rem;
+      }
     
 }
 
