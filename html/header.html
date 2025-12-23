@@ -3,9 +3,21 @@
         <div class="navbar-container">
             <nav class="navbar">
                 
+                <div class="language-switch">
+                    <button id="lang-es" class="lang-btn active">
+                        <img src="/img/co.png" alt="Español">
+                        <span>ESP</span>
+                    </button>
+
+                    <button id="lang-en" class="lang-btn">
+                        <img src="/img/us.png" alt="English">
+                        <span>EN</span>
+                    </button>
+                </div>
+                
                 <!-- Logo Mobile (Izquierda) -->
                 <div class="logo-mobile">
-                    <a href="#"><img src="/img/logo.png" alt="Logo"></a>
+                    <a href="/index.html"><img src="/img/logo.png" alt="Logo"></a>
                 </div>
                 
                 <!-- Botón Hamburguesa (Derecha en móvil) -->
@@ -18,36 +30,36 @@
                 <!-- Menú Desktop -->
                 <ul class="nav-menu">
                     <li class="nav-item">
-                        <a href="/index.html" class="nav-link">INICIO</a>
+                        <a href="/index.html" class="nav-link" data-es="Inicio" data-en="Home">INICIO</a>
                     </li>
                     
                     <!-- Submenú Nosotros -->
                     <li class="nav-item dropdown">
-                        <a href="javascript:void(0);" class="nav-link">NOSOTROS <i class="fas fa-chevron-down arrow-icon"></i></a>
+                        <a href="javascript:void(0);" class="nav-link" data-es="Nosotros" data-en="About Us">NOSOTROS <i class="fas fa-chevron-down arrow-icon"></i></a>
                         <div class="dropdown-content">
-                            <a href="/html/valores.html" >NUESTROS VALORES</a>
-                            <a href="/html/porquestn.html" >¿POR QUE ELEGIRNOS?</a>
-                            <a href="/html/galeria.html" >GALERIA</a>
+                            <a href="/html/valores.html" data-es="Nuestros Valores" data-en="Our Values">NUESTROS VALORES</a>
+                            <a href="/html/porquestn.html" data-es="¿Por qué elegirnos?" data-en="Why Choose Us?">¿POR QUE ELEGIRNOS?</a>
+                            <a href="/html/galeria.html" data-es="Galería" data-en="Gallery">GALERIA</a>
                         </div>
                     </li>
 
                     <!-- Logo Central (Escritorio) -->
                     <li class="nav-item logo-desktop">
-                        <a href="#"><img src="/img/logo.png" alt="Logo Central"></a>
+                        <a href="/index.html"><img src="/img/logo.png" alt="Logo Central"></a>
                     </li>
 
                     <!-- Submenú Productos -->
                     <li class="nav-item dropdown">
-                        <a href="javascript:void(0);" class="nav-link">PRODUCTOS <i class="fas fa-chevron-down arrow-icon"></i></a>
+                        <a href="javascript:void(0);" class="nav-link" data-es="Productos" data-en="Products">PRODUCTOS <i class="fas fa-chevron-down arrow-icon"></i></a>
                         <div class="dropdown-content">
-                            <a href="/html/hortalizas.html">HORTALIZAS FRESCAS</a>
-                            <a href="/html/hierbas.html">HIERBAS AROMATICAS</a>
-                            <a href="/html/procesos.html">PROCESOS</a>
+                            <a href="/html/hortalizas.html" data-es="Hortalizas Frescas" data-en="Fresh Vegetables">HORTALIZAS FRESCAS</a>
+                            <a href="/html/hierbas.html" data-es="Hierbas Aromáticas" data-en="Aromatic Herbs">HIERBAS AROMATICAS</a>
+                            <a href="/html/procesos.html" data-es="Procesos" data-en="Processes">PROCESOS</a>
                         </div>
                     </li>
 
                     <li class="nav-item">
-                        <a href="/html/contacto.html" class="nav-link">CONTACTANOS</a>
+                        <a href="/html/contacto.html" class="nav-link" data-es="Contactanos" data-en="Contact Us">CONTACTANOS</a>
                     </li>
                 </ul>
             </nav>
