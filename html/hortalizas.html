@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Hortalizas frescas – Splendor Herbs</title>
+  <title>Hortalizas frescas</title>
   <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
   <!-- Header dinámico -->
@@ -16,13 +16,10 @@
     <!-- HERO -->
     <section class="hero-gal" style="background-image: url('/img/hero-invernadero.jpg');">
         <div class="hero-overlay">
-          
             <div class="hero-col-text-gal">
             <h2>HORTALIZAS</h2>
-       
       </div>
       </div>
-       
     </section>
 
     <!-- Catálogo de tiles -->
@@ -49,8 +46,8 @@
   <!-- Footer dinámico -->
   <div id="footer"></div>
 
+  <!-- Scripts de Carga de Header/Footer -->
   <script>
-  // Función para cargar HTML externo
   async function loadHTML(id, file, callback) {
     try {
       const res = await fetch(file);
@@ -63,7 +60,6 @@
     }
   }
 
-  // Cargar el header y luego inicializar el menú
   loadHTML('header', '/html/header.html', () => {
     const script = document.createElement('script');
     script.src = '/js/menus.js';
@@ -81,16 +77,16 @@
     }, 200);
   });
 
-  // Cargar el footer
   loadHTML('footer', '/html/footer.html');
-</script>
+  </script>
 
-  <!-- Interacción fichas + conexión con admin -->
+  <!-- Lógica de Hortalizas (Fija en código) -->
   <script>
-    const FICHAS_DEFAULT = [
+    // 1. CONFIGURACIÓN DE PRODUCTOS (Modificar aquí textos e imágenes)
+    const HORTALIZAS = [
       {
-        categoria: "Hortalizas frescas",
         nombre: "Lechuga",
+        imagen: "/img/Lechuga.jpg", // RUTA DE LAS IMAGENES
         descripcion: "Hortaliza de hojas verdes y crujientes, baja en calorías y base esencial de ensaladas frescas.",
         variedad: "Crespa",
         origen: "Cundinamarca, Colombia",
@@ -98,8 +94,8 @@
         temperatura: "32°F - 36°F (0°C – 2°C)"
       },
       {
-        categoria: "Hortalizas frescas",
         nombre: "Cebollin",
+        imagen: "/img/Cebollin.jpg",
         descripcion: "De sabor suave a cebolla, se utiliza para sopas, ensaladas y como guarnición en diversos platos.",
         variedad: "Verdeo",
         origen: "Cundinamarca, Colombia",
@@ -107,8 +103,8 @@
         temperatura: "32°F - 41°F (0°C – 5°C)"
       },
       {
-        categoria: "Hortalizas frescas",
         nombre: "Cilantro",
+        imagen: "/img/Cilantro.jpg",
         descripcion: "Hierba de sabor fuerte y fresco, usada en salsas, sopas y cocina tradicional latinoamericana.",
         variedad: "Común",
         origen: "Tolima / Santander, Colombia",
@@ -116,8 +112,8 @@
         temperatura: "32°F - 41°F (0°C – 5°C)"
       },
       {
-        categoria: "Hortalizas frescas",
         nombre: "Perejil",
+        imagen: "/img/Perejil.jpg",
         descripcion: "Planta de hojas verdes, muy nutritiva, empleada como condimento, en guarniciones y jugos verdes.",
         variedad: "Liso",
         origen: "Valle del Cauca / Antioquia, Colombia",
@@ -126,105 +122,102 @@
       }
     ];
 
-    function cargarFichas() {
-      const guardadas = localStorage.getItem("fichasProductos");
-      if (guardadas) {
-        try {
-          return JSON.parse(guardadas);
-        } catch (e) {
-          console.error("Error leyendo fichasProductos, usando default hortalizas.", e);
-        }
-      }
-      return FICHAS_DEFAULT;
-    }
+    const tilesContainer = document.getElementById('tiles');
+    const resultsContainer = document.getElementById('results');
 
-    const fichas = cargarFichas().filter(f => f.categoria === "Hortalizas frescas");
-
-    const tiles   = document.getElementById('tiles');
-    const results = document.getElementById('results');
-
+    // Función para mostrar mensaje vacío
     function showEmpty(){
-      results.innerHTML = '<p class="empty">Haz clic en una hortaliza para ver su ficha.</p>';
+      resultsContainer.innerHTML = '<p class="empty">Haz clic en una hortaliza para ver su ficha.</p>';
     }
     
+    // Función para crear el cuadrito (Tile)
     function crearTile(ficha) {
       const tile = document.createElement('div');
       tile.className = 'tile';
       tile.dataset.nombre = ficha.nombre;
       
-      const baseLocal = '/img/' + ficha.nombre;
-      const srcMain = ficha.imagenUrl || baseLocal + '.jpg';
-      const onErrorAttr = ficha.imagenUrl
-      ? ''  // si viene de Firebase, no hacemos fallback
-      : `onerror="this.onerror=null;this.src='${baseLocal}.png'"`;
-      
+      // Fallback simple: si falla .jpg intenta cargar .png (opcional)
+      const errorFallback = `this.onerror=null;this.src='/img/${ficha.nombre}.png'`;
+
       tile.innerHTML = `
-      <img src="${srcMain}" ${onErrorAttr} alt="${ficha.nombre}">
-      <div class="tile__label">${ficha.nombre}</div>
+        <img src="${ficha.imagen}" onerror="${errorFallback}" alt="${ficha.nombre}">
+        <div class="tile__label">${ficha.nombre}</div>
       `;
       return tile;
-}
-
-function createCard(ficha){
-  const baseLocal = '/img/' + ficha.nombre;
-  const srcMain = ficha.imagenUrl || baseLocal + '.jpg';
-  const onErrorAttr = ficha.imagenUrl
-  ? ''
-  : `onerror="this.onerror=null;this.src='${baseLocal}.png'"`;
-  
-  const card = document.createElement('article');
-  card.className = 'card';
-  card.innerHTML = `
-    <button class="card__close" aria-label="Cerrar ${ficha.nombre}">✕</button>
-    <img class="card__img" src="${srcMain}" ${onErrorAttr} alt="${ficha.nombre}">
-    <div class="card__body">
-      <h3 class="card__title"><span class="badge"></span> ${ficha.nombre}</h3>
-      <p class="meta">${ficha.descripcion}</p>
-      <p class="meta"><b>Variedad:</b> ${ficha.variedad}</p>
-      <p class="meta"><b>Origen:</b> ${ficha.origen}</p>
-      <p class="meta"><b>Empaque:</b> ${ficha.empaque}</p>
-      <p class="meta"><b>Temperatura de almacenamiento:</b> ${ficha.temperatura}</p>
-    </div>
-    `;
-    return card;
-}
-
-
-    // Pintar tiles
-    if (fichas.length === 0) {
-      tiles.innerHTML = '<p class="empty">No hay hortalizas configuradas en el panel de administración.</p>';
-    } else {
-      fichas.forEach(f => tiles.appendChild(crearTile(f)));
     }
 
-    // Clic en tile → muestra ficha
-    tiles.addEventListener('click',(e)=>{
+    // Función para crear la ficha técnica grande
+    function createCard(ficha){
+      const errorFallback = `this.onerror=null;this.src='/img/${ficha.nombre}.png'`;
+      
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.innerHTML = `
+        <button class="card__close" aria-label="Cerrar ${ficha.nombre}">✕</button>
+        <img class="card__img" src="${ficha.imagen}" onerror="${errorFallback}" alt="${ficha.nombre}">
+        <div class="card__body">
+          <h3 class="card__title"><span class="badge"></span> ${ficha.nombre}</h3>
+          <p class="meta">${ficha.descripcion}</p>
+          <p class="meta"><b>Variedad:</b> ${ficha.variedad}</p>
+          <p class="meta"><b>Origen:</b> ${ficha.origen}</p>
+          <p class="meta"><b>Empaque:</b> ${ficha.empaque}</p>
+          <p class="meta"><b>Temperatura de almacenamiento:</b> ${ficha.temperatura}</p>
+        </div>
+      `;
+      return card;
+    }
+
+    // --- INICIALIZACIÓN ---
+
+    // 1. Renderizar los tiles
+    if (HORTALIZAS.length === 0) {
+      tilesContainer.innerHTML = '<p class="empty">No hay hortalizas disponibles.</p>';
+    } else {
+      HORTALIZAS.forEach(producto => {
+        tilesContainer.appendChild(crearTile(producto));
+      });
+    }
+
+    // 2. Evento Clic en Tile -> Mostrar Ficha
+    tilesContainer.addEventListener('click', (e) => {
       const tile = e.target.closest('.tile');
       if(!tile) return;
+
       const nombre = tile.dataset.nombre;
-      const ficha = fichas.find(f => f.nombre === nombre);
-      if (!ficha) return;
-
-      results.innerHTML = '';
-      const card = createCard(ficha);
-      results.appendChild(card);
-      card.scrollIntoView({behavior:'smooth', block:'center'});
+      const ficha = HORTALIZAS.find(f => f.nombre === nombre);
+      
+      if (ficha) {
+        resultsContainer.innerHTML = ''; // Limpiar anterior
+        const card = createCard(ficha);
+        resultsContainer.appendChild(card);
+        // Scroll suave hacia la ficha
+        card.scrollIntoView({behavior:'smooth', block:'center'});
+      }
     });
 
-    // Cerrar ficha
-    results.addEventListener('click',(e)=>{
-      if(e.target.matches('.card__close')) showEmpty();
+    // 3. Evento Cerrar Ficha (Botón X)
+    resultsContainer.addEventListener('click', (e) => {
+      if(e.target.matches('.card__close')) {
+        showEmpty();
+      }
     });
 
-    // Cerrar clic fuera
-    document.addEventListener('click',(e)=>{
-      const card = results.querySelector('.card');
-      if(!card) return;
+    // 4. Evento Cerrar al hacer clic fuera de la tarjeta
+    document.addEventListener('click', (e) => {
+      const card = resultsContainer.querySelector('.card');
+      // Si no hay tarjeta abierta, no hacemos nada
+      if(!card) return; 
+
       const clickedInsideCard = e.composedPath().includes(card);
       const clickedTile = e.target.closest('.tile');
-      if(!clickedInsideCard && !clickedTile) showEmpty();
+
+      // Si el clic NO fue dentro de la tarjeta Y NO fue en un tile, cerramos
+      if(!clickedInsideCard && !clickedTile) {
+        showEmpty();
+      }
     });
 
+    // Inicializar estado vacío
     showEmpty();
   </script>
 </body>

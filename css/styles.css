@@ -395,9 +395,9 @@ html, body {
 }
 
 
-/* --- ESTILOS DE GALERÍA GLOBAL (Base PC) --- */
+/* --- ESTILOS DE GALERÍA (HÍBRIDO JS/CSS) --- */
 .gallery-section {
-     width: 100%;
+    width: 100%;
     background-color: #fff4f4;
     padding: 50px 20px;
     display: flex;
@@ -435,45 +435,40 @@ html, body {
     z-index: 5;
 }
 
-/* VENTANA (PC: Vertical) */
+/* VENTANA: El contenedor que hace scroll */
 .column-window {
     width: 100%;
-    height: 550px;
+    height: 550px; /* Altura PC */
     background-color: #fff;
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    overflow: hidden; 
-    transform: translateZ(0);
     position: relative;
-    touch-action: pan-y; 
-    cursor: grab;
-}
-
-/* INTERACCIÓN */
-.column-window:hover, 
-.column-window:active,
-.column-window:focus {
+    
+    /* Habilitar scroll nativo */
     overflow-y: auto; 
-    scroll-behavior: smooth;
+    overflow-x: hidden;
+    
+    /* Ocultar barras de scroll pero mantener funcionalidad */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    cursor: grab; /* Cursor de "agarrar" para indicar interacción */
 }
-.column-window::-webkit-scrollbar { display: none;  }
-.column-window { -ms-overflow-style: none; scrollbar-width: none; }
-/* TRACK (PC: Vertical) */
 
+.column-window:active {
+    cursor: grabbing;
+}
+
+.column-window::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+/* TRACK: Solo contenedor de imágenes, sin animación CSS */
 .column-track {
     display: flex;
     flex-direction: column; 
-    /* IMPORTANTE: Sin gap para cálculo matemático exacto */
     gap: 0; 
     width: 100%;
-    animation: scrollVertical var(--speed) linear infinite;
-    will-change: transform;
-}
-
-.column-window:hover .column-track,
-.column-window:active .column-track,
-.column-window:focus .column-track {
-    animation-play-state: paused;
+    /* Eliminamos la animación CSS aquí */
 }
 
 .column-track img {
@@ -482,22 +477,10 @@ html, body {
     height: 250px;
     object-fit: cover;
     border-radius: 8px;
-    pointer-events: none; 
-    user-select: none;
     margin-bottom: 20px; 
-    flex-shrink: 0; 
-}
-
-/* --- ANIMACIONES EXACTAS --- */
-@keyframes scrollVertical {
-    0% { transform: translateY(0); }
-    /* -50% ahora es exacto gracias al uso de margenes */
-    100% { transform: translateY(-50%); } 
-}
-
-@keyframes scrollHorizontal {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } 
+    flex-shrink: 0;
+    pointer-events: none; /* Evita arrastrar la imagen como archivo */
+    user-select: none;
 }
 
 .certificados {
@@ -942,13 +925,9 @@ footer {
         width: 45%; /* En móviles, 2 por fila */
     }
   .gallery-wrapper {
-        display: flex;
         flex-direction: column;
         gap: 30px;
-        width: 100%;
         max-width: 100vw;
-        /* Ocultamos lo que se sale de la pantalla para evitar scroll horizontal de toda la web */
-        overflow: hidden; 
     }
 
     .gallery-column {
@@ -967,20 +946,17 @@ footer {
     /* VENTANA */
     .column-window {
         width: 100%;
-        height: 270px;
+        height: 270px; /* Altura Móvil */
+        border-radius: 0;
         background: transparent;
         box-shadow: none;
-        border-radius: 0;
         
-        /* Por defecto ocultamos el scroll para que se vea la animación limpia */
-        overflow-x: hidden; 
+        /* Cambiar scroll a horizontal */
         overflow-y: hidden;
+        overflow-x: auto;
         
-        position: relative;
-        pointer-events: auto;
-        
-        /* IMPORTANTE: Permitir explícitamente el desplazamiento horizontal del dedo */
-        touch-action: pan-x; 
+        /* Suavidad en iOS */
+        -webkit-overflow-scrolling: touch;
     }
 
     /* --- ACTIVAR SCROLL AL TOCAR --- */
@@ -998,14 +974,9 @@ footer {
 
     /* PISTA (El tren de imágenes) */
     .column-track {
-        display: flex !important;
-        flex-direction: row !important;
-        width: max-content !important; 
+        flex-direction: row; /* Horizontal */
+        width: max-content; /* Se ajusta al contenido */
         height: 100%;
-        padding: 0;
-        gap: 0;
-        animation: scrollHorizontal 2000s linear infinite !important; /* Ajusté a 60s para fluidez */
-        will-change: transform;
     }
 
     /* --- LA MAGIA: PAUSAR AL TOCAR --- */
@@ -1020,15 +991,9 @@ footer {
     .column-track img {
         width: 280px;
         height: 250px;
-        object-fit: cover;
-        margin-bottom: 0 !important;
-        margin-right: 20px !important; 
-        border-radius: 8px;
+        margin-bottom: 0;
+        margin-right: 20px; 
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        
-        /* Evitamos que el navegador intente "arrastrar" la imagen como archivo */
-        user-select: none;
-        pointer-events: none;
     }
   .certificados {
     flex-direction: column;

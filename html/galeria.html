@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Galeria Santana</title>
+    <title>Galería Santana</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -14,16 +14,13 @@
     
     <main class="main-content">
       
-    <!-- HERO SECTION (Diseño tipo Banner de Referencia) -->
+    <!-- HERO SECTION -->
     <section class="hero-gal" style="background-image: url('/img/hero-invernadero.jpg');">
         <div class="hero-overlay">
-          
             <div class="hero-col-text-gal">
             <h2>GALERÍA</h2>
-       
       </div>
       </div>
-       
     </section>
 
       <!-- GALERÍA -->
@@ -66,114 +63,166 @@
     </main>
 
     <div id="footer"></div>
-
-    <!-- Scripts de Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
-    <script src="../js/firebase.js"></script> 
     
-    <!-- LÓGICA DE GALERÍA (BUCLE Y RESPONSIVE) -->
+    <!-- LÓGICA DE GALERÍA HÍBRIDA (JS SCROLL) -->
     <script>
+        // 1. CONFIGURACIÓN DE IMÁGENES
+        const IMAGENES_GALERIA = {
+            columna1: ['/img/albahaca.png', 
+            '/img/menta.png', 
+            '/img/orégano.png', 
+            '/img/romero.png'],
+            columna2: ['/img/albahaca.png', 
+            '/img/menta.png', 
+            '/img/orégano.png', 
+            '/img/romero.png'],
+            columna3: ['/img/albahaca.png', 
+            '/img/menta.png', 
+            '/img/orégano.png', 
+            '/img/romero.png'],
+        };
+
         const tracks = [
             document.getElementById('track1'),
             document.getElementById('track2'),
             document.getElementById('track3')
         ];
 
-        function setupGalleryAnimation() {
-            const isMobile = window.innerWidth <= 900;
-            const speedPixelsPerSec = 40; // Velocidad de desplazamiento
+        // Velocidad del scroll automático (píxeles por frame aprox)
+        // 0.5 es lento y suave, 1.0 es más rápido.
+        const SCROLL_SPEED = 0.6; 
+        
+        // Variable global para controlar los loops de animación
+        let animationFrames = [];
 
-            // Tamaños estimados según CSS (Alto + margen) o (Ancho + margen)
-            const itemHeightPC = 270; 
-            const itemWidthMobile = 300; 
+        // Función para renderizar y preparar el bucle infinito
+        function initGallery() {
+            // Limpiar animaciones previas si existen (al redimensionar)
+            animationFrames.forEach(id => cancelAnimationFrame(id));
+            animationFrames = [];
+
+            const isMobile = window.innerWidth <= 900;
+            const itemHeightPC = 270; // 250px img + 20px margin
+            const itemWidthMobile = 300; // 280px img + 20px margin
             const itemSize = isMobile ? itemWidthMobile : itemHeightPC;
 
-            tracks.forEach(track => {
-                // 1. Obtener imágenes originales limpias
-                const originalImages = Array.from(track.querySelectorAll('img:not([aria-hidden="true"])'));
-                if (originalImages.length === 0) return;
-
-                track.innerHTML = ''; // Limpiar track
+            tracks.forEach((track, index) => {
+                // Limpiar track
+                track.innerHTML = '';
                 
-                // 2. Calcular tamaño visible de la ventana
-                const windowElement = track.closest('.column-window');
-                const windowSize = isMobile ? windowElement.offsetWidth : windowElement.offsetHeight;
+                // Obtener lista de imágenes según columna
+                const colKey = `columna${index + 1}`;
+                const imagesList = IMAGENES_GALERIA[colKey];
+                
+                if (!imagesList) return;
 
-                // 3. RELLENO INTELIGENTE (While Loop)
-                // Repetimos las imágenes originales hasta que superen el tamaño de la ventana
-                // Multiplicamos por 2 para asegurar que no queden espacios blancos nunca.
+                // Crear fragmento base
                 const baseFragment = document.createDocumentFragment();
-                let currentContentSize = 0;
-                // Meta de tamaño: Al menos 2 veces la ventana o 1000px, lo que sea mayor
-                const targetSize = Math.max(windowSize * 10, 100000); 
+                imagesList.forEach(src => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.onerror = function() { this.style.display = 'none'; };
+                    baseFragment.appendChild(img);
+                });
 
-                // Creamos el bloque base repetido
-                while (currentContentSize < targetSize) {
-                    originalImages.forEach(img => {
-                        const clone = img.cloneNode(true);
-                        baseFragment.appendChild(clone);
-                        currentContentSize += itemSize;
-                    });
-                    if(currentContentSize === 0) break; // Evitar bucle infinito si error
+                // --- DUPLICACIÓN PARA LOOP INFINITO ---
+                // Necesitamos llenar suficiente espacio para que al resetear el scroll a 0 no se note.
+                // Multiplicamos el contenido hasta llenar un buffer seguro.
+                const windowElement = track.parentElement;
+                const windowSize = isMobile ? windowElement.offsetWidth : windowElement.offsetHeight;
+                const minContentSize = windowSize * 3; // Mínimo 3 veces el tamaño visible
+                
+                let currentSize = 0;
+                // Agregamos clones hasta llenar el buffer
+                while(currentSize < minContentSize) {
+                    track.appendChild(baseFragment.cloneNode(true));
+                    currentSize += (imagesList.length * itemSize);
+                }
+                
+                // Agregamos un set extra de seguridad al final
+                track.appendChild(baseFragment.cloneNode(true));
+
+                // --- LÓGICA DE AUTO-SCROLL CON JS ---
+                const scrollWindow = track.parentElement;
+                
+                // Variables de control de estado
+                let isHovering = false;
+                
+                // Listeners para detectar interacción manual
+                // Al entrar el mouse o tocar, pausamos el incremento automático
+                scrollWindow.onmouseenter = () => { isHovering = true; };
+                scrollWindow.onmouseleave = () => { isHovering = false; };
+                scrollWindow.ontouchstart = () => { isHovering = true; };
+                scrollWindow.ontouchend = () => { 
+                    // Pequeño delay en móvil para que no arranque bruscamente al soltar el dedo
+                    setTimeout(() => { isHovering = false; }, 500); 
+                };
+
+                // Guardamos posición flotante para suavidad
+                let scrollPos = isMobile ? scrollWindow.scrollLeft : scrollWindow.scrollTop;
+
+                function animate() {
+                    // Si el usuario no está interactuando, avanzamos
+                    if (!isHovering) {
+                        scrollPos += SCROLL_SPEED;
+                        
+                        // Detectar límite para el Loop Infinito
+                        // Usamos la mitad del scrollHeight para resetear sin que se note visualmente
+                        const limit = isMobile 
+                            ? (scrollWindow.scrollWidth / 2) 
+                            : (scrollWindow.scrollHeight / 2);
+
+                        if (scrollPos >= limit) {
+                            scrollPos = 0; // Teletransporte silencioso al inicio
+                        }
+
+                        // Aplicar el movimiento
+                        if (isMobile) {
+                            scrollWindow.scrollLeft = scrollPos;
+                        } else {
+                            scrollWindow.scrollTop = scrollPos;
+                        }
+                    } else {
+                        // Si el usuario hace scroll manual, actualizamos nuestra variable
+                        // para que al soltar continúe desde donde lo dejó el usuario
+                        scrollPos = isMobile ? scrollWindow.scrollLeft : scrollWindow.scrollTop;
+                    }
+
+                    // Solicitar siguiente frame
+                    const animId = requestAnimationFrame(animate);
+                    animationFrames[index] = animId; // Guardar ID para poder cancelar si es necesario
                 }
 
-                // 4. Inserción para Animación CSS (0% -> -50%)
-                // Insertamos el bloque base (Parte A)
-                const partA = baseFragment.cloneNode(true);
-                track.appendChild(partA);
-
-                // Insertamos el clon exacto (Parte B) para el efecto infinito
-                const partB = baseFragment.cloneNode(true);
-                Array.from(partB.childNodes).forEach(node => node.setAttribute('aria-hidden', 'true'));
-                track.appendChild(partB);
-
-                // 5. Ajustar velocidad
-                // La animación recorre la mitad del track total (currentContentSize)
-                const duration = currentContentSize / speedPixelsPerSec;
-                const finalDuration = duration < 5 ? 10 : duration;
-                
-                track.style.setProperty('--speed', `${finalDuration}s`);
+                // Iniciar animación
+                animate();
             });
         }
 
-        // Carga de Firebase
-        if(typeof db !== 'undefined') {
-            db.collection('galeria')
-              .orderBy('createdAt', 'desc')
-              .onSnapshot((snapshot) => {
-                tracks.forEach(t => t.innerHTML = '');
-                let index = 0;
-                snapshot.forEach((doc) => {
-                  const data = doc.data();
-                  if (!data.url) return;
-                  const img = document.createElement('img');
-                  img.src = data.url;
-                  tracks[index % 3].appendChild(img);
-                  index++;
-                });
-                // Esperar renderizado y ejecutar animación
-                setTimeout(setupGalleryAnimation, 500);
-              });
-        }
+        // --- INICIALIZACIÓN ---
+        
+        // 1. Cargar galería
+        window.addEventListener('load', initGallery);
 
-        // Recalcular al cambiar tamaño de pantalla
+        // 2. Recalcular al cambiar tamaño de pantalla (debounce)
         let resizeTimer;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(setupGalleryAnimation, 500);
+            resizeTimer = setTimeout(initGallery, 200);
         });
     </script>
 
     <!-- Scripts de carga de componentes -->
     <script>
       async function loadHTML(id, file, callback) {
-        const res = await fetch(file);
-        const text = await res.text();
-        document.getElementById(id).innerHTML = text;
-        if (callback) callback();
+        try {
+            const res = await fetch(file);
+            if(!res.ok) throw new Error("Error loading " + file);
+            const text = await res.text();
+            document.getElementById(id).innerHTML = text;
+            if (callback) callback();
+        } catch(e) { console.error(e); }
       }
+      
       loadHTML('header', '/html/header.html', () => {
           const script = document.createElement('script');
           script.src = '/js/menus.js';
@@ -189,6 +238,7 @@
             }
           }, 200);
       });
+      
       loadHTML('footer', '/html/footer.html');
     </script>
 </body>

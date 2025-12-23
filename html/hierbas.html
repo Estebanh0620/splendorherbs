@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Hierbas aromáticas – Splendor Herbs</title>
+  <title>Hierbas aromáticas</title>
   <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
   <!-- Header dinámico -->
@@ -17,13 +16,10 @@
     <!-- HERO -->
     <section class="hero-gal" style="background-image: url('/img/hero-invernadero.jpg');">
         <div class="hero-overlay">
-          
             <div class="hero-col-text-gal">
             <h2>HIERBAS</h2>
-       
+          </div>
       </div>
-      </div>
-       
     </section>
 
     <!-- Catálogo de tiles -->
@@ -52,7 +48,6 @@
 
   <!-- Cargar header/footer y menú -->
   <script>
-  // Función para cargar HTML externo
   async function loadHTML(id, file, callback) {
     try {
       const res = await fetch(file);
@@ -65,7 +60,6 @@
     }
   }
 
-  // Cargar el header y luego inicializar el menú
   loadHTML('header', '/html/header.html', () => {
     const script = document.createElement('script');
     script.src = '/js/menus.js';
@@ -83,16 +77,16 @@
     }, 200);
   });
 
-  // Cargar el footer
   loadHTML('footer', '/html/footer.html');
-</script>
+  </script>
 
-  <!-- Interacción + conexión con admin -->
+  <!-- Lógica de Hierbas (Estática y Limpia) -->
   <script>
-    const FICHAS_DEFAULT = [
+    // 1. LISTA DE HIERBAS AROMÁTICAS
+    const HIERBAS = [
       {
-        categoria: "Hierbas aromáticas",
         nombre: "Menta",
+        imagen: "/img/Menta.jpg",
         descripcion: "Planta refrescante, de tallos verdes y hojas dentadas, empleada en bebidas, postres y medicina natural.",
         variedad: "Común",
         origen: "Cundinamarca, Colombia",
@@ -100,8 +94,8 @@
         temperatura: "32°F - 41°F (0°C – 5°C)"
       },
       {
-        categoria: "Hierbas aromáticas",
         nombre: "Romero",
+        imagen: "/img/Romero.jpg",
         descripcion: "Planta perenne de hojas finas y verde oscuro, de aroma intenso y ligeramente amargo. Muy usada en carnes, guisos y panes.",
         variedad: "Común",
         origen: "Cundinamarca, Colombia",
@@ -109,8 +103,8 @@
         temperatura: "41°F - 50°F (5°C – 10°C)"
       },
       {
-        categoria: "Hierbas aromáticas",
         nombre: "Orégano",
+        imagen: "/img/Orégano.jpg", // Asegúrate que el archivo tenga tilde si aquí la pones, o cambia a Oregano.jpg
         descripcion: "Hierba mediterránea de sabor fuerte y ligeramente picante, rica en aceites esenciales con efectos digestivos.",
         variedad: "Mediterráneo",
         origen: "Boyacá, Colombia",
@@ -118,8 +112,8 @@
         temperatura: "41°F - 50°F (5°C – 10°C)"
       },
       {
-        categoria: "Hierbas aromáticas",
         nombre: "Mejorana",
+        imagen: "/img/Mejorana.jpg",
         descripcion: "Planta de aroma dulce y suave, pariente del orégano, empleada en guisos, sopas y en la industria alimentaria.",
         variedad: "Dulce",
         origen: "Tolima, Colombia",
@@ -127,8 +121,8 @@
         temperatura: "41°F - 50°F (5°C – 10°C)"
       },
       {
-        categoria: "Hierbas aromáticas",
         nombre: "Estragón",
+        imagen: "/img/Estragón.jpg", // Cuidado con la tilde en el nombre del archivo
         descripcion: "Hierba de sabor anisado y fresco, muy valorada en la cocina gourmet y en la preparación de vinagres aromáticos.",
         variedad: "Francés",
         origen: "Antioquia, Colombia",
@@ -136,8 +130,8 @@
         temperatura: "41°F - 50°F (5°C – 10°C)"
       },
       {
-        categoria: "Hierbas aromáticas",
         nombre: "Laurel",
+        imagen: "/img/Laurel.jpg",
         descripcion: "Arbusto de hojas coriáceas, empleadas secas para aromatizar guisos, sopas y marinados.",
         variedad: "Común",
         origen: "Nariño, Colombia",
@@ -145,8 +139,8 @@
         temperatura: "41°F - 50°F (5°C – 10°C)"
       },
       {
-        categoria: "Hierbas aromáticas",
         nombre: "Eneldo",
+        imagen: "/img/Eneldo.jpg",
         descripcion: "Hierba de tallos finos y hojas filamentosas de sabor anisado, muy usada en encurtidos y platos con pescado.",
         variedad: "Fino",
         origen: "Tolima, Colombia",
@@ -154,8 +148,8 @@
         temperatura: "32°F - 41°F (0°C – 5°C)"
       },
       {
-        categoria: "Hierbas aromáticas",
         nombre: "Tomillo",
+        imagen: "/img/Tomillo.jpg",
         descripcion: "Planta pequeña de sabor intenso y terroso, conocida por su resistencia y propiedades antimicrobianas.",
         variedad: "Común",
         origen: "Cundinamarca, Colombia",
@@ -163,8 +157,8 @@
         temperatura: "41°F - 50°F (5°C – 10°C)"
       },
       {
-        categoria: "Hierbas aromáticas",
         nombre: "Albahaca",
+        imagen: "/img/Albahaca.jpg",
         descripcion: "Hierba de hojas verdes brillantes y aroma fresco, indispensable en la cocina italiana y base del pesto.",
         variedad: "Genovesa",
         origen: "Tolima, Colombia",
@@ -172,8 +166,8 @@
         temperatura: "50°F - 55°F (10°C – 12,8°C)"
       },
       {
-        categoria: "Hierbas aromáticas",
         nombre: "Hierbabuena",
+        imagen: "/img/Hierbabuena.jpg",
         descripcion: "Variedad de menta de sabor más suave y dulce, usada en infusiones, repostería y coctelería.",
         variedad: "Común",
         origen: "Boyacá, Colombia",
@@ -182,114 +176,83 @@
       }
     ];
 
-    function cargarFichas() {
-      const guardadas = localStorage.getItem("fichasProductos");
-      if (guardadas) {
-        try {
-          return JSON.parse(guardadas);
-        } catch (e) {
-          console.error("Error leyendo fichasProductos, usando default hierbas.", e);
-        }
-      }
-      return FICHAS_DEFAULT;
-    }
-
-    const fichas = cargarFichas().filter(f => f.categoria === "Hierbas aromáticas");
-
-    const tiles   = document.getElementById('tiles');
-    const results = document.getElementById('results');
+    const tilesContainer   = document.getElementById('tiles');
+    const resultsContainer = document.getElementById('results');
 
     function showEmpty(){
-      results.innerHTML = '<p class="empty">Haz clic en una hierba aromática para ver su ficha.</p>';
+      resultsContainer.innerHTML = '<p class="empty">Haz clic en una hierba aromática para ver su ficha.</p>';
     }
 
+    // 2. CREAR TILE (Cuadrito pequeño)
     function crearTile(ficha) {
       const tile = document.createElement('div');
       tile.className = 'tile';
       tile.dataset.nombre = ficha.nombre;
 
-      const base = '/img/' + ficha.nombre;
-      const imgJpg = base + '.jpg';
-      const imgPng = base + '.png';
+      // Fallback: si falla el jpg, intenta png (o puedes quitar el onerror si estás seguro de tus jpg)
+      const errorFallback = `this.onerror=null;this.src='/img/${ficha.nombre}.png'`;
 
       tile.innerHTML = `
-        <img src="${imgJpg}" onerror="this.onerror=null;this.src='${imgPng}'" alt="${ficha.nombre}">
+        <img src="${ficha.imagen}" onerror="${errorFallback}" alt="${ficha.nombre}">
         <div class="tile__label">${ficha.nombre}</div>
       `;
       return tile;
     }
-    function crearTile(ficha) {
-  const tile = document.createElement('div');
-  tile.className = 'tile';
-  tile.dataset.nombre = ficha.nombre;
 
-  const baseLocal = '/img/' + ficha.nombre;
-  const srcMain = ficha.imagenUrl || baseLocal + '.jpg';
-  const onErrorAttr = ficha.imagenUrl
-    ? ''  // si viene de Firebase no hacemos fallback
-    : `onerror="this.onerror=null;this.src='${baseLocal}.png'"`;
+    // 3. CREAR CARD (Ficha grande)
+    function createCard(ficha){
+      const errorFallback = `this.onerror=null;this.src='/img/${ficha.nombre}.png'`;
 
-  tile.innerHTML = `
-    <img src="${srcMain}" ${onErrorAttr} alt="${ficha.nombre}">
-    <div class="tile__label">${ficha.nombre}</div>
-  `;
-  return tile;
-}
-function createCard(ficha){
-  const baseLocal = '/img/' + ficha.nombre;
-  const srcMain = ficha.imagenUrl || baseLocal + '.jpg';
-  const onErrorAttr = ficha.imagenUrl
-    ? ''
-    : `onerror="this.onerror=null;this.src='${baseLocal}.png'"`;
-
-  const card = document.createElement('article');
-  card.className = 'card';
-  card.innerHTML = `
-    <button class="card__close" aria-label="Cerrar ${ficha.nombre}">✕</button>
-    <img class="card__img" src="${srcMain}" ${onErrorAttr} alt="${ficha.nombre}">
-    <div class="card__body">
-      <h3 class="card__title"><span class="badge"></span> ${ficha.nombre}</h3>
-      <p class="meta">${ficha.descripcion}</p>
-      <p class="meta"><b>Variedad:</b> ${ficha.variedad}</p>
-      <p class="meta"><b>Origen:</b> ${ficha.origen}</p>
-      <p class="meta"><b>Empaque:</b> ${ficha.empaque}</p>
-      <p class="meta"><b>Temperatura de almacenamiento:</b> ${ficha.temperatura}</p>
-    </div>
-  `;
-  return card;
-}
-
-
-
-    // Pintar tiles
-    if (fichas.length === 0) {
-      tiles.innerHTML = '<p class="empty">No hay hierbas configuradas en el panel de administración.</p>';
-    } else {
-      fichas.forEach(f => tiles.appendChild(crearTile(f)));
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.innerHTML = `
+        <button class="card__close" aria-label="Cerrar ${ficha.nombre}">✕</button>
+        <img class="card__img" src="${ficha.imagen}" onerror="${errorFallback}" alt="${ficha.nombre}">
+        <div class="card__body">
+          <h3 class="card__title"><span class="badge"></span> ${ficha.nombre}</h3>
+          <p class="meta">${ficha.descripcion}</p>
+          <p class="meta"><b>Variedad:</b> ${ficha.variedad}</p>
+          <p class="meta"><b>Origen:</b> ${ficha.origen}</p>
+          <p class="meta"><b>Empaque:</b> ${ficha.empaque}</p>
+          <p class="meta"><b>Temperatura de almacenamiento:</b> ${ficha.temperatura}</p>
+        </div>
+      `;
+      return card;
     }
 
-    // Clic en tile → ficha
-    tiles.addEventListener('click',(e)=>{
+    // --- RENDERIZADO E INTERACCIÓN ---
+
+    // Pintar tiles
+    if (HIERBAS.length === 0) {
+      tilesContainer.innerHTML = '<p class="empty">No hay hierbas disponibles.</p>';
+    } else {
+      HIERBAS.forEach(f => tilesContainer.appendChild(crearTile(f)));
+    }
+
+    // Clic en tile → mostrar ficha
+    tilesContainer.addEventListener('click',(e)=>{
       const tile = e.target.closest('.tile');
       if(!tile) return;
+      
       const nombre = tile.dataset.nombre;
-      const ficha = fichas.find(f => f.nombre === nombre);
-      if (!ficha) return;
-
-      results.innerHTML = '';
-      const card = createCard(ficha);
-      results.appendChild(card);
-      card.scrollIntoView({behavior:'smooth', block:'center'});
+      const ficha = HIERBAS.find(f => f.nombre === nombre);
+      
+      if (ficha) {
+        resultsContainer.innerHTML = '';
+        const card = createCard(ficha);
+        resultsContainer.appendChild(card);
+        card.scrollIntoView({behavior:'smooth', block:'center'});
+      }
     });
 
-    // Cerrar ficha
-    results.addEventListener('click',(e)=>{
+    // Cerrar ficha (botón X)
+    resultsContainer.addEventListener('click',(e)=>{
       if(e.target.matches('.card__close')) showEmpty();
     });
 
-    // Cerrar clic fuera
+    // Cerrar clic fuera de la ficha
     document.addEventListener('click',(e)=>{
-      const card = results.querySelector('.card');
+      const card = resultsContainer.querySelector('.card');
       if(!card) return;
       const clickedInsideCard = e.composedPath().includes(card);
       const clickedTile = e.target.closest('.tile');
