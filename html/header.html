@@ -1,72 +1,78 @@
 <!-- HEADER FIXED -->
-    <header class="header">
-        <div class="navbar-container">
-            <nav class="navbar">
-                
-                <div class="language-switch">
-                    <button id="lang-es" class="lang-btn active">
-                        <img src="/img/co.png" alt="Español">
-                        <span>ESP</span>
-                    </button>
+<header class="header">
+    <div class="navbar-container">
+        <nav class="navbar">
 
-                    <button id="lang-en" class="lang-btn">
-                        <img src="/img/us.png" alt="English">
-                        <span>EN</span>
-                    </button>
-                </div>
-                
-                <!-- Logo Mobile (Izquierda) -->
-                <div class="logo-mobile">
-                    <a href="/index.html"><img src="/img/logo.png" alt="Logo"></a>
-                </div>
-                
-                <!-- Botón Hamburguesa (Derecha en móvil) -->
-                <div class="menu-toggle" id="mobile-menu-btn">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
+            <div class="language-switch" aria-label="Selector de idioma">
+                <button id="lang-es" class="lang-btn active" type="button" aria-label="Cambiar idioma a español">
+                    <img src="/img/co.png" alt="Bandera de Colombia">
+                    <span>ESP</span>
+                </button>
 
-                <!-- Menú Desktop -->
-                <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="/index.html" class="nav-link" data-es="Inicio" data-en="Home">INICIO</a>
-                    </li>
-                    
-                    <!-- Submenú Nosotros -->
-                    <li class="nav-item dropdown">
-                        <a href="javascript:void(0);" class="nav-link" data-es="Nosotros" data-en="About Us">NOSOTROS <i class="fas fa-chevron-down arrow-icon"></i></a>
-                        <div class="dropdown-content">
-                            <a href="/html/valores.html" data-es="Nuestros Valores" data-en="Our Values">NUESTROS VALORES</a>
-                            <a href="/html/porquestn.html" data-es="¿Por qué elegirnos?" data-en="Why Choose Us?">¿POR QUE ELEGIRNOS?</a>
-                            <a href="/html/galeria.html" data-es="Galería" data-en="Gallery">GALERIA</a>
-                        </div>
-                    </li>
+                <button id="lang-en" class="lang-btn" type="button" aria-label="Change language to English">
+                    <img src="/img/us.png" alt="United States flag">
+                    <span>EN</span>
+                </button>
+            </div>
 
-                    <!-- Logo Central (Escritorio) -->
-                    <li class="nav-item logo-desktop">
-                        <a href="/index.html"><img src="/img/logo.png" alt="Logo Central"></a>
-                    </li>
 
-                    <!-- Submenú Productos -->
-                    <li class="nav-item dropdown">
-                        <a href="javascript:void(0);" class="nav-link" data-es="Productos" data-en="Products">PRODUCTOS <i class="fas fa-chevron-down arrow-icon"></i></a>
-                        <div class="dropdown-content">
-                            <a href="/html/hortalizas.html" data-es="Hortalizas Frescas" data-en="Fresh Vegetables">HORTALIZAS FRESCAS</a>
-                            <a href="/html/hierbas.html" data-es="Hierbas Aromáticas" data-en="Aromatic Herbs">HIERBAS AROMATICAS</a>
-                            <a href="/html/procesos.html" data-es="Procesos" data-en="Processes">PROCESOS</a>
-                        </div>
-                    </li>
+            <!-- Logo Mobile (Izquierda) -->
+            <div class="logo-mobile">
+                <a href="/index.html"><img src="/img/logo.png" alt="Logo"></a>
+            </div>
 
-                    <li class="nav-item">
-                        <a href="/html/contacto.html" class="nav-link" data-es="Contactanos" data-en="Contact Us">CONTACTANOS</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+            <!-- Botón Hamburguesa (Derecha en móvil) -->
+            <div class="menu-toggle" id="mobile-menu-btn">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
 
-    <!-- OVERLAY MÓVIL -->
-    <div class="menu-overlay" id="menu-overlay"></div>
+            <!-- Menú Desktop -->
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="/index.html" class="nav-link" data-es="Inicio" data-en="Home">INICIO</a>
+                </li>
 
-    
+                <!-- Submenú Nosotros -->
+                <li class="nav-item dropdown">
+                    <a href="javascript:void(0);" class="nav-link" data-es="Nosotros" data-en="About Us">NOSOTROS <i
+                            class="fas fa-chevron-down arrow-icon"></i></a>
+                    <div class="dropdown-content">
+                        <a href="/html/valores.html" data-es="Nuestros Valores" data-en="Our Values">NUESTROS
+                            VALORES</a>
+                        <a href="/html/porquestn.html" data-es="¿Por qué elegirnos?" data-en="Why Choose Us?">¿POR QUE
+                            ELEGIRNOS?</a>
+                        <a href="/html/galeria.html" data-es="Galería" data-en="Gallery">GALERIA</a>
+                    </div>
+                </li>
+
+                <!-- Logo Central (Escritorio) -->
+                <li class="nav-item logo-desktop">
+                    <a href="/index.html"><img src="/img/logo.png" alt="Logo Central"></a>
+                </li>
+
+                <!-- Submenú Productos -->
+                <li class="nav-item dropdown">
+                    <a href="javascript:void(0);" class="nav-link" data-es="Productos" data-en="Products">PRODUCTOS <i
+                            class="fas fa-chevron-down arrow-icon"></i></a>
+                    <div class="dropdown-content">
+                        <a href="/html/hortalizas.html" data-es="Hortalizas Frescas"
+                            data-en="Fresh Vegetables">HORTALIZAS FRESCAS</a>
+                        <a href="/html/hierbas.html" data-es="Hierbas Aromáticas" data-en="Aromatic Herbs">HIERBAS
+                            AROMATICAS</a>
+                        <a href="/html/procesos.html" data-es="Procesos" data-en="Processes">PROCESOS</a>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/html/contacto.html" class="nav-link" data-es="Contactanos"
+                        data-en="Contact Us">CONTACTANOS</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- OVERLAY MÓVIL -->
+<div class="menu-overlay" id="menu-overlay"></div>
