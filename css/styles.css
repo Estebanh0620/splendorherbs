@@ -68,12 +68,40 @@ html, body {
 .logo-mobile { display: none; } 
 
 .logo-desktop img { 
-    height: 65px; 
+    height: 75px; 
     margin: 0 20px; 
     transition: transform 0.3s;
     display: block;
 }
 .logo-desktop img:hover { transform: scale(1.05); }
+
+.language-switch {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #333;
+    opacity: 0.6;
+}
+
+.lang-btn img {
+    width: 18px;
+    height: auto;
+}
+
+.lang-btn.active {
+    opacity: 1;
+    font-weight: 600;
+}
 
 /* MENU */
 .nav-menu {
@@ -1073,4 +1101,8 @@ footer {
 @media (min-width: 901px) {
     .dropdown-content.show { display: block; animation: fadeIn 0.3s ease; }
     .arrow-icon.rotate { transform: rotate(180deg); }
+    .nav-link {
+        font-size: 1.2rem;
+        padding: 0 65px;
+    }
 }
