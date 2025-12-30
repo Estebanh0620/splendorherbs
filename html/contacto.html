@@ -2,165 +2,12 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <!-- El viewport es esencial para móviles -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contacto</title>
+  <title>Contacto | Contact</title>
   
-  <!-- Fuentes e Iconos -->
   <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="/css/styles.css">
-
-  <style>
-    /* Estilos Generales */
-    * { box-sizing: border-box; } /* Asegura que el padding no rompa el ancho */
-    
-    body { margin: 0; font-family: 'Montserrat', sans-serif; }
-
-    /* Estilos para el Hero (Cabecera de imagen) */
-    .hero-gal {
-      background-image: url('/img/hero-invernadero.jpg');
-      background-size: cover;
-      background-position: center;
-      height: 250px; /* Altura base */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-    
-    .hero-overlay {
-      background: rgba(0, 0, 0, 0.4); /* Oscurecer imagen para leer texto */
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-col-text-gal h2 {
-      color: #fff;
-      font-family: 'Belanosima', sans-serif;
-      font-size: 2.5rem;
-      margin: 0;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      text-align: center;
-    }
-
-    /* Estilos del Formulario */
-    .contacto { 
-      width: 100%; 
-      max-width: 1050px; 
-      margin: 0 auto 80px; 
-      padding: 0 20px; /* Padding lateral vital para móviles */
-    }
-
-    .contacto h2 { 
-      text-align: center; 
-      margin: 40px 0 18px; 
-      color: #1a8b59; 
-      font-family: 'Belanosima', sans-serif;
-    }
-
-    .form { margin-top: 18px; }
-    
-    .field { 
-      display: flex; 
-      flex-direction: column; 
-      gap: 8px; 
-      margin: 14px 0; 
-    }
-
-    .field label { 
-      font-size: 0.95rem; 
-      color: #1d1d1d; 
-      font-weight: 600;
-    }
-
-    .field input, .field textarea, .field select {
-      width: 100%; 
-      border: 1px solid #d6e2d6; 
-      background: #e6efe6;
-      padding: 12px 14px; 
-      border-radius: 4px; 
-      outline: none;
-      font-family: inherit;
-      transition: border-color 0.3s ease;
-    }
-
-    .field input:focus, .field textarea:focus {
-      border-color: #1a8b59;
-      background: #fff;
-    }
-
-    .field textarea { 
-      min-height: 120px; 
-      resize: vertical; 
-    }
-
-    .actions { 
-      display: flex; 
-      justify-content: center; 
-      margin-top: 25px; 
-    }
-
-    .btn {
-      border: none; 
-      background: #1a8b59; 
-      color: #fff; 
-      padding: 12px 35px;
-      border-radius: 6px; 
-      cursor: pointer; 
-      font-weight: 700;
-      font-size: 1rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,.15);
-      transition: background 0.3s;
-    }
-
-    .btn:hover { 
-      background-color: #146c45; 
-    }
-
-    /* --- VERSIÓN MÓVIL (RESPONSIVE) --- */
-    @media (max-width: 768px) {
-      /* Ajuste del Hero en móvil */
-      .hero-gal {
-        height: 180px;
-      }
-      .hero-col-text-gal h2 {
-        font-size: 1.8rem;
-      }
-
-      /* Ajuste del formulario en móvil */
-      .contacto {
-        padding: 0 15px; /* Un poco menos de padding */
-        margin-bottom: 40px;
-      }
-
-      .contacto h2 {
-        margin-top: 25px;
-        font-size: 1.5rem;
-      }
-
-      /* Inputs más grandes para facilitar el toque */
-      .field input, .field textarea {
-        font-size: 16px; /* Evita el zoom automático en iOS */
-        padding: 14px;
-      }
-
-      /* Botón ancho completo en móvil */
-      .actions {
-        display: block; /* Cambia de flex a bloque */
-      }
-      
-      .btn {
-        width: 100%; /* Botón ocupa todo el ancho */
-        padding: 15px;
-        font-size: 1.1rem;
-      }
-    }
-  </style>
 </head>
 <body>
 
@@ -169,64 +16,67 @@
 
   <main class="main-content">
     
-    <!-- Hero Section -->
-    <section class="hero-gal">
-      <div class="hero-overlay">
-        <div class="hero-col-text-gal">
-          <h2>CONTÁCTANOS</h2>
-        </div>
-      </div>
-    </section>
-
     <!-- Sección Contacto -->
     <section class="contacto">
-           
+      <h1 class="section-title-contact" data-es="CONTACTANOS" data-en="CONTACT US">
+        CONTACTANOS
+      </h1>
+      <div class="separator-leaf">
+         <span class="line"></span>
+         <i class="fas fa-leaf"></i>
+         <span class="line"></span>
+      </div>
+
       <!-- Formulario -->
-      <form class="form" id="contactForm" method="POST" action="https://formsubmit.co/santiago.castillo.parra@gmail.com">
+      <form class="form-grid" id="contactForm" method="POST" action="...">
         
-        <!-- Configuración Formsubmit -->
-        <input type="hidden" name="_next" value="http://127.0.0.1:5501/html/gracias.html">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_subject" value="Nuevo mensaje de la web">
-
         <div class="field">
-          <label for="email">Correo electrónico</label>
-          <input id="email" name="email" type="email" required placeholder="tucorreo@gmail.com">
+          <label for="email" data-es="Correo electrónico" data-en="Email Address">Correo electrónico</label>
+          <!-- Usamos data-ph-es/en para los placeholders -->
+          <input id="email" name="email" type="email" required 
+                 placeholder="tucorreo@gmail.com"
+                 data-ph-es="tucorreo@gmail.com" 
+                 data-ph-en="youremail@gmail.com">
         </div>
 
         <div class="field">
-          <label for="nombres">Nombre completo</label>
-          <input id="nombres" name="nombres" type="text" required placeholder="Ej: Juan Pérez">
+          <label for="nombres" data-es="Nombre completo" data-en="Full Name">Nombre completo</label>
+          <input id="nombres" name="nombres" type="text" required 
+                 placeholder="Ej: Juan Pérez"
+                 data-ph-es="Ej: Juan Pérez" 
+                 data-ph-en="Ex: John Doe">
         </div>
 
         <div class="field">
-          <label for="celular">Celular</label>
-          <input id="celular" name="celular" type="tel" inputmode="tel">
+          <label for="celular" data-es="Celular" data-en="Phone Number">Celular</label>
+          <input id="celular" name="celular" type="tel">
         </div>
 
-        <!-- Agrupación en dos columnas si hay espacio (opcional, visualmente mejor) -->
         <div class="field">
-            <label for="ciudad">Ciudad</label>
+            <label for="ciudad" data-es="Ciudad" data-en="City">Ciudad</label>
             <input id="ciudad" name="ciudad" type="text">
         </div>
 
         <div class="field">
-            <label for="direccion">Dirección</label>
+            <label for="direccion" data-es="Dirección" data-en="Address">Dirección</label>
             <input id="direccion" name="direccion" type="text">
         </div>
 
         <div class="field">
-          <label for="pais">País</label>
+          <label for="pais" data-es="País" data-en="Country">País</label>
           <input id="pais" name="pais" type="text">
         </div>
 
-        <div class="field">
-          <label for="materiales">Materiales de interés y cantidad</label>
-          <textarea id="materiales" name="materiales" placeholder="Describe aquí lo que necesitas..."></textarea>
+        <div class="field span-2">
+          <label for="materiales" data-es="Materiales de interés y cantidad" data-en="Materials of interest and quantity">Materiales de interés y cantidad</label>
+          <textarea id="materiales" name="materiales" 
+                    placeholder="Describe aquí lo que necesitas..."
+                    data-ph-es="Describe aquí lo que necesitas..."
+                    data-ph-en="Describe here what you need..."></textarea>
         </div>
 
-        <div class="actions">
-          <button class="btn" type="submit">ENVIAR MENSAJE</button>
+        <div class="actions span-2">
+          <button class="btn" type="submit" data-es="ENVIAR MENSAJE" data-en="SEND MESSAGE">ENVIAR MENSAJE</button>
         </div>
       </form>
     </section>
@@ -237,7 +87,9 @@
 
   <!-- Scripts -->
   <script>
-    // Función optimizada para cargar HTML externo
+    // 1. Variable global de idioma
+    let currentLang = localStorage.getItem('language') || 'es';
+
     async function loadHTML(id, file, callback) {
       try {
         const res = await fetch(file);
@@ -250,14 +102,14 @@
       }
     }
 
-    // Cargar header y footer
     loadHTML('header', '/html/header.html', () => {
-        // Lógica del menú móvil (asegúrate que tu header.html tenga la clase .menu-toggle y .nav-links)
         const script = document.createElement('script');
         script.src = '/js/menus.js';
         document.body.appendChild(script);
 
-        // Fallback simple por si falla el JS externo
+        // Intentar sincronizar idioma tras cargar menú
+        if(window.checkLanguage) window.checkLanguage();
+
         setTimeout(() => {
             const toggle = document.querySelector('.menu-toggle');
             const nav = document.querySelector('.nav-links');
@@ -271,15 +123,49 @@
     });
 
     loadHTML('footer', '/html/footer.html');
+
+    // --- LÓGICA DE TRADUCCIÓN DEL FORMULARIO ---
+
+    function setLanguage(lang) {
+        currentLang = lang;
+
+        // 1. Actualizar textos normales (Labels, Botones, Títulos)
+        const textElements = document.querySelectorAll('[data-es]');
+        textElements.forEach(el => {
+            el.innerText = el.getAttribute(`data-${lang}`);
+        });
+
+        // 2. Actualizar Placeholders (Inputs)
+        const phElements = document.querySelectorAll('[data-ph-es]');
+        phElements.forEach(el => {
+            el.placeholder = el.getAttribute(`data-ph-${lang}`);
+        });
+    }
+
+    // Inicializar idioma al cargar
+    setLanguage(currentLang);
+
+    // Escuchar cambios desde el menú
+    document.addEventListener('languageChanged', (e) => {
+        if(e.detail && e.detail.language) {
+            setLanguage(e.detail.language);
+        }
+    });
+
+    // --- LÓGICA DE ENVÍO (BILINGÜE) ---
     const form = document.getElementById('contactForm');
 
     if(form) {
         form.addEventListener('submit', function() {
             const btn = form.querySelector('.btn');
-            // Cambia el texto del botón y lo deshabilita para evitar doble envío
-            btn.innerHTML = 'ENVIANDO... <i class="fas fa-spinner fa-spin"></i>';
+            
+            // Texto de "Enviando..." según idioma
+            const sendingText = currentLang === 'es' ? 'ENVIANDO...' : 'SENDING...';
+            
+            btn.innerHTML = `${sendingText} <i class="fas fa-spinner fa-spin"></i>`;
             btn.style.opacity = '0.7';
-            btn.disabled = true;
+            // No deshabilitamos inmediatamente si el action no es AJAX, 
+            // pero si es un form normal, esto está bien visualmente.
         });
     }
   </script>

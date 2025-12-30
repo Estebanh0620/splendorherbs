@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Galería Santana</title>
+    <title>Galería - Splendor Herbs</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -14,14 +14,18 @@
     
     <main class="main-content">
       
-    <!-- HERO SECTION -->
-    <section class="hero-gal" style="background-image: url('/img/hero-invernadero.jpg');">
-        <div class="hero-overlay">
-            <div class="hero-col-text-gal">
-            <h2>GALERÍA</h2>
-      </div>
-      </div>
-    </section>
+    <section class="galeria-simple-header">
+            <h2 data-es="GALERÍA" 
+                data-en="GALLERY">
+                GALERÍA
+            </h2>
+             <!-- NUEVO SEPARADOR -->
+            <div class="separator-leaf">
+                <span class="line"></span>
+                <i class="fas fa-leaf"></i>
+                <span class="line"></span>
+            </div>
+        </section>
 
       <!-- GALERÍA -->
       <section class="gallery-section">
@@ -31,7 +35,11 @@
               <!-- COLUMNA 1: Cultivos -->
               <div class="gallery-column">
                   <div class="header-container">
-                    <h3 class="column-header">CULTIVOS</h3>
+                    <h3 class="column-header" 
+                        data-es="CULTIVOS" 
+                        data-en="CROPS">
+                        CULTIVOS
+                    </h3>
                   </div>
                   <div class="column-window">
                       <div class="column-track" id="track1"></div>
@@ -41,7 +49,11 @@
               <!-- COLUMNA 2: Post Cosecha -->
               <div class="gallery-column">
                   <div class="header-container">
-                    <h3 class="column-header">POST COSECHA</h3>
+                    <h3 class="column-header" 
+                        data-es="POST COSECHA" 
+                        data-en="POST-HARVEST">
+                        POST COSECHA
+                    </h3>
                   </div>
                   <div class="column-window">
                       <div class="column-track" id="track2"></div>
@@ -51,7 +63,11 @@
               <!-- COLUMNA 3: Trabajadores -->
               <div class="gallery-column">
                   <div class="header-container">
-                    <h3 class="column-header">TRABAJADORES</h3>
+                    <h3 class="column-header" 
+                        data-es="TRABAJADORES" 
+                        data-en="OUR TEAM">
+                        TRABAJADORES
+                    </h3>
                   </div>
                   <div class="column-window">
                       <div class="column-track" id="track3"></div>
@@ -89,7 +105,6 @@
         ];
 
         // Velocidad del scroll automático (píxeles por frame aprox)
-        // 0.5 es lento y suave, 1.0 es más rápido.
         const SCROLL_SPEED = 0.6; 
         
         // Variable global para controlar los loops de animación
@@ -126,8 +141,6 @@
                 });
 
                 // --- DUPLICACIÓN PARA LOOP INFINITO ---
-                // Necesitamos llenar suficiente espacio para que al resetear el scroll a 0 no se note.
-                // Multiplicamos el contenido hasta llenar un buffer seguro.
                 const windowElement = track.parentElement;
                 const windowSize = isMobile ? windowElement.offsetWidth : windowElement.offsetHeight;
                 const minContentSize = windowSize * 3; // Mínimo 3 veces el tamaño visible
@@ -149,12 +162,10 @@
                 let isHovering = false;
                 
                 // Listeners para detectar interacción manual
-                // Al entrar el mouse o tocar, pausamos el incremento automático
                 scrollWindow.onmouseenter = () => { isHovering = true; };
                 scrollWindow.onmouseleave = () => { isHovering = false; };
                 scrollWindow.ontouchstart = () => { isHovering = true; };
                 scrollWindow.ontouchend = () => { 
-                    // Pequeño delay en móvil para que no arranque bruscamente al soltar el dedo
                     setTimeout(() => { isHovering = false; }, 500); 
                 };
 
@@ -167,7 +178,6 @@
                         scrollPos += SCROLL_SPEED;
                         
                         // Detectar límite para el Loop Infinito
-                        // Usamos la mitad del scrollHeight para resetear sin que se note visualmente
                         const limit = isMobile 
                             ? (scrollWindow.scrollWidth / 2) 
                             : (scrollWindow.scrollHeight / 2);
@@ -184,13 +194,12 @@
                         }
                     } else {
                         // Si el usuario hace scroll manual, actualizamos nuestra variable
-                        // para que al soltar continúe desde donde lo dejó el usuario
                         scrollPos = isMobile ? scrollWindow.scrollLeft : scrollWindow.scrollTop;
                     }
 
                     // Solicitar siguiente frame
                     const animId = requestAnimationFrame(animate);
-                    animationFrames[index] = animId; // Guardar ID para poder cancelar si es necesario
+                    animationFrames[index] = animId; 
                 }
 
                 // Iniciar animación
