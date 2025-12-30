@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Hortalizas frescas</title>
+  <title>Hortalizas frescas | Fresh Vegetables</title>
   <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="/css/styles.css">
@@ -14,18 +14,23 @@
 
   <main class="main-content">
     <!-- HERO -->
-    <section class="hero-gal" style="background-image: url('/img/hero-invernadero.jpg');">
-        <div class="hero-overlay">
-            <div class="hero-col-text-gal">
-            <h2>HORTALIZAS</h2>
-      </div>
-      </div>
-    </section>
+    <section class="galeria-simple-header">
+            <h2 data-es="HORTALIZAS FRESCAS" data-en="FRESH VEGETABLES">HORTALIZAS FRESCAS</h2>
+             <!-- NUEVO SEPARADOR -->
+            <div class="separator-leaf">
+                <span class="line"></span>
+                <i class="fas fa-leaf"></i>
+                <span class="line"></span>
+            </div>
+        </section>
 
     <!-- Catálogo de tiles -->
     <section class="catalogo">
       <div class="catalogo__intro">
-        <h2>Selecciona una hortaliza para ver su ficha técnica</h2>
+        <h2 data-es="Selecciona una hortaliza para ver su ficha técnica" 
+            data-en="Select a vegetable to see its technical sheet">
+            Selecciona una hortaliza para ver su ficha técnica
+        </h2>
       </div>
 
       <div class="tiles" id="tiles">
@@ -35,7 +40,7 @@
 
     <!-- Ficha seleccionada -->
     <section class="results" id="results">
-      <p class="empty">Haz clic en una hortaliza para ver su ficha.</p>
+      <!-- El contenido inicial se carga vía JS -->
     </section>
   </main>
 
@@ -44,6 +49,10 @@
 
   <!-- Scripts de Carga de Header/Footer -->
   <script>
+  // Variable global para controlar el idioma (por defecto español)
+  // Tu script de menus.js debería actualizar esto y llamar a updateLanguage()
+  let currentLang = localStorage.getItem('language') || 'es'; 
+
   async function loadHTML(id, file, callback) {
     try {
       const res = await fetch(file);
@@ -70,151 +79,268 @@
           toggle.classList.toggle('open');
         });
       }
+      
+      // Intentar sincronizar idioma si existe lógica externa
+      if(window.checkLanguage) window.checkLanguage();
     }, 200);
   });
 
   loadHTML('footer', '/html/footer.html');
   </script>
 
-  <!-- Lógica de Hortalizas (Fija en código) -->
+  <!-- Lógica de Hortalizas Bilingüe -->
   <script>
-    // 1. CONFIGURACIÓN DE PRODUCTOS (Modificar aquí textos e imágenes)
+    // 1. CONFIGURACIÓN DE PRODUCTOS BILINGÜE
+    // Estructura: id único, imagen, y objetos 'es' y 'en' para los textos
     const HORTALIZAS = [
       {
-        nombre: "Lechuga",
-        imagen: "/img/Lechuga.jpg", // RUTA DE LAS IMAGENES
-        descripcion: "Hortaliza de hojas verdes y crujientes, baja en calorías y base esencial de ensaladas frescas.",
-        variedad: "Crespa",
-        origen: "Cundinamarca, Colombia",
-        empaque: "12 / 18 / 20 unidades por caja",
-        temperatura: "32°F - 36°F (0°C – 2°C)"
+        id: "lechuga",
+        imagen: "/img/Lechuga.jpg",
+        es: {
+          nombre: "Lechuga",
+          descripcion: "Hortaliza de hojas verdes y crujientes, baja en calorías y base esencial de ensaladas frescas.",
+          variedad: "Crespa",
+          origen: "Cundinamarca, Colombia",
+          empaque: "12 / 18 / 20 unidades por caja",
+          temperatura: "32°F - 36°F (0°C – 2°C)"
+        },
+        en: {
+          nombre: "Lettuce",
+          descripcion: "Green and crunchy leafy vegetable, low in calories and an essential base for fresh salads.",
+          variedad: "Curly",
+          origen: "Cundinamarca, Colombia",
+          empaque: "12 / 18 / 20 units per box",
+          temperatura: "32°F - 36°F (0°C – 2°C)"
+        }
       },
       {
-        nombre: "Cebollin",
+        id: "cebollin",
         imagen: "/img/Cebollin.jpg",
-        descripcion: "De sabor suave a cebolla, se utiliza para sopas, ensaladas y como guarnición en diversos platos.",
-        variedad: "Verdeo",
-        origen: "Cundinamarca, Colombia",
-        empaque: "10 a 12 rollos por caja",
-        temperatura: "32°F - 41°F (0°C – 5°C)"
+        es: {
+          nombre: "Cebollin",
+          descripcion: "De sabor suave a cebolla, se utiliza para sopas, ensaladas y como guarnición en diversos platos.",
+          variedad: "Verdeo",
+          origen: "Cundinamarca, Colombia",
+          empaque: "10 a 12 rollos por caja",
+          temperatura: "32°F - 41°F (0°C – 5°C)"
+        },
+        en: {
+          nombre: "Chives",
+          descripcion: "With a mild onion flavor, used for soups, salads, and as a garnish in various dishes.",
+          variedad: "Green Onion",
+          origen: "Cundinamarca, Colombia",
+          empaque: "10 to 12 bunches per box",
+          temperatura: "32°F - 41°F (0°C – 5°C)"
+        }
       },
       {
-        nombre: "Cilantro",
+        id: "cilantro",
         imagen: "/img/Cilantro.jpg",
-        descripcion: "Hierba de sabor fuerte y fresco, usada en salsas, sopas y cocina tradicional latinoamericana.",
-        variedad: "Común",
-        origen: "Tolima / Santander, Colombia",
-        empaque: "14 a 16 lb por caja",
-        temperatura: "32°F - 41°F (0°C – 5°C)"
+        es: {
+          nombre: "Cilantro",
+          descripcion: "Hierba de sabor fuerte y fresco, usada en salsas, sopas y cocina tradicional latinoamericana.",
+          variedad: "Común",
+          origen: "Tolima / Santander, Colombia",
+          empaque: "14 a 16 lb por caja",
+          temperatura: "32°F - 41°F (0°C – 5°C)"
+        },
+        en: {
+          nombre: "Cilantro",
+          descripcion: "Herb with a strong and fresh flavor, used in sauces, soups, and traditional Latin American cuisine.",
+          variedad: "Common",
+          origen: "Tolima / Santander, Colombia",
+          empaque: "14 to 16 lb per box",
+          temperatura: "32°F - 41°F (0°C – 5°C)"
+        }
       },
       {
-        nombre: "Perejil",
+        id: "perejil",
         imagen: "/img/Perejil.jpg",
-        descripcion: "Planta de hojas verdes, muy nutritiva, empleada como condimento, en guarniciones y jugos verdes.",
-        variedad: "Liso",
-        origen: "Valle del Cauca / Antioquia, Colombia",
-        empaque: "14 a 16 lb por caja",
-        temperatura: "32°F - 41°F (0°C – 5°C)"
+        es: {
+          nombre: "Perejil",
+          descripcion: "Planta de hojas verdes, muy nutritiva, empleada como condimento, en guarniciones y jugos verdes.",
+          variedad: "Liso",
+          origen: "Valle del Cauca / Antioquia, Colombia",
+          empaque: "14 a 16 lb por caja",
+          temperatura: "32°F - 41°F (0°C – 5°C)"
+        },
+        en: {
+          nombre: "Parsley",
+          descripcion: "Green leafy plant, highly nutritious, used as a seasoning, in garnishes, and green juices.",
+          variedad: "Flat leaf",
+          origen: "Valle del Cauca / Antioquia, Colombia",
+          empaque: "14 to 16 lb per box",
+          temperatura: "32°F - 41°F (0°C – 5°C)"
+        }
       }
     ];
 
+    // Etiquetas estáticas para la ficha técnica
+    const LABELS = {
+      es: {
+        variety: "Variedad",
+        origin: "Origen",
+        packing: "Empaque",
+        temp: "Temperatura de almacenamiento",
+        empty: "Haz clic en una hortaliza para ver su ficha.",
+        close: "Cerrar"
+      },
+      en: {
+        variety: "Variety",
+        origin: "Origin",
+        packing: "Packing",
+        temp: "Storage temperature",
+        empty: "Click on a vegetable to see its details.",
+        close: "Close"
+      }
+    };
+
     const tilesContainer = document.getElementById('tiles');
     const resultsContainer = document.getElementById('results');
+    
+    // Variable para saber qué ficha está abierta actualmente (si hay alguna)
+    let activeProductId = null;
+
+    // Función para renderizar los textos estáticos del HTML (Header y Títulos)
+    function updateStaticText() {
+      const elements = document.querySelectorAll('[data-es]');
+      elements.forEach(el => {
+        const text = el.getAttribute(`data-${currentLang}`);
+        if (text) el.innerText = text; // O innerHTML si hay <br>
+      });
+    }
 
     // Función para mostrar mensaje vacío
     function showEmpty(){
-      resultsContainer.innerHTML = '<p class="empty">Haz clic en una hortaliza para ver su ficha.</p>';
+      activeProductId = null;
+      resultsContainer.innerHTML = `<p class="empty">${LABELS[currentLang].empty}</p>`;
     }
     
-    // Función para crear el cuadrito (Tile)
-    function crearTile(ficha) {
-      const tile = document.createElement('div');
-      tile.className = 'tile';
-      tile.dataset.nombre = ficha.nombre;
+    // Función para crear los tiles (Miniaturas)
+    // Se regeneran cuando cambia el idioma para actualizar los nombres
+    function renderTiles() {
+      tilesContainer.innerHTML = '';
       
-      // Fallback simple: si falla .jpg intenta cargar .png (opcional)
-      const errorFallback = `this.onerror=null;this.src='/img/${ficha.nombre}.png'`;
+      if (HORTALIZAS.length === 0) {
+        tilesContainer.innerHTML = '<p class="empty">No data.</p>';
+        return;
+      }
 
-      tile.innerHTML = `
-        <img src="${ficha.imagen}" onerror="${errorFallback}" alt="${ficha.nombre}">
-        <div class="tile__label">${ficha.nombre}</div>
-      `;
-      return tile;
+      HORTALIZAS.forEach(producto => {
+        const dataLang = producto[currentLang]; // Obtenemos datos es o en
+        
+        const tile = document.createElement('div');
+        tile.className = 'tile';
+        tile.dataset.id = producto.id; // Usamos ID fijo en vez de nombre
+        
+        const errorFallback = `this.onerror=null;this.src='/img/${producto.es.nombre}.png'`;
+
+        tile.innerHTML = `
+          <img src="${producto.imagen}" onerror="${errorFallback}" alt="${dataLang.nombre}">
+          <div class="tile__label">${dataLang.nombre}</div>
+        `;
+        tilesContainer.appendChild(tile);
+      });
     }
 
     // Función para crear la ficha técnica grande
-    function createCard(ficha){
-      const errorFallback = `this.onerror=null;this.src='/img/${ficha.nombre}.png'`;
+    function createCard(producto){
+      const dataLang = producto[currentLang];
+      const lbl = LABELS[currentLang];
+      const errorFallback = `this.onerror=null;this.src='/img/${producto.es.nombre}.png'`;
       
       const card = document.createElement('article');
       card.className = 'card';
       card.innerHTML = `
-        <button class="card__close" aria-label="Cerrar ${ficha.nombre}">✕</button>
-        <img class="card__img" src="${ficha.imagen}" onerror="${errorFallback}" alt="${ficha.nombre}">
+        <button class="card__close" aria-label="${lbl.close} ${dataLang.nombre}">✕</button>
+        <img class="card__img" src="${producto.imagen}" onerror="${errorFallback}" alt="${dataLang.nombre}">
         <div class="card__body">
-          <h3 class="card__title"><span class="badge"></span> ${ficha.nombre}</h3>
-          <p class="meta">${ficha.descripcion}</p>
-          <p class="meta"><b>Variedad:</b> ${ficha.variedad}</p>
-          <p class="meta"><b>Origen:</b> ${ficha.origen}</p>
-          <p class="meta"><b>Empaque:</b> ${ficha.empaque}</p>
-          <p class="meta"><b>Temperatura de almacenamiento:</b> ${ficha.temperatura}</p>
+          <h3 class="card__title"><span class="badge"></span> ${dataLang.nombre}</h3>
+          <p class="meta">${dataLang.descripcion}</p>
+          <p class="meta"><b>${lbl.variety}:</b> ${dataLang.variedad}</p>
+          <p class="meta"><b>${lbl.origin}:</b> ${dataLang.origen}</p>
+          <p class="meta"><b>${lbl.packing}:</b> ${dataLang.empaque}</p>
+          <p class="meta"><b>${lbl.temp}:</b> ${dataLang.temperatura}</p>
         </div>
       `;
       return card;
     }
 
-    // --- INICIALIZACIÓN ---
+    // Función principal para cambiar de idioma
+    // Esta función puede ser llamada desde tu menú (menus.js)
+    function setLanguage(lang) {
+      if (lang !== 'es' && lang !== 'en') return;
+      currentLang = lang;
+      
+      // 1. Actualizar textos estáticos
+      updateStaticText();
+      
+      // 2. Regenerar los tiles (para traducir los nombres abajo de las fotos)
+      renderTiles();
 
-    // 1. Renderizar los tiles
-    if (HORTALIZAS.length === 0) {
-      tilesContainer.innerHTML = '<p class="empty">No hay hortalizas disponibles.</p>';
-    } else {
-      HORTALIZAS.forEach(producto => {
-        tilesContainer.appendChild(crearTile(producto));
-      });
+      // 3. Si hay una ficha abierta, refrescarla en el nuevo idioma
+      if (activeProductId) {
+        const ficha = HORTALIZAS.find(f => f.id === activeProductId);
+        if (ficha) {
+          resultsContainer.innerHTML = '';
+          resultsContainer.appendChild(createCard(ficha));
+        }
+      } else {
+        showEmpty();
+      }
     }
 
-    // 2. Evento Clic en Tile -> Mostrar Ficha
+    // --- EVENTOS ---
+
+    // 1. Clic en Tile -> Mostrar Ficha
     tilesContainer.addEventListener('click', (e) => {
       const tile = e.target.closest('.tile');
       if(!tile) return;
 
-      const nombre = tile.dataset.nombre;
-      const ficha = HORTALIZAS.find(f => f.nombre === nombre);
+      const id = tile.dataset.id;
+      const ficha = HORTALIZAS.find(f => f.id === id);
       
       if (ficha) {
-        resultsContainer.innerHTML = ''; // Limpiar anterior
+        activeProductId = id; // Guardamos cuál está activo
+        resultsContainer.innerHTML = ''; 
         const card = createCard(ficha);
         resultsContainer.appendChild(card);
-        // Scroll suave hacia la ficha
         card.scrollIntoView({behavior:'smooth', block:'center'});
       }
     });
 
-    // 3. Evento Cerrar Ficha (Botón X)
+    // 2. Cerrar Ficha (Botón X)
     resultsContainer.addEventListener('click', (e) => {
       if(e.target.matches('.card__close')) {
         showEmpty();
       }
     });
 
-    // 4. Evento Cerrar al hacer clic fuera de la tarjeta
+    // 3. Clic fuera cierra
     document.addEventListener('click', (e) => {
       const card = resultsContainer.querySelector('.card');
-      // Si no hay tarjeta abierta, no hacemos nada
       if(!card) return; 
 
       const clickedInsideCard = e.composedPath().includes(card);
       const clickedTile = e.target.closest('.tile');
 
-      // Si el clic NO fue dentro de la tarjeta Y NO fue en un tile, cerramos
       if(!clickedInsideCard && !clickedTile) {
         showEmpty();
       }
     });
 
-    // Inicializar estado vacío
-    showEmpty();
+    // --- INICIALIZACIÓN ---
+    // Inicializamos con el idioma por defecto
+    setLanguage(currentLang);
+
+    // *OPCIONAL*: Si tu sistema usa un evento personalizado para cambio de idioma:
+    document.addEventListener('languageChanged', (e) => {
+       // Suponiendo que el evento envía el idioma en e.detail
+       if(e.detail && e.detail.language) {
+         setLanguage(e.detail.language);
+       }
+    });
+
   </script>
 </body>
 </html>

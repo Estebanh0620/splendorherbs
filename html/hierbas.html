@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Hierbas aromáticas</title>
+  <title>Hierbas aromáticas | Aromatic Herbs</title>
   <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="/css/styles.css">
@@ -14,22 +14,23 @@
 
   <main class="main-content">
     <!-- HERO -->
-    <section class="hero-gal" style="background-image: url('/img/hero-invernadero.jpg');">
-        <div class="hero-overlay">
-            <div class="hero-col-text-gal">
-            <h2>HIERBAS</h2>
-          </div>
-      </div>
+    <section class="galeria-simple-header">
+        <h2 data-es="HIERBAS AROMÁTICAS" data-en="AROMATIC HERBS">HIERBAS AROMÁTICAS</h2>
+        <!-- SEPARADOR -->
+        <div class="separator-leaf">
+            <span class="line"></span>
+            <i class="fas fa-leaf"></i>
+            <span class="line"></span>
+        </div>
     </section>
 
     <!-- Catálogo de tiles -->
     <section class="catalogo">
       <div class="catalogo__intro">
-        <h2>Selecciona una hierba para ver su ficha técnica</h2>
-        <p>
-          Haz clic sobre cualquiera de las hierbas aromáticas para ver su ficha con variedad,
-          origen, empaque y recomendaciones de almacenamiento.
-        </p>
+        <h2 data-es="Selecciona una hierba para ver su ficha técnica" 
+            data-en="Select an herb to see its technical sheet">
+            Selecciona una hierba para ver su ficha técnica
+        </h2>
       </div>
 
       <div class="tiles" id="tiles">
@@ -39,7 +40,7 @@
 
     <!-- Ficha seleccionada -->
     <section class="results" id="results">
-      <p class="empty">Haz clic en una hierba aromática para ver su ficha.</p>
+      <!-- Contenido dinámico -->
     </section>
   </main>
 
@@ -48,6 +49,9 @@
 
   <!-- Cargar header/footer y menú -->
   <script>
+  // 1. Recuperar idioma correcto (language)
+  let currentLang = localStorage.getItem('language') || 'es';
+
   async function loadHTML(id, file, callback) {
     try {
       const res = await fetch(file);
@@ -66,6 +70,10 @@
     document.body.appendChild(script);
 
     setTimeout(() => {
+      // Intentar sincronizar idioma tras cargar menú
+      // (Por si el menú tiene su propia lógica inicial)
+      if(window.checkLanguage) window.checkLanguage();
+      
       const toggle = document.querySelector('.menu-toggle');
       const nav = document.querySelector('.nav-links');
       if (toggle && nav) {
@@ -80,186 +88,368 @@
   loadHTML('footer', '/html/footer.html');
   </script>
 
-  <!-- Lógica de Hierbas (Estática y Limpia) -->
+  <!-- Lógica de Hierbas Bilingüe -->
   <script>
-    // 1. LISTA DE HIERBAS AROMÁTICAS
+    // 2. CONFIGURACIÓN DE DATOS BILINGÜES
     const HIERBAS = [
       {
-        nombre: "Menta",
+        id: "menta",
         imagen: "/img/Menta.jpg",
-        descripcion: "Planta refrescante, de tallos verdes y hojas dentadas, empleada en bebidas, postres y medicina natural.",
-        variedad: "Común",
-        origen: "Cundinamarca, Colombia",
-        empaque: "14 a 15 libras por tabaco",
-        temperatura: "32°F - 41°F (0°C – 5°C)"
+        es: {
+          nombre: "Menta",
+          descripcion: "Planta refrescante, de tallos verdes y hojas dentadas, empleada en bebidas, postres y medicina natural.",
+          variedad: "Común",
+          origen: "Cundinamarca, Colombia",
+          empaque: "14 a 15 libras por tabaco",
+          temperatura: "32°F - 41°F (0°C – 5°C)"
+        },
+        en: {
+          nombre: "Mint",
+          descripcion: "Refreshing plant with green stems and serrated leaves, used in drinks, desserts, and natural medicine.",
+          variedad: "Common",
+          origen: "Cundinamarca, Colombia",
+          empaque: "14 to 15 lbs per bundle",
+          temperatura: "32°F - 41°F (0°C – 5°C)"
+        }
       },
       {
-        nombre: "Romero",
+        id: "romero",
         imagen: "/img/Romero.jpg",
-        descripcion: "Planta perenne de hojas finas y verde oscuro, de aroma intenso y ligeramente amargo. Muy usada en carnes, guisos y panes.",
-        variedad: "Común",
-        origen: "Cundinamarca, Colombia",
-        empaque: "14 a 15 libras por tabaco",
-        temperatura: "41°F - 50°F (5°C – 10°C)"
+        es: {
+          nombre: "Romero",
+          descripcion: "Planta perenne de hojas finas y verde oscuro, de aroma intenso. Muy usada en carnes, guisos y panes.",
+          variedad: "Común",
+          origen: "Cundinamarca, Colombia",
+          empaque: "14 a 15 libras por tabaco",
+          temperatura: "41°F - 50°F (5°C – 10°C)"
+        },
+        en: {
+          nombre: "Rosemary",
+          descripcion: "Perennial plant with fine dark green leaves and intense aroma. Used in meats, stews, and breads.",
+          variedad: "Common",
+          origen: "Cundinamarca, Colombia",
+          empaque: "14 to 15 lbs per bundle",
+          temperatura: "41°F - 50°F (5°C – 10°C)"
+        }
       },
       {
-        nombre: "Orégano",
-        imagen: "/img/Orégano.jpg", // Asegúrate que el archivo tenga tilde si aquí la pones, o cambia a Oregano.jpg
-        descripcion: "Hierba mediterránea de sabor fuerte y ligeramente picante, rica en aceites esenciales con efectos digestivos.",
-        variedad: "Mediterráneo",
-        origen: "Boyacá, Colombia",
-        empaque: "14 a 15 libras por tabaco",
-        temperatura: "41°F - 50°F (5°C – 10°C)"
+        id: "oregano",
+        imagen: "/img/Orégano.jpg",
+        es: {
+          nombre: "Orégano",
+          descripcion: "Hierba mediterránea de sabor fuerte y ligeramente picante, rica en aceites esenciales digestivos.",
+          variedad: "Mediterráneo",
+          origen: "Boyacá, Colombia",
+          empaque: "14 a 15 libras por tabaco",
+          temperatura: "41°F - 50°F (5°C – 10°C)"
+        },
+        en: {
+          nombre: "Oregano",
+          descripcion: "Mediterranean herb with a strong, slightly spicy flavor, rich in essential oils for digestion.",
+          variedad: "Mediterranean",
+          origen: "Boyacá, Colombia",
+          empaque: "14 to 15 lbs per bundle",
+          temperatura: "41°F - 50°F (5°C – 10°C)"
+        }
       },
       {
-        nombre: "Mejorana",
+        id: "mejorana",
         imagen: "/img/Mejorana.jpg",
-        descripcion: "Planta de aroma dulce y suave, pariente del orégano, empleada en guisos, sopas y en la industria alimentaria.",
-        variedad: "Dulce",
-        origen: "Tolima, Colombia",
-        empaque: "14 a 15 libras por tabaco",
-        temperatura: "41°F - 50°F (5°C – 10°C)"
+        es: {
+          nombre: "Mejorana",
+          descripcion: "Planta de aroma dulce y suave, pariente del orégano, empleada en guisos y sopas.",
+          variedad: "Dulce",
+          origen: "Tolima, Colombia",
+          empaque: "14 a 15 libras por tabaco",
+          temperatura: "41°F - 50°F (5°C – 10°C)"
+        },
+        en: {
+          nombre: "Marjoram",
+          descripcion: "Plant with a sweet and mild aroma, relative of oregano, used in stews and soups.",
+          variedad: "Sweet",
+          origen: "Tolima, Colombia",
+          empaque: "14 to 15 lbs per bundle",
+          temperatura: "41°F - 50°F (5°C – 10°C)"
+        }
       },
       {
-        nombre: "Estragón",
-        imagen: "/img/Estragón.jpg", // Cuidado con la tilde en el nombre del archivo
-        descripcion: "Hierba de sabor anisado y fresco, muy valorada en la cocina gourmet y en la preparación de vinagres aromáticos.",
-        variedad: "Francés",
-        origen: "Antioquia, Colombia",
-        empaque: "14 a 15 libras por tabaco",
-        temperatura: "41°F - 50°F (5°C – 10°C)"
+        id: "estragon",
+        imagen: "/img/Estragón.jpg",
+        es: {
+          nombre: "Estragón",
+          descripcion: "Hierba de sabor anisado y fresco, valorada en la cocina gourmet y vinagres aromáticos.",
+          variedad: "Francés",
+          origen: "Antioquia, Colombia",
+          empaque: "14 a 15 libras por tabaco",
+          temperatura: "41°F - 50°F (5°C – 10°C)"
+        },
+        en: {
+          nombre: "Tarragon",
+          descripcion: "Herb with a fresh anise flavor, valued in gourmet cuisine and aromatic vinegars.",
+          variedad: "French",
+          origen: "Antioquia, Colombia",
+          empaque: "14 to 15 lbs per bundle",
+          temperatura: "41°F - 50°F (5°C – 10°C)"
+        }
       },
       {
-        nombre: "Laurel",
+        id: "laurel",
         imagen: "/img/Laurel.jpg",
-        descripcion: "Arbusto de hojas coriáceas, empleadas secas para aromatizar guisos, sopas y marinados.",
-        variedad: "Común",
-        origen: "Nariño, Colombia",
-        empaque: "14 a 15 libras por tabaco",
-        temperatura: "41°F - 50°F (5°C – 10°C)"
+        es: {
+          nombre: "Laurel",
+          descripcion: "Arbusto de hojas coriáceas, empleadas secas para aromatizar guisos, sopas y marinados.",
+          variedad: "Común",
+          origen: "Nariño, Colombia",
+          empaque: "14 a 15 libras por tabaco",
+          temperatura: "41°F - 50°F (5°C – 10°C)"
+        },
+        en: {
+          nombre: "Bay Leaf",
+          descripcion: "Shrub with leathery leaves, used dried to flavor stews, soups, and marinades.",
+          variedad: "Common",
+          origen: "Nariño, Colombia",
+          empaque: "14 to 15 lbs per bundle",
+          temperatura: "41°F - 50°F (5°C – 10°C)"
+        }
       },
       {
-        nombre: "Eneldo",
+        id: "eneldo",
         imagen: "/img/Eneldo.jpg",
-        descripcion: "Hierba de tallos finos y hojas filamentosas de sabor anisado, muy usada en encurtidos y platos con pescado.",
-        variedad: "Fino",
-        origen: "Tolima, Colombia",
-        empaque: "14 a 15 libras por tabaco",
-        temperatura: "32°F - 41°F (0°C – 5°C)"
+        es: {
+          nombre: "Eneldo",
+          descripcion: "Hierba de tallos finos y hojas filamentosas de sabor anisado, usada en encurtidos y pescados.",
+          variedad: "Fino",
+          origen: "Tolima, Colombia",
+          empaque: "14 a 15 libras por tabaco",
+          temperatura: "32°F - 41°F (0°C – 5°C)"
+        },
+        en: {
+          nombre: "Dill",
+          descripcion: "Herb with fine stems and filamentous leaves with anise flavor, used in pickles and fish.",
+          variedad: "Fine",
+          origen: "Tolima, Colombia",
+          empaque: "14 to 15 lbs per bundle",
+          temperatura: "32°F - 41°F (0°C – 5°C)"
+        }
       },
       {
-        nombre: "Tomillo",
+        id: "tomillo",
         imagen: "/img/Tomillo.jpg",
-        descripcion: "Planta pequeña de sabor intenso y terroso, conocida por su resistencia y propiedades antimicrobianas.",
-        variedad: "Común",
-        origen: "Cundinamarca, Colombia",
-        empaque: "14 a 15 libras por tabaco",
-        temperatura: "41°F - 50°F (5°C – 10°C)"
+        es: {
+          nombre: "Tomillo",
+          descripcion: "Planta pequeña de sabor intenso y terroso, conocida por sus propiedades antimicrobianas.",
+          variedad: "Común",
+          origen: "Cundinamarca, Colombia",
+          empaque: "14 a 15 libras por tabaco",
+          temperatura: "41°F - 50°F (5°C – 10°C)"
+        },
+        en: {
+          nombre: "Thyme",
+          descripcion: "Small plant with an intense earthy flavor, known for its antimicrobial properties.",
+          variedad: "Common",
+          origen: "Cundinamarca, Colombia",
+          empaque: "14 to 15 lbs per bundle",
+          temperatura: "41°F - 50°F (5°C – 10°C)"
+        }
       },
       {
-        nombre: "Albahaca",
+        id: "albahaca",
         imagen: "/img/Albahaca.jpg",
-        descripcion: "Hierba de hojas verdes brillantes y aroma fresco, indispensable en la cocina italiana y base del pesto.",
-        variedad: "Genovesa",
-        origen: "Tolima, Colombia",
-        empaque: "14 a 15 libras por tabaco",
-        temperatura: "50°F - 55°F (10°C – 12,8°C)"
+        es: {
+          nombre: "Albahaca",
+          descripcion: "Hierba de hojas verdes brillantes y aroma fresco, indispensable en la cocina italiana.",
+          variedad: "Genovesa",
+          origen: "Tolima, Colombia",
+          empaque: "14 a 15 libras por tabaco",
+          temperatura: "50°F - 55°F (10°C – 12,8°C)"
+        },
+        en: {
+          nombre: "Basil",
+          descripcion: "Herb with bright green leaves and fresh aroma, essential in Italian cuisine.",
+          variedad: "Genovese",
+          origen: "Tolima, Colombia",
+          empaque: "14 to 15 lbs per bundle",
+          temperatura: "50°F - 55°F (10°C – 12,8°C)"
+        }
       },
       {
-        nombre: "Hierbabuena",
+        id: "hierbabuena",
         imagen: "/img/Hierbabuena.jpg",
-        descripcion: "Variedad de menta de sabor más suave y dulce, usada en infusiones, repostería y coctelería.",
-        variedad: "Común",
-        origen: "Boyacá, Colombia",
-        empaque: "14 a 15 libras por tabaco",
-        temperatura: "32°F - 41°F (0°C – 5°C)"
+        es: {
+          nombre: "Hierbabuena",
+          descripcion: "Variedad de menta de sabor más suave y dulce, usada en infusiones y coctelería.",
+          variedad: "Común",
+          origen: "Boyacá, Colombia",
+          empaque: "14 a 15 libras por tabaco",
+          temperatura: "32°F - 41°F (0°C – 5°C)"
+        },
+        en: {
+          nombre: "Spearmint",
+          descripcion: "Variety of mint with a milder and sweeter flavor, used in infusions and cocktails.",
+          variedad: "Common",
+          origen: "Boyacá, Colombia",
+          empaque: "14 to 15 lbs per bundle",
+          temperatura: "32°F - 41°F (0°C – 5°C)"
+        }
       }
     ];
 
-    const tilesContainer   = document.getElementById('tiles');
+    // Etiquetas estáticas para la ficha
+    const LABELS = {
+      es: {
+        variety: "Variedad",
+        origin: "Origen",
+        packing: "Empaque",
+        temp: "Temperatura de almacenamiento",
+        empty: "Haz clic en una hierba aromática para ver su ficha.",
+        close: "Cerrar"
+      },
+      en: {
+        variety: "Variety",
+        origin: "Origin",
+        packing: "Packing",
+        temp: "Storage temperature",
+        empty: "Click on an herb to see its details.",
+        close: "Close"
+      }
+    };
+
+    const tilesContainer = document.getElementById('tiles');
     const resultsContainer = document.getElementById('results');
+    
+    // Control de ficha activa
+    let activeProductId = null;
 
+    // Actualizar Textos Estáticos (H2, P del HTML principal)
+    function updateStaticText() {
+      const elements = document.querySelectorAll('[data-es]');
+      elements.forEach(el => {
+        const text = el.getAttribute(`data-${currentLang}`);
+        if (text) el.innerText = text;
+      });
+    }
+
+    // Mostrar mensaje de vacío
     function showEmpty(){
-      resultsContainer.innerHTML = '<p class="empty">Haz clic en una hierba aromática para ver su ficha.</p>';
+      activeProductId = null;
+      resultsContainer.innerHTML = `<p class="empty">${LABELS[currentLang].empty}</p>`;
     }
-
-    // 2. CREAR TILE (Cuadrito pequeño)
-    function crearTile(ficha) {
-      const tile = document.createElement('div');
-      tile.className = 'tile';
-      tile.dataset.nombre = ficha.nombre;
-
-      // Fallback: si falla el jpg, intenta png (o puedes quitar el onerror si estás seguro de tus jpg)
-      const errorFallback = `this.onerror=null;this.src='/img/${ficha.nombre}.png'`;
-
-      tile.innerHTML = `
-        <img src="${ficha.imagen}" onerror="${errorFallback}" alt="${ficha.nombre}">
-        <div class="tile__label">${ficha.nombre}</div>
-      `;
-      return tile;
-    }
-
-    // 3. CREAR CARD (Ficha grande)
-    function createCard(ficha){
-      const errorFallback = `this.onerror=null;this.src='/img/${ficha.nombre}.png'`;
-
+    
+    // Crear Ficha Grande
+    function createCard(producto){
+      const dataLang = producto[currentLang];
+      const lbl = LABELS[currentLang];
+      const errorFallback = `this.onerror=null;this.src='/img/${producto.es.nombre}.png'`;
+      
       const card = document.createElement('article');
       card.className = 'card';
       card.innerHTML = `
-        <button class="card__close" aria-label="Cerrar ${ficha.nombre}">✕</button>
-        <img class="card__img" src="${ficha.imagen}" onerror="${errorFallback}" alt="${ficha.nombre}">
+        <button class="card__close" aria-label="${lbl.close}">✕</button>
+        <img class="card__img" src="${producto.imagen}" onerror="${errorFallback}" alt="${dataLang.nombre}">
         <div class="card__body">
-          <h3 class="card__title"><span class="badge"></span> ${ficha.nombre}</h3>
-          <p class="meta">${ficha.descripcion}</p>
-          <p class="meta"><b>Variedad:</b> ${ficha.variedad}</p>
-          <p class="meta"><b>Origen:</b> ${ficha.origen}</p>
-          <p class="meta"><b>Empaque:</b> ${ficha.empaque}</p>
-          <p class="meta"><b>Temperatura de almacenamiento:</b> ${ficha.temperatura}</p>
+          <h3 class="card__title"><span class="badge"></span> ${dataLang.nombre}</h3>
+          <p class="meta">${dataLang.descripcion}</p>
+          <p class="meta"><b>${lbl.variety}:</b> ${dataLang.variedad}</p>
+          <p class="meta"><b>${lbl.origin}:</b> ${dataLang.origen}</p>
+          <p class="meta"><b>${lbl.packing}:</b> ${dataLang.empaque}</p>
+          <p class="meta"><b>${lbl.temp}:</b> ${dataLang.temperatura}</p>
         </div>
       `;
       return card;
     }
 
-    // --- RENDERIZADO E INTERACCIÓN ---
+    // Renderizar Tiles (Miniaturas)
+    function renderTiles() {
+      tilesContainer.innerHTML = '';
+      if (HIERBAS.length === 0) {
+        tilesContainer.innerHTML = '<p class="empty">No data.</p>';
+        return;
+      }
 
-    // Pintar tiles
-    if (HIERBAS.length === 0) {
-      tilesContainer.innerHTML = '<p class="empty">No hay hierbas disponibles.</p>';
-    } else {
-      HIERBAS.forEach(f => tilesContainer.appendChild(crearTile(f)));
+      HIERBAS.forEach(producto => {
+        const dataLang = producto[currentLang];
+        const tile = document.createElement('div');
+        tile.className = 'tile';
+        tile.dataset.id = producto.id; // Usamos ID para identificar
+        
+        const errorFallback = `this.onerror=null;this.src='/img/${producto.es.nombre}.png'`;
+
+        tile.innerHTML = `
+          <img src="${producto.imagen}" onerror="${errorFallback}" alt="${dataLang.nombre}">
+          <div class="tile__label">${dataLang.nombre}</div>
+        `;
+        tilesContainer.appendChild(tile);
+      });
     }
 
-    // Clic en tile → mostrar ficha
-    tilesContainer.addEventListener('click',(e)=>{
+    // Función principal de Cambio de Idioma
+    function setLanguage(lang) {
+      if (lang !== 'es' && lang !== 'en') return;
+      currentLang = lang;
+      
+      // 1. HTML Estático
+      updateStaticText();
+      
+      // 2. Tiles (nombres debajo de foto)
+      renderTiles();
+
+      // 3. Ficha activa (si hay una abierta)
+      if (activeProductId) {
+        const ficha = HIERBAS.find(f => f.id === activeProductId);
+        if (ficha) {
+          resultsContainer.innerHTML = '';
+          resultsContainer.appendChild(createCard(ficha));
+        }
+      } else {
+        showEmpty();
+      }
+    }
+
+    // --- EVENTOS INTERNOS ---
+
+    // Clic en Tile
+    tilesContainer.addEventListener('click', (e) => {
       const tile = e.target.closest('.tile');
       if(!tile) return;
-      
-      const nombre = tile.dataset.nombre;
-      const ficha = HIERBAS.find(f => f.nombre === nombre);
+
+      const id = tile.dataset.id;
+      const ficha = HIERBAS.find(f => f.id === id);
       
       if (ficha) {
-        resultsContainer.innerHTML = '';
+        activeProductId = id;
+        resultsContainer.innerHTML = ''; 
         const card = createCard(ficha);
         resultsContainer.appendChild(card);
         card.scrollIntoView({behavior:'smooth', block:'center'});
       }
     });
 
-    // Cerrar ficha (botón X)
-    resultsContainer.addEventListener('click',(e)=>{
+    // Cerrar Ficha
+    resultsContainer.addEventListener('click', (e) => {
       if(e.target.matches('.card__close')) showEmpty();
     });
 
-    // Cerrar clic fuera de la ficha
-    document.addEventListener('click',(e)=>{
+    // Clic fuera cierra
+    document.addEventListener('click', (e) => {
       const card = resultsContainer.querySelector('.card');
-      if(!card) return;
+      if(!card) return; 
       const clickedInsideCard = e.composedPath().includes(card);
       const clickedTile = e.target.closest('.tile');
       if(!clickedInsideCard && !clickedTile) showEmpty();
     });
 
-    showEmpty();
+    // --- INICIALIZACIÓN Y CONEXIÓN CON MENÚ ---
+    
+    // 1. Cargar estado inicial
+    setLanguage(currentLang);
+
+    // 2. Escuchar evento desde menus.js
+    document.addEventListener('languageChanged', (e) => {
+       if(e.detail && e.detail.language) {
+         setLanguage(e.detail.language);
+       }
+    });
+
   </script>
 </body>
 </html>
