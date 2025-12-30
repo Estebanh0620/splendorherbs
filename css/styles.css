@@ -274,6 +274,209 @@ html, body {
 }
 
 
+/* --- HEADER FIXED --- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: center;
+    z-index: 2100; 
+}
+
+.navbar-container {
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    padding: 0 20px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* LOGOS */
+.logo-mobile { display: none; } 
+
+.logo-desktop img { 
+    height: 75px; 
+    margin: 0 20px; 
+    transition: transform 0.3s;
+    display: block;
+}
+.logo-desktop img:hover { transform: scale(1.05); }
+
+.language-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    z-index: 2200;
+    margin-right: 15px;
+    font-family: var(--font-main);
+}
+.language-switch {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.lang-selected {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre el mundo, la bandera y la flecha */
+    background-color: #fff;
+    border: 1px solid #e0e0e0; /* Borde sutil */
+    border-radius: 50px; /* Bordes totalmente redondeados */
+    padding: 8px 16px; /* Espacio interno cómodo */
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: #444;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Sombra muy suave */
+}
+.lang-selected:hover, 
+.language-dropdown.active-lang .lang-selected {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12); /* Sombra más fuerte al pasar mouse */
+    border-color: var(--primary-green); /* Se ilumina con tu verde */
+    transform: translateY(-1px);
+}
+/* El icono del Mundo/Globo */
+.language-icon {
+    font-size: 1.1rem;
+    color: var(--texto-secundario); /* Gris suave */
+    transition: color 0.3s;
+}
+/* Al hacer hover, el mundo se pone verde */
+.lang-selected:hover .language-icon {
+    color: var(--primary-green);
+}
+.current-content {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    color: var(--dark-green);
+}
+
+.lang-selected img {
+    width: 20px;
+    height: 20px; /* Forzamos circulo o cuadrado perfecto */
+    border-radius: 50%; /* Bandera redonda (opcional, se ve muy moderno) */
+    object-fit: cover;
+}
+
+/* La flechita */
+.language-dropdown .arrow-icon {
+    font-size: 0.7rem;
+    color: var(--primary-green);
+    margin-left: 2px;
+    transition: transform 0.3s;
+}
+
+/* El contenedor de las opciones (oculto por defecto) */
+.lang-options {
+    position: absolute;
+    top: calc(100% + 5px); /* Un poco separado del botón */
+    right: auto; /* Alineado a la derecha en PC por defecto */
+    left: 0; 
+    background-color: #fff;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Sombra de "flotación" */
+    border: 1px solid #f0f0f0;
+    padding: 8px;
+    min-width: 160px;
+    
+    /* Animación de entrada */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); /* Transición suave */
+    
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Efecto Hover para mostrar el menú (CSS puro, no requiere JS extra) */
+.language-dropdown:hover .lang-options {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.language-dropdown:hover .arrow-icon {
+    transform: rotate(180deg);
+}
+
+
+/* Botones dentro de la lista */
+.lang-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: none;
+    border: none;
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px; /* Redondear opciones internas */
+    cursor: pointer;
+    text-align: left;
+    color: #555;
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: var(--font-main);
+    transition: background 0.2s, color 0.2s;
+}
+
+.lang-option img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; /* Banderas redondas dentro también */
+    object-fit: cover;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.lang-option:hover {
+    background-color: var(--light-bg); /* Fondo verde muy clarito */
+    color: var(--primary-green);
+    font-weight: 600;
+}
+
+/* Estilo para la opción activa dentro de la lista */
+.lang-option.active {
+    background-color: rgba(0,0,0,0.05);
+    font-weight: 600;
+    color: #000;
+}
+.lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #333;
+    opacity: 0.6;
+}
+
+.lang-btn img {
+    width: 18px;
+    height: auto;
+}
+
+.lang-btn.active {
+    opacity: 1;
+    font-weight: 600;
+}
+
 /* MENU */
 .nav-menu {
     display: flex;
@@ -1234,7 +1437,47 @@ footer {
       .hero__overlay.centered h1{
         font-size:2.3rem;
       }
-    
+    .language-dropdown {
+        margin-right: 0; /* Sin margen en móvil */
+    }
+    .lang-options {
+        right: auto;
+        left: 0;
+        top: calc(100% + 5px);
+        min-width: 150px;
+    }
+
+    .language-dropdown.active-lang .lang-options {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    .language-dropdown.active-lang .arrow-icon {
+        transform: rotate(180deg);
+    }
+     .lang-selected {
+        padding: 6px 12px;
+    }
+    .language-icon {
+        font-size: 1rem;
+    }
+    .lang-option {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: none;
+        border: none;
+        width: 100%;
+        padding: 12px 15px; /* Más área de toque para móvil */
+        cursor: pointer;
+        text-align: left;
+        color: #555;
+        font-size: 0.95rem;
+    }
+    .lang-option:hover {
+        background-color: #f5f5f5;
+        color: var(--primary-green);
+    }
 }
 
 @media (min-width: 901px) {
@@ -1244,6 +1487,14 @@ footer {
     .nav-link {
         font-size: 1.2rem;
         padding: 0 65px;
+    }
+    .language-dropdown:hover .lang-options {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    .language-dropdown:hover .arrow-icon {
+        transform: rotate(180deg);
     }
 }
 

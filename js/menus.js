@@ -82,6 +82,8 @@ const langEnBtn = document.getElementById('lang-en');
 // Todos los elementos que tienen traducciones
 const translatableItems = document.querySelectorAll('[data-es][data-en]');
 
+const currentLangDisplay = document.getElementById('current-lang-display'); // Referencia al nuevo visor
+
 function setLanguage(lang) {
     translatableItems.forEach(el => {
         el.textContent = el.getAttribute(`data-${lang}`);
@@ -89,7 +91,16 @@ function setLanguage(lang) {
 
     localStorage.setItem('language', lang);
 
-    // estado visual
+    // --- AGREGA ESTO PARA ACTUALIZAR EL VISUAL DEL DROPDOWN ---
+    const imgSrc = lang === 'es' ? '/img/co.png' : '/img/us.png';
+    const textCode = lang === 'es' ? 'ESP' : 'EN';
+    
+    if (currentLangDisplay) {
+        currentLangDisplay.innerHTML = `<img src="${imgSrc}" alt="${textCode}"> <span>${textCode}</span>`;
+    }
+    // ----------------------------------------------------------
+
+    // estado visual (Mantenemos tu lógica de clases active)
     if (lang === 'es') {
         langEsBtn?.classList.add('active');
         langEnBtn?.classList.remove('active');
@@ -104,3 +115,30 @@ langEnBtn?.addEventListener('click', () => setLanguage('en'));
 
 // idioma inicial
 setLanguage(localStorage.getItem('language') || 'es');
+
+// Referencias
+const langDropdown = document.querySelector('.language-dropdown');
+const langSelectedBtn = document.querySelector('.lang-selected');
+
+// 1. Alternar menú al hacer clic/tocar el botón principal
+if (langSelectedBtn) {
+    langSelectedBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Evita que el clic se propague al document
+        langDropdown.classList.toggle('active-lang');
+    });
+}
+
+// 2. Cerrar el menú al seleccionar una opción
+const langOptions = document.querySelectorAll('.lang-option');
+langOptions.forEach(option => {
+    option.addEventListener('click', () => {
+        langDropdown.classList.remove('active-lang');
+    });
+});
+
+// 3. Cerrar si hago clic fuera (Importante para móvil)
+document.addEventListener('click', (e) => {
+    if (langDropdown && !langDropdown.contains(e.target)) {
+        langDropdown.classList.remove('active-lang');
+    }
+});
