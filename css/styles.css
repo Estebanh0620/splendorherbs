@@ -979,6 +979,14 @@ footer {
 
 /* --- 3. MÓVILES (Smartphone Portrait) --- */
 @media (max-width: 768px) {
+
+    .separator-leaf {
+        margin: 20px 0 30px 0; /* Espaciado compacto para móvil */
+    }
+
+    .catalogo {
+        margin: 10px auto; /* Menor margen superior e inferior */
+    }
     
     /* === TIPOGRAFÍA & ESPACIADO MÓVIL === */
     /* Reducir padding de secciones para ganar espacio */
@@ -986,18 +994,18 @@ footer {
         padding-left: 20px !important;
         padding-right: 20px !important;
         padding-top: 40px !important;
-        padding-bottom: 40px !important;
+        padding-bottom: 10px !important;
     }
 
     /* Títulos centrados y ajustados */
     h1 { font-size: 1.8rem !important; text-align: center; }
-    h2, .section-title { font-size: 1.6rem !important; text-align: center; line-height: 1.3; }
+    h2, .section-title { font-size: 1.6rem !important; text-align: center; line-height: 1.3; margin-bottom: 5px !important; }
     h3 { font-size: 1.4rem !important; text-align: center; }
-    p { font-size: 1rem !important; text-align: center !important; } /* Forzar centrado en párrafos */
+    p { font-size: 1rem !important; text-align: center !important; margin-bottom: 20px !important; } /* Forzar centrado en párrafos */
 
     /* === PROCESOS MÓVIL (Slider) === */
     .procesos { display: none; } /* Ocultar timeline desktop */
-    .procesos-mobile { display: block; padding: 20px 0; }
+    .procesos-mobile { display: block; padding-top: 1px !important; }
     
     .procesos-mobile .img-box {
         width: 100%; max-width: 320px; height: 240px;
@@ -1006,9 +1014,16 @@ footer {
     .procesos-mobile .img-box img { width: 100%; height: 100%; object-fit: cover; }
     
     .mobile-slider {
-        display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
-        gap: 20px; padding: 0 20px 20px 20px;
-    }
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0 20px 15px;
+
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
     .mobile-slide {
         min-width: 100%;
         padding: 0 10px;
@@ -1016,9 +1031,9 @@ footer {
         scroll-snap-align: center; /* Centrar slide al hacer scroll */
         text-align: center; /* Centrar contenido */
     }
-    .mobile-slide h3 { margin-top: 15px; font-size: 1.5rem; margin-bottom: 10px; }
+    .mobile-slide h3 { margin-top: 5px; font-size: 1.5rem; margin-bottom: 10px; }
     .mobile-slide p { font-size: 1rem; line-height: 1.5; color: #555; }
-    .mobile-slider::-webkit-scrollbar { display: none; }
+    .mobile-slider::-webkit-scrollbar { display: all; }
 
     /* === VALORES === */
     .valores { background: #fff; }
