@@ -112,39 +112,42 @@
 
   <!-- JS -->
   <script>
-    async function loadHTML(id, file, callback) {
+    // Función para cargar HTML
+    async function loadHTML(id, file) {
       try {
         const res = await fetch(file);
-        if (!res.ok) throw new Error(`No se pudo cargar ${file}`);
-        const text = await res.text();
-        document.getElementById(id).innerHTML = text;
-        if (callback) callback();
-      } catch (err) {
-        console.error(err);
-      }
+        if (res.ok) {
+           document.getElementById(id).innerHTML = await res.text();
+           
+           // INYECTAR EL SCRIPT MENUS.JS DESPUÉS DE CARGAR EL HEADER
+           // Esto es crucial para que funcionen los botones
+           if (id === 'header') {
+               const script = document.createElement('script');
+               script.src = 'js/menus.js'; // RUTA RELATIVA DE RAIZ
+               document.body.appendChild(script);
+           }
+        }
+      } catch (err) { console.error(err); }
     }
 
-    // Cargar el header y luego inicializar el menú
-    loadHTML('header', './html/header.html', () => {
-      const script = document.createElement('script');
-      script.src = './js/menus.js';
-      document.body.appendChild(script);
+    // 1. Cargar Header (Ruta desde raiz)
+    loadHTML('header', 'html/header.html');
+    loadHTML('footer', 'html/footer.html');
 
-      setTimeout(() => {
-        const toggle = document.querySelector('.menu-toggle');
-        const nav = document.querySelector('.nav-links');
-        if (toggle && nav) {
-          toggle.addEventListener('click', () => {
-            nav.classList.toggle('active');
-            toggle.classList.toggle('open');
-          });
-        }
-      }, 200);
+    // 2. Lógica de Traducción del cuerpo (index)
+    document.addEventListener('languageChanged', (e) => {
+        const lang = e.detail.language;
+        document.querySelectorAll('main [data-es]').forEach(el => {
+            el.innerText = el.getAttribute(`data-${lang}`);
+        });
     });
-
-    // Cargar el footer
-    loadHTML('footer', './html/footer.html');
-  </script>
-
+    
+    // Inicializar idioma (por si acaso el evento ya pasó)
+    setTimeout(() => {
+         const lang = localStorage.getItem('language') || 'es';
+         document.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: lang } }));
+    }, 500);
+</script>
+  
 </body>
 </html>
