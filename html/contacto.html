@@ -93,59 +93,57 @@
   <div id="footer"></div>
 
   <script>
-    async function loadHTML(id, file) {
+    let currentLang = localStorage.getItem('language') || 'es';
+
+    async function loadHTML(id, file, callback) {
       try {
         const res = await fetch(file);
-        if (res.ok) {
-           document.getElementById(id).innerHTML = await res.text();
-
-           // AJUSTE DE RUTAS DEL HEADER (Porque header.html tiene rutas pensadas para root)
-           // Cuando cargas header.html dentro de una subcarpeta, los links se rompen.
-           // Este truco arregla los links del menú:
-           if (id === 'header') {
-               // 1. Cargar el script de menús (saliendo de la carpeta)
-               const script = document.createElement('script');
-               script.src = '../js/menus.js'; 
-               document.body.appendChild(script);
-
-               // 2. Arreglar imágenes del header (banderas y logo)
-               document.querySelectorAll('#header img').forEach(img => {
-                   const src = img.getAttribute('src');
-                   // Si la ruta empieza con /splendorherbs/, la dejamos o ajustamos
-                   // Si empieza con img/, le agregamos ../
-                   if (!src.includes('http') && !src.startsWith('/')) {
-                       img.src = '../' + src.replace('/splendorherbs/', '');
-                   }
-               });
-           }
-        }
-      } catch (err) { console.error(err); }
+        const text = await res.text();
+        document.getElementById(id).innerHTML = text;
+        if (callback) callback();
+      } catch (err) {
+        console.error(err);
+      }
     }
 
-    // Cargar Header (Como estamos en la misma carpeta 'html', solo ponemos el nombre)
-    loadHTML('header', 'header.html'); 
-    loadHTML('footer', 'footer.html');
-
-    // Lógica del Formulario (Placeholders)
-    function setFormLanguage(lang) {
-        document.querySelectorAll('[data-es]').forEach(el => {
-            el.innerText = el.getAttribute(`data-${lang}`);
-        });
-        document.querySelectorAll('[data-ph-es]').forEach(el => {
-            el.placeholder = el.getAttribute(`data-ph-${lang}`);
-        });
-    }
-
-    document.addEventListener('languageChanged', (e) => {
-        setFormLanguage(e.detail.language);
+    loadHTML('header', '/splendorherbs/html/header.html', () => {
+      const script = document.createElement('script');
+      script.src = '/splendorherbs/js/menus.js';
+      document.body.appendChild(script);
+      if (window.checkLanguage) window.checkLanguage();
     });
 
-    // Inicializar
-    setTimeout(() => {
-         const lang = localStorage.getItem('language') || 'es';
-         setFormLanguage(lang);
-    }, 200);
-</script>
+    loadHTML('footer', '/splendorherbs/html/footer.html');
+
+    function setLanguage(lang) {
+  currentLang = lang;
+
+  // 1. Textos normales (Títulos, labels, botones)
+  document.querySelectorAll('[data-es]').forEach(el => {
+    el.innerText = el.getAttribute(`data-${lang}`);
+  });
+
+  // 2. Placeholders (Inputs del formulario)
+  document.querySelectorAll('[data-ph-es]').forEach(el => {
+    el.placeholder = el.getAttribute(`data-ph-${lang}`);
+  });
+}
+
+    setLanguage(currentLang);
+
+    document.addEventListener('languageChanged', e => {
+      setLanguage(e.detail.language);
+    });
+
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', () => {
+      const btn = form.querySelector('.btn');
+      btn.innerHTML = currentLang === 'es'
+        ? 'ENVIANDO... <i class="fas fa-spinner fa-spin"></i>'
+        : 'SENDING... <i class="fas fa-spinner fa-spin"></i>';
+      btn.style.opacity = '0.7';
+    });
+  </script>
 
 </body>
 </html>
