@@ -112,9 +112,14 @@
 
   <!-- LÓGICA DE HIERBAS -->
   <script>
+    /* 
+       CAMBIO IMPORTANTE: 
+       Añadido 'imagenPortada' a cada objeto. Reemplaza las rutas de ejemplo.
+    */
     const HIERBAS = [
       {
         id: "menta",
+        imagenPortada: "/splendorherbs/img/Menta_Portada.png", // CAMBIAR ESTA RUTA
         imagen: "/splendorherbs/img/Menta.png",
         es: {
           nombre: "Menta",
@@ -129,6 +134,7 @@
       },
       {
         id: "romero",
+        imagenPortada: "/splendorherbs/img/Romero_Portada.png", // CAMBIAR ESTA RUTA
         imagen: "/splendorherbs/img/Romero.png",
         es: {
           nombre: "Romero",
@@ -143,6 +149,7 @@
       },
       {
         id: "oregano",
+        imagenPortada: "/splendorherbs/img/Oregano_Portada.png", // CAMBIAR ESTA RUTA
         imagen: "/splendorherbs/img/Orégano.png",
         es: {
           nombre: "Orégano",
@@ -157,6 +164,7 @@
       },
       {
         id: "albahaca",
+        imagenPortada: "/splendorherbs/img/Albahaca_Portada.png", // CAMBIAR ESTA RUTA
         imagen: "/splendorherbs/img/Albahaca.png",
         es: {
           nombre: "Albahaca",
@@ -171,6 +179,7 @@
       },
       {
         id: "mejorana",
+        imagenPortada: "/splendorherbs/img/Mejorana_Portada.jpg", // CAMBIAR ESTA RUTA
         imagen: "/splendorherbs/img/Mejorana.jpg",
         es: {
           nombre: "Mejorana",
@@ -185,6 +194,7 @@
       },
       {
         id: "estragon",
+        imagenPortada: "/splendorherbs/img/Estragon_Portada.png", // CAMBIAR ESTA RUTA
         imagen: "/splendorherbs/img/Estragón.png",
         es: {
           nombre: "Estragón",
@@ -199,6 +209,7 @@
       },
       {
         id: "laurel",
+        imagenPortada: "/splendorherbs/img/Laurel_Portada.png", // CAMBIAR ESTA RUTA
         imagen: "/splendorherbs/img/Laurel.png",
         es: {
           nombre: "Laurel",
@@ -213,6 +224,7 @@
       },
       {
         id: "eneldo",
+        imagenPortada: "/splendorherbs/img/Eneldo_Portada.jpg", // CAMBIAR ESTA RUTA
         imagen: "/splendorherbs/img/Eneldo.jpg",
         es: {
           nombre: "Eneldo",
@@ -227,6 +239,7 @@
       },
       {
         id: "tomillo",
+        imagenPortada: "/splendorherbs/img/Tomillo_Portada.png", // CAMBIAR ESTA RUTA
         imagen: "/splendorherbs/img/Tomillo.png",
         es: {
           nombre: "Tomillo",
@@ -241,6 +254,7 @@
       },
       {
         id: "hierbabuena",
+        imagenPortada: "/splendorherbs/img/Hierbabuena_Portada.png", // CAMBIAR ESTA RUTA
         imagen: "/splendorherbs/img/Hierbabuena.png",
         es: {
           nombre: "Hierbabuena",
@@ -274,10 +288,12 @@
         tile.className = 'tile';
         tile.dataset.id = p.id;
         
+        // Uso de imagen de portada
+        const coverImg = p.imagenPortada || p.imagen;
         const errorFallback = `this.onerror=null;this.src='/splendorherbs/img/logo.png'`;
 
         tile.innerHTML = `
-            <img src="${p.imagen}" onerror="${errorFallback}" alt="${dataLang.nombre}">
+            <img src="${coverImg}" onerror="${errorFallback}" alt="${dataLang.nombre}">
             <div class="tile__label">${dataLang.nombre}</div>
         `;
         tilesContainer.appendChild(tile);
@@ -289,6 +305,7 @@
       const lblVariety = currentLang === 'es' ? 'Variedad' : 'Variety';
       const errorFallback = `this.onerror=null;this.src='/splendorherbs/img/logo.png'`;
 
+      // Se mantiene producto.imagen para el interior del modal
       resultsContainer.innerHTML = `
         <article class="card">
           <button class="card__close" aria-label="Close">
