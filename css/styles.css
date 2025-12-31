@@ -359,8 +359,11 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center; width: 220px; flex-shrink: 0; font-weight: 100;
 }
 .iconoytexto img {
-    width: 90px; height: 90px; object-fit: contain;
-    margin-bottom: 15px; transition: transform 0.3s ease;
+    width: 130px;   /* ANTES: 90px -> AHORA: 130px */
+    height: 130px;  /* ANTES: 90px -> AHORA: 130px */
+    object-fit: contain;
+    margin-bottom: 15px; 
+    transition: transform 0.3s ease;
 }
 .iconoytexto img:hover { transform: scale(1.1); }
 .iconoytexto b { font-family: var(--font-titles); font-size: 1.1rem; color: #000; }
@@ -834,7 +837,16 @@ footer {
         gap: 60px; /* Más espacio entre iconos en lugar de hacerlos gigantes */
         margin-bottom: 60px;
     }
+    .iconoytexto img {
+        width: 160px;   /* Hacemos los iconos gigantes en PC */
+        height: 160px;
+        margin-bottom: 25px; /* Un poco más de espacio con el texto */
+    }
 
+    /* Opcional: Ajustar el ancho del contenedor para que el icono grande quepa cómodo */
+    .iconoytexto {
+        width: 260px; /* Aumentado de 220px para dar aire al icono más grande */
+    }
     /* --- ELEMENTO INDIVIDUAL (VALOR) --- */
     .valor {
         width: auto; /* Dejamos que el contenido defina el ancho */
