@@ -1329,43 +1329,52 @@ footer {
 
     /* --- NUEVO: AJUSTE MODAL PARA MÓVIL --- */
     .card {
-        width: 95%; /* Un poco más de margen lateral */
-        max-height: 85vh; /* Altura máxima del 85% de la pantalla */
-        display: flex;
-        flex-direction: column; /* Apila imagen y texto */
-        overflow: hidden; /* Evita que la tarjeta crezca más allá del 85vh */
-    }
-    
-    .card__img {
-        height: 200px; /* Altura fija para la imagen */
-        flex-shrink: 0; /* Evita que la imagen se aplaste */
-    }
+    width: 90%; /* Un poco de margen a los lados */
+    max-height: 80vh; /* Ocupa máximo el 80% de la altura de la pantalla */
+    display: flex; /* Usamos Flex para controlar el espacio */
+    flex-direction: column; /* Una cosa debajo de la otra */
+    overflow: hidden; /* IMPORTANTE: Corta lo que sobre del borde redondeado */
+    background: #fff;
+    border-radius: 12px;
+}
 
-    .card__body {
-        padding: 15px 20px; /* Menos relleno para ganar espacio */
-        overflow-y: auto; /* SCROLL INTERNO: Solo el texto hace scroll */
-        flex-grow: 1; /* Ocupa el espacio restante */
-    }
+.card__img {
+    height: 160px; /* Hacemos la imagen más bajita para que quepa el texto */
+    min-height: 160px; /* Asegura que no desaparezca */
+    flex-shrink: 0; /* Evita que la imagen se aplaste si hay mucho texto */
+    width: 100%;
+    object-fit: cover;
+}
 
-    .card__title {
-        font-size: 1.4rem; /* Título más pequeño */
-        margin-bottom: 10px;
-    }
+.card__body {
+    padding: 15px 20px; /* Menos relleno para ganar espacio */
+    overflow-y: auto; /* EL TRUCO: Si el texto es largo, el scroll aparece AQUÍ dentro, no en la página */
+    flex-grow: 1; /* Ocupa todo el espacio que sobre después de la imagen */
+}
 
-    .meta {
-        font-size: 0.9rem !important; /* Texto de descripción más pequeño pero legible */
-        line-height: 1.4; /* Interlineado un poco más ajustado */
-        text-align: left !important; /* Facilita la lectura en móvil */
-    }
-    
-    .card__close {
-        top: 10px;
-        right: 10px;
-        width: 32px;
-        height: 32px;
-        font-size: 18px;
-        background: rgba(255, 255, 255, 0.9);
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
+/* Título más compacto */
+.card__title {
+    font-size: 1.3rem !important; 
+    margin-bottom: 8px;
+}
+
+/* Texto de descripción más pequeño para evitar scroll innecesario */
+.meta {
+    font-size: 0.85rem !important; /* Letra más pequeña pero legible */
+    line-height: 1.4; /* Líneas un poco más juntas */
+    text-align: left !important;
+    margin: 0;
+    color: #444;
+}
+
+.card__close {
+    top: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
     /* -------------------------------------- */
 }
