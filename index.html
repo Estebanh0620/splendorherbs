@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <!-- CSS LOCAL (ruta relativa) -->
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="/splendorherbs/css/styles.css">
 </head>
 
 <body>
@@ -26,13 +26,13 @@
   <main class="main-content">
 
     <!-- HERO -->
-    <section class="hero" style="background-image: url('img/hero-invernadero.jpg');">
+    <section class="hero" style="background-image: url('/splendorherbs/img/hero-invernadero.jpg');">
       <div class="hero-overlay">
         <div class="hero-inner-content">
 
           <!-- Logo -->
           <div class="hero-col-logo">
-            <img src="img/logo2.png" alt="Splendor Herbs Logo">
+            <img src="/splendorherbs/img/logo2.png" alt="Splendor Herbs Logo">
           </div>
 
           <!-- Texto Hero -->
@@ -62,8 +62,8 @@
 
         <!-- Video -->
         <div class="split-video">
-          <video controls poster="img/portada-video.jpg">
-            <source src="video/video-institucional.mp4" type="video/mp4">
+          <video controls poster="/splendorherbs/img/portada-video.jpg">
+            <source src="/splendorherbs/video/video-institucional.mp4" type="video/mp4">
             Tu navegador no soporta la reproducción de videos.
           </video>
         </div>
@@ -99,8 +99,8 @@
       </h1>
 
       <div class="certificados">
-        <img src="img/primus.png" alt="certificado primus">
-        <img src="img/ICA.webp" alt="certificado ICA">
+        <img src="/splendorherbs/img/primus.png" alt="certificado primus">
+        <img src="/splendorherbs/img/ICA.webp" alt="certificado ICA">
       </div>
 
     </div>
@@ -124,9 +124,9 @@
     }
 
     // Header
-    loadHTML('header', 'html/header.html', () => {
+    loadHTML('header', '/splendorherbs/html/header.html', () => {
       const script = document.createElement('script');
-      script.src = 'js/menus.js'; // ← ruta corregida
+      script.src = '/splendorherbs/js/menus.js'; // ← ruta corregida
       document.body.appendChild(script);
 
       setTimeout(() => {
@@ -142,7 +142,7 @@
     });
 
     // Footer
-    loadHTML('footer', 'html/footer.html');
+    loadHTML('footer', '/splendorherbs/html/footer.html');
   </script>
 
 </body>
