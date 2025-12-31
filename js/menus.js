@@ -1,35 +1,37 @@
 /* menus.js */
 
 // =======================
-// 1. SELECCIÓN DE ELEMENTOS (Header)
+// 1. SELECCIÓN DE ELEMENTOS
 // =======================
-// Nota: Como este script se carga dinámicamente, aseguramos buscar dentro del documento actual.
+// Usamos funciones getters o búsqueda dinámica dentro de applyLanguage
+// para asegurar que el elemento existe tras la carga asíncrona del header.
+
 const menuBtn = document.getElementById('mobile-menu-btn');
 const navMenu = document.querySelector('.nav-menu');
-const overlay = document.getElementById('menu-overlay'); // Asegúrate que este ID exista en tu HTML o Header
+const overlay = document.getElementById('menu-overlay');
 const dropdowns = document.querySelectorAll('.dropdown');
 
-// Elementos de Idioma
 const langEsBtn = document.getElementById('lang-es');
 const langEnBtn = document.getElementById('lang-en');
-const currentFlag = document.getElementById('current-lang-flag');
-const currentText = document.getElementById('current-lang-text');
 
 // =======================
 // 2. FUNCIÓN PRINCIPAL DE IDIOMA
 // =======================
 function applyLanguage(lang) {
-    // 1. Guardar preferencia
     localStorage.setItem('language', lang);
 
-    // 2. Actualizar textos SOLAMENTE del Header (o elementos globales)
-    // Buscamos elementos traducibles dentro del header para no interferir con lógicas complejas del body
+    // Seleccionamos elementos dinámicamente cada vez, por si el header se acaba de renderizar
+    const currentFlag = document.getElementById('current-lang-flag');
+    const currentText = document.getElementById('current-lang-text');
+
+    // Traducir textos del Header
+    // Al haber cambiado el HTML a <span>, esto ahora traduce solo el texto y respeta las flechas <i>
     const headerTranslatables = document.querySelectorAll('.header [data-es][data-en]');
     headerTranslatables.forEach(el => {
         el.textContent = el.getAttribute(`data-${lang}`);
     });
 
-    // 3. Actualizar Bandera y Texto del Header
+    // Actualizar Bandera y Texto
     if (currentFlag && currentText) {
         if (lang === 'es') {
             currentFlag.src = '/splendorherbs/img/co.png';
@@ -40,8 +42,7 @@ function applyLanguage(lang) {
         }
     }
 
-    // 4. *** IMPORTANTE: DISPARAR EVENTO PARA LAS PÁGINAS ***
-    // Esto le "grita" al archivo contacto.html o hortalizas.html que el idioma cambió
+    // Disparar evento global
     const event = new CustomEvent('languageChanged', { detail: { language: lang } });
     document.dispatchEvent(event);
 }
