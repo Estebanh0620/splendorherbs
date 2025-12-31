@@ -5,109 +5,112 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Splendor Herbs</title>
+
+  <!-- Google Fonts -->
   <link
     href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap"
     rel="stylesheet">
+
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- CSS LOCAL (ruta relativa) -->
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
+
+  <!-- Header dinámico -->
   <div id="header"></div>
 
   <main class="main-content">
 
-
-    <!-- Asegúrate de cambiar la imagen del hero en el style inline si es necesario -->
-    <section class="hero" style="background-image: url('/img/hero-invernadero.jpg');">
+    <!-- HERO -->
+    <section class="hero" style="background-image: url('img/hero-invernadero.jpg');">
       <div class="hero-overlay">
         <div class="hero-inner-content">
-          <!-- Columna Izquierda Hero: Logo -->
-          <div class="hero-col-logo">
-            
-            <img src="/img/logo2.png" alt="Splendor Herbs Logo">
-          </div>
-          <!-- Columna Derecha Hero: Texto -->
-          <div class="hero-col-text">
-            <h2 data-es="AROMÁTICAS FRESCAS CON CALIDAD Y SOSTENIBILIDAD DESDE COLOMBIA"
-              data-en="FRESH AROMATIC HERBS WITH QUALITY AND SUSTAINABILITY FROM COLOMBIA">
-              AROMÁTICAS FRESCAS CON<br>CALIDAD Y SOSTENIBILIDAD<br>DESDE COLOMBIA
-            </h2>
 
+          <!-- Logo -->
+          <div class="hero-col-logo">
+            <img src="img/logo2.png" alt="Splendor Herbs Logo">
           </div>
+
+          <!-- Texto Hero -->
+          <div class="hero-col-text">
+            <h2
+              data-es="AROMÁTICAS FRESCAS CON CALIDAD Y SOSTENIBILIDAD DESDE COLOMBIA"
+              data-en="FRESH AROMATIC HERBS WITH QUALITY AND SUSTAINABILITY FROM COLOMBIA">
+              AROMÁTICAS FRESCAS CON<br>
+              CALIDAD Y SOSTENIBILIDAD<br>
+              DESDE COLOMBIA
+            </h2>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- Sección CONTENIDO: Estructura de columnas -->
+    <!-- CONTENIDO -->
     <div class="content-container">
 
       <h1 class="section-title" data-es="QUIENES SOMOS" data-en="WHO WE ARE">
         QUIENES SOMOS
       </h1>
-      <div class="separator-leaf">
-                <span class="line"></span>
-                <i class="fas fa-leaf"></i>
-                <span class="line"></span>
-            </div>
 
-      <!-- Fila dividida: Imagen a la izquierda, Texto a la derecha -->
+      <!-- Sección dividida -->
       <div class="split-section">
 
-        <!-- Contenedor del Video -->
+        <!-- Video -->
         <div class="split-video">
-          
-          <video controls poster="/img/portada-video.jpg">
-            <source src="/video/video-institucional.mp4" type="video/mp4">
+          <video controls poster="img/portada-video.jpg">
+            <source src="video/video-institucional.mp4" type="video/mp4">
             Tu navegador no soporta la reproducción de videos.
           </video>
         </div>
 
+        <!-- Texto -->
         <div class="split-text">
           <p
-  data-es="Desde 2017 nació en Madrid, Cundinamarca, Splendor Herbs SAS, una compañía dedicada al cultivo, selección y empaque de aromáticas frescas. Desde el inicio nos hemos enfocado en llevar al mundo productos de la más alta calidad, cultivados con responsabilidad y respeto por el medio ambiente."
-  data-en="Founded in 2017 in Madrid, Cundinamarca, Splendor Herbs SAS is a company dedicated to the cultivation, selection, and packaging of fresh aromatic herbs. From the beginning, we have focused on delivering the highest quality products to the world, grown responsibly and with respect for the environment."
->
-  Desde 2017 nació en Madrid, Cundinamarca, Splendor Herbs SAS, una compañía dedicada al cultivo, selección y empaque de aromáticas frescas. Desde el inicio nos hemos enfocado en llevar al mundo productos de la más alta calidad, cultivados con responsabilidad y respeto por el medio ambiente.
-</p>
-
+            data-es="Desde 2017 nació en Madrid, Cundinamarca, Splendor Herbs SAS, una compañía dedicada al cultivo, selección y empaque de aromáticas frescas. Desde el inicio nos hemos enfocado en llevar al mundo productos de la más alta calidad, cultivados con responsabilidad y respeto por el medio ambiente."
+            data-en="Founded in 2017 in Madrid, Cundinamarca, Splendor Herbs SAS is a company dedicated to the cultivation, selection, and packaging of fresh aromatic herbs. From the beginning, we have focused on delivering the highest quality products to the world, grown responsibly and with respect for the environment.">
+            Desde 2017 nació en Madrid, Cundinamarca, Splendor Herbs SAS, una compañía dedicada al cultivo, selección y
+            empaque de aromáticas frescas. Desde el inicio nos hemos enfocado en llevar al mundo productos de la más
+            alta calidad, cultivados con responsabilidad y respeto por el medio ambiente.
+          </p>
         </div>
+
       </div>
 
-      <!-- Texto completo inferior -->
+      <!-- Texto completo -->
       <div class="full-width-text">
         <p
-  data-es="Nuestro camino ha estado marcado por el compromiso con la sostenibilidad, trabajando constantemente en reducir nuestra huella de carbono y en fortalecer las buenas prácticas agrícolas. De la mano de nuestros colaboradores, hemos creado una cultura basada en el aprendizaje continuo, la innovación en los procesos y la entrega de un producto fresco y saludable, que cumple con los más altos estándares internacionales."
-  data-en="Our journey has been defined by a strong commitment to sustainability, continuously working to reduce our carbon footprint and strengthen good agricultural practices. Together with our collaborators, we have built a culture based on continuous learning, process innovation, and the delivery of fresh and healthy products that meet the highest international standards."
->
-  Nuestro camino ha estado marcado por el compromiso con la sostenibilidad, trabajando constantemente en reducir nuestra huella de carbono y en fortalecer las buenas prácticas agrícolas. De la mano de nuestros colaboradores, hemos creado una cultura basada en el aprendizaje continuo, la innovación en los procesos y la entrega de un producto fresco y saludable, que cumple con los más altos estándares internacionales.
-</p>
-
+          data-es="Nuestro camino ha estado marcado por el compromiso con la sostenibilidad, trabajando constantemente en reducir nuestra huella de carbono y en fortalecer las buenas prácticas agrícolas. De la mano de nuestros colaboradores, hemos creado una cultura basada en el aprendizaje continuo, la innovación en los procesos y la entrega de un producto fresco y saludable, que cumple con los más altos estándares internacionales."
+          data-en="Our journey has been defined by a strong commitment to sustainability, continuously working to reduce our carbon footprint and strengthen good agricultural practices. Together with our collaborators, we have built a culture based on continuous learning, process innovation, and the delivery of fresh and healthy products that meet the highest international standards.">
+          Nuestro camino ha estado marcado por el compromiso con la sostenibilidad, trabajando constantemente en reducir
+          nuestra huella de carbono y en fortalecer las buenas prácticas agrícolas. De la mano de nuestros
+          colaboradores, hemos creado una cultura basada en el aprendizaje continuo, la innovación en los procesos y la
+          entrega de un producto fresco y saludable, que cumple con los más altos estándares internacionales.
+        </p>
       </div>
 
-      <h1 class="section-title"
-    data-es="CERTIFICACIONES"
-    data-en="CERTIFICATIONS">
-  CERTIFICACIONES
-</h1>
-  <div class="separator-leaf">
-                <span class="line"></span>
-                <i class="fas fa-leaf"></i>
-                <span class="line"></span>
-            </div>
+      <!-- Certificaciones -->
+      <h1 class="section-title" data-es="CERTIFICACIONES" data-en="CERTIFICATIONS">
+        CERTIFICACIONES
+      </h1>
 
       <div class="certificados">
-        <img src="/img/primus.png" alt="certificado primus">
-        <img src="/img/ICA.webp" alt="certificado ICA">
+        <img src="img/primus.png" alt="certificado primus">
+        <img src="img/ICA.webp" alt="certificado ICA">
       </div>
 
     </div>
-
   </main>
 
+  <!-- Footer dinámico -->
   <div id="footer"></div>
+
+  <!-- JS -->
   <script>
-    // Función para cargar HTML externo
     async function loadHTML(id, file, callback) {
       try {
         const res = await fetch(file);
@@ -120,10 +123,10 @@
       }
     }
 
-    // Cargar el header y luego inicializar el menú
+    // Header
     loadHTML('header', 'html/header.html', () => {
       const script = document.createElement('script');
-      script.src = '/js/menus.js';
+      script.src = 'js/menus.js'; // ← ruta corregida
       document.body.appendChild(script);
 
       setTimeout(() => {
@@ -138,10 +141,9 @@
       }, 200);
     });
 
-    // Cargar el footer
+    // Footer
     loadHTML('footer', 'html/footer.html');
   </script>
 
 </body>
-
 </html>
