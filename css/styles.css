@@ -132,7 +132,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-item { height: 100%; display: flex; align-items: center; position: relative; }
 .nav-link {
     text-decoration: none; color: var(--primary-green);
-    font-weight: 700; font-size: 0.5rem; padding: 0 15px; height: 100%;
+    font-weight: 700; font-size: 1rem; padding: 0 25px; height: 100%;
     display: flex; align-items: center; text-transform: uppercase;
     transition: all 0.3s; border-bottom: 4px solid transparent; white-space: nowrap;
 }
@@ -773,7 +773,7 @@ footer {
     }
     .dropdown-content.show { display: block; animation: fadeIn 0.3s ease; }
     .arrow-icon.rotate { transform: rotate(180deg); }
-    .nav-link { font-size: 1rem; padding: 0 65px; }
+    .nav-link { padding: 0 65px; }
     .language-dropdown:hover .lang-options { opacity: 1; visibility: visible; transform: translateY(0); }
     .language-dropdown:hover .arrow-icon { transform: rotate(180deg); }
     /* --- HERO SECTION --- */
