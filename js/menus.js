@@ -20,18 +20,10 @@ const langEnBtn = document.getElementById('lang-en');
 function applyLanguage(lang) {
     localStorage.setItem('language', lang);
 
-    // Seleccionamos elementos dinámicamente cada vez, por si el header se acaba de renderizar
+    // Actualizar Bandera y Texto (Si existen en el header)
     const currentFlag = document.getElementById('current-lang-flag');
     const currentText = document.getElementById('current-lang-text');
 
-    // Traducir textos del Header
-    // Al haber cambiado el HTML a <span>, esto ahora traduce solo el texto y respeta las flechas <i>
-    const headerTranslatables = document.querySelectorAll('.header [data-es][data-en]');
-    headerTranslatables.forEach(el => {
-        el.textContent = el.getAttribute(`data-${lang}`);
-    });
-
-    // Actualizar Bandera y Texto
     if (currentFlag && currentText) {
         if (lang === 'es') {
             currentFlag.src = '/splendorherbs/img/co.png';
@@ -42,7 +34,19 @@ function applyLanguage(lang) {
         }
     }
 
-    // Disparar evento global
+    // ------------------------------------------------------
+    // AQUÍ ESTÁ LA CLAVE: 
+    // Usamos `document` sin especificar clase padre.
+    // Esto busca en Header, Main, Footer y cualquier otro lugar.
+    // ------------------------------------------------------
+    const allElements = document.querySelectorAll('[data-es][data-en]');
+    
+    allElements.forEach(el => {
+        // Aplica la traducción a cada elemento encontrado
+        el.textContent = el.getAttribute(`data-${lang}`);
+    });
+
+    // Disparar evento global (opcional, por si usas otros scripts)
     const event = new CustomEvent('languageChanged', { detail: { language: lang } });
     document.dispatchEvent(event);
 }
@@ -53,26 +57,29 @@ function applyLanguage(lang) {
 if (langEsBtn) langEsBtn.addEventListener('click', () => applyLanguage('es'));
 if (langEnBtn) langEnBtn.addEventListener('click', () => applyLanguage('en'));
 
-// Cargar idioma inicial al ejecutar el script
+// =======================
+// CARGA INICIAL
+// =======================
+// Obtener idioma guardado o usar español por defecto
 const savedLang = localStorage.getItem('language') || 'es';
 
-// --- AGREGA ESTAS DOS LÍNEAS AQUÍ ---
-const currentFlag = document.getElementById('current-lang-flag');
-const currentText = document.getElementById('current-lang-text');
-// ------------------------------------
+// Aplicar visualmente los iconos del header (Bandera/Texto)
+const initFlag = document.getElementById('current-lang-flag');
+const initText = document.getElementById('current-lang-text');
 
-// Aplicamos visualmente al header...
-if (currentFlag && currentText) {
+if (initFlag && initText) {
     if (savedLang === 'es') {
-        currentFlag.src = '/splendorherbs/img/co.png';
-        currentText.textContent = 'ESP';
+        initFlag.src = '/splendorherbs/img/co.png';
+        initText.textContent = 'ESP';
     } else {
-        currentFlag.src = '/splendorherbs/img/us.png';
-        currentText.textContent = 'EN';
+        initFlag.src = '/splendorherbs/img/us.png';
+        initText.textContent = 'EN';
     }
 }
-// Traducir textos del header inmediatamente
-document.querySelectorAll('.header [data-es][data-en]').forEach(el => {
+
+// Ejecutar la traducción inmediatamente al cargar
+// Nuevamente: busca en TODO el documento (Header + Main)
+document.querySelectorAll('[data-es][data-en]').forEach(el => {
     el.textContent = el.getAttribute(`data-${savedLang}`);
 });
 

@@ -5,95 +5,187 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gracias | Splendor Herbs</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/splendorherbs/css/styles.css">
 
   <style>
-    body {
-      background: #f6faf7;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+    :root {
+      --primary-green: #13854b;
+      --bg-light: #f6faf7;
+      --shadow: 0 15px 40px rgba(19, 133, 75, 0.2);
     }
 
-    main {
-      flex: 1;
+    /* 1. Bloqueo total del scroll */
+    body {
+      margin: 0;
+      overflow: hidden; /* El usuario no puede bajar ni subir */
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* 2. Capa que cubre Header, Footer y todo el contenido */
+    .fullscreen-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--bg-light);
+      background-image: radial-gradient(#e1f5e8 1px, transparent 1px);
+      background-size: 25px 25px;
+      z-index: 99999; /* Muy alto para tapar el header inyectado */
+      
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 40px 20px;
-      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
+    /* Caja del mensaje */
     .thankyou-box {
-      background: #eaf7ef;
-      border: 2px solid #bfe6cf;
-      border-radius: 10px;
+      background: #ffffff;
+      border-radius: 20px;
       padding: 40px;
-      max-width: 600px;
-    }
-
-    .thankyou-box h1 {
-      color: #13854b;
-      font-weight: 400;
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      border-top: 6px solid var(--primary-green);
+      
+      /* Animación Pop-In */
+      animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      opacity: 0;
+      transform: scale(0.8);
     }
 
     .thankyou-box img {
-      width: 100px;
+      width: 110px;
       margin-bottom: 20px;
     }
 
+    .thankyou-box h1 {
+      font-family: 'Belanosima', sans-serif;
+      color: var(--primary-green);
+      font-size: 2rem;
+      margin: 0 0 10px 0;
+    }
+
+    .thankyou-box p {
+      color: #555;
+      margin-bottom: 30px;
+      line-height: 1.5;
+      font-size: 1.1rem;
+    }
+
     .btn {
-      background: #1a8b59;
+      background: var(--primary-green);
       color: #fff;
-      padding: 12px 28px;
-      border-radius: 6px;
+      padding: 14px 35px;
+      border-radius: 50px;
       text-decoration: none;
       font-weight: 600;
       display: inline-block;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
     }
 
     .btn:hover {
-      background: #167048;
+      background: #0e6338;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    @keyframes popIn {
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Responsive Móvil */
+    @media (max-width: 480px) {
+      .thankyou-box { padding: 30px 20px; }
+      .thankyou-box h1 { font-size: 1.8rem; }
+      .btn { width: 100%; display: block; box-sizing: border-box; }
     }
   </style>
 </head>
 <body>
 
+<!-- Header se carga pero queda oculto visualmente por el overlay -->
 <div id="header"></div>
 
-<main>
+<!-- Overlay de pantalla completa -->
+<div class="fullscreen-overlay">
   <div class="thankyou-box">
     <img src="/splendorherbs/img/Logo Splendor Herbs.png" alt="Splendor Herbs Logo">
-    <h1>¡Gracias por contactarnos!</h1>
-    <p>
+    
+    <!-- TÍTULO TRADUCIBLE -->
+    <h1 
+      data-es="¡Gracias por contactarnos!" 
+      data-en="Thank you for contacting us!">
+      ¡Gracias por contactarnos!
+    </h1>
+    
+    <!-- PÁRRAFO TRADUCIBLE -->
+    <p 
+      data-es="Hemos recibido tu mensaje correctamente. Nuestro equipo te responderá lo antes posible." 
+      data-en="We have successfully received your message. Our team will respond as soon as possible.">
       Hemos recibido tu mensaje correctamente.<br>
       Nuestro equipo te responderá lo antes posible.
     </p>
 
-    <a href="/splendorherbs/html/contacto.html" class="btn">Volver</a>
+    <!-- BOTÓN TRADUCIBLE -->
+    <a href="/splendorherbs/html/contacto.html" class="btn"
+       data-es="Volver al sitio"
+       data-en="Back to site">
+       Volver al sitio
+    </a>
   </div>
-</main>
+</div>
 
 <div id="footer"></div>
 
 <script>
+  // Carga de componentes
   async function loadHTML(id, file, callback) {
-    const res = await fetch(file);
-    const text = await res.text();
-    document.getElementById(id).innerHTML = text;
-    if (callback) callback();
+    try {
+      const res = await fetch(file);
+      if(res.ok) {
+        document.getElementById(id).innerHTML = await res.text();
+        if (callback) callback();
+      }
+    } catch (e) { console.error(e); }
   }
 
+  // 1. Cargamos el header
   loadHTML('header', '/splendorherbs/html/header.html', () => {
+    // 2. Una vez cargado el header, cargamos el script de menús/idioma
     const script = document.createElement('script');
     script.src = '/splendorherbs/js/menus.js';
+    
+    // Cuando el script menus.js termine de cargar, ejecutará su lógica interna
+    // y traducirá automáticamente los elementos con data-es/data-en de esta página.
+    script.onload = () => {
+        // Forzamos una actualización inmediata por si acaso el script ya corrió
+        const savedLang = localStorage.getItem('language') || 'es';
+        if(typeof applyLanguage === 'function') {
+            applyLanguage(savedLang);
+        }
+    };
+    
     document.body.appendChild(script);
   });
 
   loadHTML('footer', '/splendorherbs/html/footer.html');
+
+  // TRADUCCIÓN INMEDIATA (Anti-Parpadeo)
+  // Esto asegura que el mensaje se traduzca antes de que cargue el header/menus.js
+  // para evitar que el usuario vea español por 1 segundo si tiene inglés seleccionado.
+  (function() {
+      const lang = localStorage.getItem('language') || 'es';
+      document.querySelectorAll('[data-es][data-en]').forEach(el => {
+          el.textContent = el.getAttribute('data-' + lang);
+      });
+  })();
 </script>
 
 </body>
