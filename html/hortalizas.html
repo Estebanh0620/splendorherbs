@@ -9,13 +9,8 @@
 
   <!-- SEO Principal -->
   <title>Hortalizas frescas al por mayor | Fresh Vegetables Wholesale Supplier – Splendor Herbs</title>
-
-  <meta name="description"
-    content="Proveedor mayorista de hortalizas frescas y hierbas aromáticas desde Colombia. Splendor Herbs SAS ofrece vegetales trazables, calidad de exportación y suministro confiable para distribuidores y compradores internacionales.">
-
-  <meta name="keywords"
-    content="hortalizas frescas, fresh vegetables wholesale, wholesale vegetables supplier, proveedor mayorista de hortalizas, export vegetables colombia, herbs and vegetables supplier, fresh produce exporter">
-
+  <meta name="description" content="Proveedor mayorista de hortalizas frescas y hierbas aromáticas desde Colombia. Splendor Herbs SAS ofrece vegetales trazables, calidad de exportación y suministro confiable para distribuidores y compradores internacionales.">
+  <meta name="keywords" content="hortalizas frescas, fresh vegetables wholesale, wholesale vegetables supplier, proveedor mayorista de hortalizas, export vegetables colombia, herbs and vegetables supplier, fresh produce exporter">
   <meta name="author" content="Splendor Herbs SAS">
   <meta name="robots" content="index, follow">
   <meta name="language" content="es, en">
@@ -25,7 +20,7 @@
   <meta name="geo.placename" content="Colombia">
   <meta name="distribution" content="global">
 
-  <!-- Open Graph (WhatsApp, LinkedIn, Facebook) -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Hortalizas frescas al por mayor | Fresh Vegetables – Splendor Herbs">
   <meta property="og:description"
     content="Hortalizas frescas y hierbas aromáticas con estándares de exportación, trazabilidad y suministro constante para el mercado internacional.">
@@ -33,19 +28,10 @@
   <meta property="og:image" content="/splendorherbs/img/og-hortalizas.jpg">
   <meta property="og:url" content="https://splendorherbs.com/hortalizas">
 
-  <!-- Twitter / X -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Fresh Vegetables Wholesale Supplier – Splendor Herbs">
-  <meta name="twitter:description"
-    content="Wholesale supplier of fresh vegetables and herbs from Colombia, focused on export markets.">
-  <meta name="twitter:image" content="/splendorherbs/img/og-hortalizas.jpg">
-
   <!-- Performance: Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@400;600;700;900&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
   <!-- Iconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -57,7 +43,6 @@
   <link rel="icon" href="/splendorherbs/img/favicon.png" type="image/png">
 </head>
 
-
 <body>
   <!-- Header dinámico -->
   <div id="header"></div>
@@ -65,13 +50,13 @@
   <main class="main-content">
     <!-- HERO -->
     <section class="galeria-simple-header">
-      <h2 data-es="HORTALIZAS FRESCAS" data-en="FRESH VEGETABLES">HORTALIZAS FRESCAS</h2>
-      <!-- NUEVO SEPARADOR -->
-      <div class="separator-leaf">
-        <span class="line"></span>
-        <i class="fas fa-leaf"></i>
-        <span class="line"></span>
-      </div>
+        <h2 data-es="HORTALIZAS FRESCAS" data-en="FRESH VEGETABLES">HORTALIZAS FRESCAS</h2>
+          <!-- SEPARADOR -->
+        <div class="separator-leaf">
+            <span class="line"></span>
+            <i class="fas fa-leaf"></i>
+            <span class="line"></span>
+        </div>
     </section>
 
     <!-- Catálogo de tiles -->
@@ -87,33 +72,50 @@
         <!-- Tiles generados por JS -->
       </div>
     </section>
-
-    <!-- Ficha seleccionada -->
-    <section class="results" id="results">
-      <!-- El contenido inicial se carga vía JS -->
-    </section>
   </main>
+
+  <section class="results" id="results">
+    <!-- El contenido inicial se carga vía JS -->
+  </section>
 
   <!-- Footer dinámico -->
   <div id="footer"></div>
 
   <!-- Scripts de Carga de Header/Footer -->
   <script>
-    // Variable global para controlar el idioma (por defecto español)
-    // Tu script de menus.js debería actualizar esto y llamar a updateLanguage()
-    let currentLang = localStorage.getItem('language') || 'es';
+  let currentLang = localStorage.getItem('language') || 'es'; 
 
-    async function loadHTML(id, file, callback) {
-      try {
-        const res = await fetch(file);
-        if (!res.ok) throw new Error(`No se pudo cargar ${file}`);
-        const text = await res.text();
-        document.getElementById(id).innerHTML = text;
-        if (callback) callback();
-      } catch (err) {
-        console.error(err);
-      }
+  async function loadHTML(id, file, callback) {
+    try {
+      const res = await fetch(file);
+      if (!res.ok) throw new Error(`No se pudo cargar ${file}`);
+      const text = await res.text();
+      document.getElementById(id).innerHTML = text;
+      if (callback) callback();
+    } catch (err) {
+      console.error(err);
     }
+  }
+
+  loadHTML('header', '/splendorherbs/html/header.html', () => {
+    const script = document.createElement('script');
+    script.src = '/splendorherbs/js/menus.js';
+    document.body.appendChild(script);
+
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.nav-links'); 
+    const menuOverlay = document.querySelector('.menu-overlay');
+
+    if (toggle && nav) {
+        toggle.addEventListener('click', () => {
+          nav.classList.toggle('active');
+          toggle.classList.toggle('active'); 
+          if(menuOverlay) menuOverlay.classList.toggle('active');
+        });
+    }
+
+    if(window.checkLanguage) window.checkLanguage();
+  });
 
     loadHTML('header', '/splendorherbs/html/header.html', () => {
       const script = document.createElement('script');
@@ -140,13 +142,16 @@
 
   <!-- Lógica de Hortalizas Bilingüe -->
   <script>
-    // 1. CONFIGURACIÓN DE PRODUCTOS BILINGÜE
-    // Estructura: id único, imagen, y objetos 'es' y 'en' para los textos
+    /* 
+       CAMBIO IMPORTANTE: 
+       Ahora cada objeto tiene 'imagenPortada' (para la card) e 'imagen' (para el modal).
+       Asegúrate de cambiar las rutas de 'imagenPortada' por tus archivos reales.
+    */
     const HORTALIZAS = [
       {
         id: "lechuga",
-        imagenTile: "/splendorherbs/img/Lechuga1.jpeg",
-        imagenFicha: "/splendorherbs/img/Lechuga.jpeg",
+        imagenPortada: "/splendorherbs/img/Lechuga_Portada.jpeg", // CAMBIAR ESTA RUTA
+        imagen: "/splendorherbs/img/Lechuga.jpeg", 
         es: {
           nombre: "Lechuga",
           descripcion: "Crujiente, fresca y perfecta para acompañar cualquier comida.",
@@ -161,8 +166,8 @@
       ,
       {
         id: "cebollin",
-        imagenTile: "/splendorherbs/img/galeria/cultivos8.png",
-        imagenFicha: "/splendorherbs/img/cebollin.png",
+        imagenPortada: "/splendorherbs/img/cebollin_Portada.png", // CAMBIAR ESTA RUTA
+        imagen: "/splendorherbs/img/cebollin.png",
         es: {
           nombre: "Cebollin",
           descripcion: "Suave, fresco y con ese toque de cebolla que todos aman."
@@ -174,6 +179,7 @@
       },
       {
         id: "cilantro",
+        imagenPortada: "/splendorherbs/img/Cilantro_Portada.jpg", // CAMBIAR ESTA RUTA
         imagen: "/splendorherbs/img/Cilantro.jpg",
         es: {
           nombre: "Cilantro",
@@ -186,6 +192,7 @@
       },
       {
         id: "perejil",
+        imagenPortada: "/splendorherbs/img/Perejil_Portada.jpg", // CAMBIAR ESTA RUTA
         imagen: "/splendorherbs/img/Perejil.jpg",
         es: {
           nombre: "Perejil",
@@ -200,161 +207,119 @@
       }
     ];
 
-    // Etiquetas estáticas para la ficha técnica
     const LABELS = {
-      es: {
-        empty: "Haz clic en una hortaliza para ver su ficha.",
-        close: "Cerrar"
-      },
-      en: {
-        empty: "Click on a vegetable to see its details.",
-        close: "Close"
-      }
+      es: { close: "Cerrar" },
+      en: { close: "Close" }
     };
 
     const tilesContainer = document.getElementById('tiles');
     const resultsContainer = document.getElementById('results');
-
-    // Variable para saber qué ficha está abierta actualmente (si hay alguna)
+    currentLang = localStorage.getItem('language') || 'es'; 
     let activeProductId = null;
 
-    // Función para renderizar los textos estáticos del HTML (Header y Títulos)
     function updateStaticText() {
       const elements = document.querySelectorAll('[data-es]');
       elements.forEach(el => {
         const text = el.getAttribute(`data-${currentLang}`);
-        if (text) el.innerText = text; // O innerHTML si hay <br>
+        if (text) el.innerText = text;
       });
     }
 
-    // Función para mostrar mensaje vacío
-    function showEmpty() {
-      activeProductId = null;
-      resultsContainer.innerHTML = `<p class="empty">${LABELS[currentLang].empty}</p>`;
-    }
-
-    // Función para crear los tiles (Miniaturas)
-    // Se regeneran cuando cambia el idioma para actualizar los nombres
     function renderTiles() {
       tilesContainer.innerHTML = '';
-
-      if (HORTALIZAS.length === 0) {
-        tilesContainer.innerHTML = '<p class="empty">No data.</p>';
-        return;
-      }
+      if (HORTALIZAS.length === 0) return;
 
       HORTALIZAS.forEach(producto => {
-        const dataLang = producto[currentLang]; // Obtenemos datos es o en
-
+        const dataLang = producto[currentLang];
         const tile = document.createElement('div');
         tile.className = 'tile';
-        tile.dataset.id = producto.id; // Usamos ID fijo en vez de nombre
+        tile.dataset.id = producto.id;
+        
+        // Si no existe imagenPortada, usa imagen normal como respaldo
+        const coverImg = producto.imagenPortada || producto.imagen;
+        const errorFallback = `this.onerror=null;this.src='/splendorherbs/img/logo.png'`;
 
-        const errorFallback = `this.onerror=null;this.src='/splendorherbs/img/${producto.es.nombre}.png'`;
-
+        // CAMBIO: Aquí usamos coverImg en lugar de producto.imagen
         tile.innerHTML = `
-          <img class="card__img" src="${producto.imagen}" alt="${dataLang.nombre}">
+          <img src="${coverImg}" onerror="${errorFallback}" alt="${dataLang.nombre}">
           <div class="tile__label">${dataLang.nombre}</div>
         `;
         tilesContainer.appendChild(tile);
       });
     }
 
-    // Función para crear la ficha técnica grande
-    function createCard(producto) {
+    // Modal grande y centrado
+    function openModal(producto) {
       const dataLang = producto[currentLang];
       const lbl = LABELS[currentLang];
-      const errorFallback = `this.onerror=null;this.src='./img/${producto.es.nombre}.png'`;
+      const errorFallback = `this.onerror=null;this.src='/splendorherbs/img/logo.png'`;
 
-      const card = document.createElement('article');
-      card.className = 'card';
-      card.innerHTML = `
-        <button class="card__close" aria-label="${lbl.close} ${dataLang.nombre}">✕</button>
-        <img class="card__img" src="${producto.imagen}" onerror="${errorFallback}" alt="${dataLang.nombre}">
-        <div class="card__body">
-          <h3 class="card__title"><span class="badge"></span> ${dataLang.nombre}</h3>
-          <p class="meta">${dataLang.descripcion}</p>
-          <p class="meta"><b>${lbl.variety}:</b> ${dataLang.variedad}</p>
-        </div>
+      // CAMBIO: Aquí mantenemos producto.imagen (la imagen del producto interno)
+      resultsContainer.innerHTML = `
+        <article class="card">
+          <button class="card__close" aria-label="${lbl.close}">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <img class="card__img" src="${producto.imagen}" onerror="${errorFallback}" alt="${dataLang.nombre}">
+          <div class="card__body">
+            <h3 class="card__title"><span class="badge"></span> ${dataLang.nombre}</h3>
+            <p class="meta">${dataLang.descripcion}</p>
+          </div>
+        </article>
       `;
-      return card;
+
+      resultsContainer.classList.add('active');
+      document.body.classList.add('no-scroll'); 
+      activeProductId = producto.id;
     }
 
-    // Función principal para cambiar de idioma
-    // Esta función puede ser llamada desde tu menú (menus.js)
+    function closeModal() {
+      resultsContainer.classList.remove('active');
+      document.body.classList.remove('no-scroll'); 
+      
+      setTimeout(() => {
+        resultsContainer.innerHTML = ''; 
+        activeProductId = null;
+      }, 300);
+    }
+
     function setLanguage(lang) {
       if (lang !== 'es' && lang !== 'en') return;
       currentLang = lang;
-
-      // 1. Actualizar textos estáticos
       updateStaticText();
-
-      // 2. Regenerar los tiles (para traducir los nombres abajo de las fotos)
       renderTiles();
-
-      // 3. Si hay una ficha abierta, refrescarla en el nuevo idioma
-      if (activeProductId) {
+      
+      if (activeProductId && resultsContainer.classList.contains('active')) {
         const ficha = HORTALIZAS.find(f => f.id === activeProductId);
-        if (ficha) {
-          resultsContainer.innerHTML = '';
-          resultsContainer.appendChild(createCard(ficha));
-        }
-      } else {
-        showEmpty();
+        if (ficha) openModal(ficha);
       }
     }
 
-    // --- EVENTOS ---
-
-    // 1. Clic en Tile -> Mostrar Ficha
     tilesContainer.addEventListener('click', (e) => {
       const tile = e.target.closest('.tile');
       if (!tile) return;
-
       const id = tile.dataset.id;
       const ficha = HORTALIZAS.find(f => f.id === id);
-
-      if (ficha) {
-        activeProductId = id; // Guardamos cuál está activo
-        resultsContainer.innerHTML = '';
-        const card = createCard(ficha);
-        resultsContainer.appendChild(card);
-        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
+      if (ficha) openModal(ficha);
     });
 
-    // 2. Cerrar Ficha (Botón X)
     resultsContainer.addEventListener('click', (e) => {
-      if (e.target.matches('.card__close')) {
-        showEmpty();
+      if (e.target.closest('.card__close') || e.target === resultsContainer) {
+        closeModal();
       }
     });
 
-    // 3. Clic fuera cierra
-    document.addEventListener('click', (e) => {
-      const card = resultsContainer.querySelector('.card');
-      if (!card) return;
-
-      const clickedInsideCard = e.composedPath().includes(card);
-      const clickedTile = e.target.closest('.tile');
-
-      if (!clickedInsideCard && !clickedTile) {
-        showEmpty();
+    document.addEventListener('keydown', (e) => {
+      if (e.key === "Escape" && resultsContainer.classList.contains('active')) {
+        closeModal();
       }
     });
 
-    // --- INICIALIZACIÓN ---
-    // Inicializamos con el idioma por defecto
     setLanguage(currentLang);
-
-    // *OPCIONAL*: Si tu sistema usa un evento personalizado para cambio de idioma:
+    
     document.addEventListener('languageChanged', (e) => {
-      // Suponiendo que el evento envía el idioma en e.detail
-      if (e.detail && e.detail.language) {
-        setLanguage(e.detail.language);
-      }
+       if(e.detail && e.detail.language) setLanguage(e.detail.language);
     });
-
   </script>
 </body>
 
