@@ -696,249 +696,435 @@ footer {
     margin: 0 auto;                   /* Centrar horizontalmente */
 }
 /* ================================================================= */
-/* ============= MEDIA QUERIES UNIFICADAS Y DEFINITIVAS ============ */
+/* ============= MEDIA QUERIES UNIFICADAS Y ORGANIZADAS ============= */
 /* ================================================================= */
 
-/* -----------------------------------------------------------------
-   1. PANTALLAS GRANDES (Desktop High-Res: +1240px)
-   Objetivo: Maximizar impacto visual y legibilidad
------------------------------------------------------------------ */
+/* --- 1. PANTALLAS GRANDES (Desktop) --- */
 @media (min-width: 1240px) {
-    /* Ocultar elementos móviles */
-    .menu-toggle, .logo-mobile, .procesos-mobile {
+    .nav-menu .arrow-icon {
         display: none !important;
     }
-
-    /* Ajustes visuales de alto impacto */
-    .hero, .hero-gal { height: 90vh; }
-    .hero-col-text h2 { font-size: 2.2rem; }
-    .hero-col-logo img { max-width: 550px; }
-
-    /* Tipografía expandida */
-    .section-title, .galeria-simple-header h2, .seccion-elegirnos h2 {
-        font-size: 3rem;
+    .dropdown-content.show { display: block; animation: fadeIn 0.3s ease; }
+    .arrow-icon.rotate { transform: rotate(180deg); }
+    .nav-link { font-size: 1rem; padding: 0 65px; }
+    .language-dropdown:hover .lang-options { opacity: 1; visibility: visible; transform: translateY(0); }
+    .language-dropdown:hover .arrow-icon { transform: rotate(180deg); }
+    /* --- HERO SECTION --- */
+    .hero, .hero-gal {
+        height: 90vh; /* Mayor impacto visual vertical */
     }
-    .full-width-text p, .split-text p {
-        font-size: 1.15rem;
+
+    .hero-col-text h2 {
+        font-size: 2rem; /* Títulos principales más grandes */
+        
+    }
+
+    .hero-col-logo img {
+        max-width: 600px; /* Logo central del hero más grande */
+    }
+    /* --- TIPOGRAFÍA DE SECCIONES --- */
+    .section-title, 
+    .galeria-simple-header h2, 
+    .seccion-elegirnos h2,
+    .valores .hero-text h2 {
+        font-size: 3rem; /* Títulos de sección con mayor jerarquía */
+    }
+
+    .full-width-text p, 
+    .split-text p,
+    .texto-descripcion {
+        font-size: 1.2rem; /* Mejor lectura para párrafos largos */
         line-height: 1.9;
     }
 
-    /* Ajustes Galería Desktop */
-    .column-window { height: 650px; }
-    .column-track img { height: 280px; }
+    /* --- GALERÍA --- */
+    .column-window {
+        height: 700px; /* Ventanas de galería más altas para ver más fotos a la vez */
+    }
+    
+    .column-track img {
+        height: 300px; /* Imágenes individuales un poco más grandes */
+    }
 
-    /* Ajustes Catálogo */
-    .tiles { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 30px; }
-    .tile img { height: 200px; }
+    /* --- SECCIÓN PROCESOS --- */
+    .procesos {
+        padding: 100px 0;
+    }
+    
+    .proceso-row {
+        gap: 60px; /* Más aire entre columnas */
+        padding: 80px 5%; /* Ajuste de padding lateral */
+    }
 
-    /* Espaciados */
-    .procesos { padding: 100px 0; }
-    .proceso-row { gap: 60px; padding: 0 10%; }
-    .contenedor-valores { max-width: 1200px; }
+    .text-col h3 {
+        font-size: 3.5rem; /* Títulos de procesos más impactantes */
+    }
+    
+    .text-col p {
+        font-size: 1.3rem;
+        max-width: 650px;
+    }
+
+    .img-box {
+        max-width: 600px; /* Imágenes de procesos más grandes */
+    }
+
+    /* --- CATÁLOGO --- */
+    .tiles {
+        /* Hacemos los tiles más grandes en pantallas grandes */
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+        gap: 30px;
+    }
+    
+    .tile img {
+        height: 200px; /* Imagen del producto más alta */
+    }
+
+    /* --- FOOTER --- */
+    footer {
+        padding: 80px 20px;
+    }
+    
+    .footer-col p {
+        font-size: 1.05rem;
+    }
+    .contenedor-valores {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* --- TEXTOS INTRODUCTORIOS --- */
+    /* Tamaños idénticos al estándar para no romper la armonía */
+    .valores .hero-text h2 {
+        font-size: 2.5rem; /* Tamaño estándar del diseño base */
+        margin-bottom: 20px;
+    }
+
+    .valores .hero-text p {
+        font-size: 1.1rem; /* Lectura cómoda, igual al index */
+        max-width: 900px;  /* Mismo ancho de línea */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* --- SEPARADOR DE HOJA --- */
+    .separator-leaf {
+        margin: 25px 0 45px 0; /* Espaciado limpio para PC */
+    }
+    
+    .separator-leaf .line {
+        width: 60px; /* Líneas ligeramente más largas para llenar espacio */
+    }
+
+    /* --- GRID DE ICONOS (Bloques 1 y 2) --- */
+    .iconos-valores {
+        display: flex;
+        flex-wrap: nowrap; /* En PC forzamos que esten en una linea por bloque */
+        justify-content: center;
+        gap: 60px; /* Más espacio entre iconos en lugar de hacerlos gigantes */
+        margin-bottom: 60px;
+    }
+
+    /* --- ELEMENTO INDIVIDUAL (VALOR) --- */
+    .valor {
+        width: auto; /* Dejamos que el contenido defina el ancho */
+        min-width: 140px; /* Mínimo para asegurar consistencia */
+    }
+
+    /* Mantenemos el tamaño exacto de imagen del diseño original */
+    .valor img {
+        width: 90px; 
+        height: 90px;
+        margin-bottom: 20px;
+        /* Efecto hover sutil */
+        transition: transform 0.3s ease;
+    }
+
+    .valor:hover img {
+        transform: scale(1.1);
+    }
+
+    .valor p {
+        font-size: 1rem; /* Tamaño de letra estándar de escritorio */
+        font-weight: 600; /* Un poco más de peso para legibilidad */
+    }
 }
 
-/* -----------------------------------------------------------------
-   2. TABLETS Y LAPTOPS PEQUEÑAS (Max: 1239px)
-   Objetivo: Activar menú hamburguesa y ajustar layouts a columna
------------------------------------------------------------------ */
+/* --- 2. TABLETS Y LAPTOPS PEQUEÑAS (Menú móvil se activa aquí) --- */
 @media (max-width: 1239px) {
-    /* --- HEADER & NAVEGACIÓN --- */
-    .navbar { justify-content: space-between; padding: 0 15px; }
+  .header {
+        z-index: 3000 !important;
+    }
+    /* Navbar y Menú Hamburguesa */
+    .navbar { justify-content: space-between; }
     .logo-desktop { display: none !important; }
-    
     .logo-mobile { 
         display: block; 
         position: absolute; 
         left: 50%; 
         transform: translateX(-50%); 
-        z-index: 3001; 
+        z-index: 3001; /* Asegura que el logo también se vea */
     }
-    .logo-mobile img { height: 55px; width: auto; }
+    .logo-mobile img { height: 50px; width: auto; }
 
-    /* Botón Hamburguesa */
-    .menu-toggle {
+     .menu-toggle {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        width: 30px; height: 22px;
+        width: 30px;
+        height: 21px;
         cursor: pointer;
-        z-index: 3200 !important; /* Capa superior absoluta */
+        position: relative; 
+        z-index: 3100 !important; /* <--- AQUÍ ESTABA EL ERROR, DEBE SER MAYOR AL MENÚ */
     }
     .menu-toggle .bar {
-        width: 100%; height: 3px;
+        width: 100%;
+        height: 3px;
         background-color: var(--primary-green);
         border-radius: 3px;
         transition: all 0.3s ease-in-out;
+        display: block;
     }
-    /* Animación del botón */
     .menu-toggle.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
     .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
     .menu-toggle.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-    /* Menú Lateral (Drawer) */
     .nav-menu {
         position: fixed;
-        top: 0; right: -100%; /* Oculto a la derecha */
-        width: 80%; max-width: 320px; height: 100vh;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 320px;
+        height: 100vh;
         background-color: var(--white);
         flex-direction: column;
         align-items: flex-start;
-        padding-top: 110px; /* Espacio para no tapar el botón de cerrar */
+        padding-top: 100px;
         box-shadow: -5px 0 15px rgba(0,0,0,0.1);
         transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 3100 !important; 
+        
+        /* --- CAMBIO AQUÍ --- */
+        /* Antes era 2999. Lo subimos a 3005 para que tape al logo (3001) y al header (3000) */
+        z-index: 3005 !important; 
+        
         overflow-y: auto;
     }
-    .nav-menu.active { right: 0; } /* Clase que añade JS para abrir */
+    .nav-menu.active { right: 0; }
+    
+    .nav-item { width: 100%; height: auto; border-bottom: 1px solid #f5f5f5; flex-direction: column; align-items: flex-start; }
+    .nav-link { width: 100%; padding: 20px 25px; display: flex; justify-content: space-between; align-items: center; font-size: 1rem; height: auto; border-bottom: none; }
+    .nav-link:hover { border-bottom: none; border-left: 5px solid var(--primary-green); background-color: #f9f9f9; }
 
-    /* Items del menú móvil */
-    .nav-item { 
-        width: 100%; height: auto; 
-        border-bottom: 1px solid #f0f0f0; 
-        display: block; /* Rompe el flex desktop */
-    }
-    .nav-link { 
-        width: 100%; padding: 20px 25px; 
-        font-size: 1rem; height: auto; 
-        border-bottom: none; 
-        justify-content: space-between;
-    }
-    .nav-link:hover { background-color: #fcfcfc; border-left: 5px solid var(--primary-green); }
-
-    /* Submenú en móvil (Acordeón) */
+    /* Submenu Móvil */
+    .nav-item:hover .dropdown-content {
+    transform: none !important; /* Evita el desplazamiento lateral */
+    opacity: 0;     /* Evita que aparezca solo al tocar el padre */
+    visibility: hidden;
+    max-height: 0;
+}
+    /* Submenu Móvil - Tu código original */
     .dropdown-content {
-        position: static; /* Ya no flota */
-        transform: none !important;
-        width: 100%; box-shadow: none;
-        background-color: #f8fbf9;
-        display: none; /* Oculto por defecto */
-        padding: 0;
-        opacity: 1; visibility: visible;
-        transition: none;
+        position: static !important; /* Fuerza a que ocupe espacio en la caja */
+    transform: none !important;
+    width: 100%;
+    box-shadow: none;
+    border-top: 1px solid #eee; /* Opcional: separador visual */
+    background-color: #f9f9f9;
+    display: block; 
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden; /* Ocultarlo de lectores de pantalla cuando está cerrado */
+    overflow: hidden;
+    transition: all 0.4s ease; /* Suaviza apertura y opacidad juntas */
+    padding: 0;
     }
-    .dropdown-content.show { display: block !important; animation: none; }
-    .dropdown-content a { padding-left: 40px; text-align: left; border-bottom: 1px solid #eee; }
 
-    /* Overlay oscuro de fondo */
-    .menu-overlay {
-        position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-        background: rgba(0,0,0,0.5); z-index: 3050;
-        opacity: 0; visibility: hidden; transition: 0.3s;
-    }
-    .menu-overlay.active { opacity: 1; visibility: visible; }
-
-    /* --- LAYOUT GENERAL TABLET --- */
-    .hero-inner-content { 
-        flex-direction: column-reverse; /* Texto arriba, imagen abajo (o viceversa) */
-        text-align: center; gap: 30px; 
-    }
-    .hero-col-logo img { max-width: 400px; margin: 0 auto; }
-    
-    .split-section { flex-direction: column; gap: 30px; }
-    .split-video, .split-text { width: 100%; }
-    
-    .card { grid-template-columns: 1fr; } /* Catálogo vertical */
-    .card__img { height: 220px; max-height: none; }
-    
-    /* Idiomas en móvil */
-    .language-dropdown { margin: 20px 25px; width: fit-content; }
-    .lang-options { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: 1px solid #eee; margin-top: 10px; }
+    /* Clase para abrir el menú */
+    .nav-item .dropdown-content.show {
+    max-height: 500px; /* Un poco más de altura por si acaso */
+    opacity: 1;
+    visibility: visible;
 }
 
-/* -----------------------------------------------------------------
-   3. MÓVILES (Smartphone: Max 768px)
-   Objetivo: Usabilidad táctil, lectura y scroll
------------------------------------------------------------------ */
-@media (max-width: 768px) {
+    .dropdown-content a {
+    text-align: left; 
+        padding-left: 40px; 
+        border-bottom: 1px solid #eee; /* Borde general */
+        display: block; 
+}
+  .dropdown-content a:last-child {
+        border-bottom: none; /* Elimina la línea del final */
+    }
+
+    /* Idioma Móvil */
+    .language-dropdown { margin-right: auto; }
+    .lang-options { left: 0; min-width: 150px; }
+    .language-dropdown.active-lang .lang-options { opacity: 1; visibility: visible; transform: translateY(0); }
+    .language-dropdown.active-lang .arrow-icon { transform: rotate(180deg); }
     
-    /* === AJUSTES GLOBALES === */
-    section, .procesos, .seccion-elegirnos, .valores, .catalogo, .footer-container, .contacto {
+    .menu-overlay {
+         position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0,0,0,0.5); /* Fondo oscuro semitransparente */
+        backdrop-filter: blur(4px);   /* Efecto borroso */
+        z-index: 2500 !important;     /* Detrás del menú */
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+    }
+    .menu-overlay.active { opacity: 1; visibility: visible; } 
+
+    /* Ajustes Generales Tablet */
+    .hero-inner-content { flex-direction: column; justify-content: center; text-align: center; gap: 15px; }
+    .hero-col-text h2 { text-align: center; font-size: 1.5rem; }
+    .split-section { flex-direction: column; }
+    .split-video, .split-text { width: 100%; }
+    .card { grid-template-columns: 1fr; }
+    .card__img { height: 200px; max-height: 200px; }
+}
+
+/* --- 3. MÓVILES (Smartphone Portrait) --- */
+@media (max-width: 768px) {
+
+    .separator-leaf {
+        margin: 20px 0 30px 0; /* Espaciado compacto para móvil */
+    }
+
+    .catalogo {
+        margin: 10px auto; /* Menor margen superior e inferior */
+    }
+    
+    /* === TIPOGRAFÍA & ESPACIADO MÓVIL === */
+    /* Reducir padding de secciones para ganar espacio */
+    section, .procesos, .seccion-elegirnos, .valores, .catalogo, .footer-container {
         padding-left: 20px !important;
         padding-right: 20px !important;
-        padding-top: 50px !important;
-        padding-bottom: 30px !important;
+        padding-top: 40px !important;
+        padding-bottom: 10px !important;
     }
-    
-    h1 { font-size: 1.8rem !important; }
-    h2, .section-title, .section-title-contact { font-size: 1.7rem !important; margin-bottom: 25px !important; line-height: 1.3; }
-    p { text-align: center !important; font-size: 1rem !important; }
 
-    /* === HERO === */
-    .hero, .hero-gal { height: auto; min-height: 85vh; padding-top: 120px; }
-    .hero-col-logo img { max-width: 220px; }
+    /* Títulos centrados y ajustados */
+    h1 { font-size: 1.8rem !important; text-align: center; }
+    h2, .section-title { font-size: 1.6rem !important; text-align: center; line-height: 1.3; margin-bottom: 5px !important; }
+    h3 { font-size: 1.4rem !important; text-align: center; }
+    p { font-size: 1rem !important; text-align: center !important; margin-bottom: 20px !important; } /* Forzar centrado en párrafos */
+
+    /* === PROCESOS MÓVIL (Slider) === */
+    .procesos { display: none; } /* Ocultar timeline desktop */
+    .procesos-mobile { display: block; padding-top: 1px !important; }
     
-    /* === FORMULARIO (CONTACTO) === */
-    .form-grid {
-        display: grid;
-        grid-template-columns: 1fr; /* Una sola columna */
-        gap: 20px;
-        padding: 25px; /* Menos padding interno */
+    .procesos-mobile .img-box {
+        width: 100%; max-width: 320px; height: 240px;
+        margin: 0 auto 20px auto; overflow: hidden; border-radius: 8px;
     }
-    .span-2 { grid-column: span 1; } /* Elementos anchos ocupan 1 columna ahora */
-    
-    .section-title-contact { margin-top: 40px; }
-    .btn { width: 100%; max-width: 100%; padding: 18px; } /* Botón full width */
-
-    /* === PROCESOS (Slider Móvil) === */
-    .procesos { display: none; } /* Ocultar versión desktop */
-    .procesos-mobile { display: block; padding-top: 10px !important; }
+    .procesos-mobile .img-box img { width: 100%; height: 100%; object-fit: cover; }
     
     .mobile-slider {
-        display: flex; gap: 15px;
-        overflow-x: auto; scroll-snap-type: x mandatory;
-        padding-bottom: 20px; -webkit-overflow-scrolling: touch;
-    }
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0 20px 15px;
+
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
     .mobile-slide {
-        min-width: 85vw; /* Casi el ancho total */
-        scroll-snap-align: center;
-        background: #f9f9f9; padding: 20px; border-radius: 10px;
+        min-width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+        scroll-snap-align: center; /* Centrar slide al hacer scroll */
+        text-align: center; /* Centrar contenido */
     }
-    .mobile-slide h3 { font-size: 1.4rem; margin-top: 15px; }
+    .mobile-slide h3 { margin-top: 5px; font-size: 1.5rem; margin-bottom: 10px; }
+    .mobile-slide p { font-size: 1rem; line-height: 1.5; color: #555; }
+    .mobile-slider::-webkit-scrollbar { display: all; }
 
-    /* === GALERÍA (Horizontal Scroll) === */
-    .galeria-simple-header { padding-top: 40px; }
+    /* === VALORES === */
+    .valores { background: #fff; }
+    .iconos-valores { gap: 30px; }
+    .valor { width: 100%; max-width: 150px; } /* Iconos más grandes y centrados */
     
-    .gallery-wrapper { 
-        flex-direction: column; gap: 40px; 
+    /* === GALERÍA MÓVIL === */
+     .galeria-simple-header {
+        padding-top: 40px;
+        padding-bottom: 20px;
     }
-    
+    .galeria-simple-header h2 {
+        font-size: 1.6rem;
+    }
+    .gallery-wrapper { flex-direction: column; gap: 30px; max-width: 100vw; }
     .gallery-column { width: 100%; }
+    .column-header { text-align: center; width: 100%; max-width: 280px; }
     
-    /* Transformación mágica: De ventana vertical a carrusel horizontal */
     .column-window {
-        width: 100%; height: auto; 
-        border-radius: 0; background: transparent; 
-        box-shadow: none; overflow-y: hidden; overflow-x: auto;
+        width: 100%; height: 270px; border-radius: 0;
+        background: transparent; box-shadow: none;
+        overflow-y: hidden; overflow-x: auto; /* Scroll horizontal */
+        -webkit-overflow-scrolling: touch;
     }
-    
     .column-track {
-        flex-direction: row; /* Imágenes una al lado de otra */
-        width: max-content; 
-        padding-left: 10px; padding-right: 20px;
+        flex-direction: row; width: max-content; height: 100%; padding-left: 20px;
     }
-    
     .column-track img {
-        width: 240px; height: 240px; 
-        margin-right: 15px; margin-bottom: 0;
-        border-radius: 12px;
+        width: 260px; height: 250px; margin-right: 15px; margin-bottom: 0;
     }
 
-    /* === VALORES & ELEGIRNOS === */
-    .iconos-valores { flex-wrap: wrap; gap: 40px; }
-    .valor { width: 45%; } /* 2 por fila */
-    
-    .bloque-item { flex-direction: column; text-align: center; border-bottom: 1px solid #eee; padding-bottom: 30px; margin-bottom: 30px; }
-    .iconoytexto { width: 100%; margin-bottom: 15px; }
-    
     /* === CERTIFICADOS === */
-    .certificados { gap: 40px; }
-    .certificados img { width: 140px; }
+    .certificados { flex-direction: column; gap: 30px; }
+    .certificados img { width: 160px; }
 
-    /* === FOOTER === */
-    .footer-container { flex-direction: column; text-align: center; }
-    .footer-col { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; }
-    
-    /* === OTROS === */
-    .separator-leaf .line { width: 30px; }
-    .whatsapp-float { width: 50px; height: 50px; font-size: 28px; bottom: 15px; right: 15px; }
+    /* === POR QUÉ ELEGIRNOS === */
+    .seccion-elegirnos { margin-top: 20px; }
+    .bloque-item {
+        flex-direction: column; text-align: center;
+        gap: 20px; margin-bottom: 40px; padding-bottom: 30px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    .bloque-item:last-child { border: none; }
+    .iconoytexto { order: -1; width: 100%; } /* Icono arriba */
+    .texto-descripcion { text-align: center; text-align-last: center; /* Forzar justificado centrado visual */ }
+
+    /* === FOOTER MÓVIL === */
+    .footer-container { flex-direction: column; gap: 40px; }
+    .footer-col {
+        width: 100%; margin: 0; border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding-bottom: 20px;
+    }
+    .footer-col:last-child { border: none; }
+
+    /* === AJUSTES EXTRAS === */
+    .split-text p, .full-width-text p { text-align: center; } /* Textos justificados a centrados en móvil */
+    .hero-col-logo img { max-width: 200px; margin: 0 auto; }
+    .contacto {
+        padding: 0 15px; /* Un poco menos de padding */
+        margin-bottom: 40px;
+      }
+
+      .contacto h2 {
+        margin-top: 25px;
+        font-size: 1.5rem;
+      }
+
+      /* Inputs más grandes para facilitar el toque */
+      .field input, .field textarea {
+        font-size: 16px; /* Evita el zoom automático en iOS */
+        padding: 14px;
+      }
+
+      /* Botón ancho completo en móvil */
+      .actions {
+        display: block; /* Cambia de flex a bloque */
+      }
+      
+      .btn {
+        width: 100%; /* Botón ocupa todo el ancho */
+        padding: 15px;
+        font-size: 1.1rem;
+      }
 }
