@@ -1031,14 +1031,11 @@ footer {
     gap: 40px;
     scroll-snap-type: none;   /* desactiva snap horizontal */
   }
-  .mobile-slide {
+
+    .mobile-slide {
     min-width: 100%;          /* ya no fuerza ancho horizontal */
     scroll-snap-align: none;
   }
-
-
-}
-
     .mobile-slide h3 { margin-top: 5px; font-size: 1.5rem; margin-bottom: 10px; }
     .mobile-slide p { font-size: 1rem; line-height: 1.5; color: #555; }
     .mobile-slider::-webkit-scrollbar { display: all; }
