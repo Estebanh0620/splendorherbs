@@ -1,4 +1,4 @@
-/* menus.js ---*/
+/* menus.js */
 
 // =======================
 // 1. SELECCIÓN DE ELEMENTOS
