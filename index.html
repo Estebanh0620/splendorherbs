@@ -13,9 +13,7 @@
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-  <!-- CSS LOCAL (ruta relativa) -->
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
@@ -25,14 +23,16 @@
 
   <main class="main-content">
 
-    <!-- HERO -->
-    <section class="hero" style="background-image: url('img/hero-invernadero.jpg');">
+
+    <!-- Asegúrate de cambiar la imagen del hero en el style inline si es necesario -->
+    <section class="hero" style="background-image: url('./img/1.png');">
       <div class="hero-overlay">
         <div class="hero-inner-content">
 
           <!-- Logo -->
           <div class="hero-col-logo">
-            <img src="img/logo2.png" alt="Splendor Herbs Logo">
+            
+            <img src="./img/logo2.png" alt="Splendor Herbs Logo">
           </div>
 
           <!-- Texto Hero -->
@@ -56,16 +56,21 @@
       <h1 class="section-title" data-es="QUIENES SOMOS" data-en="WHO WE ARE">
         QUIENES SOMOS
       </h1>
-
+      <div class="separator-leaf">
+            <span class="line"></span>
+            <i class="fas fa-leaf"></i>
+            <span class="line"></span>
+          </div>
       <!-- Sección dividida -->
       <div class="split-section">
 
         <!-- Video -->
         <div class="split-video">
-          <video controls poster="img/portada-video.jpg">
-            <source src="video/video-institucional.mp4" type="video/mp4">
-            Tu navegador no soporta la reproducción de videos.
-          </video>
+          
+          <video autoplay loop muted playsinline>
+      <source src="./img/video-principal.MOV" type="video/mp4">
+      Tu navegador no soporta la reproducción de videos.
+    </video>
         </div>
 
         <!-- Texto -->
@@ -97,10 +102,14 @@
       <h1 class="section-title" data-es="CERTIFICACIONES" data-en="CERTIFICATIONS">
         CERTIFICACIONES
       </h1>
-
+      <div class="separator-leaf">
+            <span class="line"></span>
+            <i class="fas fa-leaf"></i>
+            <span class="line"></span>
+          </div>
       <div class="certificados">
-        <img src="img/primus.png" alt="certificado primus">
-        <img src="img/ICA.webp" alt="certificado ICA">
+        <img src="./img/primus.png" alt="certificado primus">
+        <img src="./img/ICA.webp" alt="certificado ICA">
       </div>
 
     </div>
@@ -123,10 +132,10 @@
       }
     }
 
-    // Header
-    loadHTML('header', 'html/header.html', () => {
+    // Cargar el header y luego inicializar el menú
+    loadHTML('header', './html/header.html', () => {
       const script = document.createElement('script');
-      script.src = 'js/menus.js'; // ← ruta corregida
+      script.src = './js/menus.js';
       document.body.appendChild(script);
 
       setTimeout(() => {
@@ -141,8 +150,8 @@
       }, 200);
     });
 
-    // Footer
-    loadHTML('footer', 'html/footer.html');
+    // Cargar el footer
+    loadHTML('footer', './html/footer.html');
   </script>
 
 </body>

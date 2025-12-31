@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="/splendorherbs/css/styles.css">
 </head>
 <body>
 
@@ -31,7 +31,7 @@
       </div>
 
       <!-- Formulario -->
-      <form class="form-grid" id="contactForm" method="GET" action="gracias.html">
+      <form class="form-grid" id="contactForm" method="GET" action="/splendorherbs/html/gracias.html">
 
         <div class="field">
           <label for="email" data-es="Correo electrónico" data-en="Email Address">Correo electrónico</label>
@@ -106,14 +106,14 @@
       }
     }
 
-    loadHTML('header', 'header.html', () => {
+    loadHTML('header', '/splendorherbs/html/header.html', () => {
       const script = document.createElement('script');
-      script.src = '../js/menus.js';
+      script.src = '/splendorherbs/js/menus.js';
       document.body.appendChild(script);
       if (window.checkLanguage) window.checkLanguage();
     });
 
-    loadHTML('footer', 'footer.html');
+    loadHTML('footer', '/splendorherbs/html/footer.html');
 
     function setLanguage(lang) {
       currentLang = lang;

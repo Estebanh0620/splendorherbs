@@ -701,6 +701,9 @@ footer {
 
 /* --- 1. PANTALLAS GRANDES (Desktop) --- */
 @media (min-width: 1240px) {
+    .nav-menu .arrow-icon {
+        display: none !important;
+    }
     .dropdown-content.show { display: block; animation: fadeIn 0.3s ease; }
     .arrow-icon.rotate { transform: rotate(180deg); }
     .nav-link { font-size: 1rem; padding: 0 65px; }

@@ -1,26 +1,103 @@
+/* menus.js */
+
+// =======================
+// 1. SELECCIÓN DE ELEMENTOS
+// =======================
+// Usamos funciones getters o búsqueda dinámica dentro de applyLanguage
+// para asegurar que el elemento existe tras la carga asíncrona del header.
+
 const menuBtn = document.getElementById('mobile-menu-btn');
 const navMenu = document.querySelector('.nav-menu');
 const overlay = document.getElementById('menu-overlay');
 const dropdowns = document.querySelectorAll('.dropdown');
 
+const langEsBtn = document.getElementById('lang-es');
+const langEnBtn = document.getElementById('lang-en');
+
 // =======================
-// 1. MENU MOVIL
+// 2. FUNCIÓN PRINCIPAL DE IDIOMA
+// =======================
+function applyLanguage(lang) {
+    localStorage.setItem('language', lang);
+
+    // Seleccionamos elementos dinámicamente cada vez, por si el header se acaba de renderizar
+    const currentFlag = document.getElementById('current-lang-flag');
+    const currentText = document.getElementById('current-lang-text');
+
+    // Traducir textos del Header
+    // Al haber cambiado el HTML a <span>, esto ahora traduce solo el texto y respeta las flechas <i>
+    const headerTranslatables = document.querySelectorAll('.header [data-es][data-en]');
+    headerTranslatables.forEach(el => {
+        el.textContent = el.getAttribute(`data-${lang}`);
+    });
+
+    // Actualizar Bandera y Texto
+    if (currentFlag && currentText) {
+        if (lang === 'es') {
+            currentFlag.src = '/splendorherbs/img/co.png';
+            currentText.textContent = 'ESP';
+        } else {
+            currentFlag.src = '/splendorherbs/img/us.png';
+            currentText.textContent = 'EN';
+        }
+    }
+
+    // Disparar evento global
+    const event = new CustomEvent('languageChanged', { detail: { language: lang } });
+    document.dispatchEvent(event);
+}
+
+// =======================
+// 3. LISTENERS DE IDIOMA
+// =======================
+if (langEsBtn) langEsBtn.addEventListener('click', () => applyLanguage('es'));
+if (langEnBtn) langEnBtn.addEventListener('click', () => applyLanguage('en'));
+
+// Cargar idioma inicial al ejecutar el script
+const savedLang = localStorage.getItem('language') || 'es';
+
+// --- AGREGA ESTAS DOS LÍNEAS AQUÍ ---
+const currentFlag = document.getElementById('current-lang-flag');
+const currentText = document.getElementById('current-lang-text');
+// ------------------------------------
+
+// Aplicamos visualmente al header...
+if (currentFlag && currentText) {
+    if (savedLang === 'es') {
+        currentFlag.src = '/splendorherbs/img/co.png';
+        currentText.textContent = 'ESP';
+    } else {
+        currentFlag.src = '/splendorherbs/img/us.png';
+        currentText.textContent = 'EN';
+    }
+}
+// Traducir textos del header inmediatamente
+document.querySelectorAll('.header [data-es][data-en]').forEach(el => {
+    el.textContent = el.getAttribute(`data-${savedLang}`);
+});
+
+
+// =======================
+// 4. MENU MOVIL
 // =======================
 function toggleMobileMenu() {
+    if (!navMenu || !menuBtn) return;
     const isActive = navMenu.classList.contains('active');
+    
     menuBtn.classList.toggle('active');
     navMenu.classList.toggle('active');
-    overlay.classList.toggle('active');
+    if(overlay) overlay.classList.toggle('active');
+    
     document.body.style.overflow = isActive ? 'auto' : 'hidden';
 }
 
-menuBtn?.addEventListener('click', toggleMobileMenu);
-overlay?.addEventListener('click', () => {
+if (menuBtn) menuBtn.addEventListener('click', toggleMobileMenu);
+if (overlay) overlay.addEventListener('click', () => {
     if (navMenu.classList.contains('active')) toggleMobileMenu();
 });
 
 // =======================
-// 2. DROPDOWNS
+// 5. DROPDOWNS
 // =======================
 const closeAllDropdowns = () => {
     document.querySelectorAll('.dropdown-content').forEach(c => c.classList.remove('show'));
@@ -35,23 +112,26 @@ dropdowns.forEach(dropdown => {
     const content = dropdown.querySelector('.dropdown-content');
     const icon = dropdown.querySelector('.arrow-icon');
 
-    link?.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-
-        const isOpen = content.classList.contains('show');
-        closeAllDropdowns();
-        if (!isOpen) {
-            content.classList.add('show');
-            icon?.classList.add('rotate');
-        }
-    });
+    if (link) {
+        link.addEventListener('click', (e) => {
+            if (window.innerWidth <= 900) {
+                e.preventDefault();
+                e.stopPropagation();
+                const isOpen = content.classList.contains('show');
+                closeAllDropdowns();
+                if (!isOpen) {
+                    content.classList.add('show');
+                    if (icon) icon.classList.add('rotate');
+                }
+            }
+        });
+    }
 
     dropdown.addEventListener('mouseenter', () => {
-        if (window.innerWidth > 900) {
+        if (window.innerWidth > 900 && content) {
             closeAllDropdowns();
             content.classList.add('show');
-            icon?.classList.add('rotate');
+            if (icon) icon.classList.add('rotate');
         }
     });
 });
@@ -62,71 +142,26 @@ document.addEventListener('click', e => {
 
 window.addEventListener('resize', () => {
     if (window.innerWidth > 900) {
-        navMenu.classList.remove('active');
-        menuBtn.classList.remove('active');
-        overlay.classList.remove('active');
+        if (navMenu) navMenu.classList.remove('active');
+        if (menuBtn) menuBtn.classList.remove('active');
+        if(overlay) overlay.classList.remove('active');
         document.body.style.overflow = 'auto';
     }
     closeAllDropdowns();
 });
 
 // =======================
-// 3. IDIOMAS (SOLUCIÓN FINAL)
-// =======================
-const langEsBtn = document.getElementById('lang-es');
-const langEnBtn = document.getElementById('lang-en');
-
-const currentFlag = document.getElementById('current-lang-flag');
-const currentText = document.getElementById('current-lang-text');
-
-const translatableItems = document.querySelectorAll('[data-es][data-en]');
-
-function applyLanguage(lang) {
-    // Textos
-    translatableItems.forEach(el => {
-        el.textContent = el.getAttribute(`data-${lang}`);
-    });
-
-    // Bandera + texto
-    if (currentFlag && currentText) {
-        if (lang === 'es') {
-            currentFlag.src = '/splendorherbs/img/co.png';
-            currentText.textContent = 'ESP';
-        } else {
-            currentFlag.src = '/splendorherbs/img/us.png';
-            currentText.textContent = 'EN';
-        }
-    }
-
-    localStorage.setItem('language', lang);
-
-    document.dispatchEvent(
-        new CustomEvent('languageChanged', {
-            detail: { language: lang }
-        })
-    );
-}
-
-// Click idioma
-langEsBtn?.addEventListener('click', () => applyLanguage('es'));
-langEnBtn?.addEventListener('click', () => applyLanguage('en'));
-
-// Cargar idioma guardado
-document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('language') || 'es';
-    applyLanguage(savedLang);
-});
-
-// =======================
-// 4. DROPDOWN DE IDIOMAS
+// 6. DROPDOWN DE IDIOMAS (UI)
 // =======================
 const langDropdown = document.querySelector('.language-dropdown');
 const langSelectedBtn = document.querySelector('.lang-selected');
 
-langSelectedBtn?.addEventListener('click', e => {
-    e.stopPropagation();
-    langDropdown.classList.toggle('active-lang');
-});
+if (langSelectedBtn) {
+    langSelectedBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        if (langDropdown) langDropdown.classList.toggle('active-lang');
+    });
+}
 
 document.addEventListener('click', e => {
     if (langDropdown && !langDropdown.contains(e.target)) {

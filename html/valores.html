@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-  <!-- CSS -->
+  <!-- CSS: Corregido con ruta absoluta -->
   <link rel="stylesheet" href="/splendorherbs/css/styles.css">
 </head>
 <body>
@@ -41,7 +41,7 @@
           </p>
         </div>
 
-        <!-- BLOQUE 2 -->
+        <!-- BLOQUE 2: Imágenes corregidas -->
         <div class="iconos-valores">
           <div class="valor">
             <img src="/splendorherbs/img/iconos-02.png" alt="Calidad">
@@ -65,7 +65,7 @@
           </div>
         </div>
 
-        <!-- BLOQUE 3 -->
+        <!-- BLOQUE 3: Imágenes corregidas -->
         <div class="iconos-valores">
           <div class="valor">
             <img src="/splendorherbs/img/iconos-11.png" alt="Competitividad">
@@ -113,12 +113,14 @@
       }
     }
 
+    // Corregido: Ruta absoluta para encontrar el header y el JS
     loadHTML('header', '/splendorherbs/html/header.html', () => {
       const script = document.createElement('script');
       script.src = '/splendorherbs/js/menus.js';
       document.body.appendChild(script);
     });
 
+    // Corregido: Ruta absoluta para el footer
     loadHTML('footer', '/splendorherbs/html/footer.html');
   </script>
 
