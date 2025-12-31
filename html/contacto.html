@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contacto | Contact</title>
-  
+
   <!-- Fuentes e iconos -->
   <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-  <!-- CSS (ruta corregida) -->
+  <!-- CSS -->
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
@@ -18,36 +18,35 @@
   <div id="header"></div>
 
   <main class="main-content">
-    
-    <!-- Sección Contacto -->
+
     <section class="contacto">
-      <h1 class="section-title-contact" data-es="CONTACTANOS" data-en="CONTACT US">
-        CONTACTANOS
+      <h1 class="section-title-contact" data-es="CONTÁCTANOS" data-en="CONTACT US">
+        CONTÁCTANOS
       </h1>
 
       <div class="separator-leaf">
-         <span class="line"></span>
-         <i class="fas fa-leaf"></i>
-         <span class="line"></span>
+        <span class="line"></span>
+        <i class="fas fa-leaf"></i>
+        <span class="line"></span>
       </div>
 
       <!-- Formulario -->
-      <form class="form-grid" id="contactForm" method="POST" action="...">
-        
+      <form class="form-grid" id="contactForm" method="GET" action="gracias.html">
+
         <div class="field">
           <label for="email" data-es="Correo electrónico" data-en="Email Address">Correo electrónico</label>
-          <input id="email" name="email" type="email" required 
-                 placeholder="tucorreo@gmail.com"
-                 data-ph-es="tucorreo@gmail.com" 
-                 data-ph-en="youremail@gmail.com">
+          <input id="email" name="email" type="email" required
+            placeholder="tucorreo@gmail.com"
+            data-ph-es="tucorreo@gmail.com"
+            data-ph-en="youremail@gmail.com">
         </div>
 
         <div class="field">
           <label for="nombres" data-es="Nombre completo" data-en="Full Name">Nombre completo</label>
-          <input id="nombres" name="nombres" type="text" required 
-                 placeholder="Ej: Juan Pérez"
-                 data-ph-es="Ej: Juan Pérez" 
-                 data-ph-en="Ex: John Doe">
+          <input id="nombres" name="nombres" type="text" required
+            placeholder="Ej: Juan Pérez"
+            data-ph-es="Ej: Juan Pérez"
+            data-ph-en="Ex: John Doe">
         </div>
 
         <div class="field">
@@ -74,10 +73,10 @@
           <label for="materiales" data-es="Materiales de interés y cantidad" data-en="Materials of interest and quantity">
             Materiales de interés y cantidad
           </label>
-          <textarea id="materiales" name="materiales" 
-                    placeholder="Describe aquí lo que necesitas..."
-                    data-ph-es="Describe aquí lo que necesitas..."
-                    data-ph-en="Describe here what you need..."></textarea>
+          <textarea id="materiales" name="materiales"
+            placeholder="Describe aquí lo que necesitas..."
+            data-ph-es="Describe aquí lo que necesitas..."
+            data-ph-en="Describe here what you need..."></textarea>
         </div>
 
         <div class="actions span-2">
@@ -85,6 +84,7 @@
             ENVIAR MENSAJE
           </button>
         </div>
+
       </form>
     </section>
   </main>
@@ -92,66 +92,55 @@
   <!-- Footer -->
   <div id="footer"></div>
 
-  <!-- Scripts -->
   <script>
-    // Idioma actual
     let currentLang = localStorage.getItem('language') || 'es';
 
     async function loadHTML(id, file, callback) {
       try {
         const res = await fetch(file);
-        if (!res.ok) throw new Error(`Error cargando ${file}`);
         const text = await res.text();
         document.getElementById(id).innerHTML = text;
         if (callback) callback();
       } catch (err) {
-        console.error("Error cargando componente:", err);
+        console.error(err);
       }
     }
 
-    // Header (rutas corregidas)
     loadHTML('header', 'header.html', () => {
-        const script = document.createElement('script');
-        script.src = '../js/menus.js';
-        document.body.appendChild(script);
-
-        if (window.checkLanguage) window.checkLanguage();
+      const script = document.createElement('script');
+      script.src = '../js/menus.js';
+      document.body.appendChild(script);
+      if (window.checkLanguage) window.checkLanguage();
     });
 
-    // Footer
     loadHTML('footer', 'footer.html');
 
-    // Traducción
     function setLanguage(lang) {
-        currentLang = lang;
+      currentLang = lang;
 
-        document.querySelectorAll('[data-es]').forEach(el => {
-            el.innerText = el.getAttribute(`data-${lang}`);
-        });
+      document.querySelectorAll('[data-es]').forEach(el => {
+        el.innerText = el.getAttribute(`data-${lang}`);
+      });
 
-        document.querySelectorAll('[data-ph-es]').forEach(el => {
-            el.placeholder = el.getAttribute(`data-ph-${lang}`);
-        });
+      document.querySelectorAll('[data-ph-es]').forEach(el => {
+        el.placeholder = el.getAttribute(`data-ph-${lang}`);
+      });
     }
 
     setLanguage(currentLang);
 
-    document.addEventListener('languageChanged', (e) => {
-        if (e.detail && e.detail.language) {
-            setLanguage(e.detail.language);
-        }
+    document.addEventListener('languageChanged', e => {
+      setLanguage(e.detail.language);
     });
 
-    // Envío visual
     const form = document.getElementById('contactForm');
-    if (form) {
-        form.addEventListener('submit', function () {
-            const btn = form.querySelector('.btn');
-            const sendingText = currentLang === 'es' ? 'ENVIANDO...' : 'SENDING...';
-            btn.innerHTML = `${sendingText} <i class="fas fa-spinner fa-spin"></i>`;
-            btn.style.opacity = '0.7';
-        });
-    }
+    form.addEventListener('submit', () => {
+      const btn = form.querySelector('.btn');
+      btn.innerHTML = currentLang === 'es'
+        ? 'ENVIANDO... <i class="fas fa-spinner fa-spin"></i>'
+        : 'SENDING... <i class="fas fa-spinner fa-spin"></i>';
+      btn.style.opacity = '0.7';
+    });
   </script>
 
 </body>
