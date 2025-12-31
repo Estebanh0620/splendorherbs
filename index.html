@@ -13,7 +13,7 @@
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="stylesheet" href="/splendorherbs/css/styles.css">
+  <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
@@ -25,14 +25,14 @@
 
 
     <!-- Asegúrate de cambiar la imagen del hero en el style inline si es necesario -->
-    <section class="hero" style="background-image: url('/splendorherbs/img/hero-invernadero.jpg');">
+    <section class="hero" style="background-image: url('./img/hero-invernadero.jpg');">
       <div class="hero-overlay">
         <div class="hero-inner-content">
 
           <!-- Logo -->
           <div class="hero-col-logo">
             
-            <img src="/splendorherbs/img/logo2.png" alt="Splendor Herbs Logo">
+            <img src="./img/logo2.png" alt="Splendor Herbs Logo">
           </div>
 
           <!-- Texto Hero -->
@@ -63,8 +63,8 @@
         <!-- Video -->
         <div class="split-video">
           
-          <video controls poster="/splendorherbs/img/portada-video.jpg">
-            <source src="/splendorherbs/video/video-institucional.mp4" type="video/mp4">
+          <video controls poster="./img/portada-video.jpg">
+            <source src="./video/video-institucional.mp4" type="video/mp4">
             Tu navegador no soporta la reproducción de videos.
           </video>
         </div>
@@ -100,8 +100,8 @@
       </h1>
 
       <div class="certificados">
-        <img src="/splendorherbs/img/primus.png" alt="certificado primus">
-        <img src="/splendorherbs/img/ICA.webp" alt="certificado ICA">
+        <img src="./img/primus.png" alt="certificado primus">
+        <img src="./img/ICA.webp" alt="certificado ICA">
       </div>
 
     </div>
@@ -125,9 +125,9 @@
     }
 
     // Cargar el header y luego inicializar el menú
-    loadHTML('header', '/splendorherbs/html/header.html', () => {
+    loadHTML('header', './html/header.html', () => {
       const script = document.createElement('script');
-      script.src = '/splendorherbs/js/menus.js';
+      script.src = './js/menus.js';
       document.body.appendChild(script);
 
       setTimeout(() => {
@@ -143,7 +143,7 @@
     });
 
     // Cargar el footer
-    loadHTML('footer', '/splendorherbs/html/footer.html');
+    loadHTML('footer', './html/footer.html');
   </script>
 
 </body>
