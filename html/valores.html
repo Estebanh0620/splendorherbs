@@ -8,8 +8,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="./css/styles.css">
+  <!-- CSS: Corregido con ruta absoluta -->
+  <link rel="stylesheet" href="/splendorherbs/css/styles.css">
 </head>
 <body>
 
@@ -41,46 +41,46 @@
           </p>
         </div>
 
-        <!-- BLOQUE 2 -->
+        <!-- BLOQUE 2: Imágenes corregidas -->
         <div class="iconos-valores">
           <div class="valor">
-            <img src="./img/iconos-02.png" alt="Calidad">
+            <img src="/splendorherbs/img/iconos-02.png" alt="Calidad">
             <p data-es="Calidad" data-en="Quality">Calidad</p>
           </div>
           <div class="valor">
-            <img src="./img/iconos-06.png" alt="Honestidad">
+            <img src="/splendorherbs/img/iconos-06.png" alt="Honestidad">
             <p data-es="Honestidad" data-en="Honesty">Honestidad</p>
           </div>
           <div class="valor">
-            <img src="./img/iconos-07.png" alt="Adaptabilidad">
+            <img src="/splendorherbs/img/iconos-07.png" alt="Adaptabilidad">
             <p data-es="Adaptabilidad" data-en="Adaptability">Adaptabilidad</p>
           </div>
           <div class="valor">
-            <img src="./img/iconos-08.png" alt="Confianza">
+            <img src="/splendorherbs/img/iconos-08.png" alt="Confianza">
             <p data-es="Confianza" data-en="Trust">Confianza</p>
           </div>
           <div class="valor">
-            <img src="./img/iconos-10.png" alt="Servicio al cliente">
+            <img src="/splendorherbs/img/iconos-10.png" alt="Servicio al cliente">
             <p data-es="Servicio al cliente" data-en="Customer Service">Servicio al cliente</p>
           </div>
         </div>
 
-        <!-- BLOQUE 3 -->
+        <!-- BLOQUE 3: Imágenes corregidas -->
         <div class="iconos-valores">
           <div class="valor">
-            <img src="./img/iconos-11.png" alt="Competitividad">
+            <img src="/splendorherbs/img/iconos-11.png" alt="Competitividad">
             <p data-es="Competitividad" data-en="Competitiveness">Competitividad</p>
           </div>
           <div class="valor">
-            <img src="./img/iconos-13.png" alt="Perseverancia">
+            <img src="/splendorherbs/img/iconos-13.png" alt="Perseverancia">
             <p data-es="Perseverancia" data-en="Perseverance">Perseverancia</p>
           </div>
           <div class="valor">
-            <img src="./img/iconos-14.png" alt="Responsabilidad">
+            <img src="/splendorherbs/img/iconos-14.png" alt="Responsabilidad">
             <p data-es="Responsabilidad" data-en="Responsibility">Responsabilidad</p>
           </div>
           <div class="valor">
-            <img src="./img/iconos-09.png" alt="Trabajo en equipo">
+            <img src="/splendorherbs/img/iconos-09.png" alt="Trabajo en equipo">
             <p data-es="Trabajo en equipo" data-en="Teamwork">Trabajo en equipo</p>
           </div>
         </div>
@@ -113,13 +113,15 @@
       }
     }
 
-    loadHTML('header', './html/header.html', () => {
+    // Corregido: Ruta absoluta para encontrar el header y el JS
+    loadHTML('header', '/splendorherbs/html/header.html', () => {
       const script = document.createElement('script');
-      script.src = './js/menus.js';
+      script.src = '/splendorherbs/js/menus.js';
       document.body.appendChild(script);
     });
 
-    loadHTML('footer', './html/footer.html');
+    // Corregido: Ruta absoluta para el footer
+    loadHTML('footer', '/splendorherbs/html/footer.html');
   </script>
 
 </body>
