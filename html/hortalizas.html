@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <!-- Configuración base -->
   <meta charset="UTF-8">
@@ -21,7 +22,8 @@
 
   <!-- Open Graph -->
   <meta property="og:title" content="Hortalizas frescas al por mayor | Fresh Vegetables – Splendor Herbs">
-  <meta property="og:description" content="Hortalizas frescas y hierbas aromáticas con estándares de exportación, trazabilidad y suministro constante para el mercado internacional.">
+  <meta property="og:description"
+    content="Hortalizas frescas y hierbas aromáticas con estándares de exportación, trazabilidad y suministro constante para el mercado internacional.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="/splendorherbs/img/og-hortalizas.jpg">
   <meta property="og:url" content="https://splendorherbs.com/hortalizas">
@@ -60,9 +62,9 @@
     <!-- Catálogo de tiles -->
     <section class="catalogo">
       <div class="catalogo__intro">
-        <h2 data-es="Selecciona una hortaliza para ver su ficha técnica" 
-            data-en="Select a vegetable to see its technical sheet">
-            Selecciona una hortaliza para ver su ficha técnica
+        <h2 data-es="Selecciona una hortaliza para ver su ficha técnica"
+          data-en="Select a vegetable to see its technical sheet">
+          Selecciona una hortaliza para ver su ficha técnica
         </h2>
       </div>
 
@@ -115,7 +117,27 @@
     if(window.checkLanguage) window.checkLanguage();
   });
 
-  loadHTML('footer', '/splendorherbs/html/footer.html');
+    loadHTML('header', '/splendorherbs/html/header.html', () => {
+      const script = document.createElement('script');
+      script.src = '/splendorherbs/js/menus.js';
+      document.body.appendChild(script);
+
+      setTimeout(() => {
+        const toggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('.nav-links');
+        if (toggle && nav) {
+          toggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            toggle.classList.toggle('open');
+          });
+        }
+
+        // Intentar sincronizar idioma si existe lógica externa
+        if (window.checkLanguage) window.checkLanguage();
+      }, 200);
+    });
+
+    loadHTML('footer', '/splendorherbs/html/footer.html');
   </script>
 
   <!-- Lógica de Hortalizas Bilingüe -->
@@ -132,26 +154,27 @@
         imagen: "/splendorherbs/img/Lechuga.jpeg", 
         es: {
           nombre: "Lechuga",
-          descripcion: "Crujiente, fresca y perfecta para acompañar cualquier comida. Úsala en ensaladas, wraps, hamburguesas o como base de platos ligeros. Aporta textura y frescura natural. ¡La favorita para comer rico y saludable!",
+          descripcion: "Crujiente, fresca y perfecta para acompañar cualquier comida.",
           variedad: "FRIZZE"
         },
         en: {
           nombre: "Lettuce",
-          descripcion: "Crisp, fresh, and perfect for any meal. Ideal for salads, wraps, burgers, or as a base for light dishes. Adds natural freshness and texture. A favorite for eating fresh and healthy.",
+          descripcion: "Crisp, fresh, and perfect for any meal.",
           variedad: "FRIZZE"
         }
-      },
+      }
+      ,
       {
         id: "cebollin",
         imagenPortada: "/splendorherbs/img/cebollin_Portada.png", // CAMBIAR ESTA RUTA
         imagen: "/splendorherbs/img/cebollin.png",
         es: {
           nombre: "Cebollin",
-          descripcion: "Suave, fresco y con ese toque de cebolla que todos aman. Ideal para huevos, ensaladas, sopas, cremas, arroces y dips. Aporta sabor sin abrumar. ¡Perfecto para darle vida a tus recetas de todos los días!",
+          descripcion: "Suave, fresco y con ese toque de cebolla que todos aman."
         },
         en: {
           nombre: "Chives",
-          descripcion: "Mild, fresh, and delicately onion-flavored. Perfect for eggs, salads, soups, creams, rice dishes, and dips. Adds flavor without overpowering. The perfect way to elevate your everyday recipes.",
+          descripcion: "Mild, fresh, and delicately onion-flavored."
         }
       },
       {
@@ -299,4 +322,5 @@
     });
   </script>
 </body>
+
 </html>
