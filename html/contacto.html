@@ -30,9 +30,22 @@
         <span class="line"></span>
       </div>
 
-      <!-- Formulario -->
-      <form class="form-grid" id="contactForm" method="GET" action="/splendorherbs/html/gracias.html">
+      <!-- Formulario Configurado con FormSubmit -->
+      <form class="form-grid" id="contactForm" method="POST" action="https://formsubmit.co/santiago.castillo.parra@gmail.com">
 
+        <!-- CONFIGURACIÓN: Redirección a tu página de gracias en GitHub Pages -->
+        <input type="hidden" name="_next" value="https://estebanh0620.github.io/splendorherbs/html/gracias.html">
+
+        <!-- CONFIGURACIÓN: Asunto del correo -->
+        <input type="hidden" name="_subject" value="Nuevo mensaje - Splendor Herbs Web">
+
+        <!-- CONFIGURACIÓN: Desactivar Captcha (opcional, ayuda a que sea más rápido) -->
+        <input type="hidden" name="_captcha" value="false">
+
+        <!-- CONFIGURACIÓN: Diseño del correo -->
+        <input type="hidden" name="_template" value="table">
+
+        <!-- CAMPOS VISIBLES -->
         <div class="field">
           <label for="email" data-es="Correo electrónico" data-en="Email Address">Correo electrónico</label>
           <input id="email" name="email" type="email" required
@@ -135,6 +148,9 @@
 
     const form = document.getElementById('contactForm');
     form.addEventListener('submit', () => {
+      // Nota: Como el formulario ahora hace un POST real a FormSubmit,
+      // la página se recargará hacia la URL externa y luego volverá a 'gracias.html'.
+      // El cambio de texto del botón será visible brevemente antes de la redirección.
       const btn = form.querySelector('.btn');
       btn.innerHTML = currentLang === 'es'
         ? 'ENVIANDO... <i class="fas fa-spinner fa-spin"></i>'
