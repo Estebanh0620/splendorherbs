@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <!-- CSS (ruta corregida) -->
-  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
 
@@ -67,15 +67,15 @@
       }
     }
 
-    loadHTML('header', 'header.html', () => {
+    loadHTML('header', './html/header.html', () => {
       const script = document.createElement('script');
-      script.src = '../js/menus.js';
+      script.src = './js/menus.js';
       document.body.appendChild(script);
 
       if (window.checkLanguage) window.checkLanguage();
     });
 
-    loadHTML('footer', 'footer.html');
+    loadHTML('footer', './html/footer.html');
   </script>
 
   <!-- ================= LÓGICA DE HIERBAS ================= -->
@@ -83,7 +83,7 @@
     const HIERBAS = [
       {
         id: "menta",
-        imagen: "../img/Menta.jpg",
+        imagen: "./img/Menta.jpg",
         es: {
           nombre: "Menta",
           descripcion: "Refrescante, aromática y vibrante. La menta es el toque perfecto para tus jugos, postres, aguas frescas y cocteles. Ideal para calmar el estómago y aportar frescura natural a tus recetas diarias. ¡Un imprescindible en toda cocina!",
@@ -97,7 +97,7 @@
       },
       {
         id: "romero",
-        imagen: "../img/Romero.jpg",
+        imagen: "./img/Romero.jpg",
         es: {
           nombre: "Romero",
           descripcion: "Potente, aromático y lleno de sabor. El romero realza carnes, papas, panes, salsas y asados. Su fragancia mediterránea transforma cualquier plato.",
@@ -111,7 +111,7 @@
       },
       {
         id: "oregano",
-        imagen: "../img/Orégano.jpg",
+        imagen: "./img/Orégano.jpg",
         es: {
           nombre: "Orégano",
           descripcion: "Tu aliado perfecto en pastas, pizzas, sopas y adobos. Su aroma intenso y sabor cálido elevan cualquier receta casera.",
@@ -125,7 +125,7 @@
       },
       {
         id: "albahaca",
-        imagen: "../img/Albahaca.jpg",
+        imagen: "./img/Albahaca.jpg",
         es: {
           nombre: "Albahaca",
           descripcion: "Dulce y fragante. Imprescindible para pastas, pesto, pizzas, ensaladas y bebidas.",
