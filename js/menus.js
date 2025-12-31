@@ -1,22 +1,86 @@
 /* menus.js */
 
-// Seleccionamos elementos
+// =======================
+// 1. SELECCIÓN DE ELEMENTOS (Header)
+// =======================
+// Nota: Como este script se carga dinámicamente, aseguramos buscar dentro del documento actual.
 const menuBtn = document.getElementById('mobile-menu-btn');
 const navMenu = document.querySelector('.nav-menu');
-const overlay = document.getElementById('menu-overlay');
+const overlay = document.getElementById('menu-overlay'); // Asegúrate que este ID exista en tu HTML o Header
 const dropdowns = document.querySelectorAll('.dropdown');
 
+// Elementos de Idioma
+const langEsBtn = document.getElementById('lang-es');
+const langEnBtn = document.getElementById('lang-en');
+const currentFlag = document.getElementById('current-lang-flag');
+const currentText = document.getElementById('current-lang-text');
+
 // =======================
-// 1. MENU MOVIL
+// 2. FUNCIÓN PRINCIPAL DE IDIOMA
+// =======================
+function applyLanguage(lang) {
+    // 1. Guardar preferencia
+    localStorage.setItem('language', lang);
+
+    // 2. Actualizar textos SOLAMENTE del Header (o elementos globales)
+    // Buscamos elementos traducibles dentro del header para no interferir con lógicas complejas del body
+    const headerTranslatables = document.querySelectorAll('.header [data-es][data-en]');
+    headerTranslatables.forEach(el => {
+        el.textContent = el.getAttribute(`data-${lang}`);
+    });
+
+    // 3. Actualizar Bandera y Texto del Header
+    if (currentFlag && currentText) {
+        if (lang === 'es') {
+            currentFlag.src = '/splendorherbs/img/co.png';
+            currentText.textContent = 'ESP';
+        } else {
+            currentFlag.src = '/splendorherbs/img/us.png';
+            currentText.textContent = 'EN';
+        }
+    }
+
+    // 4. *** IMPORTANTE: DISPARAR EVENTO PARA LAS PÁGINAS ***
+    // Esto le "grita" al archivo contacto.html o hortalizas.html que el idioma cambió
+    const event = new CustomEvent('languageChanged', { detail: { language: lang } });
+    document.dispatchEvent(event);
+}
+
+// =======================
+// 3. LISTENERS DE IDIOMA
+// =======================
+if (langEsBtn) langEsBtn.addEventListener('click', () => applyLanguage('es'));
+if (langEnBtn) langEnBtn.addEventListener('click', () => applyLanguage('en'));
+
+// Cargar idioma inicial al ejecutar el script
+const savedLang = localStorage.getItem('language') || 'es';
+// Aplicamos visualmente al header, pero sin disparar el evento global para evitar bucles infinitos al cargar
+if (currentFlag && currentText) {
+    if (savedLang === 'es') {
+        currentFlag.src = '/splendorherbs/img/co.png';
+        currentText.textContent = 'ESP';
+    } else {
+        currentFlag.src = '/splendorherbs/img/us.png';
+        currentText.textContent = 'EN';
+    }
+}
+// Traducir textos del header inmediatamente
+document.querySelectorAll('.header [data-es][data-en]').forEach(el => {
+    el.textContent = el.getAttribute(`data-${savedLang}`);
+});
+
+
+// =======================
+// 4. MENU MOVIL
 // =======================
 function toggleMobileMenu() {
-    // Verificamos si existe el menu antes de actuar
-    if (!navMenu || !menuBtn || !overlay) return;
-
+    if (!navMenu || !menuBtn) return;
     const isActive = navMenu.classList.contains('active');
+    
     menuBtn.classList.toggle('active');
     navMenu.classList.toggle('active');
-    overlay.classList.toggle('active');
+    if(overlay) overlay.classList.toggle('active');
+    
     document.body.style.overflow = isActive ? 'auto' : 'hidden';
 }
 
@@ -26,7 +90,7 @@ if (overlay) overlay.addEventListener('click', () => {
 });
 
 // =======================
-// 2. DROPDOWNS
+// 5. DROPDOWNS
 // =======================
 const closeAllDropdowns = () => {
     document.querySelectorAll('.dropdown-content').forEach(c => c.classList.remove('show'));
@@ -43,11 +107,9 @@ dropdowns.forEach(dropdown => {
 
     if (link) {
         link.addEventListener('click', (e) => {
-            // Solo prevenimos default si es móvil (pantalla pequeña)
             if (window.innerWidth <= 900) {
                 e.preventDefault();
                 e.stopPropagation();
-                
                 const isOpen = content.classList.contains('show');
                 closeAllDropdowns();
                 if (!isOpen) {
@@ -58,7 +120,6 @@ dropdowns.forEach(dropdown => {
         });
     }
 
-    // Hover para desktop
     dropdown.addEventListener('mouseenter', () => {
         if (window.innerWidth > 900 && content) {
             closeAllDropdowns();
@@ -76,55 +137,14 @@ window.addEventListener('resize', () => {
     if (window.innerWidth > 900) {
         if (navMenu) navMenu.classList.remove('active');
         if (menuBtn) menuBtn.classList.remove('active');
-        if (overlay) overlay.classList.remove('active');
+        if(overlay) overlay.classList.remove('active');
         document.body.style.overflow = 'auto';
     }
     closeAllDropdowns();
 });
 
 // =======================
-// 3. IDIOMAS
-// =======================
-const langEsBtn = document.getElementById('lang-es');
-const langEnBtn = document.getElementById('lang-en');
-
-// Estos IDs ahora SI existen en el HTML corregido
-const currentFlag = document.getElementById('current-lang-flag');
-const currentText = document.getElementById('current-lang-text');
-
-const translatableItems = document.querySelectorAll('[data-es][data-en]');
-
-function applyLanguage(lang) {
-    // Actualizar Textos de la página
-    translatableItems.forEach(el => {
-        el.textContent = el.getAttribute(`data-${lang}`);
-    });
-
-    // Actualizar Bandera y Texto del Header
-    if (currentFlag && currentText) {
-        if (lang === 'es') {
-            currentFlag.src = '/splendorherbs/img/co.png';
-            currentText.textContent = 'ESP';
-        } else {
-            currentFlag.src = '/splendorherbs/img/us.png';
-            currentText.textContent = 'EN';
-        }
-    }
-
-    // Guardar preferencia
-    localStorage.setItem('language', lang);
-}
-
-// Event Listeners para botones de idioma
-if (langEsBtn) langEsBtn.addEventListener('click', () => applyLanguage('es'));
-if (langEnBtn) langEnBtn.addEventListener('click', () => applyLanguage('en'));
-
-// Ejecutar inmediatamente al cargar el script (porque el HTML ya se inyectó)
-const savedLang = localStorage.getItem('language') || 'es';
-applyLanguage(savedLang);
-
-// =======================
-// 4. DROPDOWN DE IDIOMAS
+// 6. DROPDOWN DE IDIOMAS (UI)
 // =======================
 const langDropdown = document.querySelector('.language-dropdown');
 const langSelectedBtn = document.querySelector('.lang-selected');
