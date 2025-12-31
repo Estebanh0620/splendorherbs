@@ -5,9 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contacto | Contact</title>
   
+  <!-- Fuentes e iconos -->
   <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- CSS (ruta corregida) -->
+  <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
 
@@ -21,6 +24,7 @@
       <h1 class="section-title-contact" data-es="CONTACTANOS" data-en="CONTACT US">
         CONTACTANOS
       </h1>
+
       <div class="separator-leaf">
          <span class="line"></span>
          <i class="fas fa-leaf"></i>
@@ -32,7 +36,6 @@
         
         <div class="field">
           <label for="email" data-es="Correo electrónico" data-en="Email Address">Correo electrónico</label>
-          <!-- Usamos data-ph-es/en para los placeholders -->
           <input id="email" name="email" type="email" required 
                  placeholder="tucorreo@gmail.com"
                  data-ph-es="tucorreo@gmail.com" 
@@ -53,13 +56,13 @@
         </div>
 
         <div class="field">
-            <label for="ciudad" data-es="Ciudad" data-en="City">Ciudad</label>
-            <input id="ciudad" name="ciudad" type="text">
+          <label for="ciudad" data-es="Ciudad" data-en="City">Ciudad</label>
+          <input id="ciudad" name="ciudad" type="text">
         </div>
 
         <div class="field">
-            <label for="direccion" data-es="Dirección" data-en="Address">Dirección</label>
-            <input id="direccion" name="direccion" type="text">
+          <label for="direccion" data-es="Dirección" data-en="Address">Dirección</label>
+          <input id="direccion" name="direccion" type="text">
         </div>
 
         <div class="field">
@@ -68,7 +71,9 @@
         </div>
 
         <div class="field span-2">
-          <label for="materiales" data-es="Materiales de interés y cantidad" data-en="Materials of interest and quantity">Materiales de interés y cantidad</label>
+          <label for="materiales" data-es="Materiales de interés y cantidad" data-en="Materials of interest and quantity">
+            Materiales de interés y cantidad
+          </label>
           <textarea id="materiales" name="materiales" 
                     placeholder="Describe aquí lo que necesitas..."
                     data-ph-es="Describe aquí lo que necesitas..."
@@ -76,7 +81,9 @@
         </div>
 
         <div class="actions span-2">
-          <button class="btn" type="submit" data-es="ENVIAR MENSAJE" data-en="SEND MESSAGE">ENVIAR MENSAJE</button>
+          <button class="btn" type="submit" data-es="ENVIAR MENSAJE" data-en="SEND MESSAGE">
+            ENVIAR MENSAJE
+          </button>
         </div>
       </form>
     </section>
@@ -87,7 +94,7 @@
 
   <!-- Scripts -->
   <script>
-    // 1. Variable global de idioma
+    // Idioma actual
     let currentLang = localStorage.getItem('language') || 'es';
 
     async function loadHTML(id, file, callback) {
@@ -102,72 +109,50 @@
       }
     }
 
-    loadHTML('header', '/html/header.html', () => {
+    // Header (rutas corregidas)
+    loadHTML('header', 'header.html', () => {
         const script = document.createElement('script');
-        script.src = '/js/menus.js';
+        script.src = '../js/menus.js';
         document.body.appendChild(script);
 
-        // Intentar sincronizar idioma tras cargar menú
-        if(window.checkLanguage) window.checkLanguage();
-
-        setTimeout(() => {
-            const toggle = document.querySelector('.menu-toggle');
-            const nav = document.querySelector('.nav-links');
-            if (toggle && nav) {
-                toggle.addEventListener('click', () => {
-                    nav.classList.toggle('active');
-                    toggle.classList.toggle('open');
-                });
-            }
-        }, 500);
+        if (window.checkLanguage) window.checkLanguage();
     });
 
-    loadHTML('footer', '/html/footer.html');
+    // Footer
+    loadHTML('footer', 'footer.html');
 
-    // --- LÓGICA DE TRADUCCIÓN DEL FORMULARIO ---
-
+    // Traducción
     function setLanguage(lang) {
         currentLang = lang;
 
-        // 1. Actualizar textos normales (Labels, Botones, Títulos)
-        const textElements = document.querySelectorAll('[data-es]');
-        textElements.forEach(el => {
+        document.querySelectorAll('[data-es]').forEach(el => {
             el.innerText = el.getAttribute(`data-${lang}`);
         });
 
-        // 2. Actualizar Placeholders (Inputs)
-        const phElements = document.querySelectorAll('[data-ph-es]');
-        phElements.forEach(el => {
+        document.querySelectorAll('[data-ph-es]').forEach(el => {
             el.placeholder = el.getAttribute(`data-ph-${lang}`);
         });
     }
 
-    // Inicializar idioma al cargar
     setLanguage(currentLang);
 
-    // Escuchar cambios desde el menú
     document.addEventListener('languageChanged', (e) => {
-        if(e.detail && e.detail.language) {
+        if (e.detail && e.detail.language) {
             setLanguage(e.detail.language);
         }
     });
 
-    // --- LÓGICA DE ENVÍO (BILINGÜE) ---
+    // Envío visual
     const form = document.getElementById('contactForm');
-
-    if(form) {
-        form.addEventListener('submit', function() {
+    if (form) {
+        form.addEventListener('submit', function () {
             const btn = form.querySelector('.btn');
-            
-            // Texto de "Enviando..." según idioma
             const sendingText = currentLang === 'es' ? 'ENVIANDO...' : 'SENDING...';
-            
             btn.innerHTML = `${sendingText} <i class="fas fa-spinner fa-spin"></i>`;
             btn.style.opacity = '0.7';
-            // No deshabilitamos inmediatamente si el action no es AJAX, 
-            // pero si es un form normal, esto está bien visualmente.
         });
     }
   </script>
+
 </body>
 </html>
