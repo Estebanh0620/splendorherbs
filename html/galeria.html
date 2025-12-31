@@ -117,7 +117,7 @@
     <!-- Footer -->
     <div id="footer"></div>
     
-    <!-- ================= GALERÍA JS ================= -->
+    <!-- ================= GALERÍA JS ACTUALIZADO ================= -->
     <script>
         const IMAGENES_GALERIA = {
             columna1: [
@@ -147,6 +147,7 @@
 
         const SCROLL_SPEED = 0.6;
         let animationFrames = [];
+        let isLightboxOpen = false; // Bandera para pausar si quieres (opcional)
 
         function initGallery() {
             animationFrames.forEach(id => cancelAnimationFrame(id));
@@ -158,7 +159,16 @@
             const itemSize = isMobile ? itemWidthMobile : itemHeightPC;
 
             tracks.forEach((track, index) => {
+                // 1. Limpiar track
                 track.innerHTML = '';
+
+                // 2. Crear listener de clicks (Delegación de eventos)
+                // Esto asegura que funcione en las copias clonadas
+                track.onclick = function(e) {
+                    if (e.target.tagName === 'IMG') {
+                        openLightbox(e.target.src);
+                    }
+                };
 
                 const imagesList = IMAGENES_GALERIA[`columna${index + 1}`];
                 if (!imagesList) return;
@@ -168,6 +178,8 @@
                     const img = document.createElement('img');
                     img.src = src;
                     img.onerror = () => img.style.display = 'none';
+                    // Importante para UX: Evitar que se arrastre la imagen como fantasma
+                    img.draggable = false; 
                     baseFragment.appendChild(img);
                 });
 
@@ -186,6 +198,7 @@
                 const scrollWindow = track.parentElement;
                 let isHovering = false;
 
+                // Eventos de Mouse/Touch para pausar scroll
                 scrollWindow.onmouseenter = () => isHovering = true;
                 scrollWindow.onmouseleave = () => isHovering = false;
                 scrollWindow.ontouchstart = () => isHovering = true;
@@ -194,7 +207,9 @@
                 let scrollPos = isMobile ? scrollWindow.scrollLeft : scrollWindow.scrollTop;
 
                 function animate() {
-                    if (!isHovering) {
+                    // Solo animar si no hay hover Y si el lightbox está cerrado
+                    // (Si prefieres que siga moviéndose atrás, quita !isLightboxOpen)
+                    if (!isHovering && !isLightboxOpen) {
                         scrollPos += SCROLL_SPEED;
                         const limit = isMobile
                             ? scrollWindow.scrollWidth / 2
@@ -206,6 +221,7 @@
                             ? scrollWindow.scrollLeft = scrollPos
                             : scrollWindow.scrollTop = scrollPos;
                     } else {
+                        // Sincronizar posición actual por si el usuario hizo scroll manual
                         scrollPos = isMobile
                             ? scrollWindow.scrollLeft
                             : scrollWindow.scrollTop;
@@ -217,6 +233,37 @@
                 animate();
             });
         }
+
+        // --- FUNCIONES LIGHTBOX ---
+        function openLightbox(src) {
+            const modal = document.getElementById('lightbox');
+            const modalImg = document.getElementById('lightbox-img');
+            
+            modalImg.src = src;
+            modal.classList.add('active');
+            isLightboxOpen = true; // Pausa la galería
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox');
+            modal.classList.remove('active');
+            setTimeout(() => {
+                document.getElementById('lightbox-img').src = '';
+                isLightboxOpen = false; // Reanuda la galería
+            }, 300); // Esperar a que termine la transición CSS
+        }
+
+        // Cerrar al dar click fuera de la imagen (en el fondo negro)
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Cerrar con tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") closeLightbox();
+        });
 
         window.addEventListener('load', initGallery);
 

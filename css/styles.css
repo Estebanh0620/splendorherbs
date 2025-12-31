@@ -329,7 +329,62 @@ h1, h2, h3, h4, h5, h6 {
 .column-track img {
     display: block; width: 100%; height: 250px; object-fit: cover;
     border-radius: 8px; margin-bottom: 20px; flex-shrink: 0;
-    pointer-events: none; user-select: none;
+    pointer-events: auto !important; user-select: none;
+}
+
+.column-track img:hover {
+    opacity: 0.9;
+    transform: scale(0.98); /* Pequeño efecto al pasar el mouse */
+}
+
+.lightbox-modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 5000; /* Por encima de todo, incluso del menú */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro */
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 90vh;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    object-fit: contain;
+    animation: zoomIn 0.3s ease;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+    z-index: 5001;
+}
+
+.lightbox-close:hover {
+    color: var(--primary-green);
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
 
 .certificados {
