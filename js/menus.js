@@ -55,7 +55,13 @@ if (langEnBtn) langEnBtn.addEventListener('click', () => applyLanguage('en'));
 
 // Cargar idioma inicial al ejecutar el script
 const savedLang = localStorage.getItem('language') || 'es';
-// Aplicamos visualmente al header, pero sin disparar el evento global para evitar bucles infinitos al cargar
+
+// --- AGREGA ESTAS DOS LÍNEAS AQUÍ ---
+const currentFlag = document.getElementById('current-lang-flag');
+const currentText = document.getElementById('current-lang-text');
+// ------------------------------------
+
+// Aplicamos visualmente al header...
 if (currentFlag && currentText) {
     if (savedLang === 'es') {
         currentFlag.src = '/splendorherbs/img/co.png';
