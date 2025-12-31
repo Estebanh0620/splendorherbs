@@ -13,8 +13,6 @@
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-  <!-- CSS LOCAL (ruta relativa) -->
   <link rel="stylesheet" href="/splendorherbs/css/styles.css">
 </head>
 
@@ -25,13 +23,15 @@
 
   <main class="main-content">
 
-    <!-- HERO -->
+
+    <!-- Asegúrate de cambiar la imagen del hero en el style inline si es necesario -->
     <section class="hero" style="background-image: url('/splendorherbs/img/hero-invernadero.jpg');">
       <div class="hero-overlay">
         <div class="hero-inner-content">
 
           <!-- Logo -->
           <div class="hero-col-logo">
+            
             <img src="/splendorherbs/img/logo2.png" alt="Splendor Herbs Logo">
           </div>
 
@@ -62,6 +62,7 @@
 
         <!-- Video -->
         <div class="split-video">
+          
           <video controls poster="/splendorherbs/img/portada-video.jpg">
             <source src="/splendorherbs/video/video-institucional.mp4" type="video/mp4">
             Tu navegador no soporta la reproducción de videos.
@@ -123,10 +124,10 @@
       }
     }
 
-    // Header
+    // Cargar el header y luego inicializar el menú
     loadHTML('header', '/splendorherbs/html/header.html', () => {
       const script = document.createElement('script');
-      script.src = '/splendorherbs/js/menus.js'; // ← ruta corregida
+      script.src = '/splendorherbs/js/menus.js';
       document.body.appendChild(script);
 
       setTimeout(() => {
@@ -141,7 +142,7 @@
       }, 200);
     });
 
-    // Footer
+    // Cargar el footer
     loadHTML('footer', '/splendorherbs/html/footer.html');
   </script>
 
