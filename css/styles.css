@@ -843,9 +843,9 @@ footer {
 
     /* Mantenemos el tamaño exacto de imagen del diseño original */
     .valor img {
-        width: 90px; 
-        height: 90px;
-        margin-bottom: 20px;
+        width: 170px;  /* AUMENTADO: Antes era 90px */
+        height: 170px; /* AUMENTADO: Antes era 90px */
+        margin-bottom: 30px; /* Un poco más de espacio abajo */
         /* Efecto hover sutil */
         transition: transform 0.3s ease;
     }
@@ -1052,7 +1052,8 @@ footer {
     /* === VALORES === */
     .valores { background: #fff; }
     .iconos-valores { gap: 30px; }
-    .valor { width: 100%; max-width: 150px; } /* Iconos más grandes y centrados */
+    .valor {  width: 100%; 
+    max-width: 180px;} /* Iconos más grandes y centrados */
     
     /* === GALERÍA MÓVIL === */
      .galeria-simple-header {
@@ -1131,4 +1132,48 @@ footer {
         padding: 15px;
         font-size: 1.1rem;
       }
+
+      .language-dropdown {
+        margin-right: auto; /* Mantiene el selector a la izquierda */
+        margin-left: 0;
+    }
+
+    /* 2. El botón del idioma (la pastilla) más compacto */
+    .lang-selected {
+        padding: 5px 10px !important; /* Reducimos el relleno drásticamente */
+        border-radius: 50px;
+        gap: 5px; /* Menos espacio entre bandera y texto */
+        height: 34px; /* Altura fija para que se vea alineado */
+        border: 1px solid #e0e0e0;
+    }
+
+    /* 3. Texto del idioma más pequeño */
+    .current-content {
+        font-size: 0.8rem; /* Texto más pequeño (antes era heredado) */
+        font-weight: 600;
+    }
+
+    /* 4. Bandera ligeramente más pequeña */
+    .lang-selected img {
+        width: 18px;
+        height: 18px;
+    }
+
+    /* 5. Flechita (chevron) más pequeña */
+    .language-dropdown .arrow-icon {
+        font-size: 0.6rem;
+    }
+
+    /* 6. Ajuste del menú desplegable para que no se salga de pantalla */
+    .lang-options {
+        min-width: 110px; /* Un poco más angosto */
+        left: 0; /* Alineado a la izquierda */
+        top: 40px; /* Pegado al botón */
+        padding: 5px;
+    }
+
+    .lang-option {
+        padding: 8px; /* Opciones más compactas al tocar */
+        font-size: 0.85rem;
+    }
 }
