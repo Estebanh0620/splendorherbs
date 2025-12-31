@@ -130,7 +130,6 @@ h1, h2, h3, h4, h5, h6 {
 /* Menu */
 .nav-menu { display: flex; list-style: none; align-items: center; margin: 0; padding: 0; height: 100%; }
 .nav-item { height: 100%; display: flex; align-items: center; position: relative; }
-
 .nav-link {
     text-decoration: none; color: var(--primary-green);
     font-weight: 700; font-size: 1rem; padding: 0 25px; height: 100%;
@@ -147,46 +146,9 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1); z-index: 999; text-align: center; padding: 20px 0;
 }
 .dropdown-content.show { display: block !important; animation: fadeIn 0.3s ease; }
-
-.dropdown-content a { 
-    display: block; 
-    padding: 10px 20px; 
-    color: var(--primary-green); 
-    text-decoration: none; 
-    font-weight: 600; /* Peso base semi-bold */
-    font-size: 1rem; 
-}
-
-.dropdown-content a:hover { 
-    background-color: var(--light-bg); 
-    color: var(--primary-green); 
-}
-
-/* --- REGLA NUEVA PARA CORREGIR EL PROBLEMA --- */
-.dropdown-content a.active-page {
-    font-weight: 600 !important; /* Fuerza a que no cambie el grosor */
-    color: var(--dark-green);
-}
-
+.dropdown-content a { display: block; padding: 10px 20px; color: var(--primary-green); text-decoration: none; font-weight: 600; font-size: 1rem; }
+.dropdown-content a:hover { background-color: var(--light-bg); color: var(--primary-green); }
 @keyframes fadeIn { from { opacity: 0; transform: translate(-50%, 10px); } to { opacity: 1; transform: translate(-50%, 0); } }
-
-.nav-item .dropdown-content a.active-page,
-.nav-item .dropdown-content a.active {
-    font-weight: 600 !important; 
-    -webkit-font-smoothing: antialiased; /* Ayuda a que la letra se vea nítida, no inflada */
-    color: var(--dark-green) !important; /* Solo cambiamos el color, no el grosor */
-    background-color: transparent !important;
-}
-
-/* 2. CORRECCIÓN PARA CONTACTO Y MENÚ PRINCIPAL 
-   El peso normal de tus links principales es 700. 
-   Esto evita que al estar activo salte a 800 o 900.
-*/
-.nav-item .nav-link.active-page,
-.nav-item .nav-link.active {
-    font-weight: 700 !important; 
-    -webkit-font-smoothing: antialiased;
-}
 
 /* --- -------------------------------------------HERO SECTION --- */
 .hero, .hero-gal {
