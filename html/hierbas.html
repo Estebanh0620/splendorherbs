@@ -7,16 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- SEO principal -->
-  <title>Hierbas aromáticas frescas | Aromatic Herbs Supplier – Splendor Herbs</title>
-  <meta name="description" content="Proveedor de hierbas aromáticas frescas para mercado nacional e internacional. Splendor Herbs SAS ofrece albahaca, romero, menta, tomillo y más, con calidad certificada y enfoque en exportación.">
-  <meta name="keywords" content="hierbas aromáticas, aromatic herbs supplier, fresh herbs wholesale, exportación de hierbas, albahaca, romero, menta, tomillo, herbs supplier colombia">
+  <title>Hierbas aromáticas frescas | Aromatic Herbs – Splendor Herbs</title>
+  <meta name="description" content="Proveedor de hierbas aromáticas frescas: albahaca, romero, menta, tomillo y más. Calidad certificada de exportación desde Colombia.">
+  <meta name="keywords" content="hierbas aromáticas, aromatic herbs, fresh herbs wholesale, albahaca, romero, menta, tomillo, herbs supplier colombia">
   <meta name="author" content="Splendor Herbs SAS">
   <meta name="language" content="es, en">
   <meta name="robots" content="index, follow">
 
-  <!-- Open Graph (LinkedIn, WhatsApp, redes) -->
-  <meta property="og:title" content="Hierbas aromáticas frescas | Aromatic Herbs – Splendor Herbs">
-  <meta property="og:description" content="Hierbas aromáticas frescas con trazabilidad y estándares de exportación. Ideal para distribuidores, chefs y compradores internacionales.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Hierbas aromáticas frescas | Splendor Herbs">
+  <meta property="og:description" content="Hierbas aromáticas frescas con trazabilidad y estándares de exportación.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="/splendorherbs/img/og-hierbas.jpg">
   <meta property="og:url" content="https://splendorherbs.com/hierbas">
@@ -70,18 +70,21 @@
         </h2>
       </div>
 
-      <div class="tiles" id="tiles"></div>
+      <div class="tiles" id="tiles">
+        <!-- Tiles generados por JS -->
+      </div>
     </section>
-
-    <!-- Ficha -->
-    <section class="results" id="results"></section>
-
   </main>
+
+  <!-- MODAL / RESULTS -->
+  <section class="results" id="results">
+     <!-- Contenido generado por JS -->
+  </section>
 
   <!-- Footer -->
   <div id="footer"></div>
 
-  <!-- ================= HEADER / FOOTER ================= -->
+  <!-- Scripts de Carga -->
   <script>
     let currentLang = localStorage.getItem('language') || 'es';
 
@@ -107,7 +110,7 @@
     loadHTML('footer', '/splendorherbs/html/footer.html');
   </script>
 
-  <!-- ================= LÓGICA DE HIERBAS ================= -->
+  <!-- LÓGICA DE HIERBAS -->
   <script>
     const HIERBAS = [
       {
@@ -115,18 +118,18 @@
         imagen: "/splendorherbs/img/Menta.png",
         es: {
           nombre: "Menta",
-          descripcion: "Refrescante, aromática y vibrante. La menta es el toque perfecto para tus jugos, postres, aguas frescas y cocteles. Ideal para calmar el estómago y aportar frescura natural a tus recetas diarias. ¡Un imprescindible en toda cocina!",
-          variedad: "Común"
+          descripcion: "Refrescante, aromática y vibrante. La menta es el toque perfecto para tus jugos, postres, aguas frescas y cocteles. Ideal para calmar el estómago y aportar frescura natural.",
+          variedad: "Común / Piperita"
         },
         en: {
           nombre: "Mint",
-          descripcion: "Refreshing, aromatic, and vibrant. Mint is perfect for juices, desserts, fresh waters, and cocktails. Known for its soothing properties and natural freshness. An essential herb for every kitchen.",
-          variedad: "Common"
+          descripcion: "Refreshing, aromatic, and vibrant. Mint is perfect for juices, desserts, fresh waters, and cocktails. Known for its soothing properties and natural freshness.",
+          variedad: "Common / Peppermint"
         }
       },
       {
         id: "romero",
-        imagen: "/splendorherbs/img/Romero.png  ",
+        imagen: "/splendorherbs/img/Romero.png",
         es: {
           nombre: "Romero",
           descripcion: "Potente, aromático y lleno de sabor. El romero realza carnes, papas, panes, salsas y asados. Su fragancia mediterránea transforma cualquier plato.",
@@ -171,12 +174,12 @@
         imagen: "/splendorherbs/img/Mejorana.jpg",
         es: {
           nombre: "Mejorana",
-          descripcion: "Dulce, suave y con notas florales. Perfecta para guisos, vegetales, salsas y carnes blancas. Aporta un toque delicado que conquista paladares. ¡Ideal para recetas caseras que se sienten hechas con amor!",
+          descripcion: "Dulce, suave y con notas florales. Perfecta para guisos, vegetales, salsas y carnes blancas. Aporta un toque delicado que conquista paladares.",
           variedad: "Común"
         },
         en: {
           nombre: "Marjoram",
-          descripcion: "Mild, sweet, and delicately floral. Ideal for stews, vegetables, sauces, and white meats. Adds a gentle flavor that delights the palate. Perfect for recipes made with love.",
+          descripcion: "Mild, sweet, and delicately floral. Ideal for stews, vegetables, sauces, and white meats. Adds a gentle flavor that delights the palate.",
           variedad: "Common"
         }
       },
@@ -185,12 +188,12 @@
         imagen: "/splendorherbs/img/Estragón.png",
         es: {
           nombre: "Estragón",
-          descripcion: "Elegante y aromático. El estragón aporta un sabor único a ensaladas, salsas cremosas y pescados. Su toque anisado lo hace perfecto para cocina fina y platos especiales. ¡Un sabor exclusivo para tu mesa!",
+          descripcion: "Elegante y aromático. El estragón aporta un sabor único a ensaladas, salsas cremosas y pescados. Su toque anisado lo hace perfecto para cocina fina.",
           variedad: "Francés"
         },
         en: {
           nombre: "Tarragon",
-          descripcion: "Elegant and aromatic. Tarragon brings a unique, slightly anise-like flavor to salads, creamy sauces, and fish dishes. Ideal for refined and special recipes. An exclusive touch for your table.",
+          descripcion: "Elegant and aromatic. Tarragon brings a unique, slightly anise-like flavor to salads, creamy sauces, and fish dishes. Ideal for refined and special recipes.",
           variedad: "French"
         }
       },
@@ -199,12 +202,12 @@
         imagen: "/splendorherbs/img/Laurel.png",
         es: {
           nombre: "Laurel",
-          descripcion: "Hojas que perfuman todo. Perfectas para sopas, arroces, fríjoles, carnes y guisos. El laurel libera aroma lentamente y transforma tus recetas en platillos llenos de sabor profundo. ¡Tu cocina, pero mejor!",
+          descripcion: "Hojas que perfuman todo. Perfectas para sopas, arroces, fríjoles, carnes y guisos. El laurel libera aroma lentamente y transforma tus recetas en platillos llenos de sabor profundo.",
           variedad: "Mediterráneo"
         },
         en: {
           nombre: "Bay Leaf",
-          descripcion: "Leaves that slowly release deep aroma. Perfect for soups, rice, beans, meats, and stews. Bay leaves enrich dishes with rich, comforting flavor. Your cooking—taken to the next level.",
+          descripcion: "Leaves that slowly release deep aroma. Perfect for soups, rice, beans, meats, and stews. Bay leaves enrich dishes with rich, comforting flavor.",
           variedad: "Mediterranean"
         }
       },
@@ -213,12 +216,12 @@
         imagen: "/splendorherbs/img/Eneldo.jpg",
         es: {
           nombre: "Eneldo",
-          descripcion: "Fresco y cítrico. Ideal para pescados, ensaladas, salsas, dips y encurtidos. Su sabor ligero ilumina cualquier plato. ¡Perfecto para recetas frescas y modernas!",
+          descripcion: "Fresco y cítrico. Ideal para pescados, ensaladas, salsas, dips y encurtidos. Su sabor ligero ilumina cualquier plato.",
           variedad: "Común"
         },
         en: {
           nombre: "Dill",
-          descripcion: "Fresh and lightly citrusy. Ideal for fish, salads, sauces, dips, and pickles. Its delicate flavor brightens any dish. Perfect for fresh and modern recipes.",
+          descripcion: "Fresh and lightly citrusy. Ideal for fish, salads, sauces, dips, and pickles. Its delicate flavor brightens any dish.",
           variedad: "Common"
         }
       },
@@ -227,12 +230,12 @@
         imagen: "/splendorherbs/img/Tomillo.png",
         es: {
           nombre: "Tomillo",
-          descripcion: "Aromático, versátil y robusto. Recomendado para carnes, pollo, vegetales, panes y marinadas. Un toque de tomillo convierte recetas simples en platos llenos de personalidad. ¡Sabor casero con estilo!",
+          descripcion: "Aromático, versátil y robusto. Recomendado para carnes, pollo, vegetales, panes y marinadas. Un toque de tomillo convierte recetas simples en platos llenos de personalidad.",
           variedad: "Común"
         },
         en: {
           nombre: "Thyme",
-          descripcion: "Aromatic, versatile, and robust. Perfect for meats, chicken, vegetables, breads, and marinades. A touch of thyme turns simple dishes into flavorful creations. Homestyle flavor with character.",
+          descripcion: "Aromatic, versatile, and robust. Perfect for meats, chicken, vegetables, breads, and marinades. A touch of thyme turns simple dishes into flavorful creations.",
           variedad: "Common"
         }
       },
@@ -241,105 +244,105 @@
         imagen: "/splendorherbs/img/Hierbabuena.png",
         es: {
           nombre: "Hierbabuena",
-          descripcion: "Refrescante, aromática y deliciosa. Perfecta para limonadas, cocteles, infusiones y postres. También realza sopas y platos tradicionales. ¡Un toque verde que enamora!",
+          descripcion: "Refrescante, aromática y deliciosa. Perfecta para limonadas, cocteles, infusiones y postres. También realza sopas y platos tradicionales.",
           variedad: "Criolla"
         },
         en: {
           nombre: "Spearmint",
-          descripcion: "Refreshing, aromatic, and delicious. Perfect for lemonades, cocktails, infusions, and desserts. Also enhances traditional savory dishes. A fresh green touch you’ll fall in love with.",
+          descripcion: "Refreshing, aromatic, and delicious. Perfect for lemonades, cocktails, infusions, and desserts. Also enhances traditional savory dishes.",
           variedad: "Spearmint"
         }
       }
-
     ];
-
-    const LABELS = {
-      es: {
-        variety: "Variedad",
-        empty: "Haz clic en una hierba para ver su ficha técnica.",
-        close: "Cerrar"
-      },
-      en: {
-        variety: "Variety",
-        empty: "Click on an herb to see its details.",
-        close: "Close"
-      }
-    };
 
     const tilesContainer = document.getElementById('tiles');
     const resultsContainer = document.getElementById('results');
-    let activeProductId = null;
+    currentLang = localStorage.getItem('language') || 'es';
 
     function updateStaticText() {
       document.querySelectorAll('[data-es]').forEach(el => {
-        el.innerText = el.getAttribute(`data-${currentLang}`);
+        const text = el.getAttribute(`data-${currentLang}`);
+        if(text) el.innerText = text;
       });
-    }
-
-    function showEmpty() {
-      activeProductId = null;
-      resultsContainer.innerHTML = `<p class="empty">${LABELS[currentLang].empty}</p>`;
-    }
-
-    function createCard(producto) {
-      const d = producto[currentLang];
-      return `
-        <article class="card">
-          <button class="card__close">✕</button>
-          <img class="card__img" src="${producto.imagen}" alt="${d.nombre}">
-          <div class="card__body">
-            <h3 class="card__title">${d.nombre}</h3>
-            <p class="meta">${d.descripcion}</p>
-            <p class="meta"><b>${LABELS[currentLang].variety}:</b> ${d.variedad}</p>
-          </div>
-        </article>
-      `;
     }
 
     function renderTiles() {
       tilesContainer.innerHTML = '';
       HIERBAS.forEach(p => {
-        tilesContainer.innerHTML += `
-          <div class="tile" data-id="${p.id}">
-            <img src="${p.imagen}" alt="${p[currentLang].nombre}">
-            <div class="tile__label">${p[currentLang].nombre}</div>
-          </div>
+        const dataLang = p[currentLang];
+        const tile = document.createElement('div');
+        tile.className = 'tile';
+        tile.dataset.id = p.id;
+        
+        const errorFallback = `this.onerror=null;this.src='/splendorherbs/img/logo.png'`;
+
+        tile.innerHTML = `
+            <img src="${p.imagen}" onerror="${errorFallback}" alt="${dataLang.nombre}">
+            <div class="tile__label">${dataLang.nombre}</div>
         `;
+        tilesContainer.appendChild(tile);
       });
     }
 
-    function setLanguage(lang) {
-      currentLang = lang;
-      updateStaticText();
-      renderTiles();
+    function openModal(producto) {
+      const d = producto[currentLang];
+      const lblVariety = currentLang === 'es' ? 'Variedad' : 'Variety';
+      const errorFallback = `this.onerror=null;this.src='/splendorherbs/img/logo.png'`;
 
-      if (activeProductId) {
-        const p = HIERBAS.find(h => h.id === activeProductId);
-        resultsContainer.innerHTML = createCard(p);
-      } else {
-        showEmpty();
-      }
+      resultsContainer.innerHTML = `
+        <article class="card">
+          <button class="card__close" aria-label="Close">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <img class="card__img" src="${producto.imagen}" onerror="${errorFallback}" alt="${d.nombre}">
+          <div class="card__body">
+            <h3 class="card__title"><span class="badge"></span> ${d.nombre}</h3>
+            <p class="meta">${d.descripcion}</p>
+            ${d.variedad ? `<p class="meta"><b>${lblVariety}:</b> ${d.variedad}</p>` : ''}
+          </div>
+        </article>
+      `;
+
+      resultsContainer.classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
 
+    function closeModal() {
+      resultsContainer.classList.remove('active');
+      document.body.style.overflow = '';
+      setTimeout(() => resultsContainer.innerHTML = '', 300);
+    }
+
+    // Eventos
     tilesContainer.addEventListener('click', e => {
       const tile = e.target.closest('.tile');
       if (!tile) return;
-
       const p = HIERBAS.find(h => h.id === tile.dataset.id);
-      activeProductId = p.id;
-      resultsContainer.innerHTML = createCard(p);
-      resultsContainer.scrollIntoView({ behavior: 'smooth' });
+      if(p) openModal(p);
     });
 
     resultsContainer.addEventListener('click', e => {
-      if (e.target.classList.contains('card__close')) showEmpty();
+      if (e.target.classList.contains('card__close') || e.target.closest('.card__close') || e.target === resultsContainer) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === "Escape" && resultsContainer.classList.contains('active')) closeModal();
     });
 
     document.addEventListener('languageChanged', e => {
-      if (e.detail?.language) setLanguage(e.detail.language);
+      if (e.detail?.language) {
+        currentLang = e.detail.language;
+        updateStaticText();
+        renderTiles();
+        closeModal();
+      }
     });
 
-    setLanguage(currentLang);
+    // Iniciar
+    updateStaticText();
+    renderTiles();
   </script>
 
 </body>
