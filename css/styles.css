@@ -838,12 +838,7 @@ footer {
     margin: 0 auto;                   /* Centrar horizontalmente */
 }
 
-/* CLASE PARA BLOQUEAR SCROLL */
-body.no-scroll {
-    overflow: hidden !important;
-    height: 100vh;
-    touch-action: none; /* Ayuda en dispositivos táctiles */
-}
+
 /* ================================================================= */
 /* ============= MEDIA QUERIES UNIFICADAS Y ORGANIZADAS ============= */
 /* ================================================================= */
