@@ -1061,6 +1061,15 @@ footer {
     .split-video, .split-text { width: 100%; }
     .card { grid-template-columns: 1fr; }
     .card__img { height: 200px; max-height: 200px; }
+
+    .form-grid {
+        grid-template-columns: 1fr; /* Forza una sola columna */
+        padding: 30px 20px; /* Ajusta el relleno para pantallas más chicas */
+    }
+
+    .span-2 {
+        grid-column: span 1; /* Hace que los elementos anchos se ajusten a la única columna */
+    }
 }
 
 /* --- 3. MÓVILES (Smartphone Portrait) --- */
