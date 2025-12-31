@@ -1,3 +1,6 @@
+/* menus.js */
+
+// Seleccionamos elementos
 const menuBtn = document.getElementById('mobile-menu-btn');
 const navMenu = document.querySelector('.nav-menu');
 const overlay = document.getElementById('menu-overlay');
@@ -7,6 +10,9 @@ const dropdowns = document.querySelectorAll('.dropdown');
 // 1. MENU MOVIL
 // =======================
 function toggleMobileMenu() {
+    // Verificamos si existe el menu antes de actuar
+    if (!navMenu || !menuBtn || !overlay) return;
+
     const isActive = navMenu.classList.contains('active');
     menuBtn.classList.toggle('active');
     navMenu.classList.toggle('active');
@@ -14,8 +20,8 @@ function toggleMobileMenu() {
     document.body.style.overflow = isActive ? 'auto' : 'hidden';
 }
 
-menuBtn?.addEventListener('click', toggleMobileMenu);
-overlay?.addEventListener('click', () => {
+if (menuBtn) menuBtn.addEventListener('click', toggleMobileMenu);
+if (overlay) overlay.addEventListener('click', () => {
     if (navMenu.classList.contains('active')) toggleMobileMenu();
 });
 
@@ -35,23 +41,29 @@ dropdowns.forEach(dropdown => {
     const content = dropdown.querySelector('.dropdown-content');
     const icon = dropdown.querySelector('.arrow-icon');
 
-    link?.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
+    if (link) {
+        link.addEventListener('click', (e) => {
+            // Solo prevenimos default si es móvil (pantalla pequeña)
+            if (window.innerWidth <= 900) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const isOpen = content.classList.contains('show');
+                closeAllDropdowns();
+                if (!isOpen) {
+                    content.classList.add('show');
+                    if (icon) icon.classList.add('rotate');
+                }
+            }
+        });
+    }
 
-        const isOpen = content.classList.contains('show');
-        closeAllDropdowns();
-        if (!isOpen) {
-            content.classList.add('show');
-            icon?.classList.add('rotate');
-        }
-    });
-
+    // Hover para desktop
     dropdown.addEventListener('mouseenter', () => {
-        if (window.innerWidth > 900) {
+        if (window.innerWidth > 900 && content) {
             closeAllDropdowns();
             content.classList.add('show');
-            icon?.classList.add('rotate');
+            if (icon) icon.classList.add('rotate');
         }
     });
 });
@@ -62,32 +74,33 @@ document.addEventListener('click', e => {
 
 window.addEventListener('resize', () => {
     if (window.innerWidth > 900) {
-        navMenu.classList.remove('active');
-        menuBtn.classList.remove('active');
-        overlay.classList.remove('active');
+        if (navMenu) navMenu.classList.remove('active');
+        if (menuBtn) menuBtn.classList.remove('active');
+        if (overlay) overlay.classList.remove('active');
         document.body.style.overflow = 'auto';
     }
     closeAllDropdowns();
 });
 
 // =======================
-// 3. IDIOMAS (SOLUCIÓN FINAL)
+// 3. IDIOMAS
 // =======================
 const langEsBtn = document.getElementById('lang-es');
 const langEnBtn = document.getElementById('lang-en');
 
+// Estos IDs ahora SI existen en el HTML corregido
 const currentFlag = document.getElementById('current-lang-flag');
 const currentText = document.getElementById('current-lang-text');
 
 const translatableItems = document.querySelectorAll('[data-es][data-en]');
 
 function applyLanguage(lang) {
-    // Textos
+    // Actualizar Textos de la página
     translatableItems.forEach(el => {
         el.textContent = el.getAttribute(`data-${lang}`);
     });
 
-    // Bandera + texto
+    // Actualizar Bandera y Texto del Header
     if (currentFlag && currentText) {
         if (lang === 'es') {
             currentFlag.src = '/splendorherbs/img/co.png';
@@ -98,24 +111,17 @@ function applyLanguage(lang) {
         }
     }
 
+    // Guardar preferencia
     localStorage.setItem('language', lang);
-
-    document.dispatchEvent(
-        new CustomEvent('languageChanged', {
-            detail: { language: lang }
-        })
-    );
 }
 
-// Click idioma
-langEsBtn?.addEventListener('click', () => applyLanguage('es'));
-langEnBtn?.addEventListener('click', () => applyLanguage('en'));
+// Event Listeners para botones de idioma
+if (langEsBtn) langEsBtn.addEventListener('click', () => applyLanguage('es'));
+if (langEnBtn) langEnBtn.addEventListener('click', () => applyLanguage('en'));
 
-// Cargar idioma guardado
-document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('language') || 'es';
-    applyLanguage(savedLang);
-});
+// Ejecutar inmediatamente al cargar el script (porque el HTML ya se inyectó)
+const savedLang = localStorage.getItem('language') || 'es';
+applyLanguage(savedLang);
 
 // =======================
 // 4. DROPDOWN DE IDIOMAS
@@ -123,10 +129,12 @@ document.addEventListener('DOMContentLoaded', () => {
 const langDropdown = document.querySelector('.language-dropdown');
 const langSelectedBtn = document.querySelector('.lang-selected');
 
-langSelectedBtn?.addEventListener('click', e => {
-    e.stopPropagation();
-    langDropdown.classList.toggle('active-lang');
-});
+if (langSelectedBtn) {
+    langSelectedBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        if (langDropdown) langDropdown.classList.toggle('active-lang');
+    });
+}
 
 document.addEventListener('click', e => {
     if (langDropdown && !langDropdown.contains(e.target)) {
