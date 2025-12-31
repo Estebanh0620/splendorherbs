@@ -837,6 +837,13 @@ footer {
     max-width: 1000px;
     margin: 0 auto;                   /* Centrar horizontalmente */
 }
+
+/* CLASE PARA BLOQUEAR SCROLL */
+body.no-scroll {
+    overflow: hidden !important;
+    height: 100vh;
+    touch-action: none; /* Ayuda en dispositivos táctiles */
+}
 /* ================================================================= */
 /* ============= MEDIA QUERIES UNIFICADAS Y ORGANIZADAS ============= */
 /* ================================================================= */
@@ -1327,28 +1334,43 @@ footer {
 
     /* --- NUEVO: AJUSTE MODAL PARA MÓVIL --- */
     .card {
-        width: 100%;
-        max-height: 80vh; /* Un poco menos alto en móvil para que se vea la X fácil */
+        width: 95%; /* Un poco más de margen lateral */
+        max-height: 85vh; /* Altura máxima del 85% de la pantalla */
+        display: flex;
+        flex-direction: column; /* Apila imagen y texto */
+        overflow: hidden; /* Evita que la tarjeta crezca más allá del 85vh */
     }
     
     .card__img {
-        height: 220px; /* Imagen no tan alta para dar espacio al texto */
+        height: 200px; /* Altura fija para la imagen */
+        flex-shrink: 0; /* Evita que la imagen se aplaste */
     }
 
     .card__body {
-        padding: 20px; /* Menos relleno para aprovechar espacio */
+        padding: 15px 20px; /* Menos relleno para ganar espacio */
+        overflow-y: auto; /* SCROLL INTERNO: Solo el texto hace scroll */
+        flex-grow: 1; /* Ocupa el espacio restante */
     }
 
     .card__title {
-        font-size: 1.5rem; /* Título un poco más pequeño */
+        font-size: 1.4rem; /* Título más pequeño */
+        margin-bottom: 10px;
+    }
+
+    .meta {
+        font-size: 0.9rem !important; /* Texto de descripción más pequeño pero legible */
+        line-height: 1.4; /* Interlineado un poco más ajustado */
+        text-align: left !important; /* Facilita la lectura en móvil */
     }
     
     .card__close {
         top: 10px;
         right: 10px;
-        width: 35px;
-        height: 35px;
-        background: #fff; /* Asegura contraste en móvil */
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
     /* -------------------------------------- */
 }

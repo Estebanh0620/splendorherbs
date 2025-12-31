@@ -240,13 +240,19 @@
       `;
 
       resultsContainer.classList.add('active');
-      document.body.style.overflow = 'hidden'; // Bloquea scroll de fondo
+      
+      // CAMBIO AQUÍ: Usar classList para bloquear scroll
+      document.body.classList.add('no-scroll'); 
+      
       activeProductId = producto.id;
     }
 
     function closeModal() {
       resultsContainer.classList.remove('active');
-      document.body.style.overflow = ''; 
+      
+      // CAMBIO AQUÍ: Quitar la clase
+      document.body.classList.remove('no-scroll'); 
+      
       setTimeout(() => {
         resultsContainer.innerHTML = ''; 
         activeProductId = null;
