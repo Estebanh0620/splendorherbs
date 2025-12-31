@@ -1024,23 +1024,21 @@ footer {
     .procesos-mobile .img-box img { width: 100%; height: 100%; object-fit: cover; }
     
     .mobile-slider {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 0 20px 15px;
+    display: flex;
+    flex-direction: column;   /* 🔴 clave */
+    overflow-x: hidden;
+    overflow-y: auto;
+    gap: 40px;
+    scroll-snap-type: none;   /* desactiva snap horizontal */
+  }
+  .mobile-slide {
+    min-width: 100%;          /* ya no fuerza ancho horizontal */
+    scroll-snap-align: none;
+  }
 
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
+
 }
 
-    .mobile-slide {
-        min-width: 100%;
-        padding: 0 10px;
-        box-sizing: border-box;
-        scroll-snap-align: center; /* Centrar slide al hacer scroll */
-        text-align: center; /* Centrar contenido */
-    }
     .mobile-slide h3 { margin-top: 5px; font-size: 1.5rem; margin-bottom: 10px; }
     .mobile-slide p { font-size: 1rem; line-height: 1.5; color: #555; }
     .mobile-slider::-webkit-scrollbar { display: all; }
