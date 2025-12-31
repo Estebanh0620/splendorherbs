@@ -4,97 +4,86 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Hierbas aromáticas | Aromatic Herbs</title>
+
+  <!-- Fuentes e iconos -->
   <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- CSS (ruta corregida) -->
+  <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
+
   <!-- Header dinámico -->
   <div id="header"></div>
 
   <main class="main-content">
+
     <!-- HERO -->
     <section class="galeria-simple-header">
-        <h2 data-es="HIERBAS AROMÁTICAS" data-en="AROMATIC HERBS">HIERBAS AROMÁTICAS</h2>
-        <!-- SEPARADOR -->
-        <div class="separator-leaf">
-            <span class="line"></span>
-            <i class="fas fa-leaf"></i>
-            <span class="line"></span>
-        </div>
+      <h2 data-es="HIERBAS AROMÁTICAS" data-en="AROMATIC HERBS">
+        HIERBAS AROMÁTICAS
+      </h2>
+
+      <div class="separator-leaf">
+        <span class="line"></span>
+        <i class="fas fa-leaf"></i>
+        <span class="line"></span>
+      </div>
     </section>
 
-    <!-- Catálogo de tiles -->
+    <!-- Catálogo -->
     <section class="catalogo">
       <div class="catalogo__intro">
-        <h2 data-es="Selecciona una hierba para ver su ficha técnica" 
+        <h2 data-es="Selecciona una hierba para ver su ficha técnica"
             data-en="Select an herb to see its technical sheet">
-            Selecciona una hierba para ver su ficha técnica
+          Selecciona una hierba para ver su ficha técnica
         </h2>
       </div>
 
-      <div class="tiles" id="tiles">
-        <!-- Tiles generados por JS -->
-      </div>
+      <div class="tiles" id="tiles"></div>
     </section>
 
-    <!-- Ficha seleccionada -->
-    <section class="results" id="results">
-      <!-- Contenido dinámico -->
-    </section>
+    <!-- Ficha -->
+    <section class="results" id="results"></section>
+
   </main>
 
-  <!-- Footer dinámico -->
+  <!-- Footer -->
   <div id="footer"></div>
 
-  <!-- Cargar header/footer y menú -->
+  <!-- ================= HEADER / FOOTER ================= -->
   <script>
-  // 1. Recuperar idioma correcto (language)
-  let currentLang = localStorage.getItem('language') || 'es';
+    let currentLang = localStorage.getItem('language') || 'es';
 
-  async function loadHTML(id, file, callback) {
-    try {
-      const res = await fetch(file);
-      if (!res.ok) throw new Error(`No se pudo cargar ${file}`);
-      const text = await res.text();
-      document.getElementById(id).innerHTML = text;
-      if (callback) callback();
-    } catch (err) {
-      console.error(err);
-    }
-  }
-
-  loadHTML('header', '/html/header.html', () => {
-    const script = document.createElement('script');
-    script.src = '/js/menus.js';
-    document.body.appendChild(script);
-
-    setTimeout(() => {
-      // Intentar sincronizar idioma tras cargar menú
-      // (Por si el menú tiene su propia lógica inicial)
-      if(window.checkLanguage) window.checkLanguage();
-      
-      const toggle = document.querySelector('.menu-toggle');
-      const nav = document.querySelector('.nav-links');
-      if (toggle && nav) {
-        toggle.addEventListener('click', () => {
-          nav.classList.toggle('active');
-          toggle.classList.toggle('open');
-        });
+    async function loadHTML(id, file, callback) {
+      try {
+        const res = await fetch(file);
+        if (!res.ok) throw new Error(`No se pudo cargar ${file}`);
+        document.getElementById(id).innerHTML = await res.text();
+        if (callback) callback();
+      } catch (err) {
+        console.error(err);
       }
-    }, 200);
-  });
+    }
 
-  loadHTML('footer', '/html/footer.html');
+    loadHTML('header', 'header.html', () => {
+      const script = document.createElement('script');
+      script.src = '../js/menus.js';
+      document.body.appendChild(script);
+
+      if (window.checkLanguage) window.checkLanguage();
+    });
+
+    loadHTML('footer', 'footer.html');
   </script>
 
-  <!-- Lógica de Hierbas Bilingüe -->
+  <!-- ================= LÓGICA DE HIERBAS ================= -->
   <script>
-    // 2. CONFIGURACIÓN DE DATOS BILINGÜES
     const HIERBAS = [
       {
         id: "menta",
-        imagen: "/img/Menta.jpg",
+        imagen: "../img/Menta.jpg",
         es: {
           nombre: "Menta",
           descripcion: "Refrescante, aromática y vibrante. La menta es el toque perfecto para tus jugos, postres, aguas frescas y cocteles. Ideal para calmar el estómago y aportar frescura natural a tus recetas diarias. ¡Un imprescindible en toda cocina!",
@@ -108,143 +97,56 @@
       },
       {
         id: "romero",
-        imagen: "/img/Romero.jpg",
+        imagen: "../img/Romero.jpg",
         es: {
           nombre: "Romero",
-          descripcion: "Potente, aromático y lleno de sabor. El romero realza carnes, papas, panes, salsas y asados. Su fragancia mediterránea transforma cualquier plato. ¡El secreto para cocinar con aroma gourmet todos los días!",
+          descripcion: "Potente, aromático y lleno de sabor. El romero realza carnes, papas, panes, salsas y asados. Su fragancia mediterránea transforma cualquier plato.",
           variedad: "Común"
         },
         en: {
           nombre: "Rosemary",
-          descripcion: "Bold, aromatic, and full of character. Rosemary enhances meats, potatoes, breads, sauces, and roasted dishes. Its Mediterranean fragrance transforms any recipe. The secret to gourmet flavor at home.",
+          descripcion: "Bold, aromatic, and full of character. Rosemary enhances meats, potatoes, breads, sauces, and roasted dishes.",
           variedad: "Common"
         }
       },
       {
         id: "oregano",
-        imagen: "/img/Orégano.jpg",
+        imagen: "../img/Orégano.jpg",
         es: {
           nombre: "Orégano",
-          descripcion: "Tu aliado perfecto en pastas, pizzas, sopas y adobos. Su aroma intenso y sabor cálido elevan cualquier receta casera. ¡Un clásico que nunca puede faltar!",
+          descripcion: "Tu aliado perfecto en pastas, pizzas, sopas y adobos. Su aroma intenso y sabor cálido elevan cualquier receta casera.",
           variedad: "Mediterráneo"
         },
         en: {
           nombre: "Oregano",
-          descripcion: "The perfect companion for pastas, pizzas, soups, and marinades. Its warm aroma and robust flavor elevate homemade meals. A timeless classic you can’t cook without.",
+          descripcion: "The perfect companion for pastas, pizzas, soups, and marinades.",
           variedad: "Mediterranean"
         }
       },
       {
-        id: "mejorana",
-        imagen: "/img/Mejorana.jpg",
-        es: {
-          nombre: "Mejorana",
-          descripcion: "Dulce, suave y con notas florales. Perfecta para guisos, vegetales, salsas y carnes blancas. Aporta un toque delicado que conquista paladares. ¡Ideal para recetas caseras que se sienten “hechas con amor”!",
-          variedad: "Dulce"
-        },
-        en: {
-          nombre: "Marjoram",
-          descripcion: "Mild, sweet, and delicately floral. Ideal for stews, vegetables, sauces, and white meats. Adds a gentle flavor that delights the palate. Perfect for recipes made with love.",
-          variedad: "Sweet"
-        }
-      },
-      {
-        id: "estragon",
-        imagen: "/img/Estragón.jpg",
-        es: {
-          nombre: "Estragón",
-          descripcion: "Elegante y aromático. El estragón aporta un sabor único a ensaladas, salsas cremosas y pescados. Su toque anisado lo hace perfecto para cocina fina y platos especiales. ¡Un sabor exclusivo para tu mesa!",
-          variedad: "Francés"
-        },
-        en: {
-          nombre: "Tarragon",
-          descripcion: "Elegant and aromatic. Tarragon brings a unique, slightly anise-like flavor to salads, creamy sauces, and fish dishes. Ideal for refined and special recipes. An exclusive touch for your table.",
-          variedad: "French"
-        }
-      },
-      {
-        id: "laurel",
-        imagen: "/img/Laurel.jpg",
-        es: {
-          nombre: "Laurel",
-          descripcion: "Hojas que perfuman todo. Perfectas para sopas, arroces, fríjoles, carnes y guisos. El laurel libera aroma lentamente y transforma tus recetas en platillos llenos de sabor profundo. ¡Tu cocina, pero mejor!",
-          variedad: "Común"
-        },
-        en: {
-          nombre: "Bay Leaf",
-          descripcion: "Leaves that slowly release deep aroma. Perfect for soups, rice, beans, meats, and stews. Bay leaves enrich dishes with rich, comforting flavor. Your cooking—taken to the next level.",
-          variedad: "Common"
-        }
-      },
-      {
-        id: "eneldo",
-        imagen: "/img/Eneldo.jpg",
-        es: {
-          nombre: "Eneldo",
-          descripcion: "Fresco y cítrico. Ideal para pescados, ensaladas, salsas, dips y encurtidos. Su sabor ligero ilumina cualquier plato. ¡Perfecto para recetas frescas y modernas!",
-          variedad: "Fino"
-        },
-        en: {
-          nombre: "Dill",
-          descripcion: "Fresh and lightly citrusy. Ideal for fish, salads, sauces, dips, and pickles. Its delicate flavor brightens any dish. Perfect for fresh and modern recipes.",
-          variedad: "Fine"
-        }
-      },
-      {
-        id: "tomillo",
-        imagen: "/img/Tomillo.jpg",
-        es: {
-          nombre: "Tomillo",
-          descripcion: "Aromático, versátil y robusto. Recomendado para carnes, pollo, vegetales, panes y marinadas. Un toque de tomillo convierte recetas simples en platos llenos de personalidad. ¡Sabor casero con estilo!",
-          variedad: "Común"
-        },
-        en: {
-          nombre: "Thyme",
-          descripcion: "Aromatic, versatile, and robust. Perfect for meats, chicken, vegetables, breads, and marinades. A touch of thyme turns simple dishes into flavorful creations. Homestyle flavor with character.",
-          variedad: "Common"
-        }
-      },
-      {
         id: "albahaca",
-        imagen: "/img/Albahaca.jpg",
+        imagen: "../img/Albahaca.jpg",
         es: {
           nombre: "Albahaca",
-          descripcion: "Dulce y fragante. Imprescindible para pastas, pesto, pizzas, ensaladas y bebidas. Su aroma fresco despierta todos los sentidos. ¡Sabe a cocina fresca y natural!",
+          descripcion: "Dulce y fragante. Imprescindible para pastas, pesto, pizzas, ensaladas y bebidas.",
           variedad: "Genovesa"
         },
         en: {
           nombre: "Basil",
-          descripcion: "Sweet and fragrant. Essential for pastas, pesto, pizzas, salads, and drinks. Its fresh aroma awakens the senses. The taste of fresh, natural cooking.",
+          descripcion: "Sweet and fragrant. Essential for pastas, pesto, pizzas, salads, and drinks.",
           variedad: "Genovese"
-        }
-      },
-      {
-        id: "hierbabuena",
-        imagen: "/img/Hierbabuena.jpg",
-        es: {
-          nombre: "Hierbabuena",
-          descripcion: "Refrescante, aromática y deliciosa. Perfecta para limonadas, cocteles, infusiones y postres. También realza sopas y platos tradicionales. ¡Un toque verde que enamora!",
-          variedad: "Común"
-        },
-        en: {
-          nombre: "Spearmint",
-          descripcion: "Refreshing, aromatic, and delicious. Perfect for lemonades, cocktails, infusions, and desserts. Also enhances traditional savory dishes. A fresh green touch you’ll fall in love with.",
-          variedad: "Common"
         }
       }
     ];
 
-    // Etiquetas estáticas para la ficha
     const LABELS = {
       es: {
         variety: "Variedad",
-        origin: "Origen",
         empty: "Haz clic en una hierba para ver su ficha técnica.",
         close: "Cerrar"
       },
       en: {
         variety: "Variety",
-        origin: "Origin",
         empty: "Click on an herb to see its details.",
         close: "Close"
       }
@@ -252,137 +154,79 @@
 
     const tilesContainer = document.getElementById('tiles');
     const resultsContainer = document.getElementById('results');
-    
-    // Control de ficha activa
     let activeProductId = null;
 
-    // Actualizar Textos Estáticos (H2, P del HTML principal)
     function updateStaticText() {
-      const elements = document.querySelectorAll('[data-es]');
-      elements.forEach(el => {
-        const text = el.getAttribute(`data-${currentLang}`);
-        if (text) el.innerText = text;
+      document.querySelectorAll('[data-es]').forEach(el => {
+        el.innerText = el.getAttribute(`data-${currentLang}`);
       });
     }
 
-    // Mostrar mensaje de vacío
-    function showEmpty(){
+    function showEmpty() {
       activeProductId = null;
       resultsContainer.innerHTML = `<p class="empty">${LABELS[currentLang].empty}</p>`;
     }
-    
-    // Crear Ficha Grande
-    function createCard(producto){
-      const dataLang = producto[currentLang];
-      const lbl = LABELS[currentLang];
-      const errorFallback = `this.onerror=null;this.src='/img/${producto.es.nombre}.png'`;
-      
-      const card = document.createElement('article');
-      card.className = 'card';
-      card.innerHTML = `
-        <button class="card__close" aria-label="${lbl.close}">✕</button>
-        <img class="card__img" src="${producto.imagen}" onerror="${errorFallback}" alt="${dataLang.nombre}">
-        <div class="card__body">
-          <h3 class="card__title"><span class="badge"></span> ${dataLang.nombre}</h3>
-          <p class="meta">${dataLang.descripcion}</p>
-          <p class="meta"><b>${lbl.variety}:</b> ${dataLang.variedad}</p>
-        </div>
+
+    function createCard(producto) {
+      const d = producto[currentLang];
+      return `
+        <article class="card">
+          <button class="card__close">✕</button>
+          <img class="card__img" src="${producto.imagen}" alt="${d.nombre}">
+          <div class="card__body">
+            <h3 class="card__title">${d.nombre}</h3>
+            <p class="meta">${d.descripcion}</p>
+            <p class="meta"><b>${LABELS[currentLang].variety}:</b> ${d.variedad}</p>
+          </div>
+        </article>
       `;
-      return card;
     }
 
-    // Renderizar Tiles (Miniaturas)
     function renderTiles() {
       tilesContainer.innerHTML = '';
-      if (HIERBAS.length === 0) {
-        tilesContainer.innerHTML = '<p class="empty">No data.</p>';
-        return;
-      }
-
-      HIERBAS.forEach(producto => {
-        const dataLang = producto[currentLang];
-        const tile = document.createElement('div');
-        tile.className = 'tile';
-        tile.dataset.id = producto.id; // Usamos ID para identificar
-        
-        const errorFallback = `this.onerror=null;this.src='/img/${producto.es.nombre}.png'`;
-
-        tile.innerHTML = `
-          <img src="${producto.imagen}" onerror="${errorFallback}" alt="${dataLang.nombre}">
-          <div class="tile__label">${dataLang.nombre}</div>
+      HIERBAS.forEach(p => {
+        tilesContainer.innerHTML += `
+          <div class="tile" data-id="${p.id}">
+            <img src="${p.imagen}" alt="${p[currentLang].nombre}">
+            <div class="tile__label">${p[currentLang].nombre}</div>
+          </div>
         `;
-        tilesContainer.appendChild(tile);
       });
     }
 
-    // Función principal de Cambio de Idioma
     function setLanguage(lang) {
-      if (lang !== 'es' && lang !== 'en') return;
       currentLang = lang;
-      
-      // 1. HTML Estático
       updateStaticText();
-      
-      // 2. Tiles (nombres debajo de foto)
       renderTiles();
 
-      // 3. Ficha activa (si hay una abierta)
       if (activeProductId) {
-        const ficha = HIERBAS.find(f => f.id === activeProductId);
-        if (ficha) {
-          resultsContainer.innerHTML = '';
-          resultsContainer.appendChild(createCard(ficha));
-        }
+        const p = HIERBAS.find(h => h.id === activeProductId);
+        resultsContainer.innerHTML = createCard(p);
       } else {
         showEmpty();
       }
     }
 
-    // --- EVENTOS INTERNOS ---
-
-    // Clic en Tile
-    tilesContainer.addEventListener('click', (e) => {
+    tilesContainer.addEventListener('click', e => {
       const tile = e.target.closest('.tile');
-      if(!tile) return;
+      if (!tile) return;
 
-      const id = tile.dataset.id;
-      const ficha = HIERBAS.find(f => f.id === id);
-      
-      if (ficha) {
-        activeProductId = id;
-        resultsContainer.innerHTML = ''; 
-        const card = createCard(ficha);
-        resultsContainer.appendChild(card);
-        card.scrollIntoView({behavior:'smooth', block:'center'});
-      }
+      const p = HIERBAS.find(h => h.id === tile.dataset.id);
+      activeProductId = p.id;
+      resultsContainer.innerHTML = createCard(p);
+      resultsContainer.scrollIntoView({ behavior: 'smooth' });
     });
 
-    // Cerrar Ficha
-    resultsContainer.addEventListener('click', (e) => {
-      if(e.target.matches('.card__close')) showEmpty();
+    resultsContainer.addEventListener('click', e => {
+      if (e.target.classList.contains('card__close')) showEmpty();
     });
 
-    // Clic fuera cierra
-    document.addEventListener('click', (e) => {
-      const card = resultsContainer.querySelector('.card');
-      if(!card) return; 
-      const clickedInsideCard = e.composedPath().includes(card);
-      const clickedTile = e.target.closest('.tile');
-      if(!clickedInsideCard && !clickedTile) showEmpty();
+    document.addEventListener('languageChanged', e => {
+      if (e.detail?.language) setLanguage(e.detail.language);
     });
 
-    // --- INICIALIZACIÓN Y CONEXIÓN CON MENÚ ---
-    
-    // 1. Cargar estado inicial
     setLanguage(currentLang);
-
-    // 2. Escuchar evento desde menus.js
-    document.addEventListener('languageChanged', (e) => {
-       if(e.detail && e.detail.language) {
-         setLanguage(e.detail.language);
-       }
-    });
-
   </script>
+
 </body>
 </html>

@@ -4,38 +4,35 @@
         <nav class="navbar">
 
             <div class="language-dropdown">
-    <button class="lang-selected" type="button" aria-label="Seleccionar idioma">
-        
-        <!-- Contenido dinámico (Bandera + Texto) -->
-        <span id="current-lang-display" class="current-content">
-            <img src="/img/co.png" alt="Bandera">
-            <span>ESP</span>
-        </span>
-        
-        <!-- Flecha -->
-        <i class="fas fa-chevron-down arrow-icon"></i>
-    </button>
+                <button class="lang-selected" type="button" aria-label="Seleccionar idioma">
+                    <span id="current-lang-display" class="current-content">
+                        <img src="../img/co.png" alt="Bandera">
+                        <span>ESP</span>
+                    </span>
+                    <i class="fas fa-chevron-down arrow-icon"></i>
+                </button>
 
-    <!-- Lista desplegable -->
-    <div class="lang-options">
-        <button id="lang-es" class="lang-option" type="button">
-            <img src="/img/co.png" alt="Colombia">
-            <span>Español</span>
-        </button>
+                <div class="lang-options">
+                    <button id="lang-es" class="lang-option" type="button">
+                        <img src="../img/co.png" alt="Colombia">
+                        <span>Español</span>
+                    </button>
 
-        <button id="lang-en" class="lang-option" type="button">
-            <img src="/img/us.png" alt="USA">
-            <span>English</span>
-        </button>
-    </div>
-</div>
-
-            <!-- Logo Mobile (Izquierda) -->
-            <div class="logo-mobile">
-                <a href="/index.html"><img src="/img/logo.png" alt="Logo"></a>
+                    <button id="lang-en" class="lang-option" type="button">
+                        <img src="../img/us.png" alt="USA">
+                        <span>English</span>
+                    </button>
+                </div>
             </div>
 
-            <!-- Botón Hamburguesa (Derecha en móvil) -->
+            <!-- Logo Mobile -->
+            <div class="logo-mobile">
+                <a href="../index.html">
+                    <img src="../img/logo.png" alt="Logo">
+                </a>
+            </div>
+
+            <!-- Botón Hamburguesa -->
             <div class="menu-toggle" id="mobile-menu-btn">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -45,49 +42,44 @@
             <!-- Menú Desktop -->
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="/index.html" class="nav-link" data-es="Inicio" data-en="Home">INICIO</a>
+                    <a href="../index.html" class="nav-link" data-es="Inicio" data-en="Home">INICIO</a>
                 </li>
 
-                <!-- Submenú Nosotros -->
                 <li class="nav-item dropdown">
-                    <a href="javascript:void(0);" class="nav-link" data-es="Nosotros" data-en="About Us">NOSOTROS <i
-                            class="fas fa-chevron-down arrow-icon"></i></a>
+                    <a href="javascript:void(0);" class="nav-link" data-es="Nosotros" data-en="About Us">
+                        NOSOTROS <i class="fas fa-chevron-down arrow-icon"></i>
+                    </a>
                     <div class="dropdown-content">
-                        <a href="/html/valores.html" data-es="Nuestros Valores" data-en="Our Values">NUESTROS
-                            VALORES</a>
-                        <a href="/html/porquestn.html" data-es="¿Por qué elegirnos?" data-en="Why Choose Us?">¿POR QUE
-                            ELEGIRNOS?</a>
-                        <a href="/html/galeria.html" data-es="Galería" data-en="Gallery">GALERIA</a>
+                        <a href="../html/valores.html">NUESTROS VALORES</a>
+                        <a href="../html/porquestn.html">¿POR QUÉ ELEGIRNOS?</a>
+                        <a href="../html/galeria.html">GALERÍA</a>
                     </div>
                 </li>
 
-                <!-- Logo Central (Escritorio) -->
+                <!-- Logo Central -->
                 <li class="nav-item logo-desktop">
-                    <a href="/index.html"><img src="/img/logo.png" alt="Logo Central"></a>
+                    <a href="../index.html">
+                        <img src="../img/logo.png" alt="Logo Central">
+                    </a>
                 </li>
 
-                <!-- Submenú Productos -->
                 <li class="nav-item dropdown">
-                    <a href="javascript:void(0);" class="nav-link" data-es="Productos" data-en="Products">PRODUCTOS <i
-                            class="fas fa-chevron-down arrow-icon"></i></a>
+                    <a href="javascript:void(0);" class="nav-link">
+                        PRODUCTOS <i class="fas fa-chevron-down arrow-icon"></i>
+                    </a>
                     <div class="dropdown-content">
-                        <a href="/html/hortalizas.html" data-es="Hortalizas Frescas"
-                            data-en="Fresh Vegetables">HORTALIZAS FRESCAS</a>
-                        <a href="/html/hierbas.html" data-es="Hierbas Aromáticas" data-en="Aromatic Herbs">HIERBAS
-                            AROMATICAS</a>
-                        <a href="/html/procesos.html" data-es="Procesos" data-en="Processes">PROCESOS</a>
+                        <a href="../html/hortalizas.html">HORTALIZAS FRESCAS</a>
+                        <a href="../html/hierbas.html">HIERBAS AROMÁTICAS</a>
+                        <a href="../html/procesos.html">PROCESOS</a>
                     </div>
                 </li>
 
                 <li class="nav-item">
-                    <a href="/html/contacto.html" class="nav-link" data-es="Contactanos"
-                        data-en="Contact Us">CONTACTANOS</a>
+                    <a href="../html/contacto.html" class="nav-link">CONTÁCTANOS</a>
                 </li>
-                
             </ul>
         </nav>
     </div>
 </header>
 
-<!-- OVERLAY MÓVIL -->
 <div class="menu-overlay" id="menu-overlay"></div>
