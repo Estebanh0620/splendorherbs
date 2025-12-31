@@ -6,21 +6,22 @@
             <div class="language-dropdown">
                 <button class="lang-selected" type="button" aria-label="Seleccionar idioma">
                     <span id="current-lang-display" class="current-content">
-                        <!-- AGREGADO id="current-lang-flag" -->
-                        <img id="current-lang-flag" src="/splendorherbs/img/co.png" alt="Bandera">
-                        <!-- AGREGADO id="current-lang-text" -->
-                        <span id="current-lang-text">ESP</span>
+                        <!-- CAMBIO: Ruta absoluta -->
+                        <img src="/splendorherbs/img/co.png" alt="Bandera">
+                        <span>ESP</span>
                     </span>
                     <i class="fas fa-chevron-down arrow-icon"></i>
                 </button>
 
                 <div class="lang-options">
                     <button id="lang-es" class="lang-option" type="button">
+                        <!-- CAMBIO: Ruta absoluta -->
                         <img src="/splendorherbs/img/co.png" alt="Colombia">
                         <span>Español</span>
                     </button>
 
                     <button id="lang-en" class="lang-option" type="button">
+                        <!-- CAMBIO: Ruta absoluta -->
                         <img src="/splendorherbs/img/us.png" alt="USA">
                         <span>English</span>
                     </button>
@@ -29,6 +30,7 @@
 
             <!-- Logo Mobile -->
             <div class="logo-mobile">
+                <!-- CAMBIO: Ruta absoluta al index y a la imagen -->
                 <a href="/splendorherbs/index.html">
                     <img src="/splendorherbs/img/logo.png" alt="Logo">
                 </a>
@@ -44,6 +46,7 @@
             <!-- Menú Desktop -->
             <ul class="nav-menu">
                 <li class="nav-item">
+                    <!-- CAMBIO: Ruta absoluta -->
                     <a href="/splendorherbs/index.html" class="nav-link" data-es="Inicio" data-en="Home">INICIO</a>
                 </li>
 
@@ -52,6 +55,7 @@
                         NOSOTROS <i class="fas fa-chevron-down arrow-icon"></i>
                     </a>
                     <div class="dropdown-content">
+                        <!-- CAMBIOS: Rutas absolutas a las páginas internas -->
                         <a href="/splendorherbs/html/valores.html">NUESTROS VALORES</a>
                         <a href="/splendorherbs/html/porquestn.html">¿POR QUÉ ELEGIRNOS?</a>
                         <a href="/splendorherbs/html/galeria.html">GALERÍA</a>
@@ -70,6 +74,7 @@
                         PRODUCTOS <i class="fas fa-chevron-down arrow-icon"></i>
                     </a>
                     <div class="dropdown-content">
+                        <!-- CAMBIOS: Rutas absolutas -->
                         <a href="/splendorherbs/html/hortalizas.html">HORTALIZAS FRESCAS</a>
                         <a href="/splendorherbs/html/hierbas.html">HIERBAS AROMÁTICAS</a>
                         <a href="/splendorherbs/html/procesos.html">PROCESOS</a>
@@ -77,11 +82,12 @@
                 </li>
 
                 <li class="nav-item">
+                    <!-- CAMBIO: Ruta absoluta -->
                     <a href="/splendorherbs/html/contacto.html" class="nav-link">CONTÁCTANOS</a>
                 </li>
             </ul>
         </nav>
     </div>
 </header>
-<!-- ELIMINADO EL DIV overlay DE AQUI, SE GENERA MEJOR EN EL BODY PRINCIPAL O SE DEJA, PERO CUIDADO CON DUPLICADOS -->
+
 <div class="menu-overlay" id="menu-overlay"></div>

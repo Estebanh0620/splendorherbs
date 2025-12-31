@@ -116,18 +116,16 @@
     loadHTML('footer', '/splendorherbs/html/footer.html');
 
     function setLanguage(lang) {
-  currentLang = lang;
+      currentLang = lang;
 
-  // 1. Textos normales (Títulos, labels, botones)
-  document.querySelectorAll('[data-es]').forEach(el => {
-    el.innerText = el.getAttribute(`data-${lang}`);
-  });
+      document.querySelectorAll('[data-es]').forEach(el => {
+        el.innerText = el.getAttribute(`data-${lang}`);
+      });
 
-  // 2. Placeholders (Inputs del formulario)
-  document.querySelectorAll('[data-ph-es]').forEach(el => {
-    el.placeholder = el.getAttribute(`data-ph-${lang}`);
-  });
-}
+      document.querySelectorAll('[data-ph-es]').forEach(el => {
+        el.placeholder = el.getAttribute(`data-ph-${lang}`);
+      });
+    }
 
     setLanguage(currentLang);
 
