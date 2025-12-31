@@ -5,17 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gracias | Splendor Herbs</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Fuentes de Google -->
+  <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Tu CSS global -->
   <link rel="stylesheet" href="/splendorherbs/css/styles.css">
 
   <style>
+    /* Variables de color basadas en tu marca */
+    :root {
+      --primary-green: #13854b;
+      --dark-green: #0e6338;
+      --bg-light: #f0fdf4;
+      --text-dark: #2c3e50;
+      --text-gray: #555555;
+      --shadow: 0 10px 30px rgba(19, 133, 75, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      background: #f6faf7;
-      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: var(--bg-light);
+      background-image: radial-gradient(#e1f5e8 1px, transparent 1px);
+      background-size: 20px 20px; /* Patrón sutil de fondo */
+      font-family: 'Montserrat', sans-serif; /* Fuente cargada */
       margin: 0;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      color: var(--text-dark);
     }
 
     main {
@@ -23,40 +43,101 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 40px 20px;
-      text-align: center;
+      padding: 20px;
+      width: 100%;
     }
 
+    /* Tarjeta contenedora */
     .thankyou-box {
-      background: #eaf7ef;
-      border: 2px solid #bfe6cf;
-      border-radius: 10px;
-      padding: 40px;
-      max-width: 600px;
-    }
-
-    .thankyou-box h1 {
-      color: #13854b;
-      font-weight: 400;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 50px 40px;
+      width: 100%;
+      max-width: 550px; /* Ancho máximo para escritorio */
+      text-align: center;
+      box-shadow: var(--shadow);
+      border-bottom: 5px solid var(--primary-green); /* Detalle de color */
+      
+      /* Animación de entrada */
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease forwards;
     }
 
     .thankyou-box img {
-      width: 100px;
-      margin-bottom: 20px;
+      width: 120px;
+      height: auto;
+      margin-bottom: 25px;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
     }
 
+    .thankyou-box h1 {
+      font-family: 'Belanosima', sans-serif; /* Fuente para títulos */
+      color: var(--primary-green);
+      font-size: 2.2rem;
+      margin: 0 0 15px 0;
+      line-height: 1.2;
+    }
+
+    .thankyou-box p {
+      color: var(--text-gray);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 35px;
+    }
+
+    /* Botón mejorado */
     .btn {
-      background: #1a8b59;
+      background: var(--primary-green);
       color: #fff;
-      padding: 12px 28px;
-      border-radius: 6px;
+      padding: 15px 40px;
+      border-radius: 50px;
       text-decoration: none;
       font-weight: 600;
+      font-size: 1rem;
       display: inline-block;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(19, 133, 75, 0.3);
     }
 
     .btn:hover {
-      background: #167048;
+      background: var(--dark-green);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(19, 133, 75, 0.4);
+    }
+
+    /* Keyframes para animación */
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* RESPONSIVE: Ajustes para móviles */
+    @media (max-width: 600px) {
+      .thankyou-box {
+        padding: 30px 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      .thankyou-box h1 {
+        font-size: 1.8rem;
+      }
+
+      .thankyou-box img {
+        width: 100px;
+      }
+
+      .thankyou-box p {
+        font-size: 1rem;
+      }
+      
+      .btn {
+        width: 100%; /* Botón ancho completo en celular */
+        padding: 15px;
+      }
     }
   </style>
 </head>
@@ -67,24 +148,35 @@
 <main>
   <div class="thankyou-box">
     <img src="/splendorherbs/img/Logo Splendor Herbs.png" alt="Splendor Herbs Logo">
+    
     <h1>¡Gracias por contactarnos!</h1>
+    
     <p>
       Hemos recibido tu mensaje correctamente.<br>
       Nuestro equipo te responderá lo antes posible.
     </p>
 
-    <a href="/splendorherbs/html/contacto.html" class="btn">Volver</a>
+    <a href="/splendorherbs/html/contacto.html" class="btn">Volver al sitio</a>
   </div>
 </main>
 
 <div id="footer"></div>
 
 <script>
+  // Script original optimizado
   async function loadHTML(id, file, callback) {
-    const res = await fetch(file);
-    const text = await res.text();
-    document.getElementById(id).innerHTML = text;
-    if (callback) callback();
+    try {
+      const res = await fetch(file);
+      if (res.ok) {
+        const text = await res.text();
+        document.getElementById(id).innerHTML = text;
+        if (callback) callback();
+      } else {
+        console.error('Error cargando ' + file);
+      }
+    } catch (e) {
+      console.error('Error de conexión:', e);
+    }
   }
 
   loadHTML('header', '/splendorherbs/html/header.html', () => {
