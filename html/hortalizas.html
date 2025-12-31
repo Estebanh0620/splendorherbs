@@ -98,19 +98,13 @@
         imagen: "/img/Lechuga.jpg",
         es: {
           nombre: "Lechuga",
-          descripcion: "Hortaliza de hojas verdes y crujientes, baja en calorías y base esencial de ensaladas frescas.",
-          variedad: "Crespa",
-          origen: "Cundinamarca, Colombia",
-          empaque: "12 / 18 / 20 unidades por caja",
-          temperatura: "32°F - 36°F (0°C – 2°C)"
+          descripcion: "Crujiente, fresca y perfecta para acompañar cualquier comida. Úsala en ensaladas, wraps, hamburguesas o como base de platos ligeros. Aporta textura y frescura natural. ¡La favorita para comer rico y saludable!",
+          variedad: "Crespa"
         },
         en: {
           nombre: "Lettuce",
-          descripcion: "Green and crunchy leafy vegetable, low in calories and an essential base for fresh salads.",
-          variedad: "Curly",
-          origen: "Cundinamarca, Colombia",
-          empaque: "12 / 18 / 20 units per box",
-          temperatura: "32°F - 36°F (0°C – 2°C)"
+          descripcion: "Crisp, fresh, and perfect for any meal. Ideal for salads, wraps, burgers, or as a base for light dishes. Adds natural freshness and texture. A favorite for eating fresh and healthy.",
+          variedad: "Curly"
         }
       },
       {
@@ -118,19 +112,13 @@
         imagen: "/img/Cebollin.jpg",
         es: {
           nombre: "Cebollin",
-          descripcion: "De sabor suave a cebolla, se utiliza para sopas, ensaladas y como guarnición en diversos platos.",
-          variedad: "Verdeo",
-          origen: "Cundinamarca, Colombia",
-          empaque: "10 a 12 rollos por caja",
-          temperatura: "32°F - 41°F (0°C – 5°C)"
+          descripcion: "Suave, fresco y con ese toque de cebolla que todos aman. Ideal para huevos, ensaladas, sopas, cremas, arroces y dips. Aporta sabor sin abrumar. ¡Perfecto para darle vida a tus recetas de todos los días!",
+          variedad: "Verdeo"
         },
         en: {
           nombre: "Chives",
-          descripcion: "With a mild onion flavor, used for soups, salads, and as a garnish in various dishes.",
-          variedad: "Green Onion",
-          origen: "Cundinamarca, Colombia",
-          empaque: "10 to 12 bunches per box",
-          temperatura: "32°F - 41°F (0°C – 5°C)"
+          descripcion: "Mild, fresh, and delicately onion-flavored. Perfect for eggs, salads, soups, creams, rice dishes, and dips. Adds flavor without overpowering. The perfect way to elevate your everyday recipes.",
+          variedad: "Green Onion"
         }
       },
       {
@@ -138,19 +126,13 @@
         imagen: "/img/Cilantro.jpg",
         es: {
           nombre: "Cilantro",
-          descripcion: "Hierba de sabor fuerte y fresco, usada en salsas, sopas y cocina tradicional latinoamericana.",
-          variedad: "Común",
-          origen: "Tolima / Santander, Colombia",
-          empaque: "14 a 16 lb por caja",
-          temperatura: "32°F - 41°F (0°C – 5°C)"
+          descripcion: "Fresco, aromático y lleno de sabor. El cilantro es el toque indispensable en sopas, guisos, arroces, tacos, salsas y todo tipo de platos caseros. Su aroma auténtico realza cualquier receta. ¡Un clásico infaltable en la cocina colombiana!",
+          variedad: "Común"
         },
         en: {
           nombre: "Cilantro",
-          descripcion: "Herb with a strong and fresh flavor, used in sauces, soups, and traditional Latin American cuisine.",
-          variedad: "Common",
-          origen: "Tolima / Santander, Colombia",
-          empaque: "14 to 16 lb per box",
-          temperatura: "32°F - 41°F (0°C – 5°C)"
+          descripcion: "Fresh, aromatic, and full of flavor. Cilantro is an essential ingredient in soups, stews, rice dishes, tacos, sauces, and homemade meals. Its authentic aroma enhances every recipe. A must-have classic in Latin and international kitchens.",
+          variedad: "Common"
         }
       },
       {
@@ -158,7 +140,7 @@
         imagen: "/img/Perejil.jpg",
         es: {
           nombre: "Perejil",
-          descripcion: "Planta de hojas verdes, muy nutritiva, empleada como condimento, en guarniciones y jugos verdes.",
+          descripcion: "Limpio, verde y versátil. Ideal para sazonar carnes, pastas, ensaladas, adobos y salsas. Aporta un sabor fresco y ligero que complementa todo tipo de preparaciones. ¡Un toque saludable y aromático para tus platos diarios!",
           variedad: "Liso",
           origen: "Valle del Cauca / Antioquia, Colombia",
           empaque: "14 a 16 lb por caja",
@@ -166,11 +148,8 @@
         },
         en: {
           nombre: "Parsley",
-          descripcion: "Green leafy plant, highly nutritious, used as a seasoning, in garnishes, and green juices.",
-          variedad: "Flat leaf",
-          origen: "Valle del Cauca / Antioquia, Colombia",
-          empaque: "14 to 16 lb per box",
-          temperatura: "32°F - 41°F (0°C – 5°C)"
+          descripcion: "Bright, green, and incredibly versatile. Perfect for seasoning meats, pastas, salads, marinades, and sauces. It adds a fresh, light flavor that complements any dish. A healthy and aromatic touch for everyday cooking.",
+          variedad: "Flat leaf"
         }
       }
     ];
@@ -180,16 +159,12 @@
       es: {
         variety: "Variedad",
         origin: "Origen",
-        packing: "Empaque",
-        temp: "Temperatura de almacenamiento",
         empty: "Haz clic en una hortaliza para ver su ficha.",
         close: "Cerrar"
       },
       en: {
         variety: "Variety",
         origin: "Origin",
-        packing: "Packing",
-        temp: "Storage temperature",
         empty: "Click on a vegetable to see its details.",
         close: "Close"
       }
@@ -258,9 +233,6 @@
           <h3 class="card__title"><span class="badge"></span> ${dataLang.nombre}</h3>
           <p class="meta">${dataLang.descripcion}</p>
           <p class="meta"><b>${lbl.variety}:</b> ${dataLang.variedad}</p>
-          <p class="meta"><b>${lbl.origin}:</b> ${dataLang.origen}</p>
-          <p class="meta"><b>${lbl.packing}:</b> ${dataLang.empaque}</p>
-          <p class="meta"><b>${lbl.temp}:</b> ${dataLang.temperatura}</p>
         </div>
       `;
       return card;
