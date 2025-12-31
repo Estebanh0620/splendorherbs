@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <!-- CSS (ruta corregida) -->
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="/splendorherbs/css/styles.css">
 </head>
 <body>
 
@@ -83,21 +83,21 @@
     <script>
         const IMAGENES_GALERIA = {
             columna1: [
-                './img/galeria/cultivos1.png',
-                './img/galeria/cultivos2.png',
-                './img/galeria/cultivos3.png',
-                './img/galeria/cultivos4.png'
+                '/splendorherbs/img/galeria/cultivos1.png',
+                '/splendorherbs/img/galeria/cultivos2.png',
+                '/splendorherbs/img/galeria/cultivos3.png',
+                '/splendorherbs/img/galeria/cultivos4.png'
             ],
             columna2: [
-                './img/galeria/postcosecha1.png',
-                './img/galeria/postcosecha2.png',
-                './img/galeria/postcosecha3.png'
+                '/splendorherbs/img/galeria/postcosecha1.png',
+                '/splendorherbs/img/galeria/postcosecha2.png',
+                '/splendorherbs/img/galeria/postcosecha3.png'
             ],
             columna3: [
-                './img/galeria/trabajadores1.png',
-                './img/galeria/trabajadores2.png',
-                './img/galeria/trabajadores3.png',
-                './img/galeria/trabajadores4.png'
+                '/splendorherbs/img/galeria/trabajadores1.png',
+                '/splendorherbs/img/galeria/trabajadores2.png',
+                '/splendorherbs/img/galeria/trabajadores3.png',
+                '/splendorherbs/img/galeria/trabajadores4.png'
             ]
         };
 
@@ -202,13 +202,13 @@
             }
         }
 
-        loadHTML('header', './html/header.html', () => {
+        loadHTML('header', '/splendorherbs/html/header.html', () => {
             const script = document.createElement('script');
-            script.src = './js/menus.js';
+            script.src = '/splendorherbs/js/menus.js';
             document.body.appendChild(script);
         });
 
-        loadHTML('footer', './html/footer.html');
+        loadHTML('footer', '/splendorherbs/html/footer.html');
     </script>
 
 </body>
