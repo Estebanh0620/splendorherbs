@@ -23,8 +23,8 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="./css/styles.css">
+  <!-- CSS GLOBAL (incluye header) -->
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
@@ -35,20 +35,18 @@
   <main class="main-content">
 
     <!-- HERO -->
-    <section class="hero" style="background-image: url('./img/1.png');" aria-label="Presentación Splendor Herbs">
+    <section class="hero" style="background-image: url('img/1.png');" aria-label="Presentación Splendor Herbs">
       <div class="hero-overlay">
         <div class="hero-inner-content">
 
           <!-- Logo -->
           <div class="hero-col-logo">
-            <img src="./img/logo2.png" alt="Splendor Herbs - Logo oficial">
+            <img src="img/logo2.png" alt="Splendor Herbs - Logo oficial">
           </div>
 
           <!-- Texto Hero -->
           <div class="hero-col-text">
-            <h1
-              data-es="AROMÁTICAS FRESCAS CON CALIDAD Y SOSTENIBILIDAD DESDE COLOMBIA"
-              data-en="FRESH AROMATIC HERBS WITH QUALITY AND SUSTAINABILITY FROM COLOMBIA">
+            <h1>
               AROMÁTICAS FRESCAS CON<br>
               CALIDAD Y SOSTENIBILIDAD<br>
               DESDE COLOMBIA
@@ -62,10 +60,7 @@
     <!-- CONTENIDO -->
     <div class="content-container">
 
-      <!-- QUIÉNES SOMOS -->
-      <h2 class="section-title" data-es="QUIÉNES SOMOS" data-en="WHO WE ARE">
-        QUIÉNES SOMOS
-      </h2>
+      <h2 class="section-title">QUIÉNES SOMOS</h2>
 
       <div class="separator-leaf" aria-hidden="true">
         <span class="line"></span>
@@ -77,17 +72,15 @@
 
         <!-- Video -->
         <div class="split-video">
-          <video autoplay loop muted playsinline preload="metadata" aria-label="Proceso agrícola Splendor Herbs">
-            <source src="./img/videoindex.mp4" type="video/mp4">
+          <video autoplay loop muted playsinline preload="metadata">
+            <source src="img/videoindex.mp4" type="video/mp4">
             Tu navegador no soporta la reproducción de videos.
           </video>
         </div>
 
         <!-- Texto -->
         <div class="split-text">
-          <p
-            data-es="Desde 2017 nació en Madrid, Cundinamarca, Splendor Herbs SAS, una compañía dedicada al cultivo, selección y empaque de aromáticas frescas. Desde el inicio nos hemos enfocado en llevar al mundo productos de la más alta calidad, cultivados con responsabilidad, inocuidad y respeto por el medio ambiente."
-            data-en="Founded in 2017 in Madrid, Cundinamarca, Splendor Herbs SAS is a company dedicated to the cultivation, selection, and packaging of fresh aromatic herbs. From the beginning, we have focused on delivering the highest quality products to the world, grown with responsibility, safety, and respect for the environment.">
+          <p>
             Desde 2017 nació en Madrid, Cundinamarca, Splendor Herbs SAS, una compañía dedicada al cultivo, selección y
             empaque de aromáticas frescas. Desde el inicio nos hemos enfocado en llevar al mundo productos de la más
             alta calidad, cultivados con responsabilidad, inocuidad y respeto por el medio ambiente.
@@ -96,11 +89,8 @@
 
       </div>
 
-      <!-- Texto completo -->
       <div class="full-width-text">
-        <p
-          data-es="Nuestro camino ha estado marcado por el compromiso con la sostenibilidad, trabajando constantemente en reducir nuestra huella de carbono y fortalecer las buenas prácticas agrícolas. Junto a nuestros colaboradores, promovemos una cultura de aprendizaje continuo, innovación y excelencia."
-          data-en="Our journey has been defined by a strong commitment to sustainability, continuously working to reduce our carbon footprint and strengthen good agricultural practices. Together with our collaborators, we promote a culture of continuous learning, innovation, and excellence.">
+        <p>
           Nuestro camino ha estado marcado por el compromiso con la sostenibilidad, trabajando constantemente en reducir
           nuestra huella de carbono y fortalecer las buenas prácticas agrícolas. De la mano de nuestros colaboradores,
           hemos creado una cultura basada en el aprendizaje continuo, la innovación y la entrega de un producto fresco y
@@ -108,10 +98,7 @@
         </p>
       </div>
 
-      <!-- CERTIFICACIONES -->
-      <h2 class="section-title" data-es="CERTIFICACIONES" data-en="CERTIFICATIONS">
-        CERTIFICACIONES
-      </h2>
+      <h2 class="section-title">CERTIFICACIONES</h2>
 
       <div class="separator-leaf" aria-hidden="true">
         <span class="line"></span>
@@ -120,8 +107,8 @@
       </div>
 
       <div class="certificados">
-        <img src="./img/primus.png" alt="Certificación Primus GFS">
-        <img src="./img/ICA.webp" alt="Certificación ICA Colombia">
+        <img src="img/primus.png" alt="Certificación Primus GFS">
+        <img src="img/ICA.webp" alt="Certificación ICA Colombia">
       </div>
 
     </div>
@@ -144,17 +131,16 @@
       }
     }
 
-    // Header
-    loadHTML('header', './html/header.html', () => {
+    // Header (ruta segura desde dominio)
+    loadHTML('header', '/html/header.html', () => {
       const script = document.createElement('script');
-      script.src = './js/menus.js';
+      script.src = '/js/menus.js';
       document.body.appendChild(script);
     });
 
     // Footer
-    loadHTML('footer', './html/footer.html');
+    loadHTML('footer', '/html/footer.html');
   </script>
 
 </body>
 </html>
-
