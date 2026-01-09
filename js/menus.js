@@ -26,10 +26,10 @@ function applyLanguage(lang) {
 
     if (currentFlag && currentText) {
         if (lang === 'es') {
-            currentFlag.src = '/splendorherbs/img/co.png';
+            currentFlag.src = '/img/co.png';
             currentText.textContent = 'ESP';
         } else {
-            currentFlag.src = '/splendorherbs/img/us.png';
+            currentFlag.src = '/img/us.png';
             currentText.textContent = 'EN';
         }
     }
