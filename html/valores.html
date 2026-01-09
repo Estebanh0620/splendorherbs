@@ -139,15 +139,15 @@
       }
     }
 
-    // Corregido: Ruta absoluta para encontrar el header y el JS
-    loadHTML('header', '/splendorherbs/html/header.html', () => {
+   // Header (ruta segura desde dominio)
+    loadHTML('header', '/html/header.html', () => {
       const script = document.createElement('script');
-      script.src = '/splendorherbs/js/menus.js';
+      script.src = '/js/menus.js';
       document.body.appendChild(script);
     });
 
-    // Corregido: Ruta absoluta para el footer
-    loadHTML('footer', '/splendorherbs/html/footer.html');
+    // Footer
+    loadHTML('footer', '/html/footer.html');
   </script>
 
 </body>

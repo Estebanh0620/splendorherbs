@@ -94,13 +94,15 @@
       }
     }
 
-    loadHTML('header', '/splendorherbs/html/header.html', () => {
+    // Header (ruta segura desde dominio)
+    loadHTML('header', '/html/header.html', () => {
       const script = document.createElement('script');
-      script.src = '/splendorherbs/js/menus.js';
+      script.src = '/js/menus.js';
       document.body.appendChild(script);
     });
 
-    loadHTML('footer', '/splendorherbs/html/footer.html');
+    // Footer
+    loadHTML('footer', '/html/footer.html');
   </script>
 
   <!-- LÓGICA HORTALIZAS -->

@@ -156,27 +156,15 @@
     } catch (e) { console.error(e); }
   }
 
-  // 1. Cargamos el header
-  loadHTML('header', '/splendorherbs/html/header.html', () => {
-    // 2. Una vez cargado el header, cargamos el script de menús/idioma
-    const script = document.createElement('script');
-    script.src = '/splendorherbs/js/menus.js';
-    
-    // Cuando el script menus.js termine de cargar, ejecutará su lógica interna
-    // y traducirá automáticamente los elementos con data-es/data-en de esta página.
-    script.onload = () => {
-        // Forzamos una actualización inmediata por si acaso el script ya corrió
-        const savedLang = localStorage.getItem('language') || 'es';
-        if(typeof applyLanguage === 'function') {
-            applyLanguage(savedLang);
-        }
-    };
-    
-    document.body.appendChild(script);
-  });
+     // Header (ruta segura desde dominio)
+    loadHTML('header', '/html/header.html', () => {
+      const script = document.createElement('script');
+      script.src = '/js/menus.js';
+      document.body.appendChild(script);
+    });
 
-  loadHTML('footer', '/splendorherbs/html/footer.html');
-
+    // Footer
+    loadHTML('footer', '/html/footer.html');
   // TRADUCCIÓN INMEDIATA (Anti-Parpadeo)
   // Esto asegura que el mensaje se traduzca antes de que cargue el header/menus.js
   // para evitar que el usuario vea español por 1 segundo si tiene inglés seleccionado.

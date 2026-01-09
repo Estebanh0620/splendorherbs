@@ -157,15 +157,16 @@
       }
     }
 
-    loadHTML('header', '/splendorherbs/html/header.html', () => {
+     // Header (ruta segura desde dominio)
+    loadHTML('header', '/html/header.html', () => {
       const script = document.createElement('script');
-      script.src = '/splendorherbs/js/menus.js';
+      script.src = '/js/menus.js';
       document.body.appendChild(script);
-      if (window.checkLanguage) window.checkLanguage();
     });
 
-    loadHTML('footer', '/splendorherbs/html/footer.html');
-
+    // Footer
+    loadHTML('footer', '/html/footer.html');
+    
     function setLanguage(lang) {
       currentLang = lang;
 
