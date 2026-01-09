@@ -69,10 +69,10 @@ const initText = document.getElementById('current-lang-text');
 
 if (initFlag && initText) {
     if (savedLang === 'es') {
-        initFlag.src = '/splendorherbs/img/co.png';
+        initFlag.src = '/img/co.png';
         initText.textContent = 'ESP';
     } else {
-        initFlag.src = '/splendorherbs/img/us.png';
+        initFlag.src = '/img/us.png';
         initText.textContent = 'EN';
     }
 }
