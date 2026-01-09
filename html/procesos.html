@@ -386,11 +386,10 @@
         console.error(err);
       }
     }
-
-    // Cargar el header y luego inicializar el menú
-    loadHTML('header', '/splendorherbs/html/header.html', () => {
+        // Header (ruta segura desde dominio)
+    loadHTML('header', '/html/header.html', () => {
       const script = document.createElement('script');
-      script.src = '/splendorherbs/js/menus.js';
+      script.src = '/js/menus.js';
       document.body.appendChild(script);
 
       setTimeout(() => {
@@ -405,8 +404,8 @@
       }, 200);
     });
 
-    // Cargar el footer
-    loadHTML('footer', '/splendorherbs/html/footer.html');
+    // Footer
+    loadHTML('footer', '/html/footer.html');
   </script>
   <script src="/splendorherbs/js/animacion.js"></script>
 </body>
