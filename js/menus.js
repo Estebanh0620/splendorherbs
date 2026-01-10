@@ -52,7 +52,7 @@ if (initFlag && initText) {
         initFlag.src = '/img/co.png';
         initText.textContent = 'ESP';
     } else {
-        initFlag.src = 'img/us.png';
+        initFlag.src = '/img/us.png';
         initText.textContent = 'EN';
     }
 }

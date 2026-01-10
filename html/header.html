@@ -3,7 +3,7 @@
   <div class="navbar-container">
     <nav class="navbar" aria-label="Navegación principal Splendor Herbs">
 
-      <!-- Botón Menú Móvil (Faltaba esto) -->
+      <!-- Botón Menú Móvil -->
       <button id="mobile-menu-btn" class="hamburger" aria-label="Abrir menú">
         <i class="fas fa-bars"></i>
       </button>
@@ -12,22 +12,23 @@
       <div class="language-dropdown">
         <button class="lang-selected" type="button" aria-label="Seleccionar idioma">
           <span class="current-content">
-            <!-- Agregados IDs para que el JS los encuentre -->
-            <img id="current-lang-flag" src="../img/co.png" alt="Idioma">
+            <!-- CORREGIDO: src="/img/..." (Sin los dos puntos) -->
+            <img id="current-lang-flag" src="/img/co.png" alt="Idioma">
             <span id="current-lang-text">ESP</span>
           </span>
           <i class="fas fa-chevron-down arrow-icon"></i>
         </button>
 
         <div class="lang-options">
-          <!-- Agregados IDs para los eventos de click -->
           <button type="button" id="lang-es">
-            <img src="../img/co.png" alt="Español Colombia">
+            <!-- CORREGIDO -->
+            <img src="/img/co.png" alt="Español Colombia">
             <span>Español</span>
           </button>
 
           <button type="button" id="lang-en">
-            <img src="../img/us.png" alt="English United States">
+            <!-- CORREGIDO -->
+            <img src="/img/us.png" alt="English United States">
             <span>English</span>
           </button>
         </div>
@@ -36,7 +37,8 @@
       <!-- Logo Mobile -->
       <div class="logo-mobile">
         <a href="/index.html">
-          <img src="../img/logo.png" alt="Splendor Herbs">
+          <!-- CORREGIDO -->
+          <img src="/img/logo.png" alt="Splendor Herbs">
         </a>
       </div>
 
@@ -61,7 +63,8 @@
         <!-- Logo Desktop -->
         <li class="nav-item logo-desktop">
           <a href="/index.html">
-            <img src="../img/logo.png" alt="Splendor Herbs">
+            <!-- CORREGIDO -->
+            <img src="/img/logo.png" alt="Splendor Herbs">
           </a>
         </li>
 
@@ -82,7 +85,7 @@
         </li>
       </ul>
       
-      <!-- Overlay para fondo oscuro al abrir menú móvil (Faltaba esto) -->
+      <!-- Overlay -->
       <div id="menu-overlay"></div>
 
     </nav>
