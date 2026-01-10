@@ -101,68 +101,86 @@ if (overlay) {
 // -----------------------------------------------------------
 
 // =======================
-// 5. DROPDOWNS
+// 5. DROPDOWNS (CORREGIDO PARA MÓVIL)
 // =======================
 const closeAllDropdowns = () => {
+    // Cierra todos los contenidos
     document.querySelectorAll('.dropdown-content').forEach(c => c.classList.remove('show'));
+    // Resetea todas las flechas
     document.querySelectorAll('.arrow-icon').forEach(i => {
         i.classList.remove('rotate');
-        i.style.transform = '';
     });
 };
 
-dropdowns.forEach(dropdown => {
-    const link = dropdown.querySelector('.nav-link');
-    const content = dropdown.querySelector('.dropdown-content');
-    const icon = dropdown.querySelector('.arrow-icon');
+// Seleccionamos TODOS los items de navegación, no solo los que tengan clase .dropdown
+const navItems = document.querySelectorAll('.nav-item');
 
-    if (link) {
+navItems.forEach(item => {
+    const link = item.querySelector('.nav-link');
+    const content = item.querySelector('.dropdown-content');
+    const icon = item.querySelector('.arrow-icon');
+
+    // Solo aplicamos lógica si este item realmente tiene un submenú (content)
+    if (link && content) {
+        
+        // Evento Click (Principal para Móviles/Tablets)
         link.addEventListener('click', (e) => {
-            // El menú móvil se activa a los 1240px
+            // Verificamos si estamos en resolución móvil/tablet (según tu breakpoint 1240px)
             if (window.innerWidth <= 1240) {
+                // Prevenir que el enlace navegue a otra página
                 e.preventDefault();
                 e.stopPropagation();
-                const isOpen = content.classList.contains('show');
-                
-                // Cierra los otros submenús si abres uno nuevo
-                closeAllDropdowns(); 
 
+                const isOpen = content.classList.contains('show');
+
+                // Primero cerramos todo para efecto acordeón (opcional, si quieres que se cierre uno al abrir otro)
+                closeAllDropdowns();
+
+                // Si no estaba abierto, lo abrimos ahora
                 if (!isOpen) {
                     content.classList.add('show');
                     if (icon) icon.classList.add('rotate');
                 }
             }
         });
+
+        // Evento Mouseenter (Solo para lógica de escritorio si se requiere soporte híbrido)
+        item.addEventListener('mouseenter', () => {
+            if (window.innerWidth > 1240) {
+                closeAllDropdowns();
+                content.classList.add('show');
+                if (icon) icon.classList.add('rotate');
+            }
+        });
+        
+        // Evento Mouseleave (Para escritorio)
+        item.addEventListener('mouseleave', () => {
+             if (window.innerWidth > 1240) {
+                content.classList.remove('show');
+                if (icon) icon.classList.remove('rotate');
+             }
+        });
     }
-
-    dropdown.addEventListener('mouseenter', () => {
-        if (window.innerWidth > 1240 && content) {
-            closeAllDropdowns();
-            content.classList.add('show');
-            if (icon) icon.classList.add('rotate');
-        }
-    });
 });
 
-document.addEventListener('click', e => {
-    if (!e.target.closest('.dropdown')) closeAllDropdowns();
+// Cerrar menús si se hace clic fuera
+document.addEventListener('click', (e) => {
+    // Si el clic NO fue dentro de un nav-item, cerramos todo
+    if (!e.target.closest('.nav-item')) {
+        closeAllDropdowns();
+    }
 });
 
+// Limpieza al redimensionar pantalla
 window.addEventListener('resize', () => {
     if (window.innerWidth > 1240) {
-        if (navMenu) navMenu.classList.remove('active');
-        if (menuBtn) {
-            menuBtn.classList.remove('active');
-            const icon = menuBtn.querySelector('i');
-            if(icon) {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        }
-        if(overlay) overlay.classList.remove('active');
-        document.body.style.overflow = 'auto';
+        // En escritorio reseteamos estilos inline o clases móviles si fuera necesario
+        // Pero mantenemos la lógica de hover CSS nativa
+    } else {
+        // En móvil nos aseguramos que no queden estados "a medias"
     }
-    closeAllDropdowns();
+    // Opcional: Cerrar al cambiar de tamaño drásticamente
+    // closeAllDropdowns(); 
 });
 
 // =======================
