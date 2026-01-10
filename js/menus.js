@@ -91,17 +91,24 @@ function toggleMobileMenu() {
     if (!navMenu || !menuBtn) return;
     const isActive = navMenu.classList.contains('active');
     
+    // Toggling clases
     menuBtn.classList.toggle('active');
     navMenu.classList.toggle('active');
     if(overlay) overlay.classList.toggle('active');
     
+    // --- LÓGICA AGREGADA PARA CAMBIAR EL ÍCONO ---
+    const icon = menuBtn.querySelector('i');
+    if (menuBtn.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times'); // Cambia a X
+    } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars'); // Vuelve a barras
+    }
+    // ---------------------------------------------
+
     document.body.style.overflow = isActive ? 'auto' : 'hidden';
 }
-
-if (menuBtn) menuBtn.addEventListener('click', toggleMobileMenu);
-if (overlay) overlay.addEventListener('click', () => {
-    if (navMenu.classList.contains('active')) toggleMobileMenu();
-});
 
 // =======================
 // 5. DROPDOWNS
@@ -121,7 +128,7 @@ dropdowns.forEach(dropdown => {
 
     if (link) {
         link.addEventListener('click', (e) => {
-            if (window.innerWidth <= 900) {
+            if (window.innerWidth <= 1240) {
                 e.preventDefault();
                 e.stopPropagation();
                 const isOpen = content.classList.contains('show');
@@ -148,7 +155,7 @@ document.addEventListener('click', e => {
 });
 
 window.addEventListener('resize', () => {
-    if (window.innerWidth > 900) {
+    if (window.innerWidth > 1240) {
         if (navMenu) navMenu.classList.remove('active');
         if (menuBtn) menuBtn.classList.remove('active');
         if(overlay) overlay.classList.remove('active');
