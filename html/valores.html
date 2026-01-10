@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- CSS principal -->
-  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="/css/styles.css">
 
   <!-- Favicon -->
   <link rel="icon" href="/splendorherbs/img/favicon.png" type="image/png">
@@ -40,7 +40,7 @@
 <body>
 
   <!-- HEADER -->
-  <header id="header"></header>
+  <div id="header"></div>
 
   <main class="main-content">
     <section class="valores">
@@ -142,15 +142,14 @@
     }
 
    // Header
-    loadHTML('header', '../html/header.html', () => {
-      // Cargamos el script SOLO después de que el HTML del header existe
+    loadHTML('header', '/html/header.html', () => {
       const script = document.createElement('script');
-      script.src = '../js/menus.js'; 
+      script.src = '/js/menus.js'; // Nota la barra al inicio "/"
       document.body.appendChild(script);
     });
 
     // Footer
-    loadHTML('footer', '../html/footer.html');
+    loadHTML('footer', '/html/footer.html');
 </script>
 
 </body>

@@ -1,103 +1,127 @@
-/* menus.js - VERSIÓN DEFINITIVA Y DINÁMICA */
-
 (function() {
-    // =======================
-    // 1. DETECCIÓN AUTOMÁTICA DE RUTA
-    // =======================
-    // Si la URL contiene '/html/', estamos en una subcarpeta, usamos '../img/'
-    // Si no, estamos en la raíz, usamos 'img/' (o '/img/' si usas servidor absoluto)
-    const isSubFolder = window.location.pathname.includes('/html/');
-    const imgPath = isSubFolder ? '../img/' : 'img/'; 
+    // AL USAR DOMINIO PERSONALIZADO, LA RUTA BASE ES LA RAÍZ
+    const BASE_IMG_PATH = '/img/'; 
 
-    // =======================
-    // 2. INICIALIZACIÓN
-    // =======================
     function initHeaderLogic() {
+        // Elementos del DOM
         const menuBtn = document.getElementById('mobile-menu-btn');
         const navMenu = document.querySelector('.nav-menu');
         const overlay = document.getElementById('menu-overlay');
         const dropdowns = document.querySelectorAll('.dropdown');
+        
+        // Elementos de Idioma
         const langEsBtn = document.getElementById('lang-es');
         const langEnBtn = document.getElementById('lang-en');
+        const langSelectedBtn = document.querySelector('.lang-selected');
+        const langDropdown = document.querySelector('.language-dropdown');
 
-        // Listeners de idioma
-        if (langEsBtn) langEsBtn.addEventListener('click', () => applyLanguage('es'));
-        if (langEnBtn) langEnBtn.addEventListener('click', () => applyLanguage('en'));
-
-        // Menú Móvil
-        if (menuBtn) {
-            menuBtn.addEventListener('click', () => {
-                const isActive = navMenu.classList.contains('active');
-                menuBtn.classList.toggle('active');
-                navMenu.classList.toggle('active');
-                if (overlay) overlay.classList.toggle('active');
-                document.body.style.overflow = isActive ? 'auto' : 'hidden';
-            });
-        }
+        // 1. Lógica de Idioma
+        if (langEsBtn) langEsBtn.addEventListener('click', () => {
+            applyLanguage('es');
+            if(langDropdown) langDropdown.classList.remove('active-lang');
+        });
         
-        if (overlay) overlay.addEventListener('click', () => {
-            if (navMenu && navMenu.classList.contains('active')) menuBtn.click();
+        if (langEnBtn) langEnBtn.addEventListener('click', () => {
+            applyLanguage('en');
+            if(langDropdown) langDropdown.classList.remove('active-lang');
         });
 
-        // Idioma inicial
+        // Toggle del dropdown de idioma
+        if (langSelectedBtn && langDropdown) {
+            langSelectedBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                langDropdown.classList.toggle('active-lang');
+            });
+            document.addEventListener('click', (e) => {
+                if (!langDropdown.contains(e.target)) {
+                    langDropdown.classList.remove('active-lang');
+                }
+            });
+        }
+
+        // Cargar idioma guardado
         const savedLang = localStorage.getItem('language') || 'es';
         applyLanguage(savedLang);
 
-        // Dropdowns
+        // 2. Lógica Menú Móvil
+        if (menuBtn && navMenu) {
+            menuBtn.addEventListener('click', () => {
+                menuBtn.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                if (overlay) overlay.classList.toggle('active');
+                
+                // Bloquear scroll del body
+                document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
+            });
+        }
+
+        if (overlay) {
+            overlay.addEventListener('click', () => {
+                if (navMenu) navMenu.classList.remove('active');
+                if (menuBtn) menuBtn.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        }
+
+        // 3. Lógica Dropdowns (Móvil y Desktop)
         initDropdowns(dropdowns);
     }
 
-    // =======================
-    // 3. FUNCIÓN DE IDIOMA (Con ruta corregida)
-    // =======================
     function applyLanguage(lang) {
         localStorage.setItem('language', lang);
-
+        
+        // Actualizar bandera y texto del selector
         const currentFlag = document.getElementById('current-lang-flag');
         const currentText = document.getElementById('current-lang-text');
 
         if (currentFlag && currentText) {
-            // Usamos la variable imgPath calculada arriba
             if (lang === 'es') {
-                currentFlag.src = imgPath + 'co.png';
+                currentFlag.src = BASE_IMG_PATH + 'co.png';
                 currentText.textContent = 'ESP';
             } else {
-                currentFlag.src = imgPath + 'us.png';
+                currentFlag.src = BASE_IMG_PATH + 'us.png';
                 currentText.textContent = 'EN';
             }
         }
 
-        // Traducir textos
-        document.querySelectorAll('[data-es][data-en]').forEach(el => {
+        // Traducir elementos con atributos data-es / data-en
+        const allElements = document.querySelectorAll('[data-es][data-en]');
+        allElements.forEach(el => {
             el.textContent = el.getAttribute(`data-${lang}`);
         });
     }
 
     function initDropdowns(dropdowns) {
-        // (Mantén tu lógica de dropdowns aquí igual que antes, está bien)
-        const closeAllDropdowns = () => {
-            document.querySelectorAll('.dropdown-content').forEach(c => c.classList.remove('show'));
-            document.querySelectorAll('.arrow-icon').forEach(i => {
-                i.classList.remove('rotate');
-                i.style.transform = '';
-            });
-        };
-        // ... resto de tu lógica de dropdowns ...
-        
-        // Lógica del selector de idioma (Dropdown)
-        const langBtn = document.querySelector('.lang-selected');
-        const langDrop = document.querySelector('.language-dropdown');
-        if(langBtn && langDrop){
-             langBtn.addEventListener('click', (e) => {
-                 e.stopPropagation();
-                 langDrop.classList.toggle('active-lang');
-             });
-             document.addEventListener('click', e => {
-                 if(!langDrop.contains(e.target)) langDrop.classList.remove('active-lang');
-             });
-        }
+        dropdowns.forEach(dropdown => {
+            const link = dropdown.querySelector('.nav-link');
+            const content = dropdown.querySelector('.dropdown-content');
+            const icon = dropdown.querySelector('.arrow-icon');
+
+            // Click en móvil
+            if (link) {
+                link.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 900) {
+                        e.preventDefault(); // Evita navegar si es un dropdown
+                        
+                        // Cerrar otros dropdowns
+                        dropdowns.forEach(d => {
+                            if (d !== dropdown) {
+                                const c = d.querySelector('.dropdown-content');
+                                const i = d.querySelector('.arrow-icon');
+                                if(c) c.classList.remove('show');
+                                if(i) i.classList.remove('rotate');
+                            }
+                        });
+
+                        if (content) content.classList.toggle('show');
+                        if (icon) icon.classList.toggle('rotate');
+                    }
+                });
+            }
+        });
     }
 
-    // Ejecutar inmediatamente
+    // Ejecutar lógica
     initHeaderLogic();
 })();

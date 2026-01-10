@@ -132,9 +132,10 @@
     }
 
     // Header (ruta segura desde dominio)
-    loadHTML('header', 'html/header.html', () => {
+    // Header
+    loadHTML('header', '/html/header.html', () => {
       const script = document.createElement('script');
-      script.src = 'js/menus.js';
+      script.src = '/js/menus.js'; // Nota la barra al inicio "/"
       document.body.appendChild(script);
     });
 
