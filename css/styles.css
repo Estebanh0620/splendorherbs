@@ -1382,11 +1382,11 @@ footer {
     
     .hero-col-text h1 {
         color: #ffffff !important; /* Fuerza el blanco en móvil */
-        font-size: 1.5rem !important;
+        font-size: 1.4rem !important;
         text-shadow: 1px 1px 5px rgba(0,0,0,0.9);
     }
     .hero-col-logo img {
-        max-width: 350px; /* Logo central del hero más grande */
+        max-width: 300px; /* Logo central del hero más grande */
     }
     .contacto {
         padding: 0 15px; 
