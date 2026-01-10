@@ -988,7 +988,7 @@ footer {
     .nav-link { padding: 0 65px; }
     
     /* Hover en desktop para idioma */
-    .language-dropdown:hover .lang-options { opacity: 1; visibility: visible; transform: translateY(0); }
+    .language-dropdown:hover .lang-options { opacity: 1; visibility: visible;  transform: translateX(-50%) translateY(0); /* <--- CORRECCIÓN: Agregamos translateX(-50%) */ }
     .language-dropdown:hover .arrow-icon { transform: rotate(180deg); }
 
     /* --- HERO & GENERAL DESKTOP --- */
