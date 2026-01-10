@@ -866,46 +866,49 @@ footer {
 
 /* --- 1. PANTALLAS GRANDES (Desktop) --- */
 @media (min-width: 1240px) {
-    /* =======================================================
-   FIX DEL BOTÓN "COTIZA" PARA ESCRITORIO (PC)
-   ======================================================= */
-@media (min-width: 1240px) {
-    
-    /* 1. Ajustamos el contenedor del botón (el li) */
     .nav-item.nav-cta {
         display: flex;
-        align-items: center; /* Centrar verticalmente */
-        margin-left: 20px;   /* Separarlo un poco de "Productos" */
+        align-items: center;
+        margin-left: 30px; /* Separación del resto del menú */
     }
 
-    /* 2. Damos estilo de BOTÓN al enlace (el a) */
-    /* Usamos !important para asegurar que sobrescriba el estilo de texto simple */
     .nav-item.nav-cta a {
-        background-color: var(--primary-green) !important; /* Fondo Verde */
-        color: #ffffff !important;                         /* Texto Blanco */
+        /* 1. EVITAR QUE SE ROMPA EN DOS LÍNEAS */
+        white-space: nowrap !important;
+        display: inline-block !important;
+        width: auto !important;
+
+        /* 2. QUITAR SUBRAYADOS INDESEADOS */
+        text-decoration: none !important;
+        border-bottom: none !important;
+
+        /* 3. ESTILO DE BOTÓN (VERDE Y REDONDO) */
+        background-color: var(--primary-green) !important;
+        color: #ffffff !important;
+        border-radius: 50px !important;
         
-        padding: 12px 30px !important;  /* Relleno para que parezca botón */
-        border-radius: 50px !important; /* Bordes redondos (Píldora) */
-        border: none !important;        /* Sin bordes ni subrayados */
+        /* 4. DIMENSIONES Y ESPACIADO INTERNO */
+        padding: 12px 35px !important;
+        line-height: 1 !important; /* Importante para centrar el texto verticalmente */
+        font-weight: 700;
+        font-size: 0.95rem; /* Un poco más pequeño para que se vea elegante */
         
-        font-weight: 700;               /* Texto en negrita */
-        box-shadow: 0 4px 6px rgba(15, 127, 65, 0.2); /* Sombra suave */
-        transition: all 0.3s ease;      /* Animación suave */
-        
-        /* Reseteamos estilos heredados que molestan */
-        height: auto; 
-        line-height: 1.2;
-        text-transform: uppercase;
+        /* 5. SOMBRA Y BORDES */
+        border: 2px solid var(--primary-green) !important; /* Borde del mismo color para solidez */
+        box-shadow: 0 5px 15px rgba(15, 127, 65, 0.25);
+        transition: all 0.3s ease;
     }
 
-    /* 3. Efecto al pasar el mouse (Hover) en PC */
+    /* HOVER (Al pasar el mouse) */
     .nav-item.nav-cta a:hover {
-        background-color: var(--dark-green) !important; /* Verde más oscuro */
-        transform: translateY(-3px); /* Se eleva un poquito */
-        box-shadow: 0 8px 15px rgba(15, 127, 65, 0.3);
+        background-color: var(--dark-green) !important;
+        border-color: var(--dark-green) !important;
         color: #ffffff !important;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(15, 127, 65, 0.35);
+        text-decoration: none !important;
     }
-}
+
     .nav-menu .arrow-icon {
         display: none !important;
     }
