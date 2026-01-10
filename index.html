@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-
+  <base href="/">
   <!-- SEO básico -->
   <title>Splendor Herbs | Aromáticas y Hortalizas Frescas desde Colombia</title>
   <meta name="description"
@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <!-- CSS GLOBAL (incluye header) -->
-  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
@@ -35,13 +35,13 @@
   <main class="main-content">
 
     <!-- HERO -->
-    <section class="hero" style="background-image: url('./img/1.png');" aria-label="Presentación Splendor Herbs">
+    <section class="hero" style="background-image: url('/img/1.png');" aria-label="Presentación Splendor Herbs">
       <div class="hero-overlay">
         <div class="hero-inner-content">
 
           <!-- Logo -->
           <div class="hero-col-logo">
-            <img src="./img/logo2.png" alt="Splendor Herbs - Logo oficial">
+            <img src="/img/logo2.png" alt="Splendor Herbs - Logo oficial">
           </div>
 
           <!-- Texto Hero -->
@@ -73,7 +73,7 @@
         <!-- Video -->
         <div class="split-video">
           <video autoplay loop muted playsinline preload="metadata">
-            <source src="./img/videoindex.mp4" type="video/mp4">
+            <source src="/img/videoindex.mp4" type="video/mp4">
             Tu navegador no soporta la reproducción de videos.
           </video>
         </div>
@@ -107,8 +107,8 @@
       </div>
 
       <div class="certificados">
-        <img src="./img/primus.png" alt="Certificación Primus GFS">
-        <img src="./img/ICA.webp" alt="Certificación ICA Colombia">
+        <img src="/img/primus.png" alt="Certificación Primus GFS">
+        <img src="/img/ICA.webp" alt="Certificación ICA Colombia">
       </div>
 
     </div>
@@ -140,7 +140,7 @@
     }
 
     // CARGAR HEADER
-    loadHTML('header', './html/header.html', () => {
+    loadHTML('header', '/html/header.html', () => {
       
       // Creamos el script tag
       const script = document.createElement('script');
@@ -159,7 +159,7 @@
     });
 
     // CARGAR FOOTER
-    loadHTML('footer', './html/footer.html');
+    loadHTML('footer', '/html/footer.html');
 </script>
 </body>
 </html>

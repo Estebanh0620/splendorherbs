@@ -6,7 +6,7 @@ window.iniciarMenu = function() {
 
     // Ajusta esto si tu proyecto está en una subcarpeta (ej: '/mi-proyecto/img/')
     // Si estás en la raíz, déjalo como '/img/'
-    const BASE_IMG_PATH = './img/'; 
+    const BASE_IMG_PATH = '/img/'; 
 
     const menuBtn = document.getElementById('mobile-menu-btn');
     const navMenu = document.querySelector('.nav-menu');
