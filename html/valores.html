@@ -133,22 +133,25 @@
         if (!res.ok) throw new Error(`No se pudo cargar ${file}`);
         const text = await res.text();
         document.getElementById(id).innerHTML = text;
-        if (callback) callback();
+        
+        // Pequeño timeout para asegurar que el DOM se pintó antes de ejecutar el JS
+        if (callback) setTimeout(callback, 0); 
       } catch (err) {
         console.error(err);
       }
     }
 
-   // Header (ruta segura desde dominio)
+   // Header
     loadHTML('header', '../html/header.html', () => {
+      // Cargamos el script SOLO después de que el HTML del header existe
       const script = document.createElement('script');
-      script.src = '../js/menus.js';
+      script.src = '../js/menus.js'; 
       document.body.appendChild(script);
     });
 
     // Footer
     loadHTML('footer', '../html/footer.html');
-  </script>
+</script>
 
 </body>
 </html>
