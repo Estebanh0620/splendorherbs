@@ -112,7 +112,8 @@
         const text = await res.text();
         document.getElementById(id).innerHTML = text;
         
-        if (callback) setTimeout(callback, 50); // Aumenté un poco el tiempo a 50ms por seguridad
+        // Pequeño timeout para asegurar que el DOM se pintó antes de ejecutar el JS
+        if (callback) setTimeout(callback, 0); 
       } catch (err) {
         console.error(err);
       }
@@ -121,7 +122,7 @@
    // Header
     loadHTML('header', '/html/header.html', () => {
       const script = document.createElement('script');
-      script.src = '/js/menus.js'; 
+      script.src = '/js/menus.js'; // Nota la barra al inicio "/"
       document.body.appendChild(script);
     });
 
