@@ -1010,9 +1010,6 @@ footer {
 }
 
 /* --- 2. TABLETS Y LAPTOPS PEQUEÑAS (Menú móvil se activa aquí) --- */
-/* ================================================================= */
-/* ============= MEDIA QUERY TABLETS Y MÓVILES (max-width: 1239px) == */
-/* ================================================================= */
 
 @media (max-width: 1239px) {
 
@@ -1023,7 +1020,9 @@ footer {
     }
 
     .navbar { 
+        display: flex;
         justify-content: space-between; 
+        align-items: center;
         padding: 0 15px;
     }
 
@@ -1043,17 +1042,18 @@ footer {
 
     /* --- 2. BOTÓN HAMBURGUESA (Corregido) --- */
     #mobile-menu-btn {
-        display: flex !important; /* Forzamos que aparezca */
+        order: 2; /* Le asignamos el último lugar visualmente */
+        display: flex !important; 
         align-items: center;
-        justify-content: center;
-        width: 44px; /* Área de toque más grande */
+        justify-content: flex-end; /* Alinea el icono a la derecha del botón */
+        width: 44px; 
         height: 44px;
         background: transparent;
         border: none;
         cursor: pointer;
-        z-index: 3100; /* Siempre encima del menú desplegado */
+        z-index: 3100; 
         padding: 0;
-        margin-left: 0; 
+        margin-left: 0;  
     }
 
     #mobile-menu-btn i {
@@ -1072,7 +1072,8 @@ footer {
     .nav-menu {
         position: fixed;
         top: 0;
-        right: -100%; /* Oculto a la derecha */
+        right: -100%; /* Se oculta a la derecha */
+        left: auto;   /* Importante para sobreescribir estilos previos si los hubiera */
         width: 85%;
         max-width: 320px;
         height: 100vh;
@@ -1177,7 +1178,9 @@ footer {
 
     /* --- 6. IDIOMA MÓVIL --- */
     .language-dropdown { 
-        margin-right: auto; /* Empuja el logo al centro */
+        order: 1; /* Le asignamos el primer lugar visualmente */
+        margin-right: auto; /* Empuja todo lo demás a la derecha */
+        margin-left: 0;
         position: relative;
         z-index: 3002;
     }
