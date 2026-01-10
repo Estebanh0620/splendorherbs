@@ -26,10 +26,10 @@ function applyLanguage(lang) {
 
     if (currentFlag && currentText) {
         if (lang === 'es') {
-            currentFlag.src = 'img/co.png';
+            currentFlag.src = '../img/co.png';
             currentText.textContent = 'ESP';
         } else {
-            currentFlag.src = 'img/us.png';
+            currentFlag.src = '../img/us.png';
             currentText.textContent = 'EN';
         }
     }
@@ -69,10 +69,10 @@ const initText = document.getElementById('current-lang-text');
 
 if (initFlag && initText) {
     if (savedLang === 'es') {
-        initFlag.src = 'img/co.png';
+        initFlag.src = '../img/co.png';
         initText.textContent = 'ESP';
     } else {
-        initFlag.src = 'img/us.png';
+        initFlag.src = '../img/us.png';
         initText.textContent = 'EN';
     }
 }
