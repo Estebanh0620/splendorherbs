@@ -858,49 +858,7 @@ footer {
     max-width: 1000px;
     margin: 0 auto;                   /* Centrar horizontalmente */
 }
-/* --------------------------------------------------- BOTÓN COTIZA (Desktop) --- */
 
-/* Ajuste del contenedor del item para separarlo un poco de "Productos" */
-.nav-item.nav-cta {
-    margin-left: 20px;
-    display: flex;
-    align-items: center;
-}
-
-/* Estilo del enlace convertido a botón */
-.nav-item.nav-cta .nav-link {
-    background-color: var(--primary-green);
-    color: var(--white) !important; /* Fuerza el color blanco */
-    font-family: var(--font-main);
-    font-weight: 700;
-    font-size: 0.9rem; /* Un poco más pequeño para que se vea elegante */
-    padding: 12px 32px; /* Relleno interno para darle cuerpo */
-    border-radius: 50px; /* Borde estilo "píldora" */
-    height: auto; /* Sobrescribe la altura fija del nav-link estándar */
-    line-height: 1;
-    border: 2px solid var(--primary-green); /* Borde para consistencia */
-    box-shadow: 0 4px 10px rgba(15, 127, 65, 0.2); /* Sombra suave verde */
-    transition: all 0.3s ease;
-}
-
-/* Efecto Hover (al pasar el mouse) */
-.nav-item.nav-cta .nav-link:hover {
-    background-color: var(--dark-green);
-    border-color: var(--dark-green);
-    color: var(--white);
-    transform: translateY(-3px); /* Se eleva ligeramente */
-    box-shadow: 0 8px 20px rgba(15, 127, 65, 0.3); /* Sombra más pronunciada */
-    
-    /* IMPORTANTE: Elimina la línea inferior verde del estilo estándar de tus links */
-    border-bottom: 2px solid var(--dark-green) !important; 
-    border-bottom-color: transparent !important;
-}
-
-/* Efecto Active (al hacer clic) */
-.nav-item.nav-cta .nav-link:active {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 5px rgba(15, 127, 65, 0.2);
-}
 
 /* ================================================================= */
 /* ============= MEDIA QUERIES UNIFICADAS Y ORGANIZADAS ============= */
