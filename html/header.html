@@ -1,16 +1,18 @@
+<!-- HEADER FIXED -->
 <header class="header">
   <div class="navbar-container">
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Navegación principal Splendor Herbs">
 
-      <!-- 1. Botón Menú Móvil (IMPORTANTE: Esto faltaba) -->
+      <!-- Botón Menú Móvil (Faltaba esto) -->
       <button id="mobile-menu-btn" class="hamburger" aria-label="Abrir menú">
         <i class="fas fa-bars"></i>
       </button>
 
-      <!-- 2. Selector de idioma -->
+      <!-- Selector de idioma -->
       <div class="language-dropdown">
-        <button class="lang-selected" type="button">
+        <button class="lang-selected" type="button" aria-label="Seleccionar idioma">
           <span class="current-content">
+            <!-- Agregados IDs para que el JS los encuentre -->
             <img id="current-lang-flag" src="/img/co.png" alt="Idioma">
             <span id="current-lang-text">ESP</span>
           </span>
@@ -18,38 +20,49 @@
         </button>
 
         <div class="lang-options">
+          <!-- Agregados IDs para los eventos de click -->
           <button type="button" id="lang-es">
-            <img src="/img/co.png" alt="Español"> <span>Español</span>
+            <img src="/img/co.png" alt="Español Colombia">
+            <span>Español</span>
           </button>
+
           <button type="button" id="lang-en">
-            <img src="/img/us.png" alt="Inglés"> <span>English</span>
+            <img src="/img/us.png" alt="English United States">
+            <span>English</span>
           </button>
         </div>
       </div>
 
-      <!-- 3. Logo Mobile -->
+      <!-- Logo Mobile -->
       <div class="logo-mobile">
-        <a href="/index.html"><img src="/img/logo.png" alt="Splendor Herbs"></a>
+        <a href="/index.html">
+          <img src="/img/logo.png" alt="Splendor Herbs">
+        </a>
       </div>
 
-      <!-- 4. Menú de Navegación -->
+      <!-- Menú -->
       <ul class="nav-menu">
-        <li class="nav-item"><a href="/index.html" class="nav-link" data-es="INICIO" data-en="HOME">INICIO</a></li>
-        
+        <li class="nav-item">
+          <a href="/index.html" class="nav-link" data-es="INICIO" data-en="HOME">INICIO</a>
+        </li>
+
         <li class="nav-item dropdown">
           <a href="#" class="nav-link">
             <span data-es="NOSOTROS" data-en="ABOUT US">NOSOTROS</span>
             <i class="fas fa-chevron-down arrow-icon"></i>
           </a>
           <div class="dropdown-content">
-            <a href="/html/valores.html" data-es="VALORES" data-en="VALUES">VALORES</a>
-            <a href="/html/porquestn.html" data-es="POR QUÉ ELEGIRNOS" data-en="WHY CHOOSE US">POR QUÉ ELEGIRNOS</a>
+            <a href="/html/valores.html" data-es="NUESTROS VALORES" data-en="OUR VALUES">NUESTROS VALORES</a>
+            <a href="/html/porquestn.html" data-es="¿POR QUÉ ELEGIRNOS?" data-en="WHY CHOOSE US?">¿POR QUÉ ELEGIRNOS?</a>
             <a href="/html/galeria.html" data-es="GALERÍA" data-en="GALLERY">GALERÍA</a>
           </div>
         </li>
 
+        <!-- Logo Desktop -->
         <li class="nav-item logo-desktop">
-          <a href="/index.html"><img src="/img/logo.png" alt="Splendor Herbs"></a>
+          <a href="/index.html">
+            <img src="/img/logo.png" alt="Splendor Herbs">
+          </a>
         </li>
 
         <li class="nav-item dropdown">
@@ -58,18 +71,18 @@
             <i class="fas fa-chevron-down arrow-icon"></i>
           </a>
           <div class="dropdown-content">
-            <a href="/html/hortalizas.html" data-es="HORTALIZAS" data-en="VEGETABLES">HORTALIZAS</a>
-            <a href="/html/hierbas.html" data-es="HIERBAS" data-en="HERBS">HIERBAS</a>
+            <a href="/html/hortalizas.html" data-es="HORTALIZAS FRESCAS" data-en="FRESH VEGETABLES">HORTALIZAS FRESCAS</a>
+            <a href="/html/hierbas.html" data-es="HIERBAS AROMÁTICAS" data-en="AROMATIC HERBS">HIERBAS AROMÁTICAS</a>
+            <a href="/html/procesos.html" data-es="PROCESOS" data-en="PROCESSES">PROCESOS</a>
           </div>
         </li>
 
         <li class="nav-item nav-cta">
-          <!-- AGREGA class="nav-link" AQUÍ ABAJO -->
-          <a href="/html/contacto.html" class="nav-link" data-es="CONTACTO" data-en="CONTACT">CONTACTO</a>
+          <a href="/html/contacto.html" data-es="COTIZA CON NOSOTROS" data-en="GET A QUOTE">COTIZA CON NOSOTROS</a>
         </li>
       </ul>
       
-      <!-- 5. Fondo oscuro para móvil -->
+      <!-- Overlay para fondo oscuro al abrir menú móvil (Faltaba esto) -->
       <div id="menu-overlay"></div>
 
     </nav>
