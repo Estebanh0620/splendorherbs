@@ -119,40 +119,40 @@
 
 
   <!-- JS -->
-<script>
-    async function loadHTML(id, file, callback) {
-      try {
-        const res = await fetch(file);
-        if (!res.ok) throw new Error(`No se pudo cargar ${file}`);
-        const text = await res.text();
-        document.getElementById(id).innerHTML = text;
-        
-        // Ejecutar callback si existe
-        if (callback) callback(); 
-      } catch (err) {
-        console.error(err);
+  <script>
+      async function loadHTML(id, file, callback) {
+        try {
+          const res = await fetch(file);
+          if (!res.ok) throw new Error(`No se pudo cargar ${file}`);
+          const text = await res.text();
+          document.getElementById(id).innerHTML = text;
+          
+          // Ejecutar callback si existe
+          if (callback) callback(); 
+        } catch (err) {
+          console.error(err);
+        }
       }
-    }
 
-    // 1. Cargar Header
-    loadHTML('header', '/html/header.html', () => {
-      
-      // 2. Una vez el HTML del header está puesto, cargamos el JS
-      const script = document.createElement('script');
-      script.src = '/js/menus.js'; 
-      
-      // 3. Cuando el JS se cargue, inicializamos el menú
-      script.onload = () => {
-          if (typeof initMenu === 'function') {
-              initMenu(); // <--- ESTO ACTIVA TODO
-          }
-      };
-      
-      document.body.appendChild(script);
-    });
+      // 1. Cargar Header
+      loadHTML('header', '/html/header.html', () => {
+        
+        // 2. Una vez el HTML del header está puesto, cargamos el JS
+        const script = document.createElement('script');
+        script.src = '/js/menus.js'; 
+        
+        // 3. Cuando el JS se cargue, inicializamos el menú
+        script.onload = () => {
+            if (typeof initMenu === 'function') {
+                initMenu(); // <--- ESTO ACTIVA TODO
+            }
+        };
+        
+        document.body.appendChild(script);
+      });
 
-    // Cargar Footer
-    loadHTML('footer', '/html/footer.html');
-</script>
+      // Cargar Footer
+      loadHTML('footer', '/html/footer.html');
+  </script>
 </body>
 </html>
