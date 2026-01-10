@@ -148,7 +148,12 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateX(-50%); background-color: var(--white); min-width: 240px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1); z-index: 999; text-align: center; padding: 20px 0;
 }
-.dropdown-content.show { display: block !important; animation: fadeIn 0.3s ease; }
+.dropdown-content.show {
+    display: block !important;
+    opacity: 1 !important;        /* <--- AGREGAR ESTO */
+    visibility: visible !important; /* <--- AGREGAR ESTO */
+    animation: fadeIn 0.3s ease;
+}
 .dropdown-content a { display: block; padding: 10px 20px; color: var(--primary-green); text-decoration: none; font-weight: 600; font-size: 1rem; }
 .dropdown-content a:hover { background-color: var(--light-bg); color: var(--primary-green); }
 @keyframes fadeIn { from { opacity: 0; transform: translate(-50%, 10px); } to { opacity: 1; transform: translate(-50%, 0); } }
@@ -1021,8 +1026,6 @@ footer {
     }
 }
 
-/* --- 2. TABLETS Y LAPTOPS PEQUEÑAS (Menú móvil se activa aquí) --- */
-
 @media (max-width: 1239px) {
 
     /* --- 1. HEADER & NAVBAR AJUSTES --- */
@@ -1145,13 +1148,15 @@ footer {
         background-color: #fbfbfb; /* Fondo un poco más gris para diferenciar */
         display: none; /* Oculto por defecto */
         padding: 0;
-        opacity: 1; visibility: visible;
+        opacity: 1; 
+        visibility: visible;
     }
 
     /* Clase .show añadida por JS */
     .dropdown-content.show {
-        display: block !important;
-        animation: fadeIn 0.3s ease;
+         display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 
     .dropdown-content a {
