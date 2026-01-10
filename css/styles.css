@@ -1133,30 +1133,29 @@ footer {
         border-bottom: none;
     }
 
-    /* --- 4. SUBMENÚS (DROPDOWNS) --- */
-    /* En móvil, el hover CSS se desactiva para usar click JS */
-    .nav-item:hover .dropdown-content {
-        opacity: 0; visibility: hidden; display: none;
-    }
+    
     
     .dropdown-content {
-        position: static !important; /* Ya no es flotante */
+        position: static !important; /* Importante para efecto acordeón */
         transform: none !important;
         width: 100%;
-        box-shadow:none;
+        box-shadow: none;
         border-top: 1px solid #eee; 
-        background-color: #fbfbfb; /* Fondo un poco más gris para diferenciar */
-        display: none; /* Oculto por defecto */
+        background-color: #fbfbfb;
         padding: 0;
-        opacity: 1; 
+        
+        /* Estado oculto por defecto */
+        display: none; 
+        opacity: 1; /* Mantenemos opacidad lista */
         visibility: visible;
     }
 
     /* Clase .show añadida por JS */
     .dropdown-content.show {
-         display: block !important;
+        display: block !important;
         opacity: 1 !important;
         visibility: visible !important;
+        animation: fadeIn 0.3s ease;
     }
 
     .dropdown-content a {
