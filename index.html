@@ -119,31 +119,47 @@
 
   <!-- JS -->
   <script>
+    // Función genérica para cargar HTML
     async function loadHTML(id, file, callback) {
       try {
         const res = await fetch(file);
-        if (!res.ok) throw new Error(`Error cargando ${file}: ${res.status}`);
+        
+        // Manejo de errores 404
+        if (!res.ok) throw new Error(`Error cargando ${file}: ${res.status} - Verifica la ruta`);
+        
         const text = await res.text();
         document.getElementById(id).innerHTML = text;
+        
+        // Ejecutar callback si existe
         if (callback) callback();
+        
       } catch (err) {
         console.error("Error en loadHTML:", err);
+        document.getElementById(id).innerHTML = "<p style='color:red; text-align:center'>Error cargando el menú. Verifica la consola (F12).</p>";
       }
     }
 
-    // USA RUTAS ABSOLUTAS (EMPIEZAN CON /)
-    // Esto asegura que funcione tanto en el inicio como en subcarpetas
+    // CARGAR HEADER
     loadHTML('header', '/html/header.html', () => {
       
-      // Cargamos el JS solo cuando el HTML del header ya existe
+      // Creamos el script tag
       const script = document.createElement('script');
-      script.src = '/js/menus.js';  // <--- OJO A LA BARRA "/" INICIAL
-      document.body.appendChild(script);
+      script.src = '/js/menus.js'; 
       
+      // IMPORTANTE: Esperamos a que el JS cargue para ejecutar la función
+      script.onload = function() {
+          if (typeof window.iniciarMenu === 'function') {
+              window.iniciarMenu(); // Llamamos a la función global que creamos
+          } else {
+              console.error("Menus.js cargó, pero no encontró la función iniciarMenu");
+          }
+      };
+
+      document.body.appendChild(script);
     });
 
+    // CARGAR FOOTER
     loadHTML('footer', '/html/footer.html');
 </script>
-
 </body>
 </html>

@@ -1,97 +1,104 @@
-(function() {
-    console.log("Iniciando menus.js..."); // Para depurar
+// js/menus.js
 
-    const BASE_IMG_PATH = '/img/'; // Ruta absoluta para dominio personalizado
+// Definimos la función en el objeto window para que sea global
+window.iniciarMenu = function() {
+    console.log("Iniciando lógica del menú..."); 
 
-    function initHeaderLogic() {
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const navMenu = document.querySelector('.nav-menu');
-        const overlay = document.getElementById('menu-overlay');
-        
-        // Verificación de seguridad
-        if (!menuBtn || !navMenu) {
-            console.error("Menus.js: No se encontró el botón de menú o el menú en el HTML.");
-            return;
-        }
+    // Ajusta esto si tu proyecto está en una subcarpeta (ej: '/mi-proyecto/img/')
+    // Si estás en la raíz, déjalo como '/img/'
+    const BASE_IMG_PATH = '/img/'; 
 
-        // Lógica Menú Móvil
-        menuBtn.addEventListener('click', () => {
-            menuBtn.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            if (overlay) overlay.classList.toggle('active');
-            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const navMenu = document.querySelector('.nav-menu');
+    const overlay = document.getElementById('menu-overlay');
+
+    // Verificación de seguridad
+    if (!menuBtn || !navMenu) {
+        console.error("Error: No se encontró el botón o el menú. Verifica que el HTML del header ya cargó.");
+        return;
+    }
+
+    // --- Lógica Menú Móvil ---
+    // Clonamos el nodo para eliminar listeners previos si la función se llama dos veces
+    const newMenuBtn = menuBtn.cloneNode(true);
+    menuBtn.parentNode.replaceChild(newMenuBtn, menuBtn);
+    
+    newMenuBtn.addEventListener('click', () => {
+        newMenuBtn.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        if (overlay) overlay.classList.toggle('active');
+        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
+    });
+
+    if (overlay) {
+        overlay.addEventListener('click', () => {
+            newMenuBtn.classList.remove('active');
+            navMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
         });
+    }
 
-        if (overlay) {
-            overlay.addEventListener('click', () => {
-                menuBtn.classList.remove('active');
-                navMenu.classList.remove('active');
-                overlay.classList.remove('active');
-                document.body.style.overflow = 'auto';
+    // --- Dropdowns Móvil ---
+    const dropdowns = document.querySelectorAll('.dropdown');
+    dropdowns.forEach(d => {
+        const link = d.querySelector('.nav-link');
+        const content = d.querySelector('.dropdown-content');
+        const icon = d.querySelector('.arrow-icon');
+
+        if (link) {
+            // Removemos listeners viejos clonando
+            const newLink = link.cloneNode(true);
+            link.parentNode.replaceChild(newLink, link);
+            
+            newLink.addEventListener('click', (e) => {
+                // Solo activamos click en móvil (pantallas < 900px o según tu CSS)
+                if (window.innerWidth <= 1024) { 
+                    e.preventDefault();
+                    content.classList.toggle('show');
+                    if (icon) icon.classList.toggle('rotate');
+                }
             });
         }
+    });
 
-        // Dropdowns para móvil
-        const dropdowns = document.querySelectorAll('.dropdown');
-        dropdowns.forEach(d => {
-            const link = d.querySelector('.nav-link');
-            const content = d.querySelector('.dropdown-content');
-            const icon = d.querySelector('.arrow-icon');
+    // --- Lógica de Idioma ---
+    initLanguage(BASE_IMG_PATH);
+};
 
-            if (link) {
-                link.addEventListener('click', (e) => {
-                    if (window.innerWidth <= 900) {
-                        e.preventDefault();
-                        content.classList.toggle('show');
-                        if (icon) icon.classList.toggle('rotate');
-                    }
-                });
-            }
-        });
+function initLanguage(basePath) {
+    const langEs = document.getElementById('lang-es');
+    const langEn = document.getElementById('lang-en');
+    const dropdown = document.querySelector('.language-dropdown');
+    const selectedBtn = document.querySelector('.lang-selected');
 
-        // Lógica de Idioma
-        initLanguage();
+    if (selectedBtn && dropdown) {
+        selectedBtn.onclick = (e) => {
+            e.stopPropagation();
+            dropdown.classList.toggle('active-lang');
+        };
+        document.onclick = () => dropdown.classList.remove('active-lang');
     }
 
-    function initLanguage() {
-        const langEs = document.getElementById('lang-es');
-        const langEn = document.getElementById('lang-en');
-        const dropdown = document.querySelector('.language-dropdown');
-        const selectedBtn = document.querySelector('.lang-selected');
+    if (langEs) langEs.onclick = () => changeLang('es', basePath);
+    if (langEn) langEn.onclick = () => changeLang('en', basePath);
 
-        // Toggle dropdown idioma
-        if (selectedBtn && dropdown) {
-            selectedBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                dropdown.classList.toggle('active-lang');
-            });
-            document.addEventListener('click', () => dropdown.classList.remove('active-lang'));
-        }
+    const saved = localStorage.getItem('language') || 'es';
+    changeLang(saved, basePath);
+}
 
-        if (langEs) langEs.addEventListener('click', () => changeLang('es'));
-        if (langEn) langEn.addEventListener('click', () => changeLang('en'));
+function changeLang(lang, basePath) {
+    localStorage.setItem('language', lang);
+    
+    const flag = document.getElementById('current-lang-flag');
+    const text = document.getElementById('current-lang-text');
 
-        // Cargar idioma guardado
-        const saved = localStorage.getItem('language') || 'es';
-        changeLang(saved);
+    if (flag && text) {
+        flag.src = lang === 'es' ? basePath + 'co.png' : basePath + 'us.png';
+        text.textContent = lang === 'es' ? 'ESP' : 'EN';
     }
 
-    function changeLang(lang) {
-        localStorage.setItem('language', lang);
-        
-        const flag = document.getElementById('current-lang-flag');
-        const text = document.getElementById('current-lang-text');
-
-        if (flag && text) {
-            flag.src = lang === 'es' ? BASE_IMG_PATH + 'co.png' : BASE_IMG_PATH + 'us.png';
-            text.textContent = lang === 'es' ? 'ESP' : 'EN';
-        }
-
-        document.querySelectorAll('[data-es]').forEach(el => {
-            el.textContent = el.getAttribute(`data-${lang}`);
-        });
-    }
-
-    // Ejecutar
-    initHeaderLogic();
-})();
+    document.querySelectorAll('[data-es]').forEach(el => {
+        el.textContent = el.getAttribute(`data-${lang}`);
+    });
+}
