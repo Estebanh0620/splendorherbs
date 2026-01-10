@@ -866,6 +866,35 @@ footer {
 
 /* --- 1. PANTALLAS GRANDES (Desktop) --- */
 @media (min-width: 1240px) {
+    /* --- FIX BOTÓN COTIZA DESKTOP --- */
+    
+    /* Aseguramos que el contenedor li centre el botón */
+    .nav-item.nav-cta {
+        display: flex;
+        align-items: center;
+        margin-left: 20px; /* Un poco de separación extra del menú */
+    }
+
+    /* Estilos del enlace para que parezca botón */
+    .nav-item.nav-cta .nav-link {
+        background-color: var(--primary-green);
+        color: var(--white) !important; /* Forzamos blanco */
+        height: auto; /* Importante: no estirar al 100% del header */
+        padding: 14px 35px; /* Tamaño del botón */
+        border-radius: 50px; /* Forma de píldora */
+        border-bottom: none !important; /* Quitamos la línea inferior estándar */
+        box-shadow: 0 4px 10px rgba(15, 127, 65, 0.25); /* Sombra elegante */
+        line-height: 1; 
+        transition: all 0.3s ease;
+    }
+
+    /* Efecto Hover en Desktop */
+    .nav-item.nav-cta .nav-link:hover {
+        background-color: var(--dark-green);
+        transform: translateY(-3px); /* Pequeño salto hacia arriba */
+        box-shadow: 0 8px 20px rgba(15, 127, 65, 0.35);
+        color: var(--white) !important;
+    }
     .nav-menu .arrow-icon {
         display: none !important;
     }
