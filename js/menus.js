@@ -1,101 +1,177 @@
-// js/menus.js
+/* menus.js */
 
-// Aceptamos un parámetro pathPrefix para arreglar rutas de imágenes
-window.iniciarMenu = function(pathPrefix = 'img/') {
-    console.log("Iniciando menú...");
+// =======================
+// 1. SELECCIÓN DE ELEMENTOS
+// =======================
+// Usamos funciones getters o búsqueda dinámica dentro de applyLanguage
+// para asegurar que el elemento existe tras la carga asíncrona del header.
 
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    const navMenu = document.querySelector('.nav-menu');
-    const overlay = document.getElementById('menu-overlay');
-    const dropdowns = document.querySelectorAll('.dropdown');
+const menuBtn = document.getElementById('mobile-menu-btn');
+const navMenu = document.querySelector('.nav-menu');
+const overlay = document.getElementById('menu-overlay');
+const dropdowns = document.querySelectorAll('.dropdown');
 
-    // 1. Menú Hamburguesa
-    if (menuBtn && navMenu) {
-        menuBtn.onclick = function() {
-            menuBtn.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            if (overlay) overlay.classList.toggle('active');
-            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
-        };
-    }
+const langEsBtn = document.getElementById('lang-es');
+const langEnBtn = document.getElementById('lang-en');
 
-    if (overlay) {
-        overlay.onclick = function() {
-            if(menuBtn) menuBtn.classList.remove('active');
-            if(navMenu) navMenu.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        };
-    }
+// =======================
+// 2. FUNCIÓN PRINCIPAL DE IDIOMA
+// =======================
+function applyLanguage(lang) {
+    localStorage.setItem('language', lang);
 
-    // 2. Submenús (Dropdowns) para Móvil
-    dropdowns.forEach(d => {
-        const link = d.querySelector('.nav-link');
-        const content = d.querySelector('.dropdown-content');
-        const icon = d.querySelector('.arrow-icon');
+    // Actualizar Bandera y Texto (Si existen en el header)
+    const currentFlag = document.getElementById('current-lang-flag');
+    const currentText = document.getElementById('current-lang-text');
 
-        if (link && content) {
-            link.onclick = function(e) {
-                // Solo prevenimos la navegación y abrimos el menú si estamos en móvil
-                if (window.innerWidth <= 1024) {
-                    e.preventDefault(); 
-                    content.classList.toggle('show');
-                    if (icon) icon.classList.toggle('rotate');
-                }
-            };
+    if (currentFlag && currentText) {
+        if (lang === 'es') {
+            currentFlag.src = 'img/co.png';
+            currentText.textContent = 'ESP';
+        } else {
+            currentFlag.src = 'img/us.png';
+            currentText.textContent = 'EN';
         }
+    }
+
+    // ------------------------------------------------------
+    // AQUÍ ESTÁ LA CLAVE: 
+    // Usamos `document` sin especificar clase padre.
+    // Esto busca en Header, Main, Footer y cualquier otro lugar.
+    // ------------------------------------------------------
+    const allElements = document.querySelectorAll('[data-es][data-en]');
+    
+    allElements.forEach(el => {
+        // Aplica la traducción a cada elemento encontrado
+        el.textContent = el.getAttribute(`data-${lang}`);
     });
 
-    // 3. Idioma
-    initLanguage(pathPrefix);
+    // Disparar evento global (opcional, por si usas otros scripts)
+    const event = new CustomEvent('languageChanged', { detail: { language: lang } });
+    document.dispatchEvent(event);
+}
+
+// =======================
+// 3. LISTENERS DE IDIOMA
+// =======================
+if (langEsBtn) langEsBtn.addEventListener('click', () => applyLanguage('es'));
+if (langEnBtn) langEnBtn.addEventListener('click', () => applyLanguage('en'));
+
+// =======================
+// CARGA INICIAL
+// =======================
+// Obtener idioma guardado o usar español por defecto
+const savedLang = localStorage.getItem('language') || 'es';
+
+// Aplicar visualmente los iconos del header (Bandera/Texto)
+const initFlag = document.getElementById('current-lang-flag');
+const initText = document.getElementById('current-lang-text');
+
+if (initFlag && initText) {
+    if (savedLang === 'es') {
+        initFlag.src = 'img/co.png';
+        initText.textContent = 'ESP';
+    } else {
+        initFlag.src = 'img/us.png';
+        initText.textContent = 'EN';
+    }
+}
+
+// Ejecutar la traducción inmediatamente al cargar
+// Nuevamente: busca en TODO el documento (Header + Main)
+document.querySelectorAll('[data-es][data-en]').forEach(el => {
+    el.textContent = el.getAttribute(`data-${savedLang}`);
+});
+
+
+// =======================
+// 4. MENU MOVIL
+// =======================
+function toggleMobileMenu() {
+    if (!navMenu || !menuBtn) return;
+    const isActive = navMenu.classList.contains('active');
+    
+    menuBtn.classList.toggle('active');
+    navMenu.classList.toggle('active');
+    if(overlay) overlay.classList.toggle('active');
+    
+    document.body.style.overflow = isActive ? 'auto' : 'hidden';
+}
+
+if (menuBtn) menuBtn.addEventListener('click', toggleMobileMenu);
+if (overlay) overlay.addEventListener('click', () => {
+    if (navMenu.classList.contains('active')) toggleMobileMenu();
+});
+
+// =======================
+// 5. DROPDOWNS
+// =======================
+const closeAllDropdowns = () => {
+    document.querySelectorAll('.dropdown-content').forEach(c => c.classList.remove('show'));
+    document.querySelectorAll('.arrow-icon').forEach(i => {
+        i.classList.remove('rotate');
+        i.style.transform = '';
+    });
 };
 
-function initLanguage(basePath) {
-    const langEs = document.getElementById('lang-es');
-    const langEn = document.getElementById('lang-en');
-    const dropdown = document.querySelector('.language-dropdown');
-    const selectedBtn = document.querySelector('.lang-selected');
+dropdowns.forEach(dropdown => {
+    const link = dropdown.querySelector('.nav-link');
+    const content = dropdown.querySelector('.dropdown-content');
+    const icon = dropdown.querySelector('.arrow-icon');
 
-    if (selectedBtn && dropdown) {
-        selectedBtn.onclick = (e) => {
-            e.stopPropagation();
-            dropdown.classList.toggle('active-lang');
-        };
-
-        document.addEventListener('click', (e) => {
-            if (!dropdown.contains(e.target)) {
-                dropdown.classList.remove('active-lang');
+    if (link) {
+        link.addEventListener('click', (e) => {
+            if (window.innerWidth <= 900) {
+                e.preventDefault();
+                e.stopPropagation();
+                const isOpen = content.classList.contains('show');
+                closeAllDropdowns();
+                if (!isOpen) {
+                    content.classList.add('show');
+                    if (icon) icon.classList.add('rotate');
+                }
             }
         });
     }
 
-    // Aseguramos que la ruta no tenga // dobles
-    const cleanPath = basePath.endsWith('/') ? basePath : basePath + '/';
-
-    if (langEs) langEs.onclick = () => changeLang('es', cleanPath);
-    if (langEn) langEn.onclick = () => changeLang('en', cleanPath);
-
-    const saved = localStorage.getItem('language') || 'es';
-    changeLang(saved, cleanPath);
-}
-
-function changeLang(lang, basePath) {
-    localStorage.setItem('language', lang);
-    
-    const flag = document.getElementById('current-lang-flag');
-    const text = document.getElementById('current-lang-text');
-    const dropdown = document.querySelector('.language-dropdown');
-
-    if (flag && text) {
-        // Usa la ruta dinámica para encontrar la imagen correcta
-        flag.src = lang === 'es' ? basePath + 'co.png' : basePath + 'us.png';
-        text.textContent = lang === 'es' ? 'ESP' : 'EN';
-    }
-
-    document.querySelectorAll('[data-es]').forEach(el => {
-        const newText = el.getAttribute(`data-${lang}`);
-        if(newText) el.textContent = newText;
+    dropdown.addEventListener('mouseenter', () => {
+        if (window.innerWidth > 900 && content) {
+            closeAllDropdowns();
+            content.classList.add('show');
+            if (icon) icon.classList.add('rotate');
+        }
     });
+});
 
-    if(dropdown) dropdown.classList.remove('active-lang');
+document.addEventListener('click', e => {
+    if (!e.target.closest('.dropdown')) closeAllDropdowns();
+});
+
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) {
+        if (navMenu) navMenu.classList.remove('active');
+        if (menuBtn) menuBtn.classList.remove('active');
+        if(overlay) overlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+    closeAllDropdowns();
+});
+
+// =======================
+// 6. DROPDOWN DE IDIOMAS (UI)
+// =======================
+const langDropdown = document.querySelector('.language-dropdown');
+const langSelectedBtn = document.querySelector('.lang-selected');
+
+if (langSelectedBtn) {
+    langSelectedBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        if (langDropdown) langDropdown.classList.toggle('active-lang');
+    });
 }
+
+document.addEventListener('click', e => {
+    if (langDropdown && !langDropdown.contains(e.target)) {
+        langDropdown.classList.remove('active-lang');
+    }
+});

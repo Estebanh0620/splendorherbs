@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <!-- CSS GLOBAL (incluye header) -->
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
@@ -41,7 +41,7 @@
 
           <!-- Logo -->
           <div class="hero-col-logo">
-            <img src="img/logo2.png" alt="Splendor Herbs - Logo oficial">
+            <img src="../img/logo2.png" alt="Splendor Herbs - Logo oficial">
           </div>
 
           <!-- Texto Hero -->
@@ -73,7 +73,7 @@
         <!-- Video -->
         <div class="split-video">
           <video autoplay loop muted playsinline preload="metadata">
-            <source src="img/videoindex.mp4" type="video/mp4">
+            <source src="../img/videoindex.mp4" type="video/mp4">
             Tu navegador no soporta la reproducción de videos.
           </video>
         </div>
@@ -107,7 +107,7 @@
       </div>
 
       <div class="certificados">
-        <img src="img/primus.png" alt="Certificación Primus GFS">
+        <img src="../img/primus.png" alt="Certificación Primus GFS">
         <img src="img/ICA.webp" alt="Certificación ICA Colombia">
       </div>
 
@@ -117,36 +117,32 @@
   <!-- Footer dinámico -->
   <div id="footer"></div>
 
-  <!-- CARGAMOS EL JS NORMALMENTE AL FINAL (Ruta relativa) -->
-  <script src="js/menus.js"></script>
 
   <!-- JS -->
   <script>
     async function loadHTML(id, file, callback) {
       try {
         const res = await fetch(file);
-        if (!res.ok) throw new Error(`Error cargando ${file}`);
+        if (!res.ok) throw new Error(`No se pudo cargar ${file}`);
         const text = await res.text();
         document.getElementById(id).innerHTML = text;
-        if (callback) callback();
+        
+        // Pequeño timeout para asegurar que el DOM se pintó antes de ejecutar el JS
+        if (callback) setTimeout(callback, 0); 
       } catch (err) {
         console.error(err);
       }
     }
 
-    // 1. Cargar Header (ruta relativa)
-    loadHTML('header', 'html/header.html', () => {
-        // Una vez cargado el HTML, ejecutamos la función que está en menus.js
-        if (typeof window.iniciarMenu === 'function') {
-            // Pasamos la ruta base de las imágenes para que funcione en subcarpetas
-            window.iniciarMenu('img/'); 
-        } else {
-            console.error("menus.js no se ha cargado correctamente");
-        }
+   // Header
+    loadHTML('header', '/html/header.html', () => {
+      const script = document.createElement('script');
+      script.src = '/js/menus.js'; // Nota la barra al inicio "/"
+      document.body.appendChild(script);
     });
 
-    // 2. Cargar Footer (ruta relativa)
-    loadHTML('footer', 'html/footer.html');
-  </script>
+    // Footer
+    loadHTML('footer', '/html/footer.html');
+</script>
 </body>
 </html>
