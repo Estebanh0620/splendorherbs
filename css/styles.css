@@ -78,54 +78,130 @@ h1, h2, h3, h4, h5, h6 {
 }
 .logo-desktop img:hover { transform: scale(1.05); }
 
-/* Idioma */
-.language-dropdown { position: relative; z-index: 2200; font-family: var(--font-main); }
-.language-switch { display: flex; gap: 8px; align-items: center; }
-
-.lang-selected {
-    display: flex; align-items: center; gap: 8px;
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 50px;
-    padding: 8px 16px;
-    cursor: pointer;
-    font-size: 0.85rem;
-    color: #444;
-    transition: all 0.3s ease;
+/* --------------------------------------------------- IDIOMA SELECTOR --- */
+.language-dropdown { 
+    position: relative; 
+    z-index: 2200; 
+    font-family: var(--font-main);
 }
-.lang-selected:hover, .language-dropdown.active-lang .lang-selected {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+
+/* Botón principal (El que se ve siempre) */
+.lang-selected {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; /* Asegura espacio entre texto e ícono */
+    gap: 10px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0; /* Borde sutil */
+    border-radius: 50px;       /* Forma de píldora */
+    padding: 6px 14px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--dark-green);
+    transition: all 0.3s ease;
+    min-width: 90px; /* Ancho mínimo para consistencia */
+}
+
+/* Efecto Hover en el botón principal */
+.lang-selected:hover, 
+.language-dropdown:hover .lang-selected {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     border-color: var(--primary-green);
 }
-.language-icon { font-size: 1.1rem; color: var(--texto-secundario); transition: color 0.3s; }
-.lang-selected:hover .language-icon { color: var(--primary-green); }
-.current-content { display: flex; align-items: center; gap: 6px; font-weight: 700; color: var(--dark-green); }
-.lang-selected img { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; }
-.language-dropdown .arrow-icon { font-size: 0.7rem; color: var(--primary-green); margin-left: 2px; transition: transform 0.3s; }
 
+/* Contenedor interno de imagen y texto */
+.current-content { 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+}
+
+/* La imagen de la bandera seleccionada */
+.lang-selected img { 
+    width: 22px; 
+    height: 22px; 
+    border-radius: 50%; /* Bandera redonda */
+    object-fit: cover; 
+    display: block;
+}
+
+/* Flechita */
+.language-dropdown .arrow-icon { 
+    font-size: 0.75rem; 
+    color: var(--primary-green); 
+    transition: transform 0.3s ease; 
+}
+
+/* Rotar flecha al pasar el mouse */
+.language-dropdown:hover .arrow-icon { 
+    transform: rotate(180deg); 
+}
+
+/* --- MENÚ DESPLEGABLE (La lista de opciones) --- */
 .lang-options {
-    position: absolute; top: calc(100% + 10px); left: 0;
+    position: absolute; 
+    top: calc(100% + 8px); /* Un poco separado del botón */
+    right: 0; /* Alineado a la derecha */
     background-color: #fff;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15); /* Sombra elegante */
     border: 1px solid #f0f0f0;
     padding: 8px;
-    min-width: 140px;
-    border-radius: 8px;
-    opacity: 0; visibility: hidden;
+    min-width: 150px;
+    border-radius: 12px;
+    
+    /* Animación de entrada */
+    opacity: 0; 
+    visibility: hidden;
     transform: translateY(10px);
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
-.language-dropdown:hover .lang-options { opacity: 1; visibility: visible; transform: translateY(0); }
-.language-dropdown:hover .arrow-icon { transform: rotate(180deg); }
 
-.lang-option {
-    display: flex; align-items: center; gap: 10px;
-    background: none; border: none; width: 100%; padding: 10px;
-    border-radius: 6px; cursor: pointer; color: #555; font-family: var(--font-main);
-    transition: background 0.2s;
+/* Mostrar menú al hacer hover */
+.language-dropdown:hover .lang-options { 
+    opacity: 1; 
+    visibility: visible; 
+    transform: translateY(0); 
 }
-.lang-option img { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; }
-.lang-option:hover { background-color: var(--light-bg); color: var(--primary-green); }
+
+/* --- ESTILOS DE LAS OPCIONES INTERNAS --- */
+/* Aquí usamos selectores directos para asegurar que agarre los botones del HTML */
+.lang-options button {
+    display: flex; 
+    align-items: center; 
+    gap: 12px;
+    background: transparent; 
+    border: none; 
+    width: 100%; 
+    padding: 10px 12px;
+    border-radius: 8px; 
+    cursor: pointer; 
+    color: #555; 
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: left;
+    transition: all 0.2s ease;
+}
+
+/* Hover sobre una opción */
+.lang-options button:hover { 
+    background-color: var(--light-bg); 
+    color: var(--primary-green); 
+    transform: translateX(3px); /* Pequeño movimiento a la derecha */
+}
+
+/* Imágenes dentro de las opciones (IMPORTANTE: Esto evita que se vean gigantes) */
+.lang-options button img { 
+    width: 22px; 
+    height: 22px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
 /* Menu */
 #mobile-menu-btn {
