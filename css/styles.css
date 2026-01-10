@@ -1010,168 +1010,248 @@ footer {
 }
 
 /* --- 2. TABLETS Y LAPTOPS PEQUEÑAS (Menú móvil se activa aquí) --- */
+/* ================================================================= */
+/* ============= MEDIA QUERY TABLETS Y MÓVILES (max-width: 1239px) == */
+/* ================================================================= */
+
 @media (max-width: 1239px) {
-  .header {
+
+    /* --- 1. HEADER & NAVBAR AJUSTES --- */
+    .header {
+        height: 80px; /* Altura fija para evitar saltos */
         z-index: 3000 !important;
     }
-    /* Navbar y Menú Hamburguesa */
-    .navbar { justify-content: space-between; }
+
+    .navbar { 
+        justify-content: space-between; 
+        padding: 0 15px;
+    }
+
+    /* Ocultar logo de escritorio */
     .logo-desktop { display: none !important; }
+
+    /* Mostrar y centrar logo móvil */
     .logo-mobile { 
         display: block; 
         position: absolute; 
         left: 50%; 
-        transform: translateX(-50%); 
+        top: 50%;
+        transform: translate(-50%, -50%); 
         z-index: 3001; 
     }
     .logo-mobile img { height: 50px; width: auto; }
 
-     .menu-toggle {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 30px;
-        height: 21px;
+    /* --- 2. BOTÓN HAMBURGUESA (Corregido) --- */
+    #mobile-menu-btn {
+        display: flex !important; /* Forzamos que aparezca */
+        align-items: center;
+        justify-content: center;
+        width: 44px; /* Área de toque más grande */
+        height: 44px;
+        background: transparent;
+        border: none;
         cursor: pointer;
-        position: relative; 
-        z-index: 3100 !important; 
+        z-index: 3100; /* Siempre encima del menú desplegado */
+        padding: 0;
+        margin-left: 0; 
     }
-    .menu-toggle .bar {
-        width: 100%;
-        height: 3px;
-        background-color: var(--primary-green);
-        border-radius: 3px;
-        transition: all 0.3s ease-in-out;
-        display: block;
-    }
-    .menu-toggle.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-    .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
-    .menu-toggle.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
+    #mobile-menu-btn i {
+        font-size: 1.8rem;
+        color: var(--primary-green);
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    /* Estado activo (manejado por JS) */
+    #mobile-menu-btn.active i {
+        transform: rotate(90deg);
+        color: var(--dark-green);
+    }
+
+    /* --- 3. MENÚ LATERAL (DRAWER) --- */
     .nav-menu {
         position: fixed;
         top: 0;
-        right: -100%;
-        width: 80%;
+        right: -100%; /* Oculto a la derecha */
+        width: 85%;
         max-width: 320px;
         height: 100vh;
         background-color: var(--white);
         flex-direction: column;
         align-items: flex-start;
-        padding-top: 100px;
+        padding-top: 100px; /* Espacio para no tapar el botón de cerrar */
         box-shadow: -5px 0 15px rgba(0,0,0,0.1);
         transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 3005 !important; 
-        overflow-y: auto;
+        overflow-y: auto; /* Scroll si el menú es muy alto */
     }
-    .nav-menu.active { right: 0; }
-    
-    .nav-item { width: 100%; height: auto; border-bottom: 1px solid #f5f5f5; flex-direction: column; align-items: flex-start; }
-    .nav-link { width: 100%; padding: 20px 25px; display: flex; justify-content: space-between; align-items: center; font-size: 1rem; height: auto; border-bottom: none; }
-    .nav-link:hover { border-bottom: none; border-left: 5px solid var(--primary-green); background-color: #f9f9f9; }
 
-    /* Submenu Móvil */
+    .nav-menu.active { 
+        right: 0; /* Aparece al añadir clase active con JS */
+    }
+    
+    .nav-item { 
+        width: 100%; 
+        height: auto; 
+        border-bottom: 1px solid #f0f0f0; 
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-link { 
+        width: 100%; 
+        padding: 20px 25px; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        font-size: 1rem; 
+        height: auto; 
+        border-bottom: none;
+        color: var(--text-color); 
+    }
+
+    .nav-link:hover { 
+        background-color: #f9f9f9; 
+        color: var(--primary-green);
+        border-bottom: none;
+    }
+
+    /* --- 4. SUBMENÚS (DROPDOWNS) --- */
+    /* En móvil, el hover CSS se desactiva para usar click JS */
     .nav-item:hover .dropdown-content {
-        transform: none !important; 
-        opacity: 0;     
-        visibility: hidden;
-        max-height: 0;
+        opacity: 0; visibility: hidden; display: none;
     }
     
     .dropdown-content {
-        position: static !important; 
+        position: static !important; /* Ya no es flotante */
         transform: none !important;
         width: 100%;
         box-shadow: none;
         border-top: 1px solid #eee; 
-        background-color: #f9f9f9;
-        display: block; 
-        max-height: 0;
-        opacity: 0;
-        visibility: hidden; 
-        overflow: hidden;
-        transition: all 0.4s ease; 
+        background-color: #fbfbfb; /* Fondo un poco más gris para diferenciar */
+        display: none; /* Oculto por defecto */
         padding: 0;
+        opacity: 1; visibility: visible;
     }
 
-    .nav-item .dropdown-content.show {
-        max-height: 500px; 
-        opacity: 1;
-        visibility: visible;
+    /* Clase .show añadida por JS */
+    .dropdown-content.show {
+        display: block !important;
+        animation: fadeIn 0.3s ease;
     }
 
     .dropdown-content a {
         text-align: left; 
-        padding-left: 40px; 
+        padding: 15px 25px 15px 50px; /* Más sangría a la izquierda */
         border-bottom: 1px solid #eee; 
-        display: block; 
+        display: block;
+        font-size: 0.95rem;
     }
-    .dropdown-content a:last-child {
-        border-bottom: none; 
+    .dropdown-content a:last-child { border-bottom: none; }
+
+    /* --- 5. BOTÓN "COTIZA CON NOSOTROS" EN MENÚ --- */
+    .nav-item.nav-cta {
+        border-bottom: none;
+        padding: 30px 25px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
 
-    /* Idioma Móvil */
-    .language-dropdown { margin-right: auto; }
-    .lang-options { left: 0; min-width: 150px; }
-    .language-dropdown.active-lang .lang-options { opacity: 1; visibility: visible; transform: translateY(0); }
-    .language-dropdown.active-lang .arrow-icon { transform: rotate(180deg); }
+    .nav-item.nav-cta a {
+        background-color: var(--primary-green);
+        color: #ffffff !important;
+        width: 100%;
+        justify-content: center;
+        border-radius: 50px;
+        padding: 15px;
+        text-align: center;
+        font-weight: 700;
+        box-shadow: 0 4px 10px rgba(15, 127, 65, 0.2);
+    }
+    .nav-item.nav-cta a:hover {
+        background-color: var(--dark-green);
+        transform: translateY(-2px);
+    }
+
+    /* --- 6. IDIOMA MÓVIL --- */
+    .language-dropdown { 
+        margin-right: auto; /* Empuja el logo al centro */
+        position: relative;
+        z-index: 3002;
+    }
     
+    .lang-options { 
+        left: 0; 
+        top: 50px;
+        min-width: 150px;
+        opacity: 0; visibility: hidden;
+        transition: all 0.3s;
+    }
+
+    .language-dropdown.active-lang .lang-options { 
+        opacity: 1; visibility: visible; transform: translateY(0); 
+    }
+    
+    .language-dropdown.active-lang .arrow-icon { 
+        transform: rotate(180deg); 
+    }
+
+    /* --- 7. OVERLAY OSCURO --- */
     #menu-overlay {
-        display: block; /* Hacemos que aparezca */
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 10px;
-        z-index: 3100; /* Encima del menú desplegado */
-        position: relative; /* Para que el z-index funcione */
+        display: block;
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.6);
+        z-index: 3004; /* Debajo del menú (3005) pero encima del contenido */
+        opacity: 0; visibility: hidden;
+        transition: all 0.3s ease;
     }
-    #mobile-menu-btn i {
-        font-size: 1.8rem; /* Tamaño del icono */
-        color: var(--primary-green);
-        transition: transform 0.3s ease, color 0.3s ease;
-    }
+    #menu-overlay.active { opacity: 1; visibility: visible; }
 
-    /* Efecto cuando el menú está abierto (clase .active agregada por JS) */
-    #mobile-menu-btn.active i {
-        transform: rotate(90deg); /* Rotamos el ícono */
-        color: var(--dark-green);
+    /* --- 8. AJUSTES GENERALES DEL SITIO EN TABLET --- */
+    .hero-inner-content { 
+        flex-direction: column; 
+        justify-content: center; 
+        text-align: center; 
+        gap: 20px; 
     }
-
-    /* Ajustes Generales Tablet */
-    .hero-inner-content { flex-direction: column; justify-content: center; text-align: center; gap: 15px; }
-    .hero-col-text h2 { text-align: center; font-size: 1.5rem; }
+    
+    .hero-col-text h2 { 
+        text-align: center; 
+        font-size: 1.8rem; 
+    }
+    
     .split-section { flex-direction: column; }
     .split-video, .split-text { width: 100%; }
 
-    /* --- NUEVO: AJUSTE MODAL PARA TABLET (Imagen arriba, texto abajo) --- */
+    /* --- 9. AJUSTE MODAL PARA TABLET --- */
     .card { 
-        grid-template-columns: 1fr; /* Columna única */
-        grid-template-rows: auto 1fr; /* Imagen auto, texto el resto */
+        grid-template-columns: 1fr; 
+        grid-template-rows: auto 1fr; 
         display: flex;
         flex-direction: column;
-        max-height: 85vh; /* Evita que sea más alta que la pantalla */
-        width: 90%; /* Un poco de margen lateral */
+        max-height: 85vh; 
+        width: 90%; 
     }
     .card__img { 
         width: 100%;
-        height: 280px; 
-        max-height: 300px; 
-        flex-shrink: 0; /* Asegura que la imagen no desaparezca */
+        height: 250px; 
+        flex-shrink: 0; 
     }
     .card__body {
-        overflow-y: auto; /* Scroll interno si el texto es largo */
+        overflow-y: auto; 
         padding: 30px;
     }
-    /* ------------------------------------------------------------------ */
 
+    /* --- 10. FORMULARIO --- */
     .form-grid {
         grid-template-columns: 1fr; 
         padding: 30px 20px; 
     }
 
-    .span-2 {
-        grid-column: span 1; 
-    }
+    .span-2 { grid-column: span 1; }
 }
 
 /* --- 3. MÓVILES (Smartphone Portrait) --- */
