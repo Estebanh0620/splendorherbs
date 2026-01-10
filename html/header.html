@@ -2,16 +2,16 @@
   <div class="navbar-container">
     <nav class="navbar">
 
+      <!-- 1. Botón Menú Móvil (IMPORTANTE: Esto faltaba) -->
       <button id="mobile-menu-btn" class="hamburger" aria-label="Abrir menú">
         <i class="fas fa-bars"></i>
       </button>
 
-      <!-- Selector de idioma -->
+      <!-- 2. Selector de idioma -->
       <div class="language-dropdown">
         <button class="lang-selected" type="button">
           <span class="current-content">
-            <!-- Nota: Las rutas de img se corregirán con JS, pero pon rutas relativas por defecto -->
-            <img id="current-lang-flag" src="img/co.png" alt="Idioma">
+            <img id="current-lang-flag" src="/img/co.png" alt="Idioma">
             <span id="current-lang-text">ESP</span>
           </span>
           <i class="fas fa-chevron-down arrow-icon"></i>
@@ -19,21 +19,22 @@
 
         <div class="lang-options">
           <button type="button" id="lang-es">
-            <img src="img/co.png" alt="Español"> <span>Español</span>
+            <img src="/img/co.png" alt="Español"> <span>Español</span>
           </button>
           <button type="button" id="lang-en">
-            <img src="img/us.png" alt="Inglés"> <span>English</span>
+            <img src="/img/us.png" alt="Inglés"> <span>English</span>
           </button>
         </div>
       </div>
 
+      <!-- 3. Logo Mobile -->
       <div class="logo-mobile">
-        <a href="index.html"><img src="img/logo.png" alt="Splendor Herbs"></a>
+        <a href="/index.html"><img src="/img/logo.png" alt="Splendor Herbs"></a>
       </div>
 
+      <!-- 4. Menú de Navegación -->
       <ul class="nav-menu">
-        <!-- ENLACES CORREGIDOS (sin / al inicio) -->
-        <li class="nav-item"><a href="index.html" class="nav-link" data-es="INICIO" data-en="HOME">INICIO</a></li>
+        <li class="nav-item"><a href="/index.html" class="nav-link" data-es="INICIO" data-en="HOME">INICIO</a></li>
         
         <li class="nav-item dropdown">
           <a href="#" class="nav-link">
@@ -41,14 +42,14 @@
             <i class="fas fa-chevron-down arrow-icon"></i>
           </a>
           <div class="dropdown-content">
-            <a href="html/valores.html" data-es="VALORES" data-en="VALUES">VALORES</a>
-            <a href="html/porquestn.html" data-es="POR QUÉ ELEGIRNOS" data-en="WHY CHOOSE US">POR QUÉ ELEGIRNOS</a>
-            <a href="html/galeria.html" data-es="GALERÍA" data-en="GALLERY">GALERÍA</a>
+            <a href="/html/valores.html" data-es="VALORES" data-en="VALUES">VALORES</a>
+            <a href="/html/porquestn.html" data-es="POR QUÉ ELEGIRNOS" data-en="WHY CHOOSE US">POR QUÉ ELEGIRNOS</a>
+            <a href="/html/galeria.html" data-es="GALERÍA" data-en="GALLERY">GALERÍA</a>
           </div>
         </li>
 
         <li class="nav-item logo-desktop">
-          <a href="index.html"><img src="img/logo.png" alt="Splendor Herbs"></a>
+          <a href="/index.html"><img src="/img/logo.png" alt="Splendor Herbs"></a>
         </li>
 
         <li class="nav-item dropdown">
@@ -57,17 +58,20 @@
             <i class="fas fa-chevron-down arrow-icon"></i>
           </a>
           <div class="dropdown-content">
-            <a href="html/hortalizas.html" data-es="HORTALIZAS" data-en="VEGETABLES">HORTALIZAS</a>
-            <a href="html/hierbas.html" data-es="HIERBAS" data-en="HERBS">HIERBAS</a>
+            <a href="/html/hortalizas.html" data-es="HORTALIZAS" data-en="VEGETABLES">HORTALIZAS</a>
+            <a href="/html/hierbas.html" data-es="HIERBAS" data-en="HERBS">HIERBAS</a>
           </div>
         </li>
 
         <li class="nav-item nav-cta">
-          <a href="html/contacto.html" class="nav-link" data-es="CONTACTO" data-en="CONTACT">CONTACTO</a>
+          <!-- AGREGA class="nav-link" AQUÍ ABAJO -->
+          <a href="/html/contacto.html" class="nav-link" data-es="CONTACTO" data-en="CONTACT">CONTACTO</a>
         </li>
       </ul>
       
+      <!-- 5. Fondo oscuro para móvil -->
       <div id="menu-overlay"></div>
+
     </nav>
   </div>
 </header>
