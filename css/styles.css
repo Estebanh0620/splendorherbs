@@ -128,6 +128,9 @@ h1, h2, h3, h4, h5, h6 {
 .lang-option:hover { background-color: var(--light-bg); color: var(--primary-green); }
 
 /* Menu */
+#mobile-menu-btn {
+    display: none; 
+}
 .nav-menu { display: flex; list-style: none; align-items: center; margin: 0; padding: 0; height: 100%; }
 .nav-item { height: 100%; display: flex; align-items: center; position: relative; }
 .nav-link {
@@ -1113,20 +1116,26 @@ footer {
     .language-dropdown.active-lang .lang-options { opacity: 1; visibility: visible; transform: translateY(0); }
     .language-dropdown.active-lang .arrow-icon { transform: rotate(180deg); }
     
-    .menu-overlay {
-         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: rgba(0,0,0,0.5); 
-        backdrop-filter: blur(4px);   
-        z-index: 2500 !important;     
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s;
+    #menu-overlay {
+        display: block; /* Hacemos que aparezca */
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 3100; /* Encima del menú desplegado */
+        position: relative; /* Para que el z-index funcione */
     }
-    .menu-overlay.active { opacity: 1; visibility: visible; } 
+    #mobile-menu-btn i {
+        font-size: 1.8rem; /* Tamaño del icono */
+        color: var(--primary-green);
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    /* Efecto cuando el menú está abierto (clase .active agregada por JS) */
+    #mobile-menu-btn.active i {
+        transform: rotate(90deg); /* Rotamos el ícono */
+        color: var(--dark-green);
+    }
 
     /* Ajustes Generales Tablet */
     .hero-inner-content { flex-direction: column; justify-content: center; text-align: center; gap: 15px; }

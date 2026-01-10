@@ -140,21 +140,17 @@
     }
 
     // CARGAR HEADER
+    // En tu loadHTML callback:
     loadHTML('header', '/html/header.html', () => {
-      
-      // Creamos el script tag
       const script = document.createElement('script');
-      script.src = '/js/menus.js'; 
+      // Añadimos ?v=timestamp para forzar la recarga del JS si haces cambios
+      script.src = '/js/menus.js?v=' + new Date().getTime(); 
       
-      // IMPORTANTE: Esperamos a que el JS cargue para ejecutar la función
       script.onload = function() {
           if (typeof window.iniciarMenu === 'function') {
-              window.iniciarMenu(); // Llamamos a la función global que creamos
-          } else {
-              console.error("Menus.js cargó, pero no encontró la función iniciarMenu");
+              window.iniciarMenu();
           }
       };
-
       document.body.appendChild(script);
     });
 
