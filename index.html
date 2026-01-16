@@ -3,21 +3,20 @@
 
 <head>
   <meta charset="UTF-8">
-  
+
   <!-- SEO básico -->
   <title>Splendor Herbs | Aromáticas y Hortalizas Frescas desde Colombia</title>
   <meta name="description"
     content="Splendor Herbs SAS ofrece hierbas aromáticas y hortalizas frescas de alta calidad para mayoristas en Colombia y exportación a Estados Unidos.">
-  
+
   <!-- FAVICON -->
   <link rel="shortcut icon" href="/img/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
   <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+
   <!-- Responsive -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Idioma -->
   <meta name="language" content="es">
 
   <!-- Google Fonts -->
@@ -28,19 +27,19 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-  <!-- CSS GLOBAL (incluye header) -->
+  <!-- CSS GLOBAL -->
   <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
 
-  <!-- Header dinámico -->
+  <!-- HEADER -->
   <div id="header"></div>
 
   <main class="main-content">
 
     <!-- HERO -->
-    <section class="hero" style="background-image: url('/img/1.png');" aria-label="Presentación Splendor Herbs">
+    <section class="hero" style="background-image: url('/img/1.png');">
       <div class="hero-overlay">
         <div class="hero-inner-content">
 
@@ -51,7 +50,9 @@
 
           <!-- Texto Hero -->
           <div class="hero-col-text">
-            <h1>
+            <h1
+              data-es="AROMÁTICAS FRESCAS CON<br>CALIDAD Y SOSTENIBILIDAD<br>DESDE COLOMBIA"
+              data-en="FRESH HERBS WITH<br>QUALITY AND SUSTAINABILITY<br>FROM COLOMBIA">
               AROMÁTICAS FRESCAS CON<br>
               CALIDAD Y SOSTENIBILIDAD<br>
               DESDE COLOMBIA
@@ -65,7 +66,11 @@
     <!-- CONTENIDO -->
     <div class="content-container">
 
-      <h2 class="section-title">QUIÉNES SOMOS</h2>
+      <h2 class="section-title"
+          data-es="QUIÉNES SOMOS"
+          data-en="ABOUT US">
+        QUIÉNES SOMOS
+      </h2>
 
       <div class="separator-leaf" aria-hidden="true">
         <span class="line"></span>
@@ -85,7 +90,9 @@
 
         <!-- Texto -->
         <div class="split-text">
-          <p>
+          <p
+            data-es="Desde 2017 nació en Madrid, Cundinamarca, Splendor Herbs SAS, una compañía dedicada al cultivo, selección y empaque de aromáticas frescas. Desde el inicio nos hemos enfocado en llevar al mundo productos de la más alta calidad, cultivados con responsabilidad, inocuidad y respeto por el medio ambiente."
+            data-en="Founded in 2017 in Madrid, Cundinamarca, Splendor Herbs SAS is a company dedicated to the cultivation, selection, and packaging of fresh herbs. From the beginning, we have focused on delivering the highest quality products to the world, grown responsibly with food safety and respect for the environment.">
             Desde 2017 nació en Madrid, Cundinamarca, Splendor Herbs SAS, una compañía dedicada al cultivo, selección y
             empaque de aromáticas frescas. Desde el inicio nos hemos enfocado en llevar al mundo productos de la más
             alta calidad, cultivados con responsabilidad, inocuidad y respeto por el medio ambiente.
@@ -95,7 +102,9 @@
       </div>
 
       <div class="full-width-text">
-        <p>
+        <p
+          data-es="Nuestro camino ha estado marcado por el compromiso con la sostenibilidad, trabajando constantemente en reducir nuestra huella de carbono y fortalecer las buenas prácticas agrícolas. De la mano de nuestros colaboradores, hemos creado una cultura basada en el aprendizaje continuo, la innovación y la entrega de un producto fresco y saludable que cumple con los más altos estándares internacionales."
+          data-en="Our journey has been defined by a strong commitment to sustainability, constantly working to reduce our carbon footprint and strengthen good agricultural practices. Together with our collaborators, we have built a culture based on continuous learning, innovation, and the delivery of fresh and healthy products that meet the highest international standards.">
           Nuestro camino ha estado marcado por el compromiso con la sostenibilidad, trabajando constantemente en reducir
           nuestra huella de carbono y fortalecer las buenas prácticas agrícolas. De la mano de nuestros colaboradores,
           hemos creado una cultura basada en el aprendizaje continuo, la innovación y la entrega de un producto fresco y
@@ -103,7 +112,11 @@
         </p>
       </div>
 
-      <h2 class="section-title">CERTIFICACIONES</h2>
+      <h2 class="section-title"
+          data-es="CERTIFICACIONES"
+          data-en="CERTIFICATIONS">
+        CERTIFICACIONES
+      </h2>
 
       <div class="separator-leaf" aria-hidden="true">
         <span class="line"></span>
@@ -112,52 +125,37 @@
       </div>
 
       <div class="certificados">
-        <img src="/img/primus.png" alt="Certificación Primus GFS">
-        <img src="/img/ICA.webp" alt="Certificación ICA Colombia">
+        <img src="/img/primus.png" alt="Primus GFS Certification">
+        <img src="/img/ICA.webp" alt="ICA Colombia Certification">
       </div>
 
     </div>
   </main>
 
-  <!-- Footer dinámico -->
+  <!-- FOOTER -->
   <div id="footer"></div>
-
 
   <!-- JS -->
   <script>
-      async function loadHTML(id, file, callback) {
-        try {
-          const res = await fetch(file);
-          if (!res.ok) throw new Error(`No se pudo cargar ${file}`);
-          const text = await res.text();
-          document.getElementById(id).innerHTML = text;
-          
-          // Ejecutar callback si existe
-          if (callback) callback(); 
-        } catch (err) {
-          console.error(err);
-        }
+    async function loadHTML(id, file) {
+      try {
+        const res = await fetch(file);
+        if (!res.ok) throw new Error(`No se pudo cargar ${file}`);
+        const text = await res.text();
+        document.getElementById(id).innerHTML = text;
+      } catch (err) {
+        console.error(err);
       }
+    }
 
-      // 1. Cargar Header
-      loadHTML('header', '/html/header.html', () => {
-        
-        // 2. Una vez el HTML del header está puesto, cargamos el JS
-        const script = document.createElement('script');
-        script.src = '/js/menus.js'; 
-        
-        // 3. Cuando el JS se cargue, inicializamos el menú
-        script.onload = () => {
-            if (typeof initMenu === 'function') {
-                initMenu(); // <--- ESTO ACTIVA TODO
-            }
-        };
-        
-        document.body.appendChild(script);
-      });
+    loadHTML('header', '/html/header.html', () => {
+      const script = document.createElement('script');
+      script.src = '/js/menus.js';
+      document.body.appendChild(script);
+    });
 
-      // Cargar Footer
-      loadHTML('footer', '/html/footer.html');
+    loadHTML('footer', '/html/footer.html');
   </script>
+
 </body>
 </html>
