@@ -1,11 +1,6 @@
-/* menus.js */
-
 // =======================
 // 1. SELECCIÓN DE ELEMENTOS
 // =======================
-// Usamos funciones getters o búsqueda dinámica dentro de applyLanguage
-// para asegurar que el elemento existe tras la carga asíncrona del header.
-
 const menuBtn = document.getElementById('mobile-menu-btn');
 const navMenu = document.querySelector('.nav-menu');
 const overlay = document.getElementById('menu-overlay');
@@ -20,69 +15,51 @@ const langEnBtn = document.getElementById('lang-en');
 function applyLanguage(lang) {
     localStorage.setItem('language', lang);
 
-    // Actualizar Bandera y Texto (Si existen en el header)
     const currentFlag = document.getElementById('current-lang-flag');
     const currentText = document.getElementById('current-lang-text');
 
     if (currentFlag && currentText) {
         if (lang === 'es') {
-            currentFlag.src = '/splendorherbs/img/co.png';
+            currentFlag.src = '/img/co.png';
             currentText.textContent = 'ESP';
         } else {
-            currentFlag.src = '/splendorherbs/img/us.png';
+            currentFlag.src = '/img/us.png';
             currentText.textContent = 'EN';
         }
     }
 
-    // ------------------------------------------------------
-    // AQUÍ ESTÁ LA CLAVE: 
-    // Usamos `document` sin especificar clase padre.
-    // Esto busca en Header, Main, Footer y cualquier otro lugar.
-    // ------------------------------------------------------
     const allElements = document.querySelectorAll('[data-es][data-en]');
-    
     allElements.forEach(el => {
-        // Aplica la traducción a cada elemento encontrado
         el.textContent = el.getAttribute(`data-${lang}`);
     });
 
-    // Disparar evento global (opcional, por si usas otros scripts)
     const event = new CustomEvent('languageChanged', { detail: { language: lang } });
     document.dispatchEvent(event);
 }
 
 // =======================
-// 3. LISTENERS DE IDIOMA
+// 3. LISTENERS DE IDIOMA & CARGA INICIAL
 // =======================
 if (langEsBtn) langEsBtn.addEventListener('click', () => applyLanguage('es'));
 if (langEnBtn) langEnBtn.addEventListener('click', () => applyLanguage('en'));
 
-// =======================
-// CARGA INICIAL
-// =======================
-// Obtener idioma guardado o usar español por defecto
 const savedLang = localStorage.getItem('language') || 'es';
-
-// Aplicar visualmente los iconos del header (Bandera/Texto)
 const initFlag = document.getElementById('current-lang-flag');
 const initText = document.getElementById('current-lang-text');
 
 if (initFlag && initText) {
     if (savedLang === 'es') {
-        initFlag.src = '/splendorherbs/img/co.png';
+        initFlag.src = '/img/co.png';
         initText.textContent = 'ESP';
     } else {
-        initFlag.src = '/splendorherbs/img/us.png';
+        initFlag.src = '/img/us.png';
         initText.textContent = 'EN';
     }
 }
 
-// Ejecutar la traducción inmediatamente al cargar
-// Nuevamente: busca en TODO el documento (Header + Main)
 document.querySelectorAll('[data-es][data-en]').forEach(el => {
     el.textContent = el.getAttribute(`data-${savedLang}`);
 });
-
 
 // =======================
 // 4. MENU MOVIL
@@ -91,17 +68,37 @@ function toggleMobileMenu() {
     if (!navMenu || !menuBtn) return;
     const isActive = navMenu.classList.contains('active');
     
+    // Toggling clases
     menuBtn.classList.toggle('active');
     navMenu.classList.toggle('active');
     if(overlay) overlay.classList.toggle('active');
     
+    // --- LÓGICA PARA CAMBIAR EL ÍCONO ---
+    const icon = menuBtn.querySelector('i');
+    if (icon) {
+        if (menuBtn.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times'); // Cambia a X
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars'); // Vuelve a barras
+        }
+    }
+
     document.body.style.overflow = isActive ? 'auto' : 'hidden';
 }
 
-if (menuBtn) menuBtn.addEventListener('click', toggleMobileMenu);
-if (overlay) overlay.addEventListener('click', () => {
-    if (navMenu.classList.contains('active')) toggleMobileMenu();
-});
+// --- ¡AQUÍ ESTÁ LA CORRECCIÓN! FALTABA DETECTAR EL CLIC ---
+if (menuBtn) {
+    menuBtn.addEventListener('click', toggleMobileMenu);
+}
+// También detecta si el usuario hace clic fuera del menú (en el fondo oscuro) para cerrarlo
+if (overlay) {
+    overlay.addEventListener('click', () => {
+        if (navMenu.classList.contains('active')) toggleMobileMenu();
+    });
+}
+// -----------------------------------------------------------
 
 // =======================
 // 5. DROPDOWNS
@@ -121,11 +118,15 @@ dropdowns.forEach(dropdown => {
 
     if (link) {
         link.addEventListener('click', (e) => {
-            if (window.innerWidth <= 900) {
+            // El menú móvil se activa a los 1240px
+            if (window.innerWidth <= 1240) {
                 e.preventDefault();
                 e.stopPropagation();
                 const isOpen = content.classList.contains('show');
-                closeAllDropdowns();
+                
+                // Cierra los otros submenús si abres uno nuevo
+                closeAllDropdowns(); 
+
                 if (!isOpen) {
                     content.classList.add('show');
                     if (icon) icon.classList.add('rotate');
@@ -135,7 +136,7 @@ dropdowns.forEach(dropdown => {
     }
 
     dropdown.addEventListener('mouseenter', () => {
-        if (window.innerWidth > 900 && content) {
+        if (window.innerWidth > 1240 && content) {
             closeAllDropdowns();
             content.classList.add('show');
             if (icon) icon.classList.add('rotate');
@@ -148,9 +149,16 @@ document.addEventListener('click', e => {
 });
 
 window.addEventListener('resize', () => {
-    if (window.innerWidth > 900) {
+    if (window.innerWidth > 1240) {
         if (navMenu) navMenu.classList.remove('active');
-        if (menuBtn) menuBtn.classList.remove('active');
+        if (menuBtn) {
+            menuBtn.classList.remove('active');
+            const icon = menuBtn.querySelector('i');
+            if(icon) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
         if(overlay) overlay.classList.remove('active');
         document.body.style.overflow = 'auto';
     }

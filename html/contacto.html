@@ -10,9 +10,7 @@
   <title>Contacto | Wholesale Herbs & Vegetables Supplier – Splendor Herbs</title>
 
   <meta name="description" content="Contáctanos para compras mayoristas y exportación de hierbas aromáticas y hortalizas frescas. Splendor Herbs SAS abastece mercados en Colombia, EE.UU. y destinos internacionales.">
-
   <meta name="keywords" content="contact splendor herbs, wholesale herbs supplier, fresh vegetables exporter colombia, herbs supplier usa, buy herbs wholesale">
-
   <meta name="author" content="Splendor Herbs SAS">
   <meta name="robots" content="index, follow">
   <meta name="language" content="es, en">
@@ -22,18 +20,20 @@
   <meta name="geo.placename" content="Colombia">
   <meta name="distribution" content="global">
 
-  <!-- Open Graph (WhatsApp, LinkedIn, Facebook) -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Contact | Splendor Herbs Wholesale Supplier">
   <meta property="og:description" content="Get in touch with Splendor Herbs to source fresh herbs and vegetables for wholesale and export markets.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="/splendorherbs/img/og-contacto.jpg">
-  <meta property="og:url" content="https://splendorherbs.com/contacto">
+  <!-- CORREGIDO: Ruta absoluta al dominio oficial -->
+  <meta property="og:image" content="https://splendorherbs.com/img/og-contacto.jpg">
+  <meta property="og:url" content="https://splendorherbs.com/html/contacto.html">
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Contact – Splendor Herbs">
   <meta name="twitter:description" content="Wholesale contact for fresh herbs and vegetables from Colombia.">
-  <meta name="twitter:image" content="/splendorherbs/img/og-contacto.jpg">
+  <!-- CORREGIDO: Ruta absoluta al dominio oficial -->
+  <meta name="twitter:image" content="https://splendorherbs.com/img/og-contacto.jpg">
 
   <!-- Performance: Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,8 +46,11 @@
   <!-- CSS principal -->
   <link rel="stylesheet" href="/css/styles.css">
 
-  <!-- Favicon -->
-  <link rel="icon" href="/splendorherbs/img/favicon.png" type="image/png">
+  <!-- Favicon CORREGIDO: quitamos /splendorherbs/ -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 </head>
 
 <body>
@@ -71,16 +74,16 @@
       <!-- Formulario Configurado con FormSubmit -->
       <form class="form-grid" id="contactForm" method="POST" action="https://formsubmit.co/splendorherbssas@gmail.com">
 
-        <!-- CONFIGURACIÓN: Redirección a tu página de gracias en GitHub Pages -->
-        <input type="hidden" name="_next" value="https://estebanh0620.github.io/splendorherbs/html/gracias.html">
+        <!-- IMPORTANTE: Redirección corregida al dominio oficial -->
+        <input type="hidden" name="_next" value="https://splendorherbs.com/html/gracias.html">
 
-        <!-- CONFIGURACIÓN: Asunto del correo -->
+        <!-- Asunto del correo -->
         <input type="hidden" name="_subject" value="Nuevo mensaje - Splendor Herbs Web">
 
-        <!-- CONFIGURACIÓN: Desactivar Captcha (opcional, ayuda a que sea más rápido) -->
+        <!-- Desactivar Captcha -->
         <input type="hidden" name="_captcha" value="false">
 
-        <!-- CONFIGURACIÓN: Diseño del correo -->
+        <!-- Diseño del correo -->
         <input type="hidden" name="_template" value="table">
 
         <!-- CAMPOS VISIBLES -->
@@ -149,6 +152,7 @@
     async function loadHTML(id, file, callback) {
       try {
         const res = await fetch(file);
+        if (!res.ok) throw new Error(`Error cargando ${file}`);
         const text = await res.text();
         document.getElementById(id).innerHTML = text;
         if (callback) callback();
@@ -157,7 +161,7 @@
       }
     }
 
-     // Header (ruta segura desde dominio)
+    // Header (Rutas absolutas funcionando con el dominio)
     loadHTML('header', '/html/header.html', () => {
       const script = document.createElement('script');
       script.src = '/js/menus.js';
@@ -167,6 +171,7 @@
     // Footer
     loadHTML('footer', '/html/footer.html');
     
+    // Lógica de traducción
     function setLanguage(lang) {
       currentLang = lang;
 
@@ -185,11 +190,9 @@
       setLanguage(e.detail.language);
     });
 
+    // UX del botón de enviar
     const form = document.getElementById('contactForm');
     form.addEventListener('submit', () => {
-      // Nota: Como el formulario ahora hace un POST real a FormSubmit,
-      // la página se recargará hacia la URL externa y luego volverá a 'gracias.html'.
-      // El cambio de texto del botón será visible brevemente antes de la redirección.
       const btn = form.querySelector('.btn');
       btn.innerHTML = currentLang === 'es'
         ? 'ENVIANDO... <i class="fas fa-spinner fa-spin"></i>'
