@@ -132,30 +132,40 @@
     </div>
   </main>
 
-  <!-- FOOTER -->
-  <div id="footer"></div>
 
   <!-- JS -->
-  <script>
-    async function loadHTML(id, file) {
-      try {
-        const res = await fetch(file);
-        if (!res.ok) throw new Error(`No se pudo cargar ${file}`);
-        const text = await res.text();
-        document.getElementById(id).innerHTML = text;
-      } catch (err) {
-        console.error(err);
-      }
+ <script>
+  async function loadHTML(id, file, callback) {
+    try {
+      const res = await fetch(file);
+      if (!res.ok) throw new Error(`No se pudo cargar ${file}`);
+      const text = await res.text();
+      document.getElementById(id).innerHTML = text;
+
+      if (callback) callback();
+    } catch (err) {
+      console.error(err);
     }
+  }
 
-    loadHTML('header', '/html/header.html', () => {
-      const script = document.createElement('script');
-      script.src = '/js/menus.js';
-      document.body.appendChild(script);
-    });
+  // HEADER
+  loadHTML('header', '/html/header.html', () => {
+    const script = document.createElement('script');
+    script.src = '/js/menus.js';
 
-    loadHTML('footer', '/html/footer.html');
-  </script>
+    script.onload = () => {
+      if (typeof initMenu === 'function') {
+        initMenu();
+      }
+    };
+
+    document.body.appendChild(script);
+  });
+
+  // FOOTER
+  loadHTML('footer', '/html/footer.html');
+</script>
+
 
 </body>
 </html>
