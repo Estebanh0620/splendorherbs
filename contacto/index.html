@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtag.js) - Se mantiene intacto -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-8WSGJQ6WYK"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -11,81 +11,115 @@
     gtag('config', 'G-8WSGJQ6WYK');
   </script>
   
-  <!-- Configuración base -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- SEO principal -->
-  <!-- Título enfocado en la acción (Cotizar/Contactar) -->
-  <title>Contáctanos | Mayoristas y Exportación - Splendor Herbs</title>
-
-  <meta name="description" content="Solicita tu cotización de hierbas aromáticas y hortalizas frescas. Contacto directo para mayoristas y exportación desde Colombia a Estados Unidos y el mundo.">
-  <meta name="keywords" content="contacto splendor herbs, cotización aromáticas, proveedores de hierbas colombia, exportación hortalizas, contact fresh herbs supplier">
+  <!-- SEO PRINCIPAL -->
+  <!-- Título: Incluye intención comercial (Cotizar) y nicho (Exportación) -->
+  <title>Cotizar y Contactar | Exportación de Aromáticas - Splendor Herbs</title>
+  
+  <meta name="description" content="Contacta a Splendor Herbs para cotizar hierbas aromáticas y hortalizas frescas. Exportación directa desde Madrid, Colombia a USA. Atención a mayoristas.">
+  <meta name="keywords" content="contacto splendor herbs, cotización aromáticas, proveedores de hierbas colombia, exportación hortalizas, fresh herbs supplier colombia, business contact">
   <meta name="author" content="Splendor Herbs SAS">
   <meta name="robots" content="index, follow">
-  <meta name="language" content="es, en">
-
-  <!-- SEO geográfico -->
+  
+  <!-- SEO GEOGRÁFICO (Refuerzo Local) -->
   <meta name="geo.region" content="CO-CUN">
   <meta name="geo.placename" content="Madrid, Cundinamarca">
-  <meta name="distribution" content="global">
+  <meta name="geo.position" content="4.73245;-74.2642">
+  <meta name="ICBM" content="4.73245, -74.2642">
 
-  <!-- ETIQUETA CANÓNICA (Vital) -->
+  <!-- ETIQUETA CANÓNICA (Apunta a la carpeta con barra al final) -->
   <link rel="canonical" href="https://splendorherbs.com/contacto/" />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Contáctanos | Splendor Herbs">
-  <meta property="og:description" content="Cotiza hierbas aromáticas y hortalizas frescas con calidad de exportación.">
+  <!-- OPEN GRAPH (Para redes sociales y WhatsApp) -->
+  <meta property="og:title" content="Contáctanos | Splendor Herbs - Aromáticas de Exportación">
+  <meta property="og:description" content="Solicita tu cotización de hierbas frescas. Calidad Premium desde Colombia para el mundo.">
   <meta property="og:type" content="website">
+  <!-- Asegúrate de tener esta imagen en tu carpeta /img/ -->
   <meta property="og:image" content="https://splendorherbs.com/img/og-contacto.jpg">
   <meta property="og:url" content="https://splendorherbs.com/contacto/">
+  <meta property="og:site_name" content="Splendor Herbs">
 
-  <!-- Fuentes -->
+  <!-- FUENTES -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
-  <!-- Iconos -->
+  <!-- ICONOS (CDN) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- CSS principal -->
+  <!-- CSS PRINCIPAL (Ruta absoluta desde la raíz) -->
   <link rel="stylesheet" href="/css/styles.css">
 
-  <!-- Favicon -->
+  <!-- FAVICON (Ruta absoluta) -->
   <link rel="shortcut icon" href="/img/favicon.ico">
-  <!-- (Se mantienen tus otros favicons) -->
 
-  <!-- SCHEMA.ORG: ContactPage -->
+  <!-- SCHEMA.ORG: ContactPage + LocalBusiness (Estructura Avanzada) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "mainEntity": {
-      "@type": "Organization",
-      "name": "Splendor Herbs SAS",
-      "url": "https://splendorherbs.com",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+57-310-234-5678", 
-        "contactType": "sales",
-        "areaServed": ["US", "CO", "EU"],
-        "availableLanguage": ["Es", "En"]
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://splendorherbs.com/#organization",
+        "name": "Splendor Herbs SAS",
+        "image": "https://splendorherbs.com/img/logo-splendor.png",
+        "url": "https://splendorherbs.com",
+        "telephone": "+57-310-234-5678",
+        "email": "info@splendorherbs.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Vía Madrid",
+          "addressLocality": "Madrid",
+          "addressRegion": "Cundinamarca",
+          "postalCode": "250030",
+          "addressCountry": "CO"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 4.73245,
+          "longitude": -74.2642
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "08:00",
+          "closes": "17:00"
+        },
+        "priceRange": "$$"
+      },
+      {
+        "@type": "ContactPage",
+        "mainEntity": {
+          "@id": "https://splendorherbs.com/#organization"
+        },
+        "name": "Contáctanos | Splendor Herbs",
+        "description": "Formulario de contacto para cotizaciones de exportación de hierbas aromáticas.",
+        "url": "https://splendorherbs.com/contacto/",
+        "inLanguage": ["es", "en"]
       }
-    }
+    ]
   }
   </script>
 </head>
 
 <body>
 
-  <!-- Header -->
+  <!-- Header (Se carga vía JS) -->
   <div id="header"></div>
 
   <main class="main-content">
 
     <section class="contacto">
-      <!-- H1 para SEO -->
+      <!-- H1 ÚNICO Y OPTIMIZADO -->
       <h1 class="section-title-contact" data-es="CONTÁCTANOS" data-en="CONTACT US">
         CONTÁCTANOS
       </h1>
@@ -96,17 +130,19 @@
         <span class="line"></span>
       </div>
 
-      <!-- Formulario -->
+      <!-- FORMULARIO -->
+      <!-- Nota: formsubmit.co funciona bien para sitios estáticos -->
       <form class="form-grid" id="contactForm" method="POST" action="https://formsubmit.co/splendorherbssas@gmail.com">
 
-        <!-- CAMBIO: URL limpia para la página de gracias -->
+        <!-- URL limpia para página de agradecimiento -->
         <input type="hidden" name="_next" value="https://splendorherbs.com/gracias/">
-
-        <input type="hidden" name="_subject" value="Nuevo Lead Web - Splendor Herbs">
+        
+        <!-- Configuración del servicio de correo -->
+        <input type="hidden" name="_subject" value="Nuevo Lead Web (Splendor Herbs)">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
 
-        <!-- CAMPOS -->
+        <!-- CAMPOS DEL FORMULARIO -->
         <div class="field">
           <label for="email" data-es="Correo electrónico" data-en="Email Address">Correo electrónico</label>
           <input id="email" name="email" type="email" required
@@ -124,7 +160,7 @@
         </div>
 
         <div class="field">
-          <label for="celular" data-es="Celular" data-en="Phone Number">Celular</label>
+          <label for="celular" data-es="Celular / WhatsApp" data-en="Phone / WhatsApp">Celular</label>
           <input id="celular" name="celular" type="tel">
         </div>
 
@@ -144,13 +180,13 @@
         </div>
 
         <div class="field span-2">
-          <label for="observaciones" data-es="Observaciones adicionales" data-en="Additional observations">
+          <label for="observaciones" data-es="¿Qué productos necesitas cotizar?" data-en="What products do you need to quote?">
             Observaciones adicionales
           </label>
           <textarea id="observaciones" name="observaciones"
-            placeholder="Describe aquí lo que necesitas..."
-            data-ph-es="Describe aquí lo que necesitas..."
-            data-ph-en="Describe here what you need..."></textarea>
+            placeholder="Describe aquí tu requerimiento..."
+            data-ph-es="Describe aquí tu requerimiento..."
+            data-ph-en="Describe here your request..."></textarea>
         </div>
 
         <div class="actions span-2">
@@ -163,12 +199,14 @@
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- Footer (Se carga vía JS) -->
   <div id="footer"></div>
 
+  <!-- SCRIPT DE FUNCIONALIDAD -->
   <script>
     let currentLang = localStorage.getItem('language') || 'es';
 
+    // Función asíncrona para cargar componentes HTML
     async function loadHTML(id, file, callback) {
       try {
         const res = await fetch(file);
@@ -177,48 +215,65 @@
         document.getElementById(id).innerHTML = text;
         if (callback) callback();
       } catch (err) {
-        console.error(err);
+        console.error('Error loading component:', err);
       }
     }
 
-    // Header 
+    // Cargar Header (Ruta absoluta)
     loadHTML('header', '/html/header.html', () => {
+      // Cargar script del menú después de insertar el HTML
       const script = document.createElement('script');
-      script.src = '/js/menus.js';
+      script.src = '/js/menus.js'; // Ruta absoluta
       document.body.appendChild(script);
+      
+      // Aplicar idioma al header recién cargado
+      setLanguage(currentLang);
     });
 
-    // Footer
-    loadHTML('footer', '/html/footer.html');
+    // Cargar Footer (Ruta absoluta)
+    loadHTML('footer', '/html/footer.html', () => {
+      // Aplicar idioma al footer recién cargado
+      setLanguage(currentLang);
+    });
     
-    // Traducción
+    // Sistema de Traducción
     function setLanguage(lang) {
       currentLang = lang;
+      
+      // Texto normal
       document.querySelectorAll('[data-es]').forEach(el => {
         el.innerText = el.getAttribute(`data-${lang}`);
       });
+      
+      // Placeholders de inputs
       document.querySelectorAll('[data-ph-es]').forEach(el => {
-        el.placeholder = el.getAttribute(`data-ph-${lang}`);
+        if(el.getAttribute(`data-ph-${lang}`)) {
+          el.placeholder = el.getAttribute(`data-ph-${lang}`);
+        }
       });
     }
 
+    // Inicializar idioma
     setLanguage(currentLang);
 
+    // Escuchar evento personalizado (emitido desde menus.js al cambiar bandera)
     document.addEventListener('languageChanged', e => {
       setLanguage(e.detail.language);
     });
 
-    // Feedback visual al enviar
+    // UX: Feedback visual al enviar formulario
     const form = document.getElementById('contactForm');
-    form.addEventListener('submit', () => {
-      const btn = form.querySelector('.btn');
-      // Deshabilitar botón para evitar doble envío
-      btn.disabled = true; 
-      btn.innerHTML = currentLang === 'es'
-        ? 'ENVIANDO... <i class="fas fa-spinner fa-spin"></i>'
-        : 'SENDING... <i class="fas fa-spinner fa-spin"></i>';
-      btn.style.opacity = '0.7';
-    });
+    if(form) {
+      form.addEventListener('submit', () => {
+        const btn = form.querySelector('.btn');
+        btn.disabled = true; 
+        btn.innerHTML = currentLang === 'es'
+          ? 'ENVIANDO... <i class="fas fa-spinner fa-spin"></i>'
+          : 'SENDING... <i class="fas fa-spinner fa-spin"></i>';
+        btn.style.opacity = '0.7';
+        btn.style.cursor = 'not-allowed';
+      });
+    }
   </script>
 
 </body>
