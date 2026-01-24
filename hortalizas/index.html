@@ -10,28 +10,34 @@
 
     gtag('config', 'G-8WSGJQ6WYK');
   </script>
+  
   <!-- Configuración base -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- SEO Principal -->
-  <title>Hortalizas frescas al por mayor | Fresh Vegetables Wholesale Supplier – Splendor Herbs</title>
+  <!-- Título optimizado: Incluye "Exportación" y "Colombia" -->
+  <title>Hortalizas Frescas al Por Mayor | Exportación desde Colombia - Splendor Herbs</title>
 
-  <meta name="description" content="Proveedor mayorista de hortalizas frescas y hierbas aromáticas desde Colombia. Splendor Herbs SAS ofrece vegetales trazables, calidad de exportación y suministro confiable para distribuidores y compradores internacionales.">
+  <meta name="description" content="Proveedor mayorista de hortalizas frescas: Lechuga, Cebollín, Cilantro y Perejil. Cultivos con trazabilidad y calidad de exportación desde Colombia para distribuidores internacionales.">
 
-  <meta name="keywords" content="hortalizas frescas, fresh vegetables wholesale, wholesale vegetables supplier, proveedor mayorista de hortalizas, export vegetables colombia, herbs and vegetables supplier, fresh produce exporter">
+  <meta name="keywords" content="hortalizas frescas, lechuga, cebollin, cilantro, perejil, fresh vegetables wholesale, exportación hortalizas colombia, proveedor agrícola">
 
   <meta name="author" content="Splendor Herbs SAS">
   <meta name="robots" content="index, follow">
   <meta name="language" content="es, en">
 
+  <!-- ETIQUETA CANÓNICA (VITAL) -->
+  <link rel="canonical" href="https://splendorherbs.com/hortalizas/" />
+
   <!-- Open Graph -->
-  <meta property="og:title" content="Hortalizas frescas al por mayor | Fresh Vegetables – Splendor Herbs">
-  <meta property="og:description" content="Hortalizas frescas y hierbas aromáticas con estándares de exportación.">
+  <meta property="og:title" content="Catálogo de Hortalizas Frescas | Splendor Herbs">
+  <meta property="og:description" content="Descubre nuestra selección de hortalizas frescas con estándares de exportación: Lechuga, Cebollín y más.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="/splendorherbs/img/og-hortalizas.jpg">
-  <meta property="og:url" content="https://splendorherbs.com/hortalizas">
+  <!-- Asegúrate de tener una imagen representativa aquí -->
+  <meta property="og:image" content="https://splendorherbs.com/img/og-hortalizas.jpg">
+  <meta property="og:url" content="https://splendorherbs.com/hortalizas/">
 
   <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,9 +51,46 @@
   <link rel="stylesheet" href="/css/styles.css">
 
   <link rel="shortcut icon" href="/img/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
-  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <!-- Favicons adicionales omitidos para ahorrar espacio, pero mantenlos si los tienes -->
+
+  <!-- SCHEMA.ORG (DATOS ESTRUCTURADOS) -->
+  <!-- Esto le dice a Google qué productos hay en esta página explícitamente -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Lechuga / Lettuce",
+        "description": "Variedad Frizze, crujiente y fresca.",
+        "url": "https://splendorherbs.com/hortalizas/#lechuga"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Cebollín / Chives",
+        "description": "Suave y fresco, ideal para cocina gourmet.",
+        "url": "https://splendorherbs.com/hortalizas/#cebollin"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Cilantro / Cilantro",
+        "description": "Aromático y lleno de sabor, calidad exportación.",
+        "url": "https://splendorherbs.com/hortalizas/#cilantro"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Perejil / Parsley",
+        "description": "Variedad Liso Italiano, versátil y verde.",
+        "url": "https://splendorherbs.com/hortalizas/#perejil"
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
@@ -59,9 +102,10 @@
 
     <!-- HERO -->
     <section class="galeria-simple-header">
-      <h2 data-es="HORTALIZAS FRESCAS" data-en="FRESH VEGETABLES">
+      <!-- CAMBIO SEO: H1 es fundamental -->
+      <h1 data-es="HORTALIZAS FRESCAS" data-en="FRESH VEGETABLES" style="font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 1rem;">
         HORTALIZAS FRESCAS
-      </h2>
+      </h1>
 
       <div class="separator-leaf">
         <span class="line"></span>
@@ -74,12 +118,18 @@
     <section class="catalogo">
       <div class="catalogo__intro">
         <h2 data-es="Selecciona una hortaliza para ver su ficha técnica"
-            data-en="Select a vegetable to see its technical sheet">
+            data-en="Select a vegetable to see its technical sheet"
+            style="font-size: 1.5rem;">
           Selecciona una hortaliza para ver su ficha técnica
         </h2>
       </div>
 
-      <div class="tiles" id="tiles"></div>
+      <div class="tiles" id="tiles">
+         <!-- Fallback para SEO si falla JS -->
+         <noscript>
+             <p>Lechuga Frizze, Cebollín, Cilantro, Perejil Liso Italiano.</p>
+         </noscript>
+      </div>
     </section>
 
   </main>
@@ -105,7 +155,7 @@
       }
     }
 
-    // Header (ruta segura desde dominio)
+    // Header 
     loadHTML('header', '/html/header.html', () => {
       const script = document.createElement('script');
       script.src = '/js/menus.js';
@@ -118,11 +168,12 @@
 
   <!-- LÓGICA HORTALIZAS -->
   <script>
+    // NOTA: Rutas de imágenes estandarizadas a /img/ (ruta absoluta)
     const HORTALIZAS = [
       {
         id: "lechuga",
-        imagenPortada: "../img/Lechuga.jpeg",
-        imagen: "../img/Lechuga1.jpeg",
+        imagenPortada: "/img/Lechuga.jpeg",
+        imagen: "/img/Lechuga1.jpeg",
         es: {
           nombre: "Lechuga",
           descripcion: "Crujiente, fresca y perfecta para acompañar cualquier comida.",
@@ -149,8 +200,8 @@
       },
       {
         id: "cilantro",
-        imagenPortada: "../img/Cilantro.jpg",
-        imagen: "../img/Cilantro.jpg",
+        imagenPortada: "/img/Cilantro.jpg",
+        imagen: "/img/Cilantro.jpg",
         es: {
           nombre: "Cilantro",
           descripcion: "Fresco, aromático y lleno de sabor."
@@ -162,8 +213,8 @@
       },
       {
         id: "perejil",
-        imagenPortada: "../img/Perejil.jpg",
-        imagen: "../img/Perejil.jpg",
+        imagenPortada: "/img/Perejil.jpg",
+        imagen: "/img/Perejil.jpg",
         es: {
           nombre: "Perejil",
           descripcion: "Limpio, verde y versátil.",
@@ -184,10 +235,13 @@
 
     const tilesContainer = document.getElementById('tiles');
     const resultsContainer = document.getElementById('results');
+    // Re-leer idioma por seguridad
+    currentLang = localStorage.getItem('language') || 'es';
 
     function updateStaticText() {
       document.querySelectorAll('[data-es]').forEach(el => {
-        el.textContent = el.getAttribute(`data-${currentLang}`);
+        const text = el.getAttribute(`data-${currentLang}`);
+        if(text) el.textContent = text;
       });
     }
 
@@ -198,10 +252,13 @@
         const tile = document.createElement('div');
         tile.className = 'tile';
         tile.dataset.id = p.id;
+        
+        // Rutas de imagen absolutas + Fallback de error
+        const errorFallback = `this.onerror=null;this.src='/img/logo2.png'`;
 
         tile.innerHTML = `
-          <img src="${p.imagenPortada}" alt="${d.nombre}">
-          <div class="tile__label">${d.nombre}</div>
+          <img src="${p.imagenPortada}" onerror="${errorFallback}" alt="${d.nombre} - Splendor Herbs" loading="lazy">
+          <div class="tile__label"><h3>${d.nombre}</h3></div>
         `;
         tilesContainer.appendChild(tile);
       });
@@ -210,13 +267,14 @@
     function openModal(producto) {
       const d = producto[currentLang];
       const lbl = LABELS[currentLang];
+      const errorFallback = `this.onerror=null;this.src='/img/logo2.png'`;
 
       resultsContainer.innerHTML = `
         <article class="card">
           <button class="card__close" aria-label="${lbl.close}">
             <i class="fa-solid fa-xmark"></i>
           </button>
-          <img class="card__img" src="${producto.imagen}" alt="${d.nombre}">
+          <img class="card__img" src="${producto.imagen}" onerror="${errorFallback}" alt="${d.nombre}">
           <div class="card__body">
             <h3 class="card__title">${d.nombre}</h3>
             <p class="meta">${d.descripcion}</p>
