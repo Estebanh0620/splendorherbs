@@ -12,7 +12,6 @@
       <div class="language-dropdown">
         <button class="lang-selected" type="button" aria-label="Seleccionar idioma">
           <span class="current-content">
-            <!-- CORREGIDO: src="/img/..." (Sin los dos puntos) -->
             <img id="current-lang-flag" src="/img/co.png" alt="Idioma">
             <span id="current-lang-text">ESP</span>
           </span>
@@ -21,13 +20,11 @@
 
         <div class="lang-options">
           <button type="button" id="lang-es">
-            <!-- CORREGIDO -->
             <img src="/img/co.png" alt="Español Colombia">
             <span>Español</span>
           </button>
 
           <button type="button" id="lang-en">
-            <!-- CORREGIDO -->
             <img src="/img/us.png" alt="English United States">
             <span>English</span>
           </button>
@@ -36,8 +33,8 @@
 
       <!-- Logo Mobile -->
       <div class="logo-mobile">
-        <a href="/index.html">
-          <!-- CORREGIDO -->
+        <!-- CAMBIO 1: Enlace limpio al Home -->
+        <a href="/">
           <img src="/img/logo.png" alt="Splendor Herbs">
         </a>
       </div>
@@ -45,7 +42,8 @@
       <!-- Menú -->
       <ul class="nav-menu">
         <li class="nav-item">
-          <a href="/index.html" class="nav-link" data-es="INICIO" data-en="HOME">INICIO</a>
+          <!-- CAMBIO 2: Enlace limpio al Home -->
+          <a href="/" class="nav-link" data-es="INICIO" data-en="HOME">INICIO</a>
         </li>
 
         <li class="nav-item dropdown">
@@ -54,16 +52,17 @@
             <i class="fas fa-chevron-down arrow-icon"></i>
           </a>
           <div class="dropdown-content">
-            <a href="/html/valores.html" data-es="NUESTROS VALORES" data-en="OUR VALUES">NUESTROS VALORES</a>
-            <a href="/html/porquestn.html" data-es="¿POR QUÉ ELEGIRNOS?" data-en="WHY CHOOSE US?">¿POR QUÉ ELEGIRNOS?</a>
-            <a href="/html/galeria.html" data-es="GALERÍA" data-en="GALLERY">GALERÍA</a>
+            <!-- CAMBIO 3: Enlaces a carpetas (sin .html) -->
+            <a href="/valores/" data-es="NUESTROS VALORES" data-en="OUR VALUES">NUESTROS VALORES</a>
+            <a href="/porquestn/" data-es="¿POR QUÉ ELEGIRNOS?" data-en="WHY CHOOSE US?">¿POR QUÉ ELEGIRNOS?</a>
+            <a href="/galeria/" data-es="GALERÍA" data-en="GALLERY">GALERÍA</a>
           </div>
         </li>
 
         <!-- Logo Desktop -->
         <li class="nav-item logo-desktop">
-          <a href="/index.html">
-            <!-- CORREGIDO -->
+          <!-- CAMBIO 4: Enlace limpio al Home -->
+          <a href="/">
             <img src="/img/logo.png" alt="Splendor Herbs">
           </a>
         </li>
@@ -74,14 +73,16 @@
             <i class="fas fa-chevron-down arrow-icon"></i>
           </a>
           <div class="dropdown-content">
-            <a href="/html/hortalizas.html" data-es="HORTALIZAS FRESCAS" data-en="FRESH VEGETABLES">HORTALIZAS FRESCAS</a>
-            <a href="/html/hierbas.html" data-es="HIERBAS AROMÁTICAS" data-en="AROMATIC HERBS">HIERBAS AROMÁTICAS</a>
-            <a href="/html/procesos.html" data-es="PROCESOS" data-en="PROCESSES">PROCESOS</a>
+            <!-- CAMBIO 5: Enlaces a carpetas (sin .html) -->
+            <a href="/hortalizas/" data-es="HORTALIZAS FRESCAS" data-en="FRESH VEGETABLES">HORTALIZAS FRESCAS</a>
+            <a href="/hierbas/" data-es="HIERBAS AROMÁTICAS" data-en="AROMATIC HERBS">HIERBAS AROMÁTICAS</a>
+            <a href="/procesos/" data-es="PROCESOS" data-en="PROCESSES">PROCESOS</a>
           </div>
         </li>
 
         <li class="nav-item nav-cta">
-          <a href="/html/contacto.html" data-es="COTIZA CON NOSOTROS" data-en="GET A QUOTE">COTIZA CON NOSOTROS</a>
+          <!-- CAMBIO 6: Enlace a carpeta contacto -->
+          <a href="/contacto/" data-es="COTIZA CON NOSOTROS" data-en="GET A QUOTE">COTIZA CON NOSOTROS</a>
         </li>
       </ul>
       
