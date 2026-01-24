@@ -9,18 +9,39 @@
     gtag('js', new Date());
 
     gtag('config', 'G-8WSGJQ6WYK');
+
+    /* 
+       IMPORTANTE: AQUÍ IRÁ TU EVENTO DE CONVERSIÓN DE GOOGLE ADS 
+       Ejemplo (descomentar cuando tengas el ID):
+       // gtag('event', 'conversion', {'send_to': 'AW-XXXXXXXX/Label'});
+    */
   </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gracias | Splendor Herbs</title>
+  
+  <!-- SEO: Título simple y claro -->
+  <title>¡Mensaje Enviado! | Splendor Herbs</title>
+
+  <!-- META ROBOTS: NOINDEX (Vital para páginas de gracias) -->
+  <meta name="robots" content="noindex, follow">
+
+  <!-- CANONICAL -->
+  <link rel="canonical" href="https://splendorherbs.com/gracias/" />
+
+  <!-- FAVICONS (Rutas absolutas) -->
   <link rel="shortcut icon" href="/img/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
   <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
-  <!-- Fuentes -->
-  <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/styles.css">
 
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  
+  <!-- CSS Global -->
+  <link rel="stylesheet" href="/css/styles.css">
   
   <style>
     :root {
@@ -32,11 +53,11 @@
     /* 1. Bloqueo total del scroll */
     body {
       margin: 0;
-      overflow: hidden; /* El usuario no puede bajar ni subir */
+      overflow: hidden; 
       font-family: 'Montserrat', sans-serif;
     }
 
-    /* 2. Capa que cubre Header, Footer y todo el contenido */
+    /* 2. Capa que cubre todo */
     .fullscreen-overlay {
       position: fixed;
       top: 0;
@@ -46,7 +67,7 @@
       background-color: var(--bg-light);
       background-image: radial-gradient(#e1f5e8 1px, transparent 1px);
       background-size: 25px 25px;
-      z-index: 99999; /* Muy alto para tapar el header inyectado */
+      z-index: 99999; 
       
       display: flex;
       align-items: center;
@@ -75,6 +96,7 @@
     .thankyou-box img {
       width: 110px;
       margin-bottom: 20px;
+      height: auto; /* Prevent layout shift */
     }
 
     .thankyou-box h1 {
@@ -101,6 +123,7 @@
       display: inline-block;
       transition: transform 0.2s, box-shadow 0.2s;
       cursor: pointer;
+      border: none;
     }
 
     .btn:hover {
@@ -123,22 +146,24 @@
 </head>
 <body>
 
-<!-- Header se carga pero queda oculto visualmente por el overlay -->
+<!-- Header (Oculto visualmente por el overlay, pero cargado por consistencia de scripts) -->
 <div id="header"></div>
 
 <!-- Overlay de pantalla completa -->
 <div class="fullscreen-overlay">
   <div class="thankyou-box">
-    <img src="../img/Logo Splendor Herbs.png" alt="Splendor Herbs Logo">
+    <!-- CORRECCIÓN: Ruta absoluta y nombre de archivo sin espacios (recomendado) -->
+    <!-- Asegúrate de renombrar tu imagen a logo-splendor.png o ajustar esta ruta -->
+    <img src="/img/Logo Splendor Herbs.png" alt="Splendor Herbs Logo">
     
-    <!-- TÍTULO TRADUCIBLE -->
+    <!-- TÍTULO -->
     <h1 
       data-es="¡Gracias por contactarnos!" 
       data-en="Thank you for contacting us!">
       ¡Gracias por contactarnos!
     </h1>
     
-    <!-- PÁRRAFO TRADUCIBLE -->
+    <!-- PÁRRAFO -->
     <p 
       data-es="Hemos recibido tu mensaje correctamente. Nuestro equipo te responderá lo antes posible." 
       data-en="We have successfully received your message. Our team will respond as soon as possible.">
@@ -146,11 +171,11 @@
       Nuestro equipo te responderá lo antes posible.
     </p>
 
-    <!-- BOTÓN TRADUCIBLE -->
-    <a href="/html/contacto.html" class="btn"
-       data-es="Volver al sitio"
-       data-en="Back to site">
-       Volver al sitio
+    <!-- BOTÓN: Redirige al HOME (/) para mantener URLs limpias -->
+    <a href="/" class="btn"
+       data-es="Volver al inicio"
+       data-en="Back to home">
+       Volver al inicio
     </a>
   </div>
 </div>
@@ -169,22 +194,21 @@
     } catch (e) { console.error(e); }
   }
 
-     // Header (ruta segura desde dominio)
-    loadHTML('header', '/html/header.html', () => {
-      const script = document.createElement('script');
-      script.src = '/js/menus.js';
-      document.body.appendChild(script);
-    });
+  // Header
+  loadHTML('header', '/html/header.html', () => {
+    const script = document.createElement('script');
+    script.src = '/js/menus.js';
+    document.body.appendChild(script);
+  });
 
-    // Footer
-    loadHTML('footer', '/html/footer.html');
+  // Footer
+  loadHTML('footer', '/html/footer.html');
+
   // TRADUCCIÓN INMEDIATA (Anti-Parpadeo)
-  // Esto asegura que el mensaje se traduzca antes de que cargue el header/menus.js
-  // para evitar que el usuario vea español por 1 segundo si tiene inglés seleccionado.
   (function() {
       const lang = localStorage.getItem('language') || 'es';
       document.querySelectorAll('[data-es][data-en]').forEach(el => {
-          el.textContent = el.getAttribute('data-' + lang);
+          el.innerText = el.getAttribute('data-' + lang);
       });
   })();
 </script>
