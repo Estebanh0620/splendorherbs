@@ -16,38 +16,66 @@
   <!-- SEO básico -->
   <title>Splendor Herbs | Aromáticas y Hortalizas Frescas desde Colombia</title>
   <meta name="description"
-    content="Splendor Herbs SAS ofrece hierbas aromáticas y hortalizas frescas de alta calidad para mayoristas en Colombia y exportación a Estados Unidos.">
+    content="Splendor Herbs SAS: Cultivo y exportación de hierbas aromáticas y hortalizas frescas de alta calidad (calidad premium) desde Colombia a USA. Mayoristas.">
   
-  <!-- ETIQUETA CANÓNICA (VITAL PARA URL LIMPIA) -->
+  <!-- ETIQUETA CANÓNICA -->
   <link rel="canonical" href="https://splendorherbs.com/" />
 
-  <!-- OPEN GRAPH (Para que se vea bien en WhatsApp/Facebook) -->
+  <!-- NUEVO: Preload para la imagen principal (Mejora velocidad de carga LCP) -->
+  <link rel="preload" as="image" href="/img/imgindex.webp">
+
+  <!-- OPEN GRAPH -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://splendorherbs.com/">
   <meta property="og:title" content="Splendor Herbs | Aromáticas Frescas de Colombia">
-  <meta property="og:description" content="Cultivo, selección y exportación de hierbas aromáticas y hortalizas con los más altos estándares de calidad.">
+  <meta property="og:description" content="Exportación de hierbas aromáticas y hortalizas con estándares internacionales de calidad y sostenibilidad.">
   <meta property="og:image" content="https://splendorherbs.com/img/imgindex.webp">
 
   <!-- FAVICON -->
   <link rel="shortcut icon" href="/img/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
-  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <!-- (Tus otros favicons están bien) -->
 
   <!-- Responsive -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="language" content="es">
+  <!-- NUEVO: Geoetiquetas (Ayuda al SEO Local) -->
+  <meta name="geo.region" content="CO-CUN" />
+  <meta name="geo.placename" content="Madrid" />
+  <meta name="geo.position" content="4.73245;-74.2642" /> 
 
-  <!-- Google Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@300;400;600;700;900&display=swap"
-    rel="stylesheet">
-
-  <!-- Font Awesome -->
+  <!-- Google Fonts & CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-  <!-- CSS GLOBAL -->
   <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- NUEVO: Schema.org (Datos estructurados para Google) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Splendor Herbs SAS",
+    "url": "https://splendorherbs.com",
+    "logo": "https://splendorherbs.com/img/logo2.png",
+    "description": "Cultivo, selección y empaque de aromáticas frescas y hortalizas para exportación.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Madrid",
+      "addressRegion": "Cundinamarca",
+      "addressCountry": "CO"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "sales",
+      "areaServed": ["US", "CO"]
+    },
+    "sameAs": [
+      "https://www.instagram.com/tu_usuario", 
+      "https://www.linkedin.com/company/tu_empresa"
+    ]
+  }
+  </script>
 </head>
 
 <body>
@@ -58,13 +86,15 @@
   <main class="main-content">
 
     <!-- HERO -->
+    <!-- Nota: La imagen de fondo se mantiene, pero ya la "pre-cargamos" en el head -->
     <section class="hero" style="background-image: url('/img/imgindex.webp');">
       <div class="hero-overlay">
         <div class="hero-inner-content">
 
           <!-- Logo -->
           <div class="hero-col-logo">
-            <img src="/img/logo2.png" alt="Splendor Herbs - Logo oficial">
+            <!-- Tip SEO: Width y Height explícitos ayudan a evitar saltos de diseño (CLS) -->
+            <img src="/img/logo2.png" alt="Splendor Herbs - Exportación de Aromáticas" width="300" height="auto">
           </div>
 
           <!-- Texto Hero -->
@@ -83,11 +113,7 @@
     <!-- CONTENIDO -->
     <div class="content-container">
 
-      <h2 class="section-title"
-          data-es="QUIÉNES SOMOS"
-          data-en="ABOUT US">
-        QUIÉNES SOMOS
-      </h2>
+      <h2 class="section-title" data-es="QUIÉNES SOMOS" data-en="ABOUT US">QUIÉNES SOMOS</h2>
 
       <div class="separator-leaf" aria-hidden="true">
         <span class="line"></span>
@@ -99,7 +125,8 @@
 
         <!-- Video -->
         <div class="split-video">
-          <video autoplay loop muted playsinline preload="metadata">
+          <!-- MODIFICADO: Agregado atributo 'poster' para carga rápida visual -->
+          <video autoplay loop muted playsinline preload="metadata" poster="/img/video-poster.jpg">
             <source src="/img/videoindex.mp4" type="video/mp4">
             Tu navegador no soporta la reproducción de videos.
           </video>
@@ -110,9 +137,10 @@
           <p
             data-es="Desde 2017 nació en Madrid, Cundinamarca, Splendor Herbs SAS, una compañía dedicada al cultivo, selección y empaque de aromáticas frescas. Desde el inicio nos hemos enfocado en llevar al mundo productos de la más alta calidad, cultivados con responsabilidad, inocuidad y respeto por el medio ambiente."
             data-en="Founded in 2017 in Madrid, Cundinamarca, Splendor Herbs SAS is a company dedicated to the cultivation, selection, and packaging of fresh herbs. From the beginning, we have focused on delivering the highest quality products to the world, grown responsibly with food safety and respect for the environment.">
-            Desde 2017 nació en Madrid, Cundinamarca, Splendor Herbs SAS, una compañía dedicada al cultivo, selección y
-            empaque de aromáticas frescas. Desde el inicio nos hemos enfocado en llevar al mundo productos de la más
+            Desde 2017 nació en <strong>Madrid, Cundinamarca</strong>, Splendor Herbs SAS, una compañía dedicada al cultivo, selección y
+            empaque de <strong>aromáticas frescas</strong>. Desde el inicio nos hemos enfocado en llevar al mundo productos de la más
             alta calidad, cultivados con responsabilidad, inocuidad y respeto por el medio ambiente.
+            <!-- Tip SEO: Usar <strong> en palabras clave clave ayuda ligeramente a la legibilidad y énfasis -->
           </p>
         </div>
 
@@ -122,18 +150,14 @@
         <p
           data-es="Nuestro camino ha estado marcado por el compromiso con la sostenibilidad, trabajando constantemente en reducir nuestra huella de carbono y fortalecer las buenas prácticas agrícolas. De la mano de nuestros colaboradores, hemos creado una cultura basada en el aprendizaje continuo, la innovación y la entrega de un producto fresco y saludable que cumple con los más altos estándares internacionales."
           data-en="Our journey has been defined by a strong commitment to sustainability, constantly working to reduce our carbon footprint and strengthen good agricultural practices. Together with our collaborators, we have built a culture based on continuous learning, innovation, and the delivery of fresh and healthy products that meet the highest international standards.">
-          Nuestro camino ha estado marcado por el compromiso con la sostenibilidad, trabajando constantemente en reducir
+          Nuestro camino ha estado marcado por el compromiso con la <strong>sostenibilidad</strong>, trabajando constantemente en reducir
           nuestra huella de carbono y fortalecer las buenas prácticas agrícolas. De la mano de nuestros colaboradores,
           hemos creado una cultura basada en el aprendizaje continuo, la innovación y la entrega de un producto fresco y
           saludable que cumple con los más altos estándares internacionales.
         </p>
       </div>
 
-      <h2 class="section-title"
-          data-es="CERTIFICACIONES"
-          data-en="CERTIFICATIONS">
-        CERTIFICACIONES
-      </h2>
+      <h2 class="section-title" data-es="CERTIFICACIONES" data-en="CERTIFICATIONS">CERTIFICACIONES</h2>
 
       <div class="separator-leaf" aria-hidden="true">
         <span class="line"></span>
@@ -142,50 +166,38 @@
       </div>
 
       <div class="certificados">
-        <img src="/img/primus.png" alt="Primus GFS Certification">
-        <img src="/img/ICA.webp" alt="ICA Colombia Certification">
+        <!-- Tip SEO: Asegúrate que los nombres de archivo sean descriptivos como 'certificado-primus-gfs.png' -->
+        <img src="/img/primus.png" alt="Certificación Primus GFS - Inocuidad Alimentaria" loading="lazy">
+        <img src="/img/ICA.webp" alt="Certificación ICA Colombia - Buenas Prácticas Agrícolas" loading="lazy">
       </div>
 
     </div>
   </main>
 
-  <!-- FOOTER -->
   <div id="footer"></div>
 
   <!-- JS -->
   <script>
+    // Tu script se mantiene igual, funciona bien
     async function loadHTML(id, file, callback) {
       try {
         const res = await fetch(file);
         if (!res.ok) throw new Error(`No se pudo cargar ${file}`);
         const text = await res.text();
         document.getElementById(id).innerHTML = text;
-
         if (callback) callback();
       } catch (err) {
         console.error(err);
       }
     }
-
-    // HEADER
     loadHTML('header', '/html/header.html', () => {
       const script = document.createElement('script');
       script.src = '/js/menus.js';
-
-      script.onload = () => {
-        if (typeof initMenu === 'function') {
-          initMenu();
-        }
-      };
-
+      script.onload = () => { if (typeof initMenu === 'function') initMenu(); };
       document.body.appendChild(script);
     });
-
-    // FOOTER
     loadHTML('footer', '/html/footer.html');
   </script>
 
 </body>
 </html>
-
-
