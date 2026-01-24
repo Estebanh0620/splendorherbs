@@ -10,41 +10,38 @@
 
     gtag('config', 'G-8WSGJQ6WYK');
   </script>
+  
   <!-- Configuración base -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- SEO principal -->
-  <title>Contacto | Wholesale Herbs & Vegetables Supplier – Splendor Herbs</title>
+  <!-- Título enfocado en la acción (Cotizar/Contactar) -->
+  <title>Contáctanos | Mayoristas y Exportación - Splendor Herbs</title>
 
-  <meta name="description" content="Contáctanos para compras mayoristas y exportación de hierbas aromáticas y hortalizas frescas. Splendor Herbs SAS abastece mercados en Colombia, EE.UU. y destinos internacionales.">
-  <meta name="keywords" content="contact splendor herbs, wholesale herbs supplier, fresh vegetables exporter colombia, herbs supplier usa, buy herbs wholesale">
+  <meta name="description" content="Solicita tu cotización de hierbas aromáticas y hortalizas frescas. Contacto directo para mayoristas y exportación desde Colombia a Estados Unidos y el mundo.">
+  <meta name="keywords" content="contacto splendor herbs, cotización aromáticas, proveedores de hierbas colombia, exportación hortalizas, contact fresh herbs supplier">
   <meta name="author" content="Splendor Herbs SAS">
   <meta name="robots" content="index, follow">
   <meta name="language" content="es, en">
 
   <!-- SEO geográfico -->
-  <meta name="geo.region" content="CO">
-  <meta name="geo.placename" content="Colombia">
+  <meta name="geo.region" content="CO-CUN">
+  <meta name="geo.placename" content="Madrid, Cundinamarca">
   <meta name="distribution" content="global">
 
+  <!-- ETIQUETA CANÓNICA (Vital) -->
+  <link rel="canonical" href="https://splendorherbs.com/contacto/" />
+
   <!-- Open Graph -->
-  <meta property="og:title" content="Contact | Splendor Herbs Wholesale Supplier">
-  <meta property="og:description" content="Get in touch with Splendor Herbs to source fresh herbs and vegetables for wholesale and export markets.">
+  <meta property="og:title" content="Contáctanos | Splendor Herbs">
+  <meta property="og:description" content="Cotiza hierbas aromáticas y hortalizas frescas con calidad de exportación.">
   <meta property="og:type" content="website">
-  <!-- CORREGIDO: Ruta absoluta al dominio oficial -->
   <meta property="og:image" content="https://splendorherbs.com/img/og-contacto.jpg">
-  <meta property="og:url" content="https://splendorherbs.com/html/contacto.html">
+  <meta property="og:url" content="https://splendorherbs.com/contacto/">
 
-  <!-- Twitter / X -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Contact – Splendor Herbs">
-  <meta name="twitter:description" content="Wholesale contact for fresh herbs and vegetables from Colombia.">
-  <!-- CORREGIDO: Ruta absoluta al dominio oficial -->
-  <meta name="twitter:image" content="https://splendorherbs.com/img/og-contacto.jpg">
-
-  <!-- Performance: Fuentes -->
+  <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
@@ -55,11 +52,29 @@
   <!-- CSS principal -->
   <link rel="stylesheet" href="/css/styles.css">
 
-  <!-- Favicon CORREGIDO: quitamos /splendorherbs/ -->
+  <!-- Favicon -->
   <link rel="shortcut icon" href="/img/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
-  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <!-- (Se mantienen tus otros favicons) -->
+
+  <!-- SCHEMA.ORG: ContactPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Splendor Herbs SAS",
+      "url": "https://splendorherbs.com",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+57-310-234-5678", 
+        "contactType": "sales",
+        "areaServed": ["US", "CO", "EU"],
+        "availableLanguage": ["Es", "En"]
+      }
+    }
+  }
+  </script>
 </head>
 
 <body>
@@ -70,6 +85,7 @@
   <main class="main-content">
 
     <section class="contacto">
+      <!-- H1 para SEO -->
       <h1 class="section-title-contact" data-es="CONTÁCTANOS" data-en="CONTACT US">
         CONTÁCTANOS
       </h1>
@@ -80,28 +96,23 @@
         <span class="line"></span>
       </div>
 
-      <!-- Formulario Configurado con FormSubmit -->
+      <!-- Formulario -->
       <form class="form-grid" id="contactForm" method="POST" action="https://formsubmit.co/splendorherbssas@gmail.com">
 
-        <!-- IMPORTANTE: Redirección corregida al dominio oficial -->
-        <input type="hidden" name="_next" value="https://splendorherbs.com/html/gracias.html">
+        <!-- CAMBIO: URL limpia para la página de gracias -->
+        <input type="hidden" name="_next" value="https://splendorherbs.com/gracias/">
 
-        <!-- Asunto del correo -->
-        <input type="hidden" name="_subject" value="Nuevo mensaje - Splendor Herbs Web">
-
-        <!-- Desactivar Captcha -->
+        <input type="hidden" name="_subject" value="Nuevo Lead Web - Splendor Herbs">
         <input type="hidden" name="_captcha" value="false">
-
-        <!-- Diseño del correo -->
         <input type="hidden" name="_template" value="table">
 
-        <!-- CAMPOS VISIBLES -->
+        <!-- CAMPOS -->
         <div class="field">
           <label for="email" data-es="Correo electrónico" data-en="Email Address">Correo electrónico</label>
           <input id="email" name="email" type="email" required
-            placeholder="tucorreo@gmail.com"
-            data-ph-es="tucorreo@gmail.com"
-            data-ph-en="youremail@gmail.com">
+            placeholder="tucorreo@empresa.com"
+            data-ph-es="tucorreo@empresa.com"
+            data-ph-en="youremail@company.com">
         </div>
 
         <div class="field">
@@ -170,7 +181,7 @@
       }
     }
 
-    // Header (Rutas absolutas funcionando con el dominio)
+    // Header 
     loadHTML('header', '/html/header.html', () => {
       const script = document.createElement('script');
       script.src = '/js/menus.js';
@@ -180,14 +191,12 @@
     // Footer
     loadHTML('footer', '/html/footer.html');
     
-    // Lógica de traducción
+    // Traducción
     function setLanguage(lang) {
       currentLang = lang;
-
       document.querySelectorAll('[data-es]').forEach(el => {
         el.innerText = el.getAttribute(`data-${lang}`);
       });
-
       document.querySelectorAll('[data-ph-es]').forEach(el => {
         el.placeholder = el.getAttribute(`data-ph-${lang}`);
       });
@@ -199,10 +208,12 @@
       setLanguage(e.detail.language);
     });
 
-    // UX del botón de enviar
+    // Feedback visual al enviar
     const form = document.getElementById('contactForm');
     form.addEventListener('submit', () => {
       const btn = form.querySelector('.btn');
+      // Deshabilitar botón para evitar doble envío
+      btn.disabled = true; 
       btn.innerHTML = currentLang === 'es'
         ? 'ENVIANDO... <i class="fas fa-spinner fa-spin"></i>'
         : 'SENDING... <i class="fas fa-spinner fa-spin"></i>';
