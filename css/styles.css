@@ -909,6 +909,20 @@ footer {
 .footer-col p { margin: 5px 0; font-size: 0.95rem; line-height: 1.4; }
 .footer-col img { max-width: 180px; height: auto; object-fit: contain; }
 
+/* Footer ubicación clickeable */
+.footer-location a {
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-location a:hover {
+    opacity: 0.85;
+    cursor: pointer;
+}
+
 .whatsapp-float {
     position: fixed; width: 60px; height: 60px; bottom: 25px; right: 25px;
     background-color: #25d366; color: #FFF; border-radius: 50%;
