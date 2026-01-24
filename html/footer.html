@@ -1,38 +1,64 @@
 <footer>
     <div class="footer-container">
         
+        <!-- DIRECCIÓN (Google Maps) -->
         <div class="footer-col footer-location">
-    <a 
-        href="https://maps.app.goo.gl/xE4KvYPrJfDZ43SU8"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Ver ubicación de Splendor Herbs en Google Maps"
-    >
-        <i class="fas fa-map-marker-alt"></i>
-        <p>Madrid - Cundinamarca - Colombia</p>
-        <p>Finca Santana Garden</p>
-    </a>
-</div>
+            <a href="https://maps.app.goo.gl/xE4KvYPrJfDZ43SU8"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Ver ubicación en Google Maps">
+                <i class="fas fa-map-marker-alt"></i>
+                <!-- Uso de address para semántica SEO -->
+                <address style="font-style: normal;">
+                    <p>Madrid - Cundinamarca - Colombia</p>
+                    <p>Finca Santana Garden</p>
+                </address>
+            </a>
+        </div>
 
-
+        <!-- TELÉFONO (Click to Call) -->
         <div class="footer-col">
             <i class="fas fa-phone-alt"></i>
-            <p>+57 310 234 0960</p>
+            <p>
+                <!-- Enlace funcional para llamar -->
+                <a href="tel:+573102340960" style="color: inherit; text-decoration: none;">
+                    +57 310 234 0960
+                </a>
+            </p>
         </div>
 
+        <!-- CORREOS (Click to Mail) -->
         <div class="footer-col">
             <i class="far fa-envelope"></i>
-            <p>splendorherbssas@gmail.com</p>
-            <p>comercial@splendorherbs.com</p>
+            <p>
+                <a href="mailto:splendorherbssas@gmail.com" style="color: inherit; text-decoration: none;">
+                    splendorherbssas@gmail.com
+                </a>
+            </p>
+            <p>
+                <a href="mailto:comercial@splendorherbs.com" style="color: inherit; text-decoration: none;">
+                    comercial@splendorherbs.com
+                </a>
+            </p>
         </div>
 
+        <!-- LOGO FOOTER -->
         <div class="footer-col logo-col">
-            <img src="../img/logo2.png" alt="Splendor Herbs Logo">
+            <!-- CORRECCIÓN CRÍTICA: Ruta absoluta (/) en lugar de relativa (../) -->
+            <!-- Agregado loading lazy para performance en footer -->
+            <img src="/img/logo2.png" 
+                 alt="Splendor Herbs Exportador" 
+                 width="150" height="65" 
+                 loading="lazy">
         </div>
 
     </div>
     
-    <a href="https://wa.me/573102340960" target="_blank" class="whatsapp-float">
+    <!-- WHATSAPP FLOTANTE GLOBAL -->
+    <a href="https://wa.me/573102340960?text=Hola,%20quisiera%20más%20información%20sobre%20sus%20productos." 
+       target="_blank" 
+       class="whatsapp-float"
+       aria-label="Contactar por WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 </footer>

@@ -4,15 +4,16 @@
     <nav class="navbar" aria-label="Navegación principal Splendor Herbs">
 
       <!-- Botón Menú Móvil -->
-      <button id="mobile-menu-btn" class="hamburger" aria-label="Abrir menú">
+      <button id="mobile-menu-btn" class="hamburger" aria-label="Abrir menú de navegación">
         <i class="fas fa-bars"></i>
       </button>
 
       <!-- Selector de idioma -->
       <div class="language-dropdown">
-        <button class="lang-selected" type="button" aria-label="Seleccionar idioma">
+        <button class="lang-selected" type="button" aria-label="Cambiar idioma / Change language">
           <span class="current-content">
-            <img id="current-lang-flag" src="/img/co.png" alt="Idioma">
+            <!-- Rutas absolutas -->
+            <img id="current-lang-flag" src="/img/co.png" alt="Bandera idioma actual" width="20" height="15">
             <span id="current-lang-text">ESP</span>
           </span>
           <i class="fas fa-chevron-down arrow-icon"></i>
@@ -20,12 +21,12 @@
 
         <div class="lang-options">
           <button type="button" id="lang-es">
-            <img src="/img/co.png" alt="Español Colombia">
+            <img src="/img/co.png" alt="Español Colombia" width="20" height="15">
             <span>Español</span>
           </button>
 
           <button type="button" id="lang-en">
-            <img src="/img/us.png" alt="English United States">
+            <img src="/img/us.png" alt="English United States" width="20" height="15">
             <span>English</span>
           </button>
         </div>
@@ -33,47 +34,45 @@
 
       <!-- Logo Mobile -->
       <div class="logo-mobile">
-        <!-- CAMBIO 1: Enlace limpio al Home -->
-        <a href="/">
-          <img src="/img/logo.png" alt="Splendor Herbs">
+        <a href="/" aria-label="Ir al inicio">
+          <!-- IMPORTANTE: Ajusta width/height reales de tu imagen para evitar saltos (CLS) -->
+          <img src="/img/logo.png" alt="Splendor Herbs Logo" width="120" height="50">
         </a>
       </div>
 
-      <!-- Menú -->
+      <!-- Menú Desktop -->
       <ul class="nav-menu">
         <li class="nav-item">
-          <!-- CAMBIO 2: Enlace limpio al Home -->
           <a href="/" class="nav-link" data-es="INICIO" data-en="HOME">INICIO</a>
         </li>
 
         <li class="nav-item dropdown">
-          <a href="#" class="nav-link">
+          <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
             <span data-es="NOSOTROS" data-en="ABOUT US">NOSOTROS</span>
             <i class="fas fa-chevron-down arrow-icon"></i>
           </a>
           <div class="dropdown-content">
-            <!-- CAMBIO 3: Enlaces a carpetas (sin .html) -->
+            <!-- Enlaces limpios a carpetas -->
             <a href="/valores/" data-es="NUESTROS VALORES" data-en="OUR VALUES">NUESTROS VALORES</a>
             <a href="/porquestn/" data-es="¿POR QUÉ ELEGIRNOS?" data-en="WHY CHOOSE US?">¿POR QUÉ ELEGIRNOS?</a>
             <a href="/galeria/" data-es="GALERÍA" data-en="GALLERY">GALERÍA</a>
           </div>
         </li>
 
-        <!-- Logo Desktop -->
+        <!-- Logo Desktop (Central) -->
         <li class="nav-item logo-desktop">
-          <!-- CAMBIO 4: Enlace limpio al Home -->
-          <a href="/">
-            <img src="/img/logo.png" alt="Splendor Herbs">
+          <a href="/" aria-label="Ir al inicio">
+            <!-- Prioridad alta de carga para el LCP (Largest Contentful Paint) -->
+            <img src="/img/logo.png" alt="Splendor Herbs" width="150" height="65" fetchpriority="high">
           </a>
         </li>
 
         <li class="nav-item dropdown">
-          <a href="#" class="nav-link">
+          <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false">
             <span data-es="PRODUCTOS" data-en="PRODUCTS">PRODUCTOS</span>
             <i class="fas fa-chevron-down arrow-icon"></i>
           </a>
           <div class="dropdown-content">
-            <!-- CAMBIO 5: Enlaces a carpetas (sin .html) -->
             <a href="/hortalizas/" data-es="HORTALIZAS FRESCAS" data-en="FRESH VEGETABLES">HORTALIZAS FRESCAS</a>
             <a href="/hierbas/" data-es="HIERBAS AROMÁTICAS" data-en="AROMATIC HERBS">HIERBAS AROMÁTICAS</a>
             <a href="/procesos/" data-es="PROCESOS" data-en="PROCESSES">PROCESOS</a>
@@ -81,12 +80,11 @@
         </li>
 
         <li class="nav-item nav-cta">
-          <!-- CAMBIO 6: Enlace a carpeta contacto -->
           <a href="/contacto/" data-es="COTIZA CON NOSOTROS" data-en="GET A QUOTE">COTIZA CON NOSOTROS</a>
         </li>
       </ul>
       
-      <!-- Overlay -->
+      <!-- Overlay para móvil -->
       <div id="menu-overlay"></div>
 
     </nav>
