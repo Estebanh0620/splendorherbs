@@ -281,7 +281,7 @@ img {
 /* Agregamos .hero-col-text h1 al selector para que aplique los estilos */
 .hero-col-text h1, 
 .hero-col-text h2, 
-.hero-col-text-gal h2 {
+.hero-col-text-gal h2,.hero-col-text-gal h1 {
     font-family: var(--font-titles); 
     color: var(--white); /* <--- ESTO PONE EL TEXTO EN BLANCO */
     font-size: 2.5rem; 
@@ -500,7 +500,7 @@ img {
     background-color: #ffffff; padding: 80px 20px;
     margin-top: var(--header-height);
 }
-.seccion-elegirnos h2 {
+.seccion-elegirnos h2, .seccion-elegirnos h1 {
     color: var(--primary-green); text-align: center;
     font-size: 2.5rem; font-weight: 100; text-transform: uppercase; margin-bottom: 60px;
 }
@@ -748,7 +748,7 @@ img {
     margin-bottom: 30px; text-align: center; max-width: 800px;
     margin-left: auto; margin-right: auto;
 }
-.catalogo__intro h2 {
+.catalogo__intro h2, .catalogo__intro h1 {
     color: var(--primary-green); font-size: 2rem;
     margin-bottom: 10px; font-weight: 200;
 }
