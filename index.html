@@ -130,40 +130,43 @@
     </div>
   </main>
 
+  <!-- FOOTER -->
+  <div id="footer"></div>
 
   <!-- JS -->
- <script>
-  async function loadHTML(id, file, callback) {
-    try {
-      const res = await fetch(file);
-      if (!res.ok) throw new Error(`No se pudo cargar ${file}`);
-      const text = await res.text();
-      document.getElementById(id).innerHTML = text;
+  <script>
+    async function loadHTML(id, file, callback) {
+      try {
+        const res = await fetch(file);
+        if (!res.ok) throw new Error(`No se pudo cargar ${file}`);
+        const text = await res.text();
+        document.getElementById(id).innerHTML = text;
 
-      if (callback) callback();
-    } catch (err) {
-      console.error(err);
-    }
-  }
-
-  // HEADER
-  loadHTML('header', '/html/header.html', () => {
-    const script = document.createElement('script');
-    script.src = '/js/menus.js';
-
-    script.onload = () => {
-      if (typeof initMenu === 'function') {
-        initMenu();
+        if (callback) callback();
+      } catch (err) {
+        console.error(err);
       }
-    };
+    }
 
-    document.body.appendChild(script);
-  });
+    // HEADER
+    loadHTML('header', '/html/header.html', () => {
+      const script = document.createElement('script');
+      script.src = '/js/menus.js';
 
-  // FOOTER
-  loadHTML('footer', '/html/footer.html');
-</script>
+      script.onload = () => {
+        if (typeof initMenu === 'function') {
+          initMenu();
+        }
+      };
 
+      document.body.appendChild(script);
+    });
+
+    // FOOTER
+    loadHTML('footer', '/html/footer.html');
+  </script>
 
 </body>
 </html>
+
+
