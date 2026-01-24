@@ -4,13 +4,65 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
-
+<!-- PAGINA DE INICIO (Prioridad Máxima) -->
 <url>
   <loc>https://splendorherbs.com/</loc>
-  <lastmod>2026-01-24T00:08:27+00:00</lastmod>
+  <lastmod>2026-01-24</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>1.00</priority>
 </url>
 
+<!-- PRODUCTOS (Núcleo del Negocio) -->
+<url>
+  <loc>https://splendorherbs.com/hierbas/</loc>
+  <lastmod>2026-01-24</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
+</url>
+
+<url>
+  <loc>https://splendorherbs.com/hortalizas/</loc>
+  <lastmod>2026-01-24</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.90</priority>
+</url>
+
+<!-- CONVERSIÓN (Vital) -->
+<url>
+  <loc>https://splendorherbs.com/contacto/</loc>
+  <lastmod>2026-01-24</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.90</priority>
+</url>
+
+<!-- INFORMACIÓN Y CONFIANZA -->
+<url>
+  <loc>https://splendorherbs.com/procesos/</loc>
+  <lastmod>2026-01-24</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+
+<url>
+  <loc>https://splendorherbs.com/valores/</loc>
+  <lastmod>2026-01-24</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.80</priority>
+</url>
+
+<url>
+  <loc>https://splendorherbs.com/porquestn/</loc>
+  <lastmod>2026-01-24</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.80</priority>
+</url>
+
+<url>
+  <loc>https://splendorherbs.com/galeria/</loc>
+  <lastmod>2026-01-24</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
 
 </urlset>

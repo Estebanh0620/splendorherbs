@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8WSGJQ6WYK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8WSGJQ6WYK');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Página no encontrada | Splendor Herbs</title>
+  
+  <!-- IMPORTANTE: NOINDEX para páginas de error -->
+  <meta name="robots" content="noindex, follow">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- CSS Global (Ruta absoluta) -->
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <style>
+    .error-container {
+        text-align: center;
+        padding: 100px 20px;
+        min-height: 60vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .error-code {
+        font-family: 'Belanosima', sans-serif;
+        font-size: 8rem;
+        line-height: 1;
+        color: #e0e0e0; /* Gris muy suave */
+        margin: 0;
+        position: relative;
+    }
+    .error-code::after {
+        content: '\f06c'; /* Hoja FontAwesome */
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        font-size: 3rem;
+        color: #13854b;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .error-title {
+        font-family: 'Belanosima', sans-serif;
+        font-size: 2rem;
+        color: #13854b;
+        margin-top: 20px;
+        text-transform: uppercase;
+    }
+    .error-text {
+        font-family: 'Montserrat', sans-serif;
+        color: #555;
+        max-width: 500px;
+        margin: 15px auto 30px;
+        line-height: 1.6;
+    }
+    .btn-home {
+        background-color: #13854b;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .btn-home:hover {
+        background-color: #0e6338;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(19, 133, 75, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<div id="header"></div>
+
+<main class="main-content">
+    <div class="error-container">
+        <div class="error-code">404</div>
+        
+        <h1 class="error-title" 
+            data-es="PÁGINA NO ENCONTRADA" 
+            data-en="PAGE NOT FOUND">
+            PÁGINA NO ENCONTRADA
+        </h1>
+        
+        <p class="error-text" 
+           data-es="Lo sentimos, la página que buscas no existe o ha sido movida. Usa el menú para navegar o vuelve al inicio." 
+           data-en="Sorry, the page you are looking for does not exist or has been moved. Use the menu to navigate or go back home.">
+           Lo sentimos, la página que buscas no existe o ha sido movida. Usa el menú para navegar o vuelve al inicio.
+        </p>
+
+        <a href="/" class="btn-home">
+            <i class="fas fa-home"></i>
+            <span data-es="VOLVER AL INICIO" data-en="BACK TO HOME">VOLVER AL INICIO</span>
+        </a>
+    </div>
+</main>
+
+<!-- Footer -->
+<div id="footer"></div>
+
+<script>
+  let currentLang = localStorage.getItem('language') || 'es';
+
+  // Carga de componentes
+  async function loadHTML(id, file, callback) {
+    try {
+      const res = await fetch(file);
+      if(res.ok) {
+        document.getElementById(id).innerHTML = await res.text();
+        if (callback) callback();
+      }
+    } catch (e) { console.error(e); }
+  }
+
+  // Cargar Header y activar traducción
+  loadHTML('header', '/html/header.html', () => {
+    const script = document.createElement('script');
+    script.src = '/js/menus.js';
+    document.body.appendChild(script);
+    setLanguage(currentLang);
+  });
+
+  // Cargar Footer
+  loadHTML('footer', '/html/footer.html', () => {
+    setLanguage(currentLang);
+  });
+
+  // Función de traducción
+  function setLanguage(lang) {
+      currentLang = lang;
+      document.querySelectorAll('[data-es]').forEach(el => {
+          el.innerText = el.getAttribute(`data-${lang}`);
+      });
+  }
+  
+  // Escucha cambios de idioma
+  document.addEventListener('languageChanged', e => {
+      setLanguage(e.detail.language);
+  });
+  
+  // Traducción inicial inmediata
+  setLanguage(currentLang);
+</script>
+
+</body>
+</html>
