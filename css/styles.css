@@ -395,7 +395,7 @@ img {
     text-align: center;
 }
 
-.galeria-simple-header h2 {
+.galeria-simple-header h2, .galeria-simple-header h1 {
     font-family: var(--font-titles);
     color: var(--primary-green); /* El mismo verde de "Valores" */
     font-size: 3.5rem;
