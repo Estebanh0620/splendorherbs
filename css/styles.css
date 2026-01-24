@@ -369,7 +369,7 @@ img {
     align-items: center;
     justify-content: center;
     gap: 15px;      /* Espacio entre líneas e icono */
-    margin-bottom: 50px; /* Espacio extra hacia abajo para separar de la galería */
+    margin-bottom: 20px; /* Espacio extra hacia abajo para separar de la galería */
     margin-top: 10px; /* Espacio extra hacia arriba */
 }
 
