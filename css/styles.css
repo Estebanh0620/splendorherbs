@@ -369,7 +369,7 @@ img {
     align-items: center;
     justify-content: center;
     gap: 15px;      /* Espacio entre líneas e icono */
-    margin-bottom: 20px; /* Espacio extra hacia abajo para separar de la galería */
+    margin-bottom: 50px; /* Espacio extra hacia abajo para separar de la galería */
     margin-top: 10px; /* Espacio extra hacia arriba */
 }
 
@@ -1039,7 +1039,12 @@ footer {
     .valores .hero-text h1 { font-size: 2.5rem; margin-bottom: 20px; }
     .valores .hero-text p { font-size: 1.1rem; max-width: 900px; margin-left: auto; margin-right: auto; }
     
-    .separator-leaf { margin: 25px 0 45px 0; }
+    .separator-leaf { display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;      /* Espacio entre líneas e icono */
+    margin-bottom: 50px; /* Espacio extra hacia abajo para separar de la galería */
+    margin-top: 10px; /* Espacio extra hacia arriba */}
     .separator-leaf .line { width: 60px; }
     
     .iconos-valores { display: flex; flex-wrap: nowrap; justify-content: center; gap: 60px; margin-bottom: 60px; }
@@ -1212,7 +1217,12 @@ footer {
     }
 
     /* --- GENERAL MÓVIL --- */
-    .separator-leaf { margin: 20px 0 30px 0; }
+    .separator-leaf {display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;      /* Espacio entre líneas e icono */
+    margin-bottom: 50px; /* Espacio extra hacia abajo para separar de la galería */
+    margin-top: 10px; /* Espacio extra hacia arriba */}
     .catalogo { margin: 10px auto; }
     
     section, .procesos, .seccion-elegirnos, .valores, .catalogo, .footer-container {
